@@ -1,0 +1,589 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol";
+import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
+import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
+
+contract Wrap {
+    address public immutable sct;
+
+    IERC20 public immutable usdt;
+
+    constructor(address sct_, IERC20 usdt_) {
+        sct = sct_;
+        usdt = usdt_;
+    }
+
+    function withdraw() external {
+        uint256 usdtBalance = usdt.balanceOf(address(this));
+        if (usdtBalance > 0) {
+            usdt.transfer(sct, usdtBalance);
+        }
+    }
+}
+
+abstract contract ERC20Detailed is IERC20 {
+    string private _name;
+
+    string private _symbol;
+
+    uint8 private _decimals = 18;
+
+    constructor(string memory name_, string memory symbol_) {
+        _name = name_;
+        _symbol = symbol_;
+    }
+
+    function name() public view returns (string memory) {
+        return _name;
+    }
+
+    function symbol() public view returns (string memory) {
+        return _symbol;
+    }
+
+    function decimals() public view returns (uint8) {
+        return _decimals;
+    }
+}
+
+contract SCT is ERC20Detailed, Ownable {
+    using SafeMath for uint256;
+
+    Wrap public immutable wrap;
+
+    address public constant DEAD = 0x000000000000000000000000000000000000dEaD;
+
+    uint256 private immutable TOTAL_GONS;
+    uint256 private constant MAX_UINT256 = type(uint256).max;
+    uint256 public immutable MAX_SUPPLY;
+
+    uint256 public immutable extraFeeRate = 20;
+    uint256 public immutable maxHoldings = 500 * 1e18;
+
+    uint256 public immutable buyMarketingFeeRate = 1;
+    uint256 private immutable _buyJtsFeeRate = 5;
+    uint256 private immutable _buyLpFeeRate = 4;
+
+    uint256 public immutable sellMarketingFeeRate = 2;
+    uint256 private immutable _sellBurnFeeRate = 8;
+
+    address public marketingWallet1;
+    address public marketingWallet2;
+
+    uint256 public gonsMarketingFee1;
+    uint256 public gonsMarketingFee2;
+    uint256 public gonsJtsFee;
+    uint256 public gonsLpFee;
+
+    IUniswapV2Router02 public immutable pancakeSwapRouter;
+    IERC20 public immutable usdt;
+    IERC20 public immutable jts;
+    address public immutable pair;
+
+    uint256 public swapInterval = 1 hours;
+    uint256 public immutable tradeStartTime;
+    uint256 private _lastSwapTime;
+    bool private _swapping = false;
+    uint256 public immutable rebaseInterval = 15 minutes;
+    uint256 public immutable rebaseRate = 51954907016092;
+    uint256 private _lastRebasedTime;
+    uint256 private _totalSupply;
+    uint256 private _gonsPerFragment;
+
+    uint256 private _pairBalance;
+    mapping(address => uint256) private _gonsBalances;
+    mapping(address => mapping(address => uint256)) private _allowedFragments;
+    mapping(address => bool) private _isExcludedFromFees;
+    modifier validRecipient(address to) {
+        require(to != address(0x0));
+        _;
+    }
+
+    constructor(
+        string memory name_,
+        string memory symbol_,
+        uint256 initSupply_,
+        uint256 maxSupply_,
+        IUniswapV2Router02 pancakeSwapRouter_,
+        IERC20 usdt_,
+        IERC20 jts_,
+        address marketingWallet1_,
+        address marketingWallet2_,
+        uint256 tradeStartTime_
+    ) ERC20Detailed(name_, symbol_) {
+        tradeStartTime = _lastSwapTime = _lastRebasedTime = tradeStartTime_;
+        pancakeSwapRouter = pancakeSwapRouter_;
+        usdt = usdt_;
+        jts = jts_;
+        marketingWallet1 = marketingWallet1_;
+        marketingWallet2 = marketingWallet2_;
+        wrap = new Wrap(address(this), usdt);
+        pair = IUniswapV2Factory(pancakeSwapRouter.factory()).createPair(
+            address(usdt),
+            address(this)
+        );
+        _totalSupply = initSupply_ * 10 ** decimals();
+        MAX_SUPPLY = maxSupply_ * 10 ** decimals();
+        TOTAL_GONS = MAX_UINT256 / 1e10 - ((MAX_UINT256 / 1e10) % _totalSupply);
+        _gonsPerFragment = TOTAL_GONS.div(_totalSupply);
+        _gonsBalances[msg.sender] = TOTAL_GONS;
+        emit Transfer(address(0x0), msg.sender, _totalSupply);
+        _allowedFragments[address(this)][
+            address(pancakeSwapRouter)
+        ] = MAX_UINT256;
+        usdt.approve(address(pancakeSwapRouter), MAX_UINT256);
+        excludeFromFees(address(this), true);
+        excludeFromFees(DEAD, true);
+        excludeFromFees(owner(), true);
+        excludeFromFees(marketingWallet1, true);
+        excludeFromFees(marketingWallet2, true);
+    }
+
+    function isExcludedFromFees(address account) public view returns (bool) {
+        return _isExcludedFromFees[account];
+    }
+
+    function transfer(
+        address to,
+        uint256 value
+    ) external override validRecipient(to) returns (bool) {
+        _transferFrom(msg.sender, to, value);
+        return true;
+    }
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 value
+    ) external override validRecipient(to) returns (bool) {
+        if (_allowedFragments[from][msg.sender] != MAX_UINT256) {
+            _allowedFragments[from][msg.sender] = _allowedFragments[from][
+                msg.sender
+            ].sub(value, "Insufficient Allowance");
+        }
+        _transferFrom(from, to, value);
+        return true;
+    }
+
+    function allowance(
+        address owner_,
+        address spender
+    ) external view override returns (uint256) {
+        return _allowedFragments[owner_][spender];
+    }
+
+    function decreaseAllowance(
+        address spender,
+        uint256 subtractedValue
+    ) external returns (bool) {
+        uint256 oldValue = _allowedFragments[msg.sender][spender];
+        if (subtractedValue >= oldValue) {
+            _allowedFragments[msg.sender][spender] = 0;
+        } else {
+            _allowedFragments[msg.sender][spender] = oldValue.sub(
+                subtractedValue
+            );
+        }
+        emit Approval(
+            msg.sender,
+            spender,
+            _allowedFragments[msg.sender][spender]
+        );
+        return true;
+    }
+
+    function increaseAllowance(
+        address spender,
+        uint256 addedValue
+    ) external returns (bool) {
+        _allowedFragments[msg.sender][spender] = _allowedFragments[msg.sender][
+            spender
+        ].add(addedValue);
+        emit Approval(
+            msg.sender,
+            spender,
+            _allowedFragments[msg.sender][spender]
+        );
+        return true;
+    }
+
+    function approve(
+        address spender,
+        uint256 value
+    ) external override returns (bool) {
+        return _approve(msg.sender, spender, value);
+    }
+
+    function _approve(
+        address sender,
+        address spender,
+        uint256 value
+    ) private returns (bool) {
+        _allowedFragments[sender][spender] = value;
+        emit Approval(sender, spender, value);
+        return true;
+    }
+
+    function totalSupply() public view override returns (uint256) {
+        return _totalSupply;
+    }
+
+    function balanceOf(address who) public view override returns (uint256) {
+        return
+            who == pair
+                ? _pairBalance
+                : _gonsBalances[who].div(_gonsPerFragment);
+    }
+
+    function _basicTransfer(
+        address from,
+        address to,
+        uint256 gonAmount
+    ) internal returns (bool) {
+        uint256 amount = gonAmount.div(_gonsPerFragment);
+        if (from == pair) {
+            _pairBalance = _pairBalance.sub(amount);
+        } else {
+            _gonsBalances[from] = _gonsBalances[from].sub(gonAmount);
+        }
+        if (to == pair) {
+            _pairBalance = _pairBalance.add(amount);
+        } else {
+            _gonsBalances[to] = _gonsBalances[to].add(gonAmount);
+        }
+        emit Transfer(from, to, amount);
+        return true;
+    }
+
+    function _transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) internal returns (bool result) {
+        if (_swapping) {
+            return
+                _basicTransfer(sender, recipient, amount.mul(_gonsPerFragment));
+        }
+        require(_isStartTrade(sender, recipient), "Trade not start");
+        if (_shouldRebase()) {
+            _rebase();
+        }
+        if (_shouldSwap(sender, recipient)) {
+            _swap();
+        }
+        uint256 gonAmount = amount.mul(_gonsPerFragment);
+        if (_shouldTakeFee(sender, recipient)) {
+            if (sender != pair) {
+                uint256 minHolderAmount = _gonsBalanceOf(sender).mul(99).div(
+                    100
+                );
+                if (gonAmount > minHolderAmount) {
+                    gonAmount = minHolderAmount;
+                }
+            }
+            gonAmount = _takeFee(sender, gonAmount);
+        }
+        result = _basicTransfer(sender, recipient, gonAmount);
+        require(!_isExceedMaxHoldings(sender, recipient), "GT max holdings");
+    }
+
+    function _isStartTrade(
+        address _from,
+        address _to
+    ) private view returns (bool) {
+        return
+            tradeStartTime <= block.timestamp ||
+            (_from != pair && _to != pair) ||
+            (_isExcludedFromFees[_to] || _isExcludedFromFees[_from]);
+    }
+
+    function _shouldTakeExtraFee() private view returns (bool) {
+        uint256 time = block.timestamp;
+        return tradeStartTime <= time && tradeStartTime.add(2 minutes) >= time;
+    }
+
+    function _isExceedMaxHoldings(
+        address _from,
+        address _to
+    ) private view returns (bool) {
+        return
+            block.timestamp < tradeStartTime.add(20 minutes) &&
+            _to != pair &&
+            balanceOf(_to) > maxHoldings &&
+            !(_isExcludedFromFees[_to] || _isExcludedFromFees[_from]);
+    }
+
+    function _shouldTakeFee(
+        address from,
+        address to
+    ) private view returns (bool) {
+        if (_isExcludedFromFees[from] || _isExcludedFromFees[to] || _swapping) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function _shouldRebase() private view returns (bool) {
+        return
+            (_totalSupply < MAX_SUPPLY) &&
+            msg.sender != pair &&
+            !_swapping &&
+            block.timestamp >= (_lastRebasedTime + rebaseInterval);
+    }
+
+    function _shouldSwap(
+        address _from,
+        address _to
+    ) private view returns (bool) {
+        return
+            !_swapping &&
+            _from != pair &&
+            _from != owner() &&
+            _to != owner() &&
+            block.timestamp >= (_lastSwapTime + swapInterval);
+    }
+
+    function buyLpFeeRate() public view returns (uint256) {
+        return MAX_SUPPLY == totalSupply() ? 0 : _buyLpFeeRate;
+    }
+
+    function buyJtsFeeRate() public view returns (uint256) {
+        return MAX_SUPPLY == totalSupply() ? 0 : _buyJtsFeeRate;
+    }
+
+    function sellBurnFeeRate() public view returns (uint256) {
+        return MAX_SUPPLY == totalSupply() ? 0 : _sellBurnFeeRate;
+    }
+
+    function _takeFee(
+        address sender,
+        uint256 gonAmount
+    ) private returns (uint256 result) {
+        result = gonAmount;
+        if (_shouldTakeExtraFee()) {
+            uint256 EFee = gonAmount.mul(extraFeeRate).div(100);
+            gonsMarketingFee1 = gonsMarketingFee1.add(EFee);
+            result = result.sub(EFee);
+            EFee > 0 && _basicTransfer(sender, address(this), EFee);
+        }
+        if (sender == pair) {
+            //buy
+
+            //Marketing
+            uint256 MFee = gonAmount.mul(buyMarketingFeeRate).div(100);
+            gonsMarketingFee1 = gonsMarketingFee1.add(MFee);
+
+            //LP
+            uint256 LFee = gonAmount.mul(buyLpFeeRate()).div(100);
+            gonsLpFee = gonsLpFee.add(LFee);
+
+            //JTS
+            uint256 JFee = gonAmount.mul(buyJtsFeeRate()).div(100);
+            gonsJtsFee = gonsJtsFee.add(JFee);
+
+            uint256 TFee = JFee.add(LFee).add(MFee);
+            TFee > 0 && _basicTransfer(sender, address(this), TFee);
+            result = result.sub(TFee);
+        } else {
+            //sell or transfer
+            //Burn
+            uint256 BFee = gonAmount.mul(sellBurnFeeRate()).div(100);
+            result = result.sub(BFee);
+            BFee > 0 && _basicTransfer(sender, DEAD, BFee);
+            //Marketing
+            uint256 MFee = gonAmount.mul(sellMarketingFeeRate).div(100);
+            gonsMarketingFee2 = gonsMarketingFee2.add(MFee);
+            result = result.sub(MFee);
+            MFee > 0 && _basicTransfer(sender, address(this), MFee);
+        }
+    }
+
+    function _gonsBalanceOf(address _address) private view returns (uint256) {
+        return _gonsBalances[_address];
+    }
+
+    function _rebase() private {
+        uint256 deltaTime = block.timestamp - _lastRebasedTime;
+        uint256 times = deltaTime.div(rebaseInterval);
+        uint256 epoch = times.mul(rebaseInterval).div(1 minutes);
+        for (uint256 i = 0; i < times; i++) {
+            _totalSupply = _totalSupply
+                .mul((10 ** decimals()).add(rebaseRate))
+                .div(10 ** decimals());
+            if (_totalSupply > MAX_SUPPLY) {
+                _totalSupply = MAX_SUPPLY;
+            }
+        }
+        _gonsPerFragment = TOTAL_GONS.div(_totalSupply);
+        _lastRebasedTime = _lastRebasedTime.add(times.mul(rebaseInterval));
+        emit LogRebase(epoch, _totalSupply);
+    }
+
+    function _swap() private {
+        _swapping = true;
+        if (gonsMarketingFee1 > 0) {
+            _swapTokensForUsdt(
+                gonsMarketingFee1.div(_gonsPerFragment),
+                marketingWallet1
+            );
+            gonsMarketingFee1 = 0;
+        }
+        if (gonsMarketingFee2 > 0) {
+            _swapTokensForUsdt(
+                gonsMarketingFee2.div(_gonsPerFragment),
+                marketingWallet2
+            );
+            gonsMarketingFee2 = 0;
+        }
+        if (gonsJtsFee > 0) {
+            _swapTokensForJts(gonsJtsFee.div(_gonsPerFragment), DEAD);
+            gonsJtsFee = 0;
+        }
+        if (gonsLpFee > 0) {
+            _swapAndLiquidity(gonsLpFee.div(_gonsPerFragment), DEAD);
+            gonsLpFee = 0;
+        }
+        _lastSwapTime = block.timestamp;
+        _swapping = false;
+    }
+
+    function _swapTokensForUsdt(
+        uint256 tokenAmount,
+        address to
+    ) private returns (uint256 swapUsdtAmount) {
+        address[] memory path = new address[](2);
+        path[0] = address(this);
+        path[1] = address(usdt);
+        uint256 beforeUsdtAmount = usdt.balanceOf(to);
+        pancakeSwapRouter.swapExactTokensForTokensSupportingFeeOnTransferTokens(
+            tokenAmount,
+            0,
+            path,
+            to,
+            block.timestamp
+        );
+        swapUsdtAmount = usdt.balanceOf(to).sub(beforeUsdtAmount);
+        if (to == address(wrap)) wrap.withdraw();
+    }
+
+    function _swapTokensForJts(uint256 tokenAmount, address to) private {
+        address[] memory path = new address[](3);
+        path[0] = address(this);
+        path[1] = address(usdt);
+        path[2] = address(jts);
+        pancakeSwapRouter.swapExactTokensForTokensSupportingFeeOnTransferTokens(
+            tokenAmount,
+            0,
+            path,
+            to,
+            block.timestamp
+        );
+    }
+
+    function _swapUsdtForJts(uint256 usdtAmount, address to) private {
+        address[] memory path = new address[](2);
+        path[0] = address(usdt);
+        path[1] = address(jts);
+        pancakeSwapRouter.swapExactTokensForTokensSupportingFeeOnTransferTokens(
+            usdtAmount,
+            0,
+            path,
+            to,
+            block.timestamp
+        );
+    }
+
+    function _swapAndLiquidity(uint256 tokenAmount, address to) private {
+        uint256 half = tokenAmount.div(2);
+        uint256 otherHalf = tokenAmount.sub(half);
+        uint256 usdtAmount = _swapTokensForUsdt(half, address(wrap));
+        _addLiquidityUsdt(otherHalf, usdtAmount, to);
+        emit SwapAndLiquify(half, usdtAmount, otherHalf);
+    }
+
+    function _addLiquidityUsdt(
+        uint256 tokenAmount,
+        uint256 usdtAmount,
+        address to
+    ) private {
+        pancakeSwapRouter.addLiquidity(
+            address(this),
+            address(usdt),
+            tokenAmount,
+            usdtAmount,
+            0,
+            0,
+            to,
+            block.timestamp
+        );
+    }
+
+    function manualSync() external {
+        IUniswapV2Pair(pair).sync();
+    }
+
+    function manualRebase() external {
+        if (_shouldRebase()) {
+            _rebase();
+        }
+    }
+
+    function swapUsdtForJts() external {
+        _swapUsdtForJts(usdt.balanceOf(address(this)), DEAD);
+    }
+
+    function setSwapInterval(uint256 _swapInterval) external onlyOwner {
+        swapInterval = _swapInterval;
+    }
+
+    function setMarketingWallet2(address _wallet) external onlyOwner {
+        marketingWallet2 = _wallet;
+    }
+
+    function setMarketingWallet1(address _wallet) external onlyOwner {
+        marketingWallet1 = _wallet;
+    }
+
+    function withdraw(address _token, address payable _to) external onlyOwner {
+        if (_token == address(0x0)) {
+            payable(_to).transfer(address(this).balance);
+        } else {
+            IERC20(_token).transfer(
+                _to,
+                IERC20(_token).balanceOf(address(this))
+            );
+        }
+    }
+
+    function excludeFromFees(address account, bool excluded) public onlyOwner {
+        if (_isExcludedFromFees[account] != excluded) {
+            _isExcludedFromFees[account] = excluded;
+            emit ExcludeFromFees(account, excluded);
+        }
+    }
+
+    function excludeMultipleAccountsFromFees(
+        address[] calldata accounts,
+        bool excluded
+    ) external onlyOwner {
+        for (uint256 i = 0; i < accounts.length; i++) {
+            _isExcludedFromFees[accounts[i]] = excluded;
+        }
+        emit ExcludeMultipleAccountsFromFees(accounts, excluded);
+    }
+
+    event LogRebase(uint256 indexed epoch, uint256 totalSupply);
+    event ExcludeFromFees(address indexed account, bool isExcluded);
+    event ExcludeMultipleAccountsFromFees(address[] accounts, bool isExcluded);
+    event SwapAndLiquify(
+        uint256 tokensSwapped,
+        uint256 usdtReceived,
+        uint256 tokensIntoLiqudity
+    );
+}

@@ -1,0 +1,174 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
+
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
+import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "./interface/IPancake.sol";
+
+interface INFTPool {
+	function rewardToLinnerRelease(uint256 amount) external;
+}
+
+interface INodePool {
+	function rewardToLinnerRelease(uint256 amount) external;
+}
+
+contract BNQToken is ERC20Burnable, ERC20Permit, Ownable {
+	using EnumerableSet for EnumerableSet.AddressSet;
+
+	EnumerableSet.AddressSet private feeWhiteList;
+
+	event RewardTo(address to, uint256 amount);
+	event Burn(address indexed contractAddr, address from, uint256 amount);
+
+	address public pair;
+	address public router;
+	uint256 public totalBurn;
+
+	address public nftPool;
+	address public nodePool;
+	address public devCommunity;
+	address public backPool;
+
+	uint256 public feeRate = 5;
+
+	uint256 private swapBurnRate = 20;
+	uint256 private swapBackPoolRate = 30;
+	uint256 private swapdevCommunityRate = 10;
+	uint256 private swapNFTPoolRate = 30;
+	uint256 private swapNodePoolRate = 10;
+
+	constructor(
+		address _usdtAddress,
+		address _swaprouter,
+		uint256 _initSupply
+	) ERC20("BNQ Token", "BNQ") ERC20Permit("BNQ Token") {
+		_mint(msg.sender, _initSupply);
+		router = _swaprouter;
+		pair = IPancakeFactory(IPancakeRouter02(router).factory()).createPair(_usdtAddress, address(this));
+		feeWhiteList.add(_msgSender());
+	}
+
+	function setSwapFeeRate(uint256 _feeRate) external onlyOwner {
+		require(_feeRate != 0, "feeRate not be zero");
+		feeRate = _feeRate;
+	}
+
+	function updateSwapRewardRate(
+		uint256 _burnRate,
+		uint256 _backPoolRate,
+		uint256 _devCommunityRate,
+		uint256 _nftPoolRate,
+		uint256 _nodePoolRate
+	) external onlyOwner {
+		require(_burnRate > 0 && _backPoolRate > 0 && _devCommunityRate > 0 && _nftPoolRate > 0 && _nodePoolRate > 0, "rate not be zero");
+		swapBurnRate = _burnRate;
+		swapBackPoolRate = _backPoolRate;
+		swapdevCommunityRate = _devCommunityRate;
+		swapNFTPoolRate = _nftPoolRate;
+		swapNodePoolRate = _nodePoolRate;
+	}
+
+	function addFeeWhiteAddress(address[] calldata accounts) external onlyOwner {
+		for (uint256 i; i < accounts.length; i++) {
+			_editFeeWhite(accounts[i], true);
+		}
+	}
+
+	function _editFeeWhite(address user, bool isAdd) private {
+		require(user != address(0), "user not be address(0)");
+		if (isAdd) {
+			feeWhiteList.add(user);
+		} else {
+			feeWhiteList.remove(user);
+		}
+	}
+
+	function removeFeeWhiteAddress(address[] calldata accounts) external onlyOwner {
+		for (uint256 i; i < accounts.length; i++) {
+			_editFeeWhite(accounts[i], false);
+		}
+	}
+
+	function setSwapFeeRewardAddress(
+		address _nftPool,
+		address _nodePool,
+		address _backPool,
+		address _devCommunity
+	) external onlyOwner {
+		nftPool = _nftPool;
+		nodePool = _nodePool;
+		backPool = _backPool;
+		devCommunity = _devCommunity;
+	}
+
+	function _transfer(
+		address from,
+		address to,
+		uint256 amount
+	) internal virtual override {
+		require(from != address(0), "ERC20: transfer from the zero address");
+		require(to != address(0), "ERC20: transfer to the zero address");
+
+		if ((from == pair || to == pair) && (from != address(this) || to != address(this)) && feeWhiteList.contains(from) == false) {
+			uint256 tokenFee = (amount * feeRate) / 100;
+			amount = amount - tokenFee;
+			super._transfer(from, address(this), tokenFee);
+			distributeRewards(tokenFee);
+		}
+		super._transfer(from, to, amount);
+	}
+
+	function distributeRewards(uint256 tokenFee) internal {
+		uint256 burnAmount = (tokenFee * swapBurnRate) / 100;
+		_burn(address(this), burnAmount);
+		emit Burn(address(this), address(this), burnAmount);
+
+		rewardTo(backPool, (tokenFee * swapBackPoolRate) / 100);
+		rewardTo(devCommunity, (tokenFee * swapdevCommunityRate) / 100);
+		rewardToNFTPool((tokenFee * swapNFTPoolRate) / 100);
+		rewardNodePool((tokenFee * swapNodePoolRate) / 100);
+	}
+
+	function rewardToNFTPool(uint256 amount) internal {
+		if (nftPool != address(0)) {
+			rewardTo(nftPool, amount);
+			INFTPool(nftPool).rewardToLinnerRelease(amount);
+		}
+	}
+
+	function rewardNodePool(uint256 amount) internal {
+		if (nodePool != address(0)) {
+			rewardTo(nodePool, amount);
+			INodePool(nodePool).rewardToLinnerRelease(amount);
+		}
+	}
+
+	function rewardTo(address addr, uint256 amount) internal {
+		if (addr != address(0)) {
+			require(balanceOf(address(this)) >= amount, "reward Insufficient balance");
+			_transfer(address(this), addr, amount);
+			emit RewardTo(addr, amount);
+		}
+	}
+
+	function _burn(address account, uint256 amount) internal virtual override(ERC20) {
+		totalBurn += amount;
+		super._burn(account, amount);
+	}
+
+	/*
+	 * @dev Pull out all balance of token or BNB in this contract. When tokenAddress_ is 0x0, will transfer all BNB to the admin owner.
+	 */
+	function pullFunds(address tokenAddress_) external onlyOwner {
+		if (tokenAddress_ == address(0)) {
+			payable(_msgSender()).transfer(address(this).balance);
+		} else {
+			IERC20 token = IERC20(tokenAddress_);
+			token.transfer(_msgSender(), token.balanceOf(address(this)));
+		}
+	}
+}

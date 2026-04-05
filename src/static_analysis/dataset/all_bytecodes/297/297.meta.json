@@ -1,0 +1,15 @@
+{
+  "title": "Mojo Jojo\u00a0(MOJO)",
+  "chain": "eth",
+  "address": "0xb330c402506b61ba6e351da7d217c4bb52364333",
+  "source_url": "https://etherscan.io/token/0xb330c402506b61ba6e351da7d217c4bb52364333",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

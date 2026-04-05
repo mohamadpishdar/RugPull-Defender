@@ -1,0 +1,6 @@
+detectors/crpwarner/*
+dataset/bytecode*
+dataset/crpwarner_results/b*
+dataset/source_code
+dataset/Dataset_Excel
+*.log

@@ -1,0 +1,15 @@
+{
+  "title": "Sether\u00a0(SETH)",
+  "chain": "eth",
+  "address": "0x78b039921e84e726eb72e7b1212bb35504c645ca",
+  "source_url": "https://etherscan.io/token/0x78b039921e84e726eb72e7b1212bb35504c645ca",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

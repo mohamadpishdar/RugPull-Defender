@@ -1,0 +1,15 @@
+{
+  "title": "Fake SAGA Token",
+  "chain": "bsc",
+  "address": "0x77FBA84956ad63713652ddD1A574aD2C8f1BcdCf",
+  "source_url": "https://bscscan.com/token/0x77FBA84956ad63713652ddD1A574aD2C8f1BcdCf",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11d7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

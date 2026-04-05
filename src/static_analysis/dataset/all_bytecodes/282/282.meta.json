@@ -1,0 +1,15 @@
+{
+  "title": "Symbiogenesis\u00a0(SYSIS)",
+  "chain": "eth",
+  "address": "0x0be05Db2b664e0F373d8c39bd2c2E0F93a3799e6",
+  "source_url": "https://etherscan.io/token/0x0be05Db2b664e0F373d8c39bd2c2E0F93a3799e6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

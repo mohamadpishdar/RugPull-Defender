@@ -1,0 +1,15 @@
+{
+  "title": "CBC Token\u00a0(CBC)",
+  "chain": "bsc",
+  "address": "0x9E10Cf57c90C937c6aB51F4B98ec1d5BfcAF4804",
+  "source_url": "https://bscscan.com/token/0x9E10Cf57c90C937c6aB51F4B98ec1d5BfcAF4804",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1263",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

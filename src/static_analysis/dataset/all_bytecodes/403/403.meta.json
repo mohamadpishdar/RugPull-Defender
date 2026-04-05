@@ -1,0 +1,15 @@
+{
+  "title": "PolySnow\u00a0(POLYSNOW)",
+  "chain": "polygon",
+  "address": "0x353532ad76ae89afa794258be6e218e964282c11",
+  "source_url": "https://polygonscan.com/token/0x353532ad76ae89afa794258be6e218e964282c11",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba177f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

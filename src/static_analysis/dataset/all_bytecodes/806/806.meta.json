@@ -1,0 +1,15 @@
+{
+  "title": "MAGA VP\u00a0(MVP)",
+  "chain": "eth",
+  "address": "0x766d2fcECe1E3eeF32aae8711ab886eE95fd5B2A",
+  "source_url": "https://etherscan.io/token/0x766d2fcECe1E3eeF32aae8711ab886eE95fd5B2A",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

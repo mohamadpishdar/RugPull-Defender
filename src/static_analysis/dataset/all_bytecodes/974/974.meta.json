@@ -1,0 +1,15 @@
+{
+  "title": "Metahero\u00a0(HERO)",
+  "chain": "bsc",
+  "address": "0xd40bedb44c081d2935eeba6ef5a3c8a31a1bbe13",
+  "source_url": "https://bscscan.com/token/0xd40bedb44c081d2935eeba6ef5a3c8a31a1bbe13",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b139a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Volcano Money\u00a0(VOL)",
+  "chain": "eth",
+  "address": "0x8fa269b6da92482c49849140a415beb279aaf2d2",
+  "source_url": "https://etherscan.io/token/0x8fa269b6da92482c49849140a415beb279aaf2d2",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

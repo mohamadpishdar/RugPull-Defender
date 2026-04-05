@@ -1,0 +1,15 @@
+{
+  "title": "VOXEL Token\u00a0(VOXEL)",
+  "chain": "polygon",
+  "address": "0xd0258a3fd00f38aa8090dfee343f10a9d4d30d3f",
+  "source_url": "https://polygonscan.com/token/0xd0258a3fd00f38aa8090dfee343f10a9d4d30d3f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba1783",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

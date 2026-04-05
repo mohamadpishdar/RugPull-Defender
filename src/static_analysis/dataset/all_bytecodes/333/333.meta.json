@@ -1,0 +1,15 @@
+{
+  "title": "Pizza Coin\u00a0(PC)",
+  "chain": "eth",
+  "address": "0xc00192f5929eb4a3fccd9150da87b2f1aa69f43c",
+  "source_url": "https://etherscan.io/token/0xc00192f5929eb4a3fccd9150da87b2f1aa69f43c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

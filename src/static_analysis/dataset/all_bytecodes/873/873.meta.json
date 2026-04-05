@@ -1,0 +1,15 @@
+{
+  "title": "Oraichain Token\u00a0(ORAI)",
+  "chain": "eth",
+  "address": "0x4c11249814f11b9346808179cf06e71ac328c1b5",
+  "source_url": "https://etherscan.io/token/0x4c11249814f11b9346808179cf06e71ac328c1b5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

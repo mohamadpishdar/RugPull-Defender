@@ -1,0 +1,15 @@
+{
+  "title": "MANTLE\u00a0(MANTLE)",
+  "chain": "eth",
+  "address": "0x66c7a2211f81aa84da4dc1142f57940adc83e41a",
+  "source_url": "https://etherscan.io/token/0x66c7a2211f81aa84da4dc1142f57940adc83e41a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cf",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

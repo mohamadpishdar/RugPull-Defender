@@ -1,0 +1,15 @@
+{
+  "title": "CargoX\u00a0(CXO)",
+  "chain": "eth",
+  "address": "0x61a956a62828e995f8835e5c425fd735053cd0af",
+  "source_url": "https://etherscan.io/token/0x61a956a62828e995f8835e5c425fd735053cd0af",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Openfabric\u00a0(OFN)",
+  "chain": "bsc",
+  "address": "0x8899ec96ed8c96b5c86c23c3f069c3def75b6d97",
+  "source_url": "https://bscscan.com/token/0x8899ec96ed8c96b5c86c23c3f069c3def75b6d97",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1355",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

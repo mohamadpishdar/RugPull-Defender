@@ -1,0 +1,15 @@
+{
+  "title": "Base Dawgz\u00a0(DAWGZ)",
+  "chain": "eth",
+  "address": "0xd60c50ca81ec144e5464cb9c2392b2fd5ac97798",
+  "source_url": "https://etherscan.io/token/0xd60c50ca81ec144e5464cb9c2392b2fd5ac97798",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

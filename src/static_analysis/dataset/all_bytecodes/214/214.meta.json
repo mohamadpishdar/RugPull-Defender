@@ -1,0 +1,15 @@
+{
+  "title": "XSTABLE.PROTOCOL\u00a0(XST)",
+  "chain": "eth",
+  "address": "0x91383A15C391c142b80045D8b4730C1c37ac0378",
+  "source_url": "https://etherscan.io/token/0x91383A15C391c142b80045D8b4730C1c37ac0378",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

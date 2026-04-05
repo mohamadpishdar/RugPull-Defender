@@ -1,0 +1,15 @@
+{
+  "title": "Atlas Navi\u00a0(NAVI)",
+  "chain": "eth",
+  "address": "0xFc1C93a2507975E98b9d0E9260Ded61A00152BF1",
+  "source_url": "https://etherscan.io/token/0xFc1C93a2507975E98b9d0E9260Ded61A00152BF1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fa",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Monsta Infinite Token\u00a0(MONI)",
+  "chain": "bsc",
+  "address": "0x9573c88ae3e37508f87649f87c4dd5373c9f31e0",
+  "source_url": "https://bscscan.com/token/0x9573c88ae3e37508f87649f87c4dd5373c9f31e0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b136c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

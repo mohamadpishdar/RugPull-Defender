@@ -1,0 +1,15 @@
+{
+  "title": "PlugToken\u00a0(PLUG)",
+  "chain": "polygon",
+  "address": "0xaF6193aEAFFdd9C89D7b3A2bC9A96676328df230",
+  "source_url": "https://polygonscan.com/token/0xaF6193aEAFFdd9C89D7b3A2bC9A96676328df230",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba177b",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

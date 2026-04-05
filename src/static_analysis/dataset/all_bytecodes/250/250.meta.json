@@ -1,0 +1,15 @@
+{
+  "title": "AI C-3PO\u00a0(C3PO)",
+  "chain": "eth",
+  "address": "0xa2036f15f47d6c85d9a9338390496032b9823ce5",
+  "source_url": "https://etherscan.io/token/0xa2036f15f47d6c85d9a9338390496032b9823ce5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Mizuchi\u00a0(MIZU)",
+  "chain": "eth",
+  "address": "0x9b7b60451da2f3fcb5274a4d64e27bafd6d22342",
+  "source_url": "https://etherscan.io/token/0x9b7b60451da2f3fcb5274a4d64e27bafd6d22342",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

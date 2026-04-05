@@ -1,0 +1,15 @@
+{
+  "title": "Binance-Peg Zcash Token\u00a0(ZEC)",
+  "chain": "bsc",
+  "address": "0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb",
+  "source_url": "https://bscscan.com/token/0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1375",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

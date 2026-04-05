@@ -1,0 +1,15 @@
+{
+  "title": "MOON\u00a0(MOON)",
+  "chain": "bsc",
+  "address": "0x5a6B8Dad072bb9257DcD6B3125126C0637AA2f0a",
+  "source_url": "https://bscscan.com/token/0x5a6B8Dad072bb9257DcD6B3125126C0637AA2f0a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b129f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

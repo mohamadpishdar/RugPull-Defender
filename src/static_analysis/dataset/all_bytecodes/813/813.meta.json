@@ -1,0 +1,15 @@
+{
+  "title": "OpulousToken\u00a0(OPUL)",
+  "chain": "eth",
+  "address": "0x80d55c03180349fff4a229102f62328220a96444",
+  "source_url": "https://etherscan.io/token/0x80d55c03180349fff4a229102f62328220a96444",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

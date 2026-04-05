@@ -1,0 +1,15 @@
+{
+  "title": "BabyShia\u00a0(BABYSHIA)",
+  "chain": "eth",
+  "address": "0x846422103b109efbe7dd15f541c3dfc838fc1848",
+  "source_url": "https://etherscan.io/token/0x846422103b109efbe7dd15f541c3dfc838fc1848",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

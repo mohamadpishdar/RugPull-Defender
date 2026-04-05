@@ -1,0 +1,15 @@
+{
+  "title": "LGT\u00a0(LGT)",
+  "chain": "bsc",
+  "address": "0xd21d53fa113dd5769aA1B603C296d6ae15D0044A",
+  "source_url": "https://bscscan.com/token/0xd21d53fa113dd5769aA1B603C296d6ae15D0044A",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12b2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

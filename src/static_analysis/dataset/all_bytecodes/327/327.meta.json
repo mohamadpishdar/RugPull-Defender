@@ -1,0 +1,15 @@
+{
+  "title": "Bezop\u00a0(Bez)",
+  "chain": "eth",
+  "address": "0x8a1e3930fde1f151471c368fdbb39f3f63a65b55",
+  "source_url": "https://etherscan.io/token/0x8a1e3930fde1f151471c368fdbb39f3f63a65b55",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

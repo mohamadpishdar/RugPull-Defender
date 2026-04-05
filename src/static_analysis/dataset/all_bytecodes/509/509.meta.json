@@ -1,0 +1,15 @@
+{
+  "title": "Raijin\u00a0(RAIJIN)",
+  "chain": "eth",
+  "address": "0xa5e4e662b1e12b4f31f646410521db792be585d7",
+  "source_url": "https://etherscan.io/token/0xa5e4e662b1e12b4f31f646410521db792be585d7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

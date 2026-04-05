@@ -1,0 +1,15 @@
+{
+  "title": "blocktrade\u00a0(BTT)",
+  "chain": "eth",
+  "address": "0xfa456cf55250a839088b27ee32a424d7dacb54ff",
+  "source_url": "https://etherscan.io/token/0xfa456cf55250a839088b27ee32a424d7dacb54ff",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

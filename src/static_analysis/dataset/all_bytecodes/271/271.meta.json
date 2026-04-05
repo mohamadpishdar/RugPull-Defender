@@ -1,0 +1,15 @@
+{
+  "title": "Coin Merge\u00a0(CMERGE)",
+  "chain": "eth",
+  "address": "0xC48b4814fAEd1CCc885DD6fDe62A6474AeCbb19a",
+  "source_url": "https://etherscan.io/token/0xC48b4814fAEd1CCc885DD6fDe62A6474AeCbb19a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

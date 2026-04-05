@@ -1,0 +1,11 @@
+{
+  "title": "Mad Meerkat Finance",
+  "chain": "crono",
+  "address": null,
+  "source_url": "https://cronoscan.com/token/0x97749c9B61F878a880DfE312d2594AE07AEd7656",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://cronoscan.com/token/0x97749c9B61F878a880DfE312d2594AE07AEd7656"
+  ]
+}

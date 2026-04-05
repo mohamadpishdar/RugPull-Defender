@@ -1,0 +1,15 @@
+{
+  "title": "VIDT DAO\u00a0(VIDT)",
+  "chain": "eth",
+  "address": "0x3BE7bF1A5F23BD8336787D0289B70602f1940875",
+  "source_url": "https://etherscan.io/token/0x3BE7bF1A5F23BD8336787D0289B70602f1940875",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fe",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

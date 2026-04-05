@@ -1,0 +1,15 @@
+{
+  "title": "Cindicator\u00a0(CND)",
+  "chain": "eth",
+  "address": "0xd4c435f5b09f855c3317c8524cb1f586e42795fa",
+  "source_url": "https://etherscan.io/token/0xd4c435f5b09f855c3317c8524cb1f586e42795fa",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

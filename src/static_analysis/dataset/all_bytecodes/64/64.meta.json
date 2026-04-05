@@ -1,0 +1,15 @@
+{
+  "title": "DMCToken\u00a0(DMC)",
+  "chain": "bsc",
+  "address": "0x256B001173111d632E87E6812fe9C23272D29600",
+  "source_url": "https://bscscan.com/token/0x256B001173111d632E87E6812fe9C23272D29600",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1227",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Swipe\u00a0(SXP)",
+  "chain": "eth",
+  "address": "0x8ce9137d39326ad0cd6491fb5cc0cba0e089b6a9",
+  "source_url": "https://etherscan.io/token/0x8ce9137d39326ad0cd6491fb5cc0cba0e089b6a9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

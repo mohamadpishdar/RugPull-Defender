@@ -1,0 +1,15 @@
+{
+  "title": "Flare Token",
+  "chain": "bsc",
+  "address": "0x85aa3f04e539e426cbb55c0d584ea99cfe1d96a1",
+  "source_url": "https://bscscan.com/address/0x85aa3f04e539e426cbb55c0d584ea99cfe1d96a1",
+  "display_text": "sourse code",
+  "resolved_from": "address",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b0f51",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "haDAO\u00a0(MAHA)",
+  "chain": "eth",
+  "address": "0xb4d930279552397bba2ee473229f89ec245bc365",
+  "source_url": "https://etherscan.io/token/0xb4d930279552397bba2ee473229f89ec245bc365",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ff",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

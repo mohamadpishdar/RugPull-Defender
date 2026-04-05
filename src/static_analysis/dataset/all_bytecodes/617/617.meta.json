@@ -1,0 +1,15 @@
+{
+  "title": "1INCH Token\u00a0(1INCH)",
+  "chain": "eth",
+  "address": "0x111111111117dc0aa78b770fa6a738034120c302",
+  "source_url": "https://etherscan.io/token/0x111111111117dc0aa78b770fa6a738034120c302",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

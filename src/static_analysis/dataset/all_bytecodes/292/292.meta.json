@@ -1,0 +1,15 @@
+{
+  "title": "void.cash\u00a0(VCASH)",
+  "chain": "eth",
+  "address": "0x37cd4E8875E3EDafFDFe9Be63958f07eFfBD0Bfd",
+  "source_url": "https://etherscan.io/token/0x37cd4E8875E3EDafFDFe9Be63958f07eFfBD0Bfd",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

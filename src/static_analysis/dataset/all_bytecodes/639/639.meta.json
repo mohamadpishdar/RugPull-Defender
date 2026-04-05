@@ -1,0 +1,15 @@
+{
+  "title": "Fodl\u00a0(FODL)",
+  "chain": "eth",
+  "address": "0x4c2e59d098df7b6cbae0848d66de2f8a4889b9c3",
+  "source_url": "https://etherscan.io/token/0x4c2e59d098df7b6cbae0848d66de2f8a4889b9c3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Empower AI\u00a0(EMPAI)",
+  "chain": "eth",
+  "address": "0xf445a2E240C73cFaaf0654202157F9c5457E5F73",
+  "source_url": "https://etherscan.io/token/0xf445a2E240C73cFaaf0654202157F9c5457E5F73",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

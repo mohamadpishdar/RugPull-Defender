@@ -1,0 +1,11 @@
+{
+  "title": "Compound Wrapped BTC\u00a0(cWBTC)",
+  "chain": "eth",
+  "address": null,
+  "source_url": null,
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: None"
+  ]
+}

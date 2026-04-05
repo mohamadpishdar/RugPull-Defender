@@ -1,0 +1,15 @@
+{
+  "title": "SeedifyFund\u00a0(SFUND)",
+  "chain": "bsc",
+  "address": "0x477bc8d23c634c154061869478bce96be6045d12",
+  "source_url": "https://bscscan.com/token/0x477bc8d23c634c154061869478bce96be6045d12",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1354",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

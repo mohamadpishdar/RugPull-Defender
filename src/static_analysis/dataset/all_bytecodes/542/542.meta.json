@@ -1,0 +1,15 @@
+{
+  "title": "BITCRAFT ONLINE",
+  "chain": "bsc",
+  "address": "0x34c2837e11bd18f426c39e6767d52c3868df8dc2",
+  "source_url": "https://bscscan.com/token/0x34c2837e11bd18f426c39e6767d52c3868df8dc2",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b132a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

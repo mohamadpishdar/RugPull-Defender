@@ -1,0 +1,15 @@
+{
+  "title": "Big Time\u00a0(BIGTIME)",
+  "chain": "bsc",
+  "address": "0xb3A194ad6604B6E9D8c0a4cB286d4E7D137bFe56",
+  "source_url": "https://bscscan.com/token/0xb3A194ad6604B6E9D8c0a4cB286d4E7D137bFe56",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1238",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

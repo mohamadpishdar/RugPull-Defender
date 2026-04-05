@@ -1,0 +1,15 @@
+{
+  "title": "Defi Wz Token\u00a0(DEFIWZ)",
+  "chain": "bsc",
+  "address": "0x418Db510B4f1CF33565C459cfB6D838bbbbFf8F9",
+  "source_url": "https://bscscan.com/token/0x418Db510B4f1CF33565C459cfB6D838bbbbFf8F9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1216",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

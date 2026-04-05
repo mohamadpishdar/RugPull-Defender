@@ -1,0 +1,15 @@
+{
+  "title": "GMETA",
+  "chain": "bsc",
+  "address": "0x93023f1d3525e273f291b6f76d2f5027a39bf302",
+  "source_url": "https://bscscan.com/token/0x93023f1d3525e273f291b6f76d2f5027a39bf302",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b0f55",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Granary Token\u00a0(GRAIN)",
+  "chain": "eth",
+  "address": "0xf88baf18fab7e330fa0c4f83949e23f52fececce",
+  "source_url": "https://etherscan.io/token/0xf88baf18fab7e330fa0c4f83949e23f52fececce",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fa",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

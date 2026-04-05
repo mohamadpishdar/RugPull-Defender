@@ -1,0 +1,15 @@
+{
+  "title": "Snake Eyes\u00a0(SNAKE)",
+  "chain": "eth",
+  "address": "0x56d7e6a12f56dfca75fbb3f62b6f647f56f63445",
+  "source_url": "https://etherscan.io/token/0x56d7e6a12f56dfca75fbb3f62b6f647f56f63445",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

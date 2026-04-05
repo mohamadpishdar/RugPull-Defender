@@ -1,0 +1,15 @@
+{
+  "title": "Cool Cats\u00a0(COOL20)",
+  "chain": "eth",
+  "address": "0x2dab4ce3490bb50b2ea4c07ab1b6a9cfe29d89b3",
+  "source_url": "https://etherscan.io/token/0x2dab4ce3490bb50b2ea4c07ab1b6a9cfe29d89b3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ce",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

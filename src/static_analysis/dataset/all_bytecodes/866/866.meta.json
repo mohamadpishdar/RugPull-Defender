@@ -1,0 +1,11 @@
+{
+  "title": "Venus\u00a0(XVS)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63"
+  ]
+}

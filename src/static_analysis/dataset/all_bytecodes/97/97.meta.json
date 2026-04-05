@@ -1,0 +1,15 @@
+{
+  "title": "Patex\u00a0(PATEX)",
+  "chain": "bsc",
+  "address": "0x231B69254D48dE6e96C395100b3d9BCe8D658E49",
+  "source_url": "https://bscscan.com/token/0x231B69254D48dE6e96C395100b3d9BCe8D658E49",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1259",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

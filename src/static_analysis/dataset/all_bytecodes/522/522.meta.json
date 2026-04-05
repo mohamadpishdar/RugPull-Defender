@@ -1,0 +1,15 @@
+{
+  "title": "CuzIGotHIGH\u00a0(HIGH)",
+  "chain": "eth",
+  "address": "0xfbd888349529e3f87c77dffbe2a2bb500f4e02ea",
+  "source_url": "https://etherscan.io/token/0xfbd888349529e3f87c77dffbe2a2bb500f4e02ea",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89de",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

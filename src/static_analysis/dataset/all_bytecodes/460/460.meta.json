@@ -1,0 +1,15 @@
+{
+  "title": "Pokemon\u00a0(Pokemon)",
+  "chain": "eth",
+  "address": "0x15A5343E60afFB7F711e5eD4d24c714E62a30ff6",
+  "source_url": "https://etherscan.io/token/0x15A5343E60afFB7F711e5eD4d24c714E62a30ff6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89da",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Morpheus.Network\u00a0(MNW)",
+  "chain": "eth",
+  "address": "0xd3e4ba569045546d09cf021ecc5dfe42b1d7f6e4",
+  "source_url": "https://etherscan.io/token/0xd3e4ba569045546d09cf021ecc5dfe42b1d7f6e4",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

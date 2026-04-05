@@ -1,0 +1,15 @@
+{
+  "title": "Satoshi Vision\u00a0(SVI)",
+  "chain": "eth",
+  "address": "0x6c22910c6f75f828b305e57c6a54855d8adeabf8",
+  "source_url": "https://etherscan.io/token/0x6c22910c6f75f828b305e57c6a54855d8adeabf8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

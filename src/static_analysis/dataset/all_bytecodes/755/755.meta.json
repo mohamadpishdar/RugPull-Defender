@@ -1,0 +1,15 @@
+{
+  "title": "HanChain\u00a0(HAN)",
+  "chain": "eth",
+  "address": "0x0c90C57aaf95A3A87eadda6ec3974c99D786511F",
+  "source_url": "https://etherscan.io/token/0x0c90C57aaf95A3A87eadda6ec3974c99D786511F",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

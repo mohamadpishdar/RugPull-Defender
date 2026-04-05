@@ -1,0 +1,15 @@
+{
+  "title": "hypechill.fund\u00a0(CHILL)",
+  "chain": "eth",
+  "address": "0x0FE5FDF01B48008DC68FC32E8fB7E0d93CA99BC5",
+  "source_url": "https://etherscan.io/token/0x0FE5FDF01B48008DC68FC32E8fB7E0d93CA99BC5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ce",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

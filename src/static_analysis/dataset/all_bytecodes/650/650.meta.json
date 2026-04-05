@@ -1,0 +1,15 @@
+{
+  "title": "THE TRUTH\u00a0(UFO)",
+  "chain": "eth",
+  "address": "0x249e38ea4102d0cf8264d3701f1a0e39c4f2dc3b",
+  "source_url": "https://etherscan.io/token/0x249e38ea4102d0cf8264d3701f1a0e39c4f2dc3b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ea",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "TrueUSD\u00a0(TUSD)",
+  "chain": "eth",
+  "address": "0x0000000000085d4780b73119b644ae5ecd22b376",
+  "source_url": "https://etherscan.io/token/0x0000000000085d4780b73119b644ae5ecd22b376",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

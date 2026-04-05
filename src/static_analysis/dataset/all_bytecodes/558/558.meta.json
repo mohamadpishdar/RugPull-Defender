@@ -1,0 +1,11 @@
+{
+  "title": "CalorieCoin\u00a0(CAL)",
+  "chain": "eth",
+  "address": null,
+  "source_url": null,
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: None"
+  ]
+}

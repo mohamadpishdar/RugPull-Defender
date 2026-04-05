@@ -1,0 +1,15 @@
+{
+  "title": "DeGate Token\u00a0(DG)",
+  "chain": "eth",
+  "address": "0x53c8395465a84955c95159814461466053dedede",
+  "source_url": "https://etherscan.io/token/0x53c8395465a84955c95159814461466053dedede",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89eb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

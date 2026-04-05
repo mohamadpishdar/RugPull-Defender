@@ -1,0 +1,15 @@
+{
+  "title": "GoMining Token (GMT)",
+  "chain": "eth",
+  "address": "0x7ddc52c4de30e94be3a6a0a2b259b2850f421989",
+  "source_url": "https://etherscan.io/token/0x7ddc52c4de30e94be3a6a0a2b259b2850f421989",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

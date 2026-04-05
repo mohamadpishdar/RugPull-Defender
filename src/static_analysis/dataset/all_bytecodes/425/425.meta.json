@@ -1,0 +1,15 @@
+{
+  "title": "MBAPPE COIN\u00a0(MBAPPE)",
+  "chain": "eth",
+  "address": "0xe0ea88f9137e183cbaad4973886196d166a46bfd",
+  "source_url": "https://etherscan.io/token/0xe0ea88f9137e183cbaad4973886196d166a46bfd",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

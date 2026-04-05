@@ -1,0 +1,15 @@
+{
+  "title": "NuLink token\u00a0(NLK)",
+  "chain": "eth",
+  "address": "0x744030ad4e6c10faf5483b62473d88a254d62261",
+  "source_url": "https://etherscan.io/token/0x744030ad4e6c10faf5483b62473d88a254d62261",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fe",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

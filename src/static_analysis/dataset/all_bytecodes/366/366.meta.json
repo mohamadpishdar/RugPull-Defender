@@ -1,0 +1,15 @@
+{
+  "title": "AirToken\u00a0(AIR)",
+  "chain": "eth",
+  "address": "0x27dce1ec4d3f72c3e457cc50354f1f975ddef488",
+  "source_url": "https://etherscan.io/token/0x27dce1ec4d3f72c3e457cc50354f1f975ddef488",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

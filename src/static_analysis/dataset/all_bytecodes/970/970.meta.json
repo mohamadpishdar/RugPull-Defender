@@ -1,0 +1,15 @@
+{
+  "title": "Playbux\u00a0(PBUX)",
+  "chain": "bsc",
+  "address": "0x9D1d4dE9cD93203147fAc3BC0262a78e3a0e96bb",
+  "source_url": "https://bscscan.com/token/0x9D1d4dE9cD93203147fAc3BC0262a78e3a0e96bb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1396",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

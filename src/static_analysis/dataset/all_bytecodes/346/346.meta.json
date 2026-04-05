@@ -1,0 +1,15 @@
+{
+  "title": "Stratos Network\u00a0(STOS)",
+  "chain": "eth",
+  "address": "0x541e88059a4eff35edc8c38bb5a1e7495472288c",
+  "source_url": "https://etherscan.io/token/0x541e88059a4eff35edc8c38bb5a1e7495472288c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "aspiring cooperation Community\u00a0(ACC)",
+  "chain": "bsc",
+  "address": "0x9703fa7d52f925387a2e738457936f162218129c",
+  "source_url": "https://bscscan.com/token/0x9703fa7d52f925387a2e738457936f162218129c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1234",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

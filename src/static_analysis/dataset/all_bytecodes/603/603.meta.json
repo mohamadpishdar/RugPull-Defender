@@ -1,0 +1,15 @@
+{
+  "title": "Ampleforth Governance\u00a0(FORTH)",
+  "chain": "eth",
+  "address": "0x77fba179c79de5b7653f68b5039af940ada60ce0",
+  "source_url": "https://etherscan.io/token/0x77fba179c79de5b7653f68b5039af940ada60ce0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

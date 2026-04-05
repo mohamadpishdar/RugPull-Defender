@@ -1,0 +1,15 @@
+{
+  "title": "Virus\u00a0(VIRUS)",
+  "chain": "bsc",
+  "address": "0x980287db1cffb546fb2911a2e920336d76bd404b",
+  "source_url": "https://bscscan.com/token/0x980287db1cffb546fb2911a2e920336d76bd404b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12ed",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

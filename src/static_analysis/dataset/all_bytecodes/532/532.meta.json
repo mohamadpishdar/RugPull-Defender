@@ -1,0 +1,15 @@
+{
+  "title": "Jerome Powell Inu\u00a0(JPI)",
+  "chain": "eth",
+  "address": "0x10923783734b12d0b56187f772cfd808dfd8c5ad",
+  "source_url": "https://etherscan.io/token/0x10923783734b12d0b56187f772cfd808dfd8c5ad",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89df",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "SELF Crypto\u00a0(SELF)",
+  "chain": "bsc",
+  "address": "0x50c34995a273075a80c23625F69F40d56CE414DE",
+  "source_url": "https://bscscan.com/token/0x50c34995a273075a80c23625F69F40d56CE414DE",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b138c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

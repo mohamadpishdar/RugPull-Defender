@@ -1,0 +1,15 @@
+{
+  "title": "Bitcoin BSC\u00a0(BTCBSC)",
+  "chain": "bsc",
+  "address": "0x48747d325d139b1F9cD29d9381Fb73228B9AFfec",
+  "source_url": "https://bscscan.com/token/0x48747d325d139b1F9cD29d9381Fb73228B9AFfec",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12af",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

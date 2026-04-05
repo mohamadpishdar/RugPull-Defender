@@ -1,0 +1,15 @@
+{
+  "title": "Elongate Deluxe\u00a0(ELongD)",
+  "chain": "eth",
+  "address": "0x348B7f3106B5Da47405332534d06069fF9CE4d1B",
+  "source_url": "https://etherscan.io/token/0x348B7f3106B5Da47405332534d06069fF9CE4d1B",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

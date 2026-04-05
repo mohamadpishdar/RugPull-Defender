@@ -1,0 +1,11 @@
+{
+  "title": "AITECH\u00a0(AITECH)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x2d060ef4d6bf7f9e5edde373ab735513c0e4f944",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x2d060ef4d6bf7f9e5edde373ab735513c0e4f944"
+  ]
+}

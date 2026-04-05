@@ -1,0 +1,15 @@
+{
+  "title": "LightLink\u00a0(LL)",
+  "chain": "bsc",
+  "address": "0x44CE3a2e98125c1C370Beb6fbA6E8Bc19CaB3fD9",
+  "source_url": "https://bscscan.com/token/0x44CE3a2e98125c1C370Beb6fbA6E8Bc19CaB3fD9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1288",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

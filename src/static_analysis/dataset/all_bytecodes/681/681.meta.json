@@ -1,0 +1,15 @@
+{
+  "title": "\nBancor (BNT)",
+  "chain": "eth",
+  "address": "0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c",
+  "source_url": "https://etherscan.io/token/0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ec",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

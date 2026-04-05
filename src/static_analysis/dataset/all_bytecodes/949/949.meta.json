@@ -1,0 +1,15 @@
+{
+  "title": "TAP Coin\u00a0(TAP)",
+  "chain": "bsc",
+  "address": "0x35bEdBF9291b22218a0dA863170dcC9329Ef2563",
+  "source_url": "https://bscscan.com/token/0x35bEdBF9291b22218a0dA863170dcC9329Ef2563",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1386",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

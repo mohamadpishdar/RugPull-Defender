@@ -1,0 +1,15 @@
+{
+  "title": "Genopets\u00a0(GENE)",
+  "chain": "bsc",
+  "address": "0x9df465460938f9ebdf51c38cc87d72184471f8f0",
+  "source_url": "https://bscscan.com/token/0x9df465460938f9ebdf51c38cc87d72184471f8f0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1377",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

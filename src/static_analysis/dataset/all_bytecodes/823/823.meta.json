@@ -1,0 +1,15 @@
+{
+  "title": "HORD Token\u00a0(HORD)",
+  "chain": "eth",
+  "address": "0x43a96962254855f16b925556f9e97be436a43448",
+  "source_url": "https://etherscan.io/token/0x43a96962254855f16b925556f9e97be436a43448",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

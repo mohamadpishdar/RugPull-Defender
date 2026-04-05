@@ -1,0 +1,15 @@
+{
+  "title": "Mercenary Gold\u00a0(MGOLD)",
+  "chain": "bsc",
+  "address": "0xe0e279ee10e3bdc9b7577f5548dd46fca2e7e111",
+  "source_url": "https://bscscan.com/token/0xe0e279ee10e3bdc9b7577f5548dd46fca2e7e111",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1322",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

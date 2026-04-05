@@ -1,0 +1,15 @@
+{
+  "title": "Dwagon\u00a0($Dwagon)",
+  "chain": "eth",
+  "address": "0x7ddf7aadbc1c816497286ceabb38532b34ba69c7",
+  "source_url": "https://etherscan.io/token/0x7ddf7aadbc1c816497286ceabb38532b34ba69c7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

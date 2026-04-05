@@ -1,0 +1,15 @@
+{
+  "title": "BNB Hack Inu\u00a0(BNBHACK)",
+  "chain": "eth",
+  "address": "0xdc1a16194e246a7483780b65f52fe197742c8ae1",
+  "source_url": "https://etherscan.io/token/0xdc1a16194e246a7483780b65f52fe197742c8ae1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89db",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

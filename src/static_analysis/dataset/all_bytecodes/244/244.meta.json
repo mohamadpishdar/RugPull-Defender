@@ -1,0 +1,15 @@
+{
+  "title": "Mike Wazowski Monsters Inc\u00a0(MIKE)",
+  "chain": "eth",
+  "address": "0x8b99bb8ddd8103cbeccc3b20c4b0038ca65a51ae",
+  "source_url": "https://etherscan.io/token/0x8b99bb8ddd8103cbeccc3b20c4b0038ca65a51ae",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

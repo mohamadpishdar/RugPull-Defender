@@ -1,0 +1,15 @@
+{
+  "title": "Dracula\u00a0(DRAC)",
+  "chain": "bsc",
+  "address": "0x20d4e91e7c25f294e781464970a322B9782f7Aa7",
+  "source_url": "https://bscscan.com/token/0x20d4e91e7c25f294e781464970a322B9782f7Aa7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12aa",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

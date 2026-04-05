@@ -1,0 +1,15 @@
+{
+  "title": "Hype.Bet\u00a0(Hype.Bet)",
+  "chain": "eth",
+  "address": "0xf6bcf98ebe20ab7b68b3d703652e0029115b4a7a",
+  "source_url": "https://etherscan.io/token/0xf6bcf98ebe20ab7b68b3d703652e0029115b4a7a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

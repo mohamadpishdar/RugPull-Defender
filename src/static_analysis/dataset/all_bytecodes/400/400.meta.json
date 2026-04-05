@@ -1,0 +1,15 @@
+{
+  "title": "Sigma\u00a0(SIGMA)",
+  "chain": "polygon",
+  "address": "0x9AE2a45C924aF622B5155859920FEDB469e7FaF9",
+  "source_url": "https://polygonscan.com/token/0x9AE2a45C924aF622B5155859920FEDB469e7FaF9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba177d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

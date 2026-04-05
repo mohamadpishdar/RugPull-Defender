@@ -1,0 +1,15 @@
+{
+  "title": "ORBOFI\u00a0(OBI)",
+  "chain": "eth",
+  "address": "0xBb3A8FD6Ec4bF0FDc6Cd2739b1e41192D12B1873",
+  "source_url": "https://etherscan.io/token/0xBb3A8FD6Ec4bF0FDc6Cd2739b1e41192D12B1873",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

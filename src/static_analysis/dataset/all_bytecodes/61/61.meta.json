@@ -1,0 +1,15 @@
+{
+  "title": "NwtToken\u00a0(NWT)",
+  "chain": "bsc",
+  "address": "0x2c44c71dF4dBd3634e43Ab0bc6DCb809d5286443",
+  "source_url": "https://bscscan.com/token/0x2c44c71dF4dBd3634e43Ab0bc6DCb809d5286443",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1223",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

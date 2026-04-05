@@ -1,0 +1,15 @@
+{
+  "title": "BGE\u00a0(BGE)",
+  "chain": "bsc",
+  "address": "0xbd7afa932f59f0e451d57ba523ba379e7545a4b3",
+  "source_url": "https://bscscan.com/token/0xbd7afa932f59f0e451d57ba523ba379e7545a4b3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11e8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

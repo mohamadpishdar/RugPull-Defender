@@ -1,0 +1,15 @@
+{
+  "title": "KFC Token(KFC)",
+  "chain": "eth",
+  "address": "0x17d30c85376bc2c39edc1da179162d308559a3c4",
+  "source_url": "https://etherscan.io/token/0x17d30c85376bc2c39edc1da179162d308559a3c4",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

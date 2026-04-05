@@ -1,0 +1,15 @@
+{
+  "title": "Jewels\u00a0(JWL)",
+  "chain": "eth",
+  "address": "0xA2E8B27500d3BaE6DAaD122bDd8f405b65752175",
+  "source_url": "https://etherscan.io/token/0xA2E8B27500d3BaE6DAaD122bDd8f405b65752175",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

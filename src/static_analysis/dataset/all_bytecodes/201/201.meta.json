@@ -1,0 +1,15 @@
+{
+  "title": "FreewayToken\u00a0(FWT)",
+  "chain": "eth",
+  "address": "0x20e7125677311Fca903A8897042b9983f22Ea295",
+  "source_url": "https://etherscan.io/token/0x20e7125677311Fca903A8897042b9983f22Ea295",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Xystus\u00a0(xys)",
+  "chain": "eth",
+  "address": "0x2dcfce5df534b5bd27d3f1cf78e17d67addd0bce",
+  "source_url": "https://etherscan.io/token/0x2dcfce5df534b5bd27d3f1cf78e17d67addd0bce",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "ARBIX\u00a0(ARBX)",
+  "chain": "bsc",
+  "address": "0xd20ef93050c0943f74f5f8ff0cc97c74139d6437",
+  "source_url": "https://bscscan.com/token/0xd20ef93050c0943f74f5f8ff0cc97c74139d6437",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12f3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

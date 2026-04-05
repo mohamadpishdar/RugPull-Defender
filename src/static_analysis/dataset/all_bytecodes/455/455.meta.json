@@ -1,0 +1,15 @@
+{
+  "title": "Snowflake Token\u00a0(SFE)",
+  "chain": "bsc",
+  "address": "0x02878fff5d7cd4f8dc8ecb6701fc98c560fdc1b4",
+  "source_url": "https://bscscan.com/token/0x02878fff5d7cd4f8dc8ecb6701fc98c560fdc1b4",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b130b",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

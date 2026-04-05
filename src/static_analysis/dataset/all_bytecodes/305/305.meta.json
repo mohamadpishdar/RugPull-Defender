@@ -1,0 +1,15 @@
+{
+  "title": "Raichu Thunderstone\u00a0(RAI)",
+  "chain": "eth",
+  "address": "0x3564A13c1467184479B3FA32CcB17f61F6b83DC3",
+  "source_url": "https://etherscan.io/token/0x3564A13c1467184479B3FA32CcB17f61F6b83DC3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ce",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

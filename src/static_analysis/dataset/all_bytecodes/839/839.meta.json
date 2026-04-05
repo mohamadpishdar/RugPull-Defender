@@ -1,0 +1,15 @@
+{
+  "title": "iMe Lab\u00a0(LIME)",
+  "chain": "eth",
+  "address": "0x9d0b65a76274645b29e4cc41b8f23081fa09f4a3",
+  "source_url": "https://etherscan.io/token/0x9d0b65a76274645b29e4cc41b8f23081fa09f4a3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

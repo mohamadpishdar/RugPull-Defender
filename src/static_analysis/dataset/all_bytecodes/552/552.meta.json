@@ -1,0 +1,15 @@
+{
+  "title": "MetaversePay\u00a0(MVP)",
+  "chain": "bsc",
+  "address": "0xbba18524ca3c6aa26306e5c402c0fed72e62a6c3",
+  "source_url": "https://bscscan.com/token/0xbba18524ca3c6aa26306e5c402c0fed72e62a6c3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b132f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

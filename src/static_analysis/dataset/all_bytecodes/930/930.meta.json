@@ -1,0 +1,15 @@
+{
+  "title": "TOWER\u00a0(TOWER)",
+  "chain": "eth",
+  "address": "0x1c9922314ed1415c95b9fd453c3818fd41867d0b",
+  "source_url": "https://etherscan.io/token/0x1c9922314ed1415c95b9fd453c3818fd41867d0b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fe",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "DSLA\u00a0(DSLA)",
+  "chain": "eth",
+  "address": "0x3affcca64c2a6f4e3b6bd9c64cd2c969efd1ecbe",
+  "source_url": "https://etherscan.io/token/0x3affcca64c2a6f4e3b6bd9c64cd2c969efd1ecbe",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

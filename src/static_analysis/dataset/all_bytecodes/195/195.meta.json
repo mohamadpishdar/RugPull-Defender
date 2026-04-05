@@ -1,0 +1,15 @@
+{
+  "title": "Nabox\u00a0(Nabox)",
+  "chain": "bsc",
+  "address": "0x4f75869a06535161515df34b84960f58c5c41da1",
+  "source_url": "https://bscscan.com/token/0x4f75869a06535161515df34b84960f58c5c41da1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12e8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

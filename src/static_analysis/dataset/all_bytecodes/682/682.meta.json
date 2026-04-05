@@ -1,0 +1,15 @@
+{
+  "title": "Dexe (DEXE)",
+  "chain": "eth",
+  "address": "0xde4ee8057785a7e8e800db58f9784845a5c2cbd6",
+  "source_url": "https://etherscan.io/token/0xde4ee8057785a7e8e800db58f9784845a5c2cbd6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ec",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

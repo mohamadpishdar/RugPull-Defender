@@ -1,0 +1,15 @@
+{
+  "title": "Cake Lock\u00a0(LOCK)",
+  "chain": "bsc",
+  "address": "0x5f3bb338ae09a5a15ceb3d0e9e5194b404b95a1b",
+  "source_url": "https://bscscan.com/token/0x5f3bb338ae09a5a15ceb3d0e9e5194b404b95a1b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11f8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

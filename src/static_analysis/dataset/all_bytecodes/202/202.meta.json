@@ -1,0 +1,15 @@
+{
+  "title": "OrdiZK\u00a0(OZK)",
+  "chain": "eth",
+  "address": "0xb4fc1fc74effa5dc15a031eb8159302cfa4f1288",
+  "source_url": "https://etherscan.io/token/0xb4fc1fc74effa5dc15a031eb8159302cfa4f1288",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

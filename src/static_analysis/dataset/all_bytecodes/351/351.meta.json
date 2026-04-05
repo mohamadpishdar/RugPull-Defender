@@ -1,0 +1,15 @@
+{
+  "title": "Jejudoge V2\u00a0(JEJUDOGEv2&#128021;)",
+  "chain": "eth",
+  "address": "0xe4e873b8b73b290913ce7f26b55a2e809e1b9013",
+  "source_url": "https://etherscan.io/token/0xe4e873b8b73b290913ce7f26b55a2e809e1b9013",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

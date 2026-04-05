@@ -1,0 +1,15 @@
+{
+  "title": "Power of ZUCK\u00a0(ZUCK)",
+  "chain": "eth",
+  "address": "0x70730A580c7DC0a635029AED8DD5eDB7d150AF4a",
+  "source_url": "https://etherscan.io/token/0x70730A580c7DC0a635029AED8DD5eDB7d150AF4a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

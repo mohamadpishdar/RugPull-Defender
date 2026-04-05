@@ -1,0 +1,15 @@
+{
+  "title": "EdgeMatrix Computing network\u00a0(EMC)",
+  "chain": "arbi",
+  "address": "0xDFB8BE6F8c87f74295A87de951974362CedCFA30",
+  "source_url": "https://arbiscan.io/token/0xDFB8BE6F8c87f74295A87de951974362CedCFA30",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe216d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

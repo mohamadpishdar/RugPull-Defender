@@ -1,0 +1,15 @@
+{
+  "title": "LV PLUS\u00a0(LVP)",
+  "chain": "bsc",
+  "address": "0x5927b72440d8a8b8c6ca5a8be60e88975f9063fc",
+  "source_url": "https://bscscan.com/token/0x5927b72440d8a8b8c6ca5a8be60e88975f9063fc",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1311",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

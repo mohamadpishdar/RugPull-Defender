@@ -1,0 +1,15 @@
+{
+  "title": "Cheetah Token\u00a0(CHEETAH)",
+  "chain": "polygon",
+  "address": "0xc0af9cc9826e541489d02c0d2fa6eca0fe517e20",
+  "source_url": "https://polygonscan.com/token/0xc0af9cc9826e541489d02c0d2fa6eca0fe517e20",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba177c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

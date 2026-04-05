@@ -1,0 +1,15 @@
+{
+  "title": "Open Campus\u00a0(EDU)",
+  "chain": "bsc",
+  "address": "0x4749a5f83F6F003440cB4B6aD1628d39E900D0c4",
+  "source_url": "https://bscscan.com/token/0x4749a5f83F6F003440cB4B6aD1628d39E900D0c4",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1329",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

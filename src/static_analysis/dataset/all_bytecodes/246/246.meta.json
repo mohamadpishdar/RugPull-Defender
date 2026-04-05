@@ -1,0 +1,15 @@
+{
+  "title": "Jigsaw saw you\u00a0(SAW)",
+  "chain": "eth",
+  "address": "0xc58713ab4f62000ad9a59a913c97b89bb8f62282",
+  "source_url": "https://etherscan.io/token/0xc58713ab4f62000ad9a59a913c97b89bb8f62282",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

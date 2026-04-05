@@ -1,0 +1,15 @@
+{
+  "title": "Wrapped TON Coin\u00a0(TONCOIN)",
+  "chain": "eth",
+  "address": "0x582d872a1b094fc48f5de31d3b73f2d9be47def1",
+  "source_url": "https://etherscan.io/token/0x582d872a1b094fc48f5de31d3b73f2d9be47def1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

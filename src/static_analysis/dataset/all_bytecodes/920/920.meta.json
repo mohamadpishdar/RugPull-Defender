@@ -1,0 +1,15 @@
+{
+  "title": "UniCrypt\u00a0(UNCX)",
+  "chain": "eth",
+  "address": "0xadb2437e6f65682b85f814fbc12fec0508a7b1d0",
+  "source_url": "https://etherscan.io/token/0xadb2437e6f65682b85f814fbc12fec0508a7b1d0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "SpaceID\u00a0(ID)",
+  "chain": "bsc",
+  "address": "0x8993bb142c1be4dd22c1f79b3a68b18852b55aad",
+  "source_url": "https://bscscan.com/token/0x8993bb142c1be4dd22c1f79b3a68b18852b55aad",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12bb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

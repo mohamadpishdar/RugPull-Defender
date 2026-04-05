@@ -1,0 +1,11 @@
+{
+  "title": "FevrToken\u00a0(FEVR)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x82030cdbd9e4b7c5bb0b811a61da6360d69449cc",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x82030cdbd9e4b7c5bb0b811a61da6360d69449cc"
+  ]
+}

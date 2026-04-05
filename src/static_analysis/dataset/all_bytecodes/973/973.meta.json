@@ -1,0 +1,15 @@
+{
+  "title": "Position Token\u00a0(POSI)",
+  "chain": "bsc",
+  "address": "0x5ca42204cdaa70d5c773946e69de942b85ca6706",
+  "source_url": "https://bscscan.com/token/0x5ca42204cdaa70d5c773946e69de942b85ca6706",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1398",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

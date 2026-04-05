@@ -1,0 +1,15 @@
+{
+  "title": "MoonToken (MOON)",
+  "chain": "eth",
+  "address": "0x68a3637ba6e75c0f66b61a42639c4e9fcd3d4824",
+  "source_url": "https://etherscan.io/token/0x68a3637ba6e75c0f66b61a42639c4e9fcd3d4824",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

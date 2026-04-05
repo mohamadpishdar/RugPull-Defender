@@ -1,0 +1,15 @@
+{
+  "title": "Meta (MTA)",
+  "chain": "eth",
+  "address": "0xa3bed4e1c75d00fa6f4e5e6922db7261b5e9acd2",
+  "source_url": "https://etherscan.io/token/0xa3bed4e1c75d00fa6f4e5e6922db7261b5e9acd2",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ef",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

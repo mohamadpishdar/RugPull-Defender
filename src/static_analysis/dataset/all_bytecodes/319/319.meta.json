@@ -1,0 +1,15 @@
+{
+  "title": "GROOT.FINANCE\u00a0(GRT)",
+  "chain": "eth",
+  "address": "0x81726558d317f234a39b40ef9d6d3bbbcc92cd4a",
+  "source_url": "https://etherscan.io/token/0x81726558d317f234a39b40ef9d6d3bbbcc92cd4a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

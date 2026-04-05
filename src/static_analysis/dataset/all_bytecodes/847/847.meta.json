@@ -1,0 +1,15 @@
+{
+  "title": "Lumerin\u00a0(LMR)",
+  "chain": "eth",
+  "address": "0x4b1D0b9F081468D780Ca1d5d79132b64301085d1",
+  "source_url": "https://etherscan.io/token/0x4b1D0b9F081468D780Ca1d5d79132b64301085d1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

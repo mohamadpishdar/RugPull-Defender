@@ -1,0 +1,15 @@
+{
+  "title": "Beta Token\u00a0(BETA)",
+  "chain": "eth",
+  "address": "0xbe1a001fe942f96eea22ba08783140b9dcc09d28",
+  "source_url": "https://etherscan.io/token/0xbe1a001fe942f96eea22ba08783140b9dcc09d28",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

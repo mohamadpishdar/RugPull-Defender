@@ -1,0 +1,15 @@
+{
+  "title": "POPCHAIN CASH TOKEN\u00a0(PCHT)",
+  "chain": "eth",
+  "address": "0xa8f5e53cf3a6122b390712d5f72fe5b10e03aab2",
+  "source_url": "https://etherscan.io/token/0xa8f5e53cf3a6122b390712d5f72fe5b10e03aab2",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

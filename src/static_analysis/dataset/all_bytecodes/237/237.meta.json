@@ -1,0 +1,15 @@
+{
+  "title": "Abattoir of Zir\u00a0(DIABLO)",
+  "chain": "eth",
+  "address": "0x1a59BE240aA89685145967322dfAb3EBA7e574dB",
+  "source_url": "https://etherscan.io/token/0x1a59BE240aA89685145967322dfAb3EBA7e574dB",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

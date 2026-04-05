@@ -1,0 +1,15 @@
+{
+  "title": "Skate Metaverse Coin\u00a0(SMC)",
+  "chain": "bsc",
+  "address": "0x6a6585b7c3def7b8b65c4bc670f2f9713846c9d1",
+  "source_url": "https://bscscan.com/token/0x6a6585b7c3def7b8b65c4bc670f2f9713846c9d1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12b3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

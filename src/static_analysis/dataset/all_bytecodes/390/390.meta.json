@@ -1,0 +1,15 @@
+{
+  "title": "Mystery\u00a0(MST)",
+  "chain": "fantom",
+  "address": "0x3308cecce12518ed1a075bbd4eca20273b5b8ff1",
+  "source_url": "https://ftmscan.com/token/0x3308cecce12518ed1a075bbd4eca20273b5b8ff1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x709b1be",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

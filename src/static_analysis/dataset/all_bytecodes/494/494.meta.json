@@ -1,0 +1,15 @@
+{
+  "title": "FuzeX\u00a0(FXT)",
+  "chain": "eth",
+  "address": "0x1829aa045e21e0d59580024a951db48096e01782",
+  "source_url": "https://etherscan.io/token/0x1829aa045e21e0d59580024a951db48096e01782",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

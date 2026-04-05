@@ -1,0 +1,15 @@
+{
+  "title": "RepubliK\u00a0(RPK)",
+  "chain": "bsc",
+  "address": "0xA024FcEAF429ca78b0B2a18fd274fBe229b1eD0E",
+  "source_url": "https://bscscan.com/token/0xA024FcEAF429ca78b0B2a18fd274fBe229b1eD0E",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1259",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

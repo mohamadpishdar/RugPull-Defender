@@ -1,0 +1,15 @@
+{
+  "title": "L7 DEX\u00a0(LSD7)",
+  "chain": "bsc",
+  "address": "0x8b1d897aE48a0F6ee118eAE829F2c1C8D48e44B7",
+  "source_url": "https://bscscan.com/token/0x8b1d897aE48a0F6ee118eAE829F2c1C8D48e44B7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b123f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

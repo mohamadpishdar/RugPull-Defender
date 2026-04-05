@@ -1,0 +1,15 @@
+{
+  "title": "Compound\u00a0(COMP)",
+  "chain": "eth",
+  "address": "0xc00e94cb662c3520282e6f5717214004a7f26888",
+  "source_url": "https://etherscan.io/token/0xc00e94cb662c3520282e6f5717214004a7f26888",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

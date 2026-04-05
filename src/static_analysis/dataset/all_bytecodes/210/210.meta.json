@@ -1,0 +1,15 @@
+{
+  "title": "TWEETY\u00a0(TWEETY)",
+  "chain": "eth",
+  "address": "0x6f5bafffc6bf7e17e9fdb2ddae79aee976ca0dd1",
+  "source_url": "https://etherscan.io/token/0x6f5bafffc6bf7e17e9fdb2ddae79aee976ca0dd1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Gitcoin\u00a0(GTC)",
+  "chain": "bsc",
+  "address": "0xd62ba48bee2ecfb4955a871c77c755f1c2f48a7c",
+  "source_url": "https://bscscan.com/token/0xd62ba48bee2ecfb4955a871c77c755f1c2f48a7c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12df",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

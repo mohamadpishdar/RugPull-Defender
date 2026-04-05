@@ -1,0 +1,15 @@
+{
+  "title": "EXVERSE\u00a0(EXVG)",
+  "chain": "bsc",
+  "address": "0xbb7d61d2511fd2e63f02178ca9b663458af9fc63",
+  "source_url": "https://bscscan.com/token/0xbb7d61d2511fd2e63f02178ca9b663458af9fc63",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b138e",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

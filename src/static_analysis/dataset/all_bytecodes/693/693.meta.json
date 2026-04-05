@@ -1,0 +1,15 @@
+{
+  "title": "Binance-Peg PAX Gold\u00a0(PAXG)",
+  "chain": "bsc",
+  "address": "0x7950865a9140cb519342433146ed5b40c6f210f7",
+  "source_url": "https://bscscan.com/token/0x7950865a9140cb519342433146ed5b40c6f210f7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1347",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

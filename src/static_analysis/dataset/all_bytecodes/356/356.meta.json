@@ -1,0 +1,15 @@
+{
+  "title": "EthereumCate\u00a0(ECATE)",
+  "chain": "eth",
+  "address": "0x90ec498638afcfd7168e065c8205f4889e5ea580",
+  "source_url": "https://etherscan.io/token/0x90ec498638afcfd7168e065c8205f4889e5ea580",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

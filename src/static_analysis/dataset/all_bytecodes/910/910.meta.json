@@ -1,0 +1,15 @@
+{
+  "title": "STASIS EURS Token\u00a0(EURS)",
+  "chain": "eth",
+  "address": "0xdb25f211ab05b1c97d595516f45794528a807ad8",
+  "source_url": "https://etherscan.io/token/0xdb25f211ab05b1c97d595516f45794528a807ad8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

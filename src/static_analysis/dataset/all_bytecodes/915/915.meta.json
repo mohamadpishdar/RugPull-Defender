@@ -1,0 +1,15 @@
+{
+  "title": "Bridge\u00a0(BRG)",
+  "chain": "bsc",
+  "address": "0x6e4a971B81CA58045a2AA982EaA3d50C4Ac38F42",
+  "source_url": "https://bscscan.com/token/0x6e4a971B81CA58045a2AA982EaA3d50C4Ac38F42",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1379",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

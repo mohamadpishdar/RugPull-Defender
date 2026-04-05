@@ -1,0 +1,15 @@
+{
+  "title": "Digital Reserve Currency\u00a0(DRC)",
+  "chain": "eth",
+  "address": "0xa150db9b1fa65b44799d4dd949d922c0a33ee606",
+  "source_url": "https://etherscan.io/token/0xa150db9b1fa65b44799d4dd949d922c0a33ee606",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ec",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

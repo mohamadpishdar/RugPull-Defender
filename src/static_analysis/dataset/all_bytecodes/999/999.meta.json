@@ -1,0 +1,15 @@
+{
+  "title": "Gnosis\u00a0(GNO)",
+  "chain": "eth",
+  "address": "0x6810e776880c02933d47db1b9fc05908e5386b96",
+  "source_url": "https://etherscan.io/token/0x6810e776880c02933d47db1b9fc05908e5386b96",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a01",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

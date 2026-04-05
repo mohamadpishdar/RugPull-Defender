@@ -1,0 +1,15 @@
+{
+  "title": "2049\u00a0(2049)",
+  "chain": "bsc",
+  "address": "0x996F581341881A796481916C6B3f34f1B74Ffcdf",
+  "source_url": "https://bscscan.com/token/0x996F581341881A796481916C6B3f34f1B74Ffcdf",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b127c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

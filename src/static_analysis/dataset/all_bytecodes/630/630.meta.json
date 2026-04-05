@@ -1,0 +1,15 @@
+{
+  "title": "Rocket Pool\u00a0(RPL)",
+  "chain": "eth",
+  "address": "0xd33526068d116ce69f19a9ee46f0bd304f21a51f",
+  "source_url": "https://etherscan.io/token/0xd33526068d116ce69f19a9ee46f0bd304f21a51f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

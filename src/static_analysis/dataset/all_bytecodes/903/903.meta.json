@@ -1,0 +1,15 @@
+{
+  "title": "Binance-Peg EOS Token\u00a0(EOS)",
+  "chain": "bsc",
+  "address": "0x56b6fb708fc5732dec1afc8d8556423a2edccbd6",
+  "source_url": "https://bscscan.com/token/0x56b6fb708fc5732dec1afc8d8556423a2edccbd6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1376",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

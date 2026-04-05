@@ -1,0 +1,15 @@
+{
+  "title": "Adventure Gold\u00a0(AGLD)",
+  "chain": "eth",
+  "address": "0x32353a6c91143bfd6c7d363b546e62a9a2489a20",
+  "source_url": "https://etherscan.io/token/0x32353a6c91143bfd6c7d363b546e62a9a2489a20",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

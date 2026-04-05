@@ -1,0 +1,15 @@
+{
+  "title": "Agent Smith\u00a0(SMITH)",
+  "chain": "eth",
+  "address": "0xe9be1172e2a12deada42fd397ff8d4d9ed227a30",
+  "source_url": "https://etherscan.io/token/0xe9be1172e2a12deada42fd397ff8d4d9ed227a30",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

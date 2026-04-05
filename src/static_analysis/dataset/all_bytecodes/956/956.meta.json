@@ -1,0 +1,15 @@
+{
+  "title": "zkRace (ZERC)",
+  "chain": "eth",
+  "address": "0xf8428A5a99cb452Ea50B6Ea70b052DaA3dF4934F",
+  "source_url": "https://etherscan.io/token/0xf8428A5a99cb452Ea50B6Ea70b052DaA3dF4934F",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ff",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

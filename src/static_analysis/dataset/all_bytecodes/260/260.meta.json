@@ -1,0 +1,15 @@
+{
+  "title": "BoringNakas\u00a0(BNAKA)",
+  "chain": "eth",
+  "address": "0xf30a9cd4cd1fd9ea3270afcecde5fece34bc4aca",
+  "source_url": "https://etherscan.io/token/0xf30a9cd4cd1fd9ea3270afcecde5fece34bc4aca",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ca",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

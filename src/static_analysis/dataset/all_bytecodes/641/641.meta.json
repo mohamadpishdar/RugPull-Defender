@@ -1,0 +1,15 @@
+{
+  "title": "Props Token\u00a0(PROPS)",
+  "chain": "eth",
+  "address": "0x6fe56c0bcdd471359019fcbc48863d6c3e9d4f41",
+  "source_url": "https://etherscan.io/token/0x6fe56c0bcdd471359019fcbc48863d6c3e9d4f41",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

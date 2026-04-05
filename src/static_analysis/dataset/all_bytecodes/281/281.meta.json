@@ -1,0 +1,15 @@
+{
+  "title": "Pike Finance\u00a0(PIKE)",
+  "chain": "eth",
+  "address": "0x4AD6Da9AAe321C408794E0cA38b37b737484907D",
+  "source_url": "https://etherscan.io/token/0x4AD6Da9AAe321C408794E0cA38b37b737484907D",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

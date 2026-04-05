@@ -1,0 +1,15 @@
+{
+  "title": "Pancake LPs\u00a0(Cake-LP)",
+  "chain": "bsc",
+  "address": "0xa6e9516e966e2b85fb1526b87da598d2112cf007",
+  "source_url": "https://bscscan.com/token/0xa6e9516e966e2b85fb1526b87da598d2112cf007",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12fc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

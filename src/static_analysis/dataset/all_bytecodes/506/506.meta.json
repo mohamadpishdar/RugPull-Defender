@@ -1,0 +1,15 @@
+{
+  "title": "Grinch INU\u00a0(GINU)",
+  "chain": "eth",
+  "address": "0xd8ff89ab224f92403564073967aa2a5d1dcc9266",
+  "source_url": "https://etherscan.io/token/0xd8ff89ab224f92403564073967aa2a5d1dcc9266",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

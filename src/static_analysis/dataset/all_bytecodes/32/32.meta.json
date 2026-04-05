@@ -1,0 +1,15 @@
+{
+  "title": "HRN\u00a0(HIGH RETURN)",
+  "chain": "bsc",
+  "address": "0xd74c3adb949aedb9c8ec3f447cc97b9976c112c6",
+  "source_url": "https://bscscan.com/token/0xd74c3adb949aedb9c8ec3f447cc97b9976c112c6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11f6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "PIPI\u00a0(PIPI)",
+  "chain": "bsc",
+  "address": "0x158f194CE44954AD8b6161aCD1802898716D0b84",
+  "source_url": "https://bscscan.com/token/0x158f194CE44954AD8b6161aCD1802898716D0b84",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b125c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

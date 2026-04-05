@@ -1,0 +1,15 @@
+{
+  "title": "Block Chain Games",
+  "chain": "bsc",
+  "address": "0x6185521d06f17ab5fbe187dc9a699c3c021090d5",
+  "source_url": "https://bscscan.com/token/0x6185521d06f17ab5fbe187dc9a699c3c021090d5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12a6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

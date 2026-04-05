@@ -1,0 +1,15 @@
+{
+  "title": "Golden Token(GOLD)",
+  "chain": "bsc",
+  "address": "0x1d5fab22d056428cae676aa11c0d5f31647b69e6",
+  "source_url": "https://bscscan.com/token/0x1d5fab22d056428cae676aa11c0d5f31647b69e6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12cd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

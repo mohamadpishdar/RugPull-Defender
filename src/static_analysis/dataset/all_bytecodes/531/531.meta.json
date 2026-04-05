@@ -1,0 +1,15 @@
+{
+  "title": "Follow the she Goat\u00a0(Chimera)",
+  "chain": "eth",
+  "address": "0x650e3e3feab7736181b1a23953f3af6c0462e5f4",
+  "source_url": "https://etherscan.io/token/0x650e3e3feab7736181b1a23953f3af6c0462e5f4",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89df",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

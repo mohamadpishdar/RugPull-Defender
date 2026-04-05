@@ -1,0 +1,15 @@
+{
+  "title": "Boost Coin\u00a0(Boost)",
+  "chain": "eth",
+  "address": "0x302cae5dcf8f051d0177043c3438020b89b33218",
+  "source_url": "https://etherscan.io/token/0x302cae5dcf8f051d0177043c3438020b89b33218",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

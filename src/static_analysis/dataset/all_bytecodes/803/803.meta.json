@@ -1,0 +1,15 @@
+{
+  "title": "LTO Network Token\u00a0(LTO)",
+  "chain": "eth",
+  "address": "0x3db6ba6ab6f95efed1a6e794cad492faaabf294d",
+  "source_url": "https://etherscan.io/token/0x3db6ba6ab6f95efed1a6e794cad492faaabf294d",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Aragon Network Token\u00a0(ANT)",
+  "chain": "eth",
+  "address": "0xa117000000f279d81a1d3cc75430faa017fa5a2e",
+  "source_url": "https://etherscan.io/token/0xa117000000f279d81a1d3cc75430faa017fa5a2e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

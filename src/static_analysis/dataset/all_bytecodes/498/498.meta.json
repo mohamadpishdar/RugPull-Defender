@@ -1,0 +1,15 @@
+{
+  "title": "UniCoin\u00a0(UNI)",
+  "chain": "eth",
+  "address": "0xd0d932c9f78583d297e487a7965223d0fe1008c8",
+  "source_url": "https://etherscan.io/token/0xd0d932c9f78583d297e487a7965223d0fe1008c8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

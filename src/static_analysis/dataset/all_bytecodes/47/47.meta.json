@@ -1,0 +1,15 @@
+{
+  "title": "Tetris\u00a0(TTR)",
+  "chain": "bsc",
+  "address": "0x7924afd2b21caf0ab09e53cc91cdec0761db99b4",
+  "source_url": "https://bscscan.com/token/0x7924afd2b21caf0ab09e53cc91cdec0761db99b4",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b120d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "O3 Swap Token\u00a0(O3)",
+  "chain": "eth",
+  "address": "0xee9801669c6138e84bd50deb500827b776777d28",
+  "source_url": "https://etherscan.io/token/0xee9801669c6138e84bd50deb500827b776777d28",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a01",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

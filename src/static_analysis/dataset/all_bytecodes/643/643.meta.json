@@ -1,0 +1,15 @@
+{
+  "title": "Franklin\u00a0(FLy)",
+  "chain": "eth",
+  "address": "0x85f6eb2bd5a062f5f8560be93fb7147e16c81472",
+  "source_url": "https://etherscan.io/token/0x85f6eb2bd5a062f5f8560be93fb7147e16c81472",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

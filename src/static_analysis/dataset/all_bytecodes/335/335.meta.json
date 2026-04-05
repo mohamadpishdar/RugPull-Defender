@@ -1,0 +1,15 @@
+{
+  "title": "BOB Token\u00a0(BOB)",
+  "chain": "eth",
+  "address": "0xdf347911910b6c9a4286ba8e2ee5ea4a39eb2134",
+  "source_url": "https://etherscan.io/token/0xdf347911910b6c9a4286ba8e2ee5ea4a39eb2134",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Parsiq Token\u00a0(PRQ)",
+  "chain": "eth",
+  "address": "0x362bc847a3a9637d3af6624eec853618a43ed7d2",
+  "source_url": "https://etherscan.io/token/0x362bc847a3a9637d3af6624eec853618a43ed7d2",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fe",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

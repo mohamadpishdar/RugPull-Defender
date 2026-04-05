@@ -1,0 +1,15 @@
+{
+  "title": "DUO",
+  "chain": "bsc",
+  "address": "0x1ED990bdcAEf4B13b01F4996dDe59EcD04F1343A",
+  "source_url": "https://bscscan.com/token/0x1ED990bdcAEf4B13b01F4996dDe59EcD04F1343A",
+  "display_text": "Sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11f6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

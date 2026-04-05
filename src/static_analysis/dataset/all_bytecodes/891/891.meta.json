@@ -1,0 +1,15 @@
+{
+  "title": "Coinweb\u00a0(CWEB)",
+  "chain": "eth",
+  "address": "0x505b5eda5e25a67e1c24a2bf1a527ed9eb88bf04",
+  "source_url": "https://etherscan.io/token/0x505b5eda5e25a67e1c24a2bf1a527ed9eb88bf04",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

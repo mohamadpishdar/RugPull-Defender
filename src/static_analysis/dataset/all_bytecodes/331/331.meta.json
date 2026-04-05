@@ -1,0 +1,15 @@
+{
+  "title": "Space Inu\u00a0(SPACEINU)",
+  "chain": "eth",
+  "address": "0xBFaacF4E01882DFF55ba7AC745Ae7e6042B822D6",
+  "source_url": "https://etherscan.io/token/0xBFaacF4E01882DFF55ba7AC745Ae7e6042B822D6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

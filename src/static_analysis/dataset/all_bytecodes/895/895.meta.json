@@ -1,0 +1,15 @@
+{
+  "title": "Zentry\u00a0(ZENT)",
+  "chain": "eth",
+  "address": "0xdbb7a34bf10169d6d2d0d02a6cbb436cf4381bfa",
+  "source_url": "https://etherscan.io/token/0xdbb7a34bf10169d6d2d0d02a6cbb436cf4381bfa",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

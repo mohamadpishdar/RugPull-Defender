@@ -1,0 +1,15 @@
+{
+  "title": "Onyxcoin\u00a0(XCN)",
+  "chain": "eth",
+  "address": "0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18",
+  "source_url": "https://etherscan.io/token/0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

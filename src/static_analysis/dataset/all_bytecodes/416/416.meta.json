@@ -1,0 +1,15 @@
+{
+  "title": "Stable Magnet Token\u00a0(SMAG)",
+  "chain": "bsc",
+  "address": "0xcD734B1f9B0B976ddC46e507D0AA51a4216A1E98",
+  "source_url": "https://bscscan.com/token/0xcD734B1f9B0B976ddC46e507D0AA51a4216A1E98",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12f3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

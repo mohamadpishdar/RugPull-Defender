@@ -1,0 +1,15 @@
+{
+  "title": "ETE Token\u00a0(ETE)",
+  "chain": "bsc",
+  "address": "0x367f87879bb49117cc0d0e92ec65bb2aabb2b823",
+  "source_url": "https://bscscan.com/token/0x367f87879bb49117cc0d0e92ec65bb2aabb2b823",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1268",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

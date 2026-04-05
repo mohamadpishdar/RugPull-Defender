@@ -1,0 +1,15 @@
+{
+  "title": "Coin98\u00a0(C98)",
+  "chain": "bsc",
+  "address": "0xaec945e04baf28b135fa7c640f624f8d90f1c3a6",
+  "source_url": "https://bscscan.com/token/0xaec945e04baf28b135fa7c640f624f8d90f1c3a6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b133d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

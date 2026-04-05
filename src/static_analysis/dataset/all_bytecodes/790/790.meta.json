@@ -1,0 +1,15 @@
+{
+  "title": "ARPA Token\u00a0(ARPA)",
+  "chain": "eth",
+  "address": "0xba50933c268f567bdc86e1ac131be072c6b0b71a",
+  "source_url": "https://etherscan.io/token/0xba50933c268f567bdc86e1ac131be072c6b0b71a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

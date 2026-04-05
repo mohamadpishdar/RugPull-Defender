@@ -1,0 +1,15 @@
+{
+  "title": "Yzer Token\u00a0(YZER)",
+  "chain": "eth",
+  "address": "0xCBb391907A492a1e721bB16ae0563243E2B71987",
+  "source_url": "https://etherscan.io/token/0xCBb391907A492a1e721bB16ae0563243E2B71987",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

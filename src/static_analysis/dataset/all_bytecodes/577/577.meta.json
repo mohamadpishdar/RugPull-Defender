@@ -1,0 +1,15 @@
+{
+  "title": "Bethereum\u00a0(BETHER)",
+  "chain": "eth",
+  "address": "0x14c926f2290044b647e1bf2072e67b495eff1905",
+  "source_url": "https://etherscan.io/token/0x14c926f2290044b647e1bf2072e67b495eff1905",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

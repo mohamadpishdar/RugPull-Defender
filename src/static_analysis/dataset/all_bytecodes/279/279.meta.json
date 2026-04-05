@@ -1,0 +1,15 @@
+{
+  "title": "Beamsplittr\u00a0(BSPLT)",
+  "chain": "eth",
+  "address": "0x05c9b6764a153faf4262d3885a845af694775953",
+  "source_url": "https://etherscan.io/token/0x05c9b6764a153faf4262d3885a845af694775953",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

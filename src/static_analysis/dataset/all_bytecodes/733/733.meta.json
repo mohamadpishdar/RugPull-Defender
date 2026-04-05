@@ -1,0 +1,15 @@
+{
+  "title": "Oms\u00a0(OMS)",
+  "chain": "eth",
+  "address": "0x3d1e3c5f658d74c585267350cac22fd44e8d951c",
+  "source_url": "https://etherscan.io/token/0x3d1e3c5f658d74c585267350cac22fd44e8d951c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

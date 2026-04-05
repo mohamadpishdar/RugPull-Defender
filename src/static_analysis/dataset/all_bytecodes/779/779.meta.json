@@ -1,0 +1,11 @@
+{
+  "title": "Rubic\u00a0(BRBC)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x8E3BCC334657560253B83f08331d85267316e08a",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x8E3BCC334657560253B83f08331d85267316e08a"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "LooBr\u00a0(LooBr)",
+  "chain": "bsc",
+  "address": "0xa4dcaa2f100c7ed0ee1c5ebf0781334a9f21f05f",
+  "source_url": "https://bscscan.com/token/0xa4dcaa2f100c7ed0ee1c5ebf0781334a9f21f05f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b124e",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

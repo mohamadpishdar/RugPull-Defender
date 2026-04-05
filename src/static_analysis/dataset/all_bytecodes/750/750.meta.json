@@ -1,0 +1,15 @@
+{
+  "title": "Binance-Peg XRP Token\u00a0(XRP)",
+  "chain": "bsc",
+  "address": "0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe",
+  "source_url": "https://bscscan.com/token/0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1352",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

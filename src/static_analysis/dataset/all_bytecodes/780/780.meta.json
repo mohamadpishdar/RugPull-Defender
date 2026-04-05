@@ -1,0 +1,15 @@
+{
+  "title": "BOSAGORA\u00a0(BOA)",
+  "chain": "eth",
+  "address": "0x746dda2ea243400d5a63e0700f190ab79f06489e",
+  "source_url": "https://etherscan.io/token/0x746dda2ea243400d5a63e0700f190ab79f06489e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "bitqy\u00a0(BQ)",
+  "chain": "eth",
+  "address": "0xf0f8b0b8dbb1124261fc8d778e2287e3fd2cf4f5",
+  "source_url": "https://etherscan.io/token/0xf0f8b0b8dbb1124261fc8d778e2287e3fd2cf4f5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

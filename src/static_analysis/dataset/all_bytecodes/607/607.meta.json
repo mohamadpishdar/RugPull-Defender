@@ -1,0 +1,15 @@
+{
+  "title": "ALPINE Fan Token\u00a0(ALPINE)",
+  "chain": "bsc",
+  "address": "0x287880ea252b52b63cc5f40a2d3e5a44aa665a76",
+  "source_url": "https://bscscan.com/token/0x287880ea252b52b63cc5f40a2d3e5a44aa665a76",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1334",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

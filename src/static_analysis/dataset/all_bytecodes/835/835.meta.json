@@ -1,0 +1,15 @@
+{
+  "title": "BetProtocolToken\u00a0(BEPRO)",
+  "chain": "eth",
+  "address": "0xcf3c8be2e2c42331da80ef210e9b1b307c03d36a",
+  "source_url": "https://etherscan.io/token/0xcf3c8be2e2c42331da80ef210e9b1b307c03d36a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

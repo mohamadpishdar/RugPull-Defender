@@ -1,0 +1,15 @@
+{
+  "title": "AiMalls\u00a0(AIT)",
+  "chain": "bsc",
+  "address": "0x5F113F7ef20Ff111FD130e83D8e97Fd1E0E2518F",
+  "source_url": "https://bscscan.com/token/0x5F113F7ef20Ff111FD130e83D8e97Fd1E0E2518F",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1395",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

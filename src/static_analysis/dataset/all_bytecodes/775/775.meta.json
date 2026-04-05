@@ -1,0 +1,15 @@
+{
+  "title": "Geodnet Token\u00a0(GEOD)",
+  "chain": "polygon",
+  "address": "0xAC0F66379A6d7801D7726d5a943356A172549Adb",
+  "source_url": "https://polygonscan.com/token/0xAC0F66379A6d7801D7726d5a943356A172549Adb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba1781",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

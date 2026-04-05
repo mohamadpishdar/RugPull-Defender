@@ -1,0 +1,15 @@
+{
+  "title": "RivusDAO (RIVUS)",
+  "chain": "eth",
+  "address": "0x60e254E35Dd712394b3AbA7A1D19114732e143dD",
+  "source_url": "https://etherscan.io/token/0x60e254E35Dd712394b3AbA7A1D19114732e143dD",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

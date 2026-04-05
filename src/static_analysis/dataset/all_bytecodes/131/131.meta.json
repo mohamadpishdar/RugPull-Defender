@@ -1,0 +1,15 @@
+{
+  "title": "YPT\u00a0(YPT)",
+  "chain": "bsc",
+  "address": "0xd80c121703efe9873b36f72343bd868665613d91",
+  "source_url": "https://bscscan.com/token/0xd80c121703efe9873b36f72343bd868665613d91",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b128c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

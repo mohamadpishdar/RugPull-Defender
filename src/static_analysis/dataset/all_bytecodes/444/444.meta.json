@@ -1,0 +1,15 @@
+{
+  "title": "SatoshiSwap\u00a0(SWAP)",
+  "chain": "bsc",
+  "address": "0x2f917c9f6bb4186e57841f5747fcc3fedf026b35",
+  "source_url": "https://bscscan.com/token/0x2f917c9f6bb4186e57841f5747fcc3fedf026b35",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1308",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

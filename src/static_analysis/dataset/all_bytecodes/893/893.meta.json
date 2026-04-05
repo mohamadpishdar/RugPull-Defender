@@ -1,0 +1,15 @@
+{
+  "title": "Dai Stablecoin\u00a0(DAI)",
+  "chain": "eth",
+  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+  "source_url": "https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "DRAC Network\u00a0(DRAC)",
+  "chain": "eth",
+  "address": "0xc8a34e86c187830922f841985e376f412ee0088a",
+  "source_url": "https://etherscan.io/token/0xc8a34e86c187830922f841985e376f412ee0088a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89da",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

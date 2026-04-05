@@ -1,0 +1,15 @@
+{
+  "title": "Truample\u00a0(TMPL)",
+  "chain": "eth",
+  "address": "0x52132a43d7cae69b23abe77b226fa1a5bc66b839",
+  "source_url": "https://etherscan.io/token/0x52132a43d7cae69b23abe77b226fa1a5bc66b839",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

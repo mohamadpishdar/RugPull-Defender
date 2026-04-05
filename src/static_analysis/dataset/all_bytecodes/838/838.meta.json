@@ -1,0 +1,15 @@
+{
+  "title": "Cookie\u00a0(COOKIE)",
+  "chain": "bsc",
+  "address": "0xc0041ef357b183448b235a8ea73ce4e4ec8c265f",
+  "source_url": "https://bscscan.com/token/0xc0041ef357b183448b235a8ea73ce4e4ec8c265f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1365",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

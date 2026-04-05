@@ -1,0 +1,15 @@
+{
+  "title": "URANIUM FINANCIAL\u00a0(URF)",
+  "chain": "bsc",
+  "address": "0x48A8FD27DD059f06d5FbD406A7a8902601003e1F",
+  "source_url": "https://bscscan.com/token/0x48A8FD27DD059f06d5FbD406A7a8902601003e1F",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1325",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

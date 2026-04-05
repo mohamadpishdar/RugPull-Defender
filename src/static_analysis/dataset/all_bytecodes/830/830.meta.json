@@ -1,0 +1,15 @@
+{
+  "title": "BandToken\u00a0(BAND)",
+  "chain": "eth",
+  "address": "0xba11d00c5f74255f56a5e366f4f77f5a186d7f55",
+  "source_url": "https://etherscan.io/token/0xba11d00c5f74255f56a5e366f4f77f5a186d7f55",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

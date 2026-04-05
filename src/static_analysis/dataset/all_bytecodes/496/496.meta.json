@@ -1,0 +1,15 @@
+{
+  "title": "SwarmCity\u00a0(SWT)",
+  "chain": "eth",
+  "address": "0xb9e7f8568e08d5659f5d29c4997173d84cdf2607",
+  "source_url": "https://etherscan.io/token/0xb9e7f8568e08d5659f5d29c4997173d84cdf2607",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

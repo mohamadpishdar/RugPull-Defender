@@ -1,0 +1,15 @@
+{
+  "title": "Lymex\u00a0(LYM)",
+  "chain": "bsc",
+  "address": "0x448f861728f4ed28914f42b4c8c0ff70b8bd637b",
+  "source_url": "https://bscscan.com/token/0x448f861728f4ed28914f42b4c8c0ff70b8bd637b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1326",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

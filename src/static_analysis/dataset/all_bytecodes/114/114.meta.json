@@ -1,0 +1,15 @@
+{
+  "title": "Pepe\u00a0(PEPE)",
+  "chain": "bsc",
+  "address": "0x79879c0a8B949458DFA60cA7A8df24f59e42bb1B",
+  "source_url": "https://bscscan.com/token/0x79879c0a8B949458DFA60cA7A8df24f59e42bb1B",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1272",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

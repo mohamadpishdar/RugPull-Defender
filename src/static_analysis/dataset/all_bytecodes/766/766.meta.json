@@ -1,0 +1,15 @@
+{
+  "title": "GMX(GMX)",
+  "chain": "arbi",
+  "address": "0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a",
+  "source_url": "https://arbiscan.io/token/0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe2168",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

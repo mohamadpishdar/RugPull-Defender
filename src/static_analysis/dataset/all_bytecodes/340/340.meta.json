@@ -1,0 +1,15 @@
+{
+  "title": "Eristica TOKEN\u00a0(ERT)",
+  "chain": "eth",
+  "address": "0x92a5b04d0ed5d94d7a193d1d334d3d16996f4e13",
+  "source_url": "https://etherscan.io/token/0x92a5b04d0ed5d94d7a193d1d334d3d16996f4e13",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

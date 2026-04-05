@@ -1,0 +1,15 @@
+{
+  "title": "ArbiSwap\u00a0(ArbiSwap)",
+  "chain": "arbi",
+  "address": "0xB37B31fE56C24A25970244A2EEf03633815D2460",
+  "source_url": "https://arbiscan.io/token/0xB37B31fE56C24A25970244A2EEf03633815D2460",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe214d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

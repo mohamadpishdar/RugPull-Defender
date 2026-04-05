@@ -1,0 +1,15 @@
+{
+  "title": "DreamComeTrue\u00a0(DCT)",
+  "chain": "bsc",
+  "address": "0x48A0b5F2d0f36598f470334F4FE21900bf2bf71b",
+  "source_url": "https://bscscan.com/token/0x48A0b5F2d0f36598f470334F4FE21900bf2bf71b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12c1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

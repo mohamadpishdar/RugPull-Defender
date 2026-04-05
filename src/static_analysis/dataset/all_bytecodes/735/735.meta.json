@@ -1,0 +1,11 @@
+{
+  "title": "Hunny Token\u00a0(HUNNY)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x565b72163f17849832a692a3c5928cc502f46d69",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x565b72163f17849832a692a3c5928cc502f46d69"
+  ]
+}

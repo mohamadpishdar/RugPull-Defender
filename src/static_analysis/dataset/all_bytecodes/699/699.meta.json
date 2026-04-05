@@ -1,0 +1,15 @@
+{
+  "title": "OKB\u00a0(OKB)",
+  "chain": "eth",
+  "address": "0x75231f58b43240c9718dd58b4967c5114342a86c",
+  "source_url": "https://etherscan.io/token/0x75231f58b43240c9718dd58b4967c5114342a86c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

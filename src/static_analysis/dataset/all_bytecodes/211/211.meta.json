@@ -1,0 +1,15 @@
+{
+  "title": "Friend Tech\u00a0(FT)",
+  "chain": "eth",
+  "address": "0x2cf82a3ad32aa580110278022a6493b631044bef",
+  "source_url": "https://etherscan.io/token/0x2cf82a3ad32aa580110278022a6493b631044bef",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "HAPPYBEAR\u00a0(HAPPY)",
+  "chain": "eth",
+  "address": "0xbae845b21ddfd83cb2f55fbbce90efe4b6979ccc",
+  "source_url": "https://etherscan.io/token/0xbae845b21ddfd83cb2f55fbbce90efe4b6979ccc",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

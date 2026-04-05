@@ -1,0 +1,15 @@
+{
+  "title": "Kizuna AI\u00a0(KIZUNA)",
+  "chain": "eth",
+  "address": "0x15d5fed8f86732efec2c62e94ae8d434add7af1e",
+  "source_url": "https://etherscan.io/token/0x15d5fed8f86732efec2c62e94ae8d434add7af1e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

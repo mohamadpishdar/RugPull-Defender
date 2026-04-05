@@ -1,0 +1,15 @@
+{
+  "title": "SuperStep\u00a0(SGMT)",
+  "chain": "bsc",
+  "address": "0x6f7a88274647ad54bcbe25e9d28c51ddb6b5b55f",
+  "source_url": "https://bscscan.com/address/0x6f7a88274647ad54bcbe25e9d28c51ddb6b5b55f",
+  "display_text": "sourse code",
+  "resolved_from": "address",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1205",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

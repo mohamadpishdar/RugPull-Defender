@@ -1,0 +1,15 @@
+{
+  "title": "WAX Token\u00a0(WAX)",
+  "chain": "eth",
+  "address": "0x39bb259f66e1c59d5abef88375979b4d20d98022",
+  "source_url": "https://etherscan.io/token/0x39bb259f66e1c59d5abef88375979b4d20d98022",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

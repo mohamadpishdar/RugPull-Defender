@@ -1,0 +1,15 @@
+{
+  "title": "CACHE Gold\u00a0(CGT)",
+  "chain": "eth",
+  "address": "0xf5238462e7235c7b62811567e63dd17d12c2eaa0",
+  "source_url": "https://etherscan.io/token/0xf5238462e7235c7b62811567e63dd17d12c2eaa0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

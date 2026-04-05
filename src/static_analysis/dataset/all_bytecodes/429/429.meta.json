@@ -1,0 +1,11 @@
+{
+  "title": "AVO\u00a0(AVO)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://blastscan.io/token/0x95b9b27f2eba05433b4a64257f0342285d89a479",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://blastscan.io/token/0x95b9b27f2eba05433b4a64257f0342285d89a479"
+  ]
+}

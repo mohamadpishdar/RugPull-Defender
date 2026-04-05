@@ -1,0 +1,15 @@
+{
+  "title": "SHIA\u00a0(SHIA)",
+  "chain": "eth",
+  "address": "0x9dc2eb9671bcaf9d61823dd8cc2c18ac228a6f89",
+  "source_url": "https://etherscan.io/token/0x9dc2eb9671bcaf9d61823dd8cc2c18ac228a6f89",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "RankingBall Gold\u00a0(RBG)",
+  "chain": "eth",
+  "address": "0x0794ce7d4459105926da230f318c1e34bc790517",
+  "source_url": "https://etherscan.io/token/0x0794ce7d4459105926da230f318c1e34bc790517",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

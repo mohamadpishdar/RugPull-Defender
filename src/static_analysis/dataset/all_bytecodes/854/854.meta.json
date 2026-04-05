@@ -1,0 +1,15 @@
+{
+  "title": "SquidGrow\u00a0(SQGROW)",
+  "chain": "eth",
+  "address": "0xb72e76ccf005313868db7b48070901a44629da98",
+  "source_url": "https://etherscan.io/token/0xb72e76ccf005313868db7b48070901a44629da98",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

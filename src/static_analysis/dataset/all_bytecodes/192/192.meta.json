@@ -1,0 +1,15 @@
+{
+  "title": "ASG Token\u00a0(ASG)",
+  "chain": "bsc",
+  "address": "0x8e481946640b04109afad9e0c07925494984bdc9",
+  "source_url": "https://bscscan.com/token/0x8e481946640b04109afad9e0c07925494984bdc9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12e3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

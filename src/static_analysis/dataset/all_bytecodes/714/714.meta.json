@@ -1,0 +1,15 @@
+{
+  "title": "Unitus\u00a0(UTS)",
+  "chain": "eth",
+  "address": "0x3b6564b5da73a41d3a66e6558a98fd0e9e1e77ad",
+  "source_url": "https://etherscan.io/token/0x3b6564b5da73a41d3a66e6558a98fd0e9e1e77ad",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

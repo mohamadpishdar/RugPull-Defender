@@ -1,0 +1,15 @@
+{
+  "title": "APPLE\u00a0(APPLE)",
+  "chain": "bsc",
+  "address": "0x8F81bbC8Cd2484b252e8288528cf2ec903619369",
+  "source_url": "https://bscscan.com/token/0x8F81bbC8Cd2484b252e8288528cf2ec903619369",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12bd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

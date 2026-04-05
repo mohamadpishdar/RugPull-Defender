@@ -1,0 +1,15 @@
+{
+  "title": "Rupiah Token\u00a0(IDRT)",
+  "chain": "eth",
+  "address": "0x998FFE1E43fAcffb941dc337dD0468d52bA5b48A",
+  "source_url": "https://etherscan.io/token/0x998FFE1E43fAcffb941dc337dD0468d52bA5b48A",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ec",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

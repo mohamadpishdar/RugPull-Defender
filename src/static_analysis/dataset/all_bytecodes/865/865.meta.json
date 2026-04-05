@@ -1,0 +1,15 @@
+{
+  "title": "Threshold Network Token",
+  "chain": "eth",
+  "address": "0xcdf7028ceab81fa0c6971208e83fa7872994bee5",
+  "source_url": "https://etherscan.io/token/0xcdf7028ceab81fa0c6971208e83fa7872994bee5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

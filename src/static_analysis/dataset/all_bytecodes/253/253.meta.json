@@ -1,0 +1,15 @@
+{
+  "title": "Kaonashi the Faceless\u00a0(NOFACE)",
+  "chain": "eth",
+  "address": "0x3eb4fc424fab9100a64c87dc19602ed03cb1b4b3",
+  "source_url": "https://etherscan.io/token/0x3eb4fc424fab9100a64c87dc19602ed03cb1b4b3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

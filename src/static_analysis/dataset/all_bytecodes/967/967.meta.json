@@ -1,0 +1,15 @@
+{
+  "title": "Metaverser Token\u00a0(mtvt)",
+  "chain": "bsc",
+  "address": "0xB92c5e0135A510A4a3A8803F143d2Cb085BBAf73",
+  "source_url": "https://bscscan.com/token/0xB92c5e0135A510A4a3A8803F143d2Cb085BBAf73",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1394",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

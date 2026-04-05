@@ -1,0 +1,15 @@
+{
+  "title": "Magic\u00a0(Magic)",
+  "chain": "bsc",
+  "address": "0x37760475953a7b37fdcee8d6c7506d9624565c84",
+  "source_url": "https://bscscan.com/token/0x37760475953a7b37fdcee8d6c7506d9624565c84",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b129d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

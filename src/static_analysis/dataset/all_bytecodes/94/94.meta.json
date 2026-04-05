@@ -1,0 +1,15 @@
+{
+  "title": "MoveCash\u00a0(MCA)",
+  "chain": "bsc",
+  "address": "0xf3dbdf718667874e19ef368721a10409345fc218",
+  "source_url": "https://bscscan.com/token/0xf3dbdf718667874e19ef368721a10409345fc218",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1254",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

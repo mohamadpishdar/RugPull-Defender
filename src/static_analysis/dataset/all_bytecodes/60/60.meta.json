@@ -1,0 +1,15 @@
+{
+  "title": "MOL\u00a0(MOL)",
+  "chain": "bsc",
+  "address": "0x87f2dF6f85B5833F058ABD7D7Eb41249084C2380",
+  "source_url": "https://bscscan.com/token/0x87f2dF6f85B5833F058ABD7D7Eb41249084C2380",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1220",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

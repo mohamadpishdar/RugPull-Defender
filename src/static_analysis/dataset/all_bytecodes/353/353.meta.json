@@ -1,0 +1,15 @@
+{
+  "title": "Supreme Inu\u00a0(SUPRINU)",
+  "chain": "eth",
+  "address": "0x6cc3e5f6f8909d0b45a97c13366321b2029af8f0",
+  "source_url": "https://etherscan.io/token/0x6cc3e5f6f8909d0b45a97c13366321b2029af8f0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

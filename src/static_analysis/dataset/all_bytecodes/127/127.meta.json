@@ -1,0 +1,15 @@
+{
+  "title": "TSUKA\u00a0(TSUKA)",
+  "chain": "bsc",
+  "address": "0x4e8842F6CAf3F64037DF67C8427000dAE207F56C",
+  "source_url": "https://bscscan.com/token/0x4e8842F6CAf3F64037DF67C8427000dAE207F56C",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1285",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

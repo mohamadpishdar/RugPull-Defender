@@ -1,0 +1,15 @@
+{
+  "title": "Data Transaction Token\u00a0(XD)",
+  "chain": "eth",
+  "address": "0x24dcc881e7dd730546834452f21872d5cb4b5293",
+  "source_url": "https://etherscan.io/token/0x24dcc881e7dd730546834452f21872d5cb4b5293",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

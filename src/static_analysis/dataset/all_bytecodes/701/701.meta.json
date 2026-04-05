@@ -1,0 +1,15 @@
+{
+  "title": "KuCoin Token\u00a0(KCS)",
+  "chain": "eth",
+  "address": "0xf34960d9d60be18cc1d5afc1a6f012a723a28811",
+  "source_url": "https://etherscan.io/token/0xf34960d9d60be18cc1d5afc1a6f012a723a28811",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

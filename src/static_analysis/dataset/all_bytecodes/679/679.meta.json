@@ -1,0 +1,15 @@
+{
+  "title": "xToken (XTK)",
+  "chain": "eth",
+  "address": "0x7f3edcdd180dbe4819bd98fee8929b5cedb3adeb",
+  "source_url": "https://etherscan.io/token/0x7f3edcdd180dbe4819bd98fee8929b5cedb3adeb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ec",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

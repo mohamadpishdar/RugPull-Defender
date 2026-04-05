@@ -1,0 +1,15 @@
+{
+  "title": "MarbleX\u00a0(MBX)",
+  "chain": "bsc",
+  "address": "0x30D79364ddC7C4a88a8dC753389FABd4fcdE6B04",
+  "source_url": "https://bscscan.com/token/0x30D79364ddC7C4a88a8dC753389FABd4fcdE6B04",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b123c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

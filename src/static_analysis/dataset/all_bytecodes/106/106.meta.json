@@ -1,0 +1,15 @@
+{
+  "title": "FlokiChain\u00a0(FC)",
+  "chain": "bsc",
+  "address": "0xa48d94e1cca09c4867d710cd24f002cb6aa196d3",
+  "source_url": "https://bscscan.com/token/0xa48d94e1cca09c4867d710cd24f002cb6aa196d3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1266",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

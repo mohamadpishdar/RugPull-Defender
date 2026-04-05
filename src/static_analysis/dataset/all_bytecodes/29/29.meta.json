@@ -1,0 +1,15 @@
+{
+  "title": "GHOSTP2E\u00a0(GHR)",
+  "chain": "bsc",
+  "address": "0x34CB0f01489ED5D0a55f0f6D5155efC137FCcDdB",
+  "source_url": "https://bscscan.com/token/0x34CB0f01489ED5D0a55f0f6D5155efC137FCcDdB",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11ef",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

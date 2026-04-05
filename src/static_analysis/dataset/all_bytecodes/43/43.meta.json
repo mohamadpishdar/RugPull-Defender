@@ -1,0 +1,15 @@
+{
+  "title": "BNQ Token\u00a0(BNQ)",
+  "chain": "bsc",
+  "address": "0x06C61725B98F1eF191D41e6B4f1E0aA50Bd465d5",
+  "source_url": "https://bscscan.com/token/0x06C61725B98F1eF191D41e6B4f1E0aA50Bd465d5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1207",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

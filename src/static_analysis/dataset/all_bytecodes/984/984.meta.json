@@ -1,0 +1,15 @@
+{
+  "title": "Inspect\u00a0(INSP)",
+  "chain": "eth",
+  "address": "0x186eF81fd8E77EEC8BfFC3039e7eC41D5FC0b457",
+  "source_url": "https://etherscan.io/token/0x186eF81fd8E77EEC8BfFC3039e7eC41D5FC0b457",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

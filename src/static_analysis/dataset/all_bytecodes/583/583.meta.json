@@ -1,0 +1,15 @@
+{
+  "title": "HuobiPoolToken\u00a0(HPT)",
+  "chain": "eth",
+  "address": "0xa66daa57432024023db65477ba87d4e7f5f95213",
+  "source_url": "https://etherscan.io/token/0xa66daa57432024023db65477ba87d4e7f5f95213",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

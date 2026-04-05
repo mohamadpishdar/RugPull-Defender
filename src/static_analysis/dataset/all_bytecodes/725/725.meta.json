@@ -1,0 +1,11 @@
+{
+  "title": "Blind Boxes Token\u00a0(BLES)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x393d87e44c7b1f5ba521b351532c24ece253b849",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x393d87e44c7b1f5ba521b351532c24ece253b849"
+  ]
+}

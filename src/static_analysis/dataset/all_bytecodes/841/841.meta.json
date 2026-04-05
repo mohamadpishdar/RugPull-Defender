@@ -1,0 +1,11 @@
+{
+  "title": "Binance-Peg Tezos Token\u00a0(XTZ)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x16939ef78684453bfdfb47825f8a5f714f12623a",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x16939ef78684453bfdfb47825f8a5f714f12623a"
+  ]
+}

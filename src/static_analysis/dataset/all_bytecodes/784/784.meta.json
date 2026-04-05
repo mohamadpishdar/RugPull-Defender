@@ -1,0 +1,11 @@
+{
+  "title": "DODO bird\u00a0(DODO)",
+  "chain": "bsc",
+  "address": null,
+  "source_url": "https://etherscan.io/token/0x43dfc4159d86f3a37a5a4b3d4580b888ad7d4ddd",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://etherscan.io/token/0x43dfc4159d86f3a37a5a4b3d4580b888ad7d4ddd"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "EarnX\u00a0(EarnX)",
+  "chain": "bsc",
+  "address": "0x9c28e48ea9170d9a9cb76d338655b8bd4124bc7a",
+  "source_url": "https://bscscan.com/token/0x9c28e48ea9170d9a9cb76d338655b8bd4124bc7a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b134b",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

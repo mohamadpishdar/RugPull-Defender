@@ -1,0 +1,15 @@
+{
+  "title": "MetaFinanceDAO",
+  "chain": "bsc",
+  "address": "0xb5723edf367583b28f123dd436eef343f013d36b",
+  "source_url": "https://bscscan.com/token/0xb5723edf367583b28f123dd436eef343f013d36b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

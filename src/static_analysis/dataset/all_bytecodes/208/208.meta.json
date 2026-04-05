@@ -1,0 +1,15 @@
+{
+  "title": "WSB Coin\u00a0(WSB)",
+  "chain": "eth",
+  "address": "0x0414d8c87b271266a5864329fb4932bbe19c0c49",
+  "source_url": "https://etherscan.io/token/0x0414d8c87b271266a5864329fb4932bbe19c0c49",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

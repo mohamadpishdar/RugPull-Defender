@@ -1,0 +1,15 @@
+{
+  "title": "BSC-Peg Thunder Token\u00a0(TT)",
+  "chain": "bsc",
+  "address": "0x990e7154bb999faa9b2fa5ed29e822703311ea85",
+  "source_url": "https://bscscan.com/token/0x990e7154bb999faa9b2fa5ed29e822703311ea85",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b137a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

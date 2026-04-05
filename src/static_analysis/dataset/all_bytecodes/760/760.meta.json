@@ -1,0 +1,15 @@
+{
+  "title": "DexCheck\u00a0(DCK)",
+  "chain": "bsc",
+  "address": "0x16faf9daa401aa42506af503aa3d80b871c467a3",
+  "source_url": "https://bscscan.com/token/0x16faf9daa401aa42506af503aa3d80b871c467a3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1352",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

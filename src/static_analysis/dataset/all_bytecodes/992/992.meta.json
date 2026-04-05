@@ -1,0 +1,15 @@
+{
+  "title": "Reserve Rights\u00a0(RSR)",
+  "chain": "eth",
+  "address": "0x320623b8E4fF03373931769A31Fc52A4E78B5d70",
+  "source_url": "https://etherscan.io/token/0x320623b8E4fF03373931769A31Fc52A4E78B5d70",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

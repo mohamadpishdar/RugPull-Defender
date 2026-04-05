@@ -1,0 +1,15 @@
+{
+  "title": "foxi.finance\u00a0(FOXI)",
+  "chain": "eth",
+  "address": "0x24673e71c9be517d3fa2ff6eef421f7bc0e23b38",
+  "source_url": "https://etherscan.io/token/0x24673e71c9be517d3fa2ff6eef421f7bc0e23b38",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ce",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

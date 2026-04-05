@@ -1,0 +1,15 @@
+{
+  "title": "Boba Token\u00a0(BOBA)",
+  "chain": "eth",
+  "address": "0x42bbfa2e77757c645eeaad1655e0911a7553efbc",
+  "source_url": "https://etherscan.io/token/0x42bbfa2e77757c645eeaad1655e0911a7553efbc",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

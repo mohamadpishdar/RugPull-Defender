@@ -1,0 +1,15 @@
+{
+  "title": "Wrapped PAW\u00a0(wPAW)",
+  "chain": "eth",
+  "address": "0xc11158c5dA9db1D553ED28f0C2BA1CbEDD42CFcb",
+  "source_url": "https://etherscan.io/token/0xc11158c5dA9db1D553ED28f0C2BA1CbEDD42CFcb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

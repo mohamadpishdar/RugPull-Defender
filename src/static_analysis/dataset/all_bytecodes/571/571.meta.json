@@ -1,0 +1,15 @@
+{
+  "title": "BezantToken\u00a0(BZNT)",
+  "chain": "eth",
+  "address": "0xe1aee98495365fc179699c1bb3e761fa716bee62",
+  "source_url": "https://etherscan.io/token/0xe1aee98495365fc179699c1bb3e761fa716bee62",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

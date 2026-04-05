@@ -1,0 +1,15 @@
+{
+  "title": "Magnet Finance\u00a0(MGT)",
+  "chain": "eth",
+  "address": "0xbfec19e7cd47fe4b1022fdc4c652ee7bd85a9d13",
+  "source_url": "https://etherscan.io/token/0xbfec19e7cd47fe4b1022fdc4c652ee7bd85a9d13",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

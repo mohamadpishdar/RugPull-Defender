@@ -1,0 +1,15 @@
+{
+  "title": "K.O.N.G Token\u00a0(KONG)",
+  "chain": "eth",
+  "address": "0x4fbde74e9e89d31e1772fd51b068b1cc5e192ba8",
+  "source_url": "https://etherscan.io/token/0x4fbde74e9e89d31e1772fd51b068b1cc5e192ba8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cf",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

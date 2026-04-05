@@ -1,0 +1,15 @@
+{
+  "title": "Hex Trust Token",
+  "chain": "bsc",
+  "address": "0x0003018ba02bacafc28cd8926d4a46a4bb20d76a",
+  "source_url": "https://bscscan.com/token/0x0003018ba02bacafc28cd8926d4a46a4bb20d76a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b121c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

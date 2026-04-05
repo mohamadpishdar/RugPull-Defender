@@ -1,0 +1,15 @@
+{
+  "title": "Agoras Token\u00a0(AGRS)",
+  "chain": "eth",
+  "address": "0x738865301a9b7dd80dc3666dd48cf034ec42bdda",
+  "source_url": "https://etherscan.io/token/0x738865301a9b7dd80dc3666dd48cf034ec42bdda",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

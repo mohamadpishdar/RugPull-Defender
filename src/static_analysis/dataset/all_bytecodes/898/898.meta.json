@@ -1,0 +1,15 @@
+{
+  "title": "Clearpool\u00a0(CPOOL)",
+  "chain": "eth",
+  "address": "0x66761fa41377003622aee3c7675fc7b5c1c2fac5",
+  "source_url": "https://etherscan.io/token/0x66761fa41377003622aee3c7675fc7b5c1c2fac5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

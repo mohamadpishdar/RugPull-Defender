@@ -1,0 +1,15 @@
+{
+  "title": "Axelar\u00a0(AXL)",
+  "chain": "eth",
+  "address": "0x467719ad09025fcc6cf6f8311755809d45a5e5f3",
+  "source_url": "https://etherscan.io/token/0x467719ad09025fcc6cf6f8311755809d45a5e5f3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

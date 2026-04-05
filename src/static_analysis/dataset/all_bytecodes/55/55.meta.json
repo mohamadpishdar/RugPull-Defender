@@ -1,0 +1,15 @@
+{
+  "title": "ArenaPlay\u00a0(APC)",
+  "chain": "bsc",
+  "address": "0xe6eff43ca45b23470e36c9148f1beb24ca38d572",
+  "source_url": "https://bscscan.com/address/0xe6eff43ca45b23470e36c9148f1beb24ca38d572",
+  "display_text": "sourse code",
+  "resolved_from": "address",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b121a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

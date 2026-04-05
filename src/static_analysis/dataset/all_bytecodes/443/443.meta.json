@@ -1,0 +1,15 @@
+{
+  "title": "MuratiAI\u00a0(MURATIAI)",
+  "chain": "bsc",
+  "address": "0x69c2fcae7e30b429166bd616a322e32bec036bcf",
+  "source_url": "https://bscscan.com/token/0x69c2fcae7e30b429166bd616a322e32bec036bcf",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1306",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

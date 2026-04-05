@@ -1,0 +1,15 @@
+{
+  "title": "ChronoTech Token\u00a0(TIME)",
+  "chain": "eth",
+  "address": "0x485d17a6f1b8780392d53d64751824253011a260",
+  "source_url": "https://etherscan.io/token/0x485d17a6f1b8780392d53d64751824253011a260",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

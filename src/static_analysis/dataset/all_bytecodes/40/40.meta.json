@@ -1,0 +1,15 @@
+{
+  "title": "Vip Panda Community\u00a0",
+  "chain": "bsc",
+  "address": "0x42269ac712372ac89a158ad5a32806c6b6782d66",
+  "source_url": "https://bscscan.com/token/0x42269ac712372ac89a158ad5a32806c6b6782d66",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1202",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

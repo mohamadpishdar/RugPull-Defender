@@ -1,0 +1,15 @@
+{
+  "title": "OpenAI ATF\u00a0(ATF)",
+  "chain": "bsc",
+  "address": "0xf830423378d0bad39f8d032cf5df7187abe72c1c",
+  "source_url": "https://bscscan.com/token/0xf830423378d0bad39f8d032cf5df7187abe72c1c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11f3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Binance-Peg Cardano Token\u00a0(ADA)",
+  "chain": "bsc",
+  "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+  "source_url": "https://bscscan.com/token/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1337",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "chiliZ\u00a0(CHZ)",
+  "chain": "eth",
+  "address": "0x3506424f91fd33084466f402d5d97f05f8e3b4af",
+  "source_url": "https://etherscan.io/token/0x3506424f91fd33084466f402d5d97f05f8e3b4af",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

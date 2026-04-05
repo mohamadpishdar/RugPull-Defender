@@ -1,0 +1,15 @@
+{
+  "title": "FOCUS\u00a0(FCS)",
+  "chain": "eth",
+  "address": "0xe8b4d012605363e142cb63355dbf67d6f795c65c",
+  "source_url": "https://etherscan.io/token/0xe8b4d012605363e142cb63355dbf67d6f795c65c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cf",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

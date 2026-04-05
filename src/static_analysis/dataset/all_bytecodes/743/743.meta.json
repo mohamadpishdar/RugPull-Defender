@@ -1,0 +1,12 @@
+{
+  "title": "Fuse Token\u00a0(FUSE)",
+  "chain": "eth",
+  "address": "0xe453d6649643f1f460c371dc3d1da98f7922fe51",
+  "source_url": "https://optimistic.etherscan.io/token/0xe453d6649643f1f460c371dc3d1da98f7922fe51",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "failed",
+  "errors": [
+    "Failed to fetch runtime bytecode for 0xe453d6649643f1f460c371dc3d1da98f7922fe51"
+  ]
+}

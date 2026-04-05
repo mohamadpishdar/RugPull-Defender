@@ -1,0 +1,15 @@
+{
+  "title": "ETXInfinity\u00a0(ETX)",
+  "chain": "bsc",
+  "address": "0x7D5b6F2E31B1e50e6a45130f4AdBB8839FAdeb2E",
+  "source_url": "https://bscscan.com/token/0x7D5b6F2E31B1e50e6a45130f4AdBB8839FAdeb2E",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1289",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Celestia\u00a0(TIA)",
+  "chain": "eth",
+  "address": "0xCd68ACC0E6C94c0226B0d760D19951143ee7Aa44",
+  "source_url": "https://etherscan.io/token/0xCd68ACC0E6C94c0226B0d760D19951143ee7Aa44",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

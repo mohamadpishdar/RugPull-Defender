@@ -1,0 +1,15 @@
+{
+  "title": "Fei USD (FEI)",
+  "chain": "eth",
+  "address": "0x956f47f50a910163d8bf957cf5846d573e7f87ca",
+  "source_url": "https://etherscan.io/token/0x956f47f50a910163d8bf957cf5846d573e7f87ca",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ed",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "ChainGPT\u00a0(CGPT)",
+  "chain": "bsc",
+  "address": "0x6e70ee54564298e7F1dc0523f8190aEf8529eBBF",
+  "source_url": "https://bscscan.com/token/0x6e70ee54564298e7F1dc0523f8190aEf8529eBBF",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b127d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

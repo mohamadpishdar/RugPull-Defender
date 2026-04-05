@@ -1,0 +1,15 @@
+{
+  "title": "Singularity Dao\u00a0(SDAO)",
+  "chain": "eth",
+  "address": "0x993864e43caa7f7f12953ad6feb1d1ca635b875f",
+  "source_url": "https://etherscan.io/token/0x993864e43caa7f7f12953ad6feb1d1ca635b875f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

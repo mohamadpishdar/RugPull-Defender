@@ -1,0 +1,15 @@
+{
+  "title": "Sav3r.Finance\u00a0(SAV3R)",
+  "chain": "eth",
+  "address": "0xdf8ab83a6e4b868d140808810b0875fd1cdc2417",
+  "source_url": "https://etherscan.io/token/0xdf8ab83a6e4b868d140808810b0875fd1cdc2417",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cf",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

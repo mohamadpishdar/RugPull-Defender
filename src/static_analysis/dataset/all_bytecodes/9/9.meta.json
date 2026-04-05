@@ -1,0 +1,15 @@
+{
+  "title": "IVY ",
+  "chain": "bsc",
+  "address": "0xf99f2aec50adfde23cc67ab6240168b0a59f1d30",
+  "source_url": "https://bscscan.com/address/0xf99f2aec50adfde23cc67ab6240168b0a59f1d30",
+  "display_text": "sourse code",
+  "resolved_from": "address",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b0f58",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

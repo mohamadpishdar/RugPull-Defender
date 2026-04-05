@@ -1,0 +1,15 @@
+{
+  "title": "SQUID GAME\u00a0(SQUIDGAME)",
+  "chain": "bsc",
+  "address": "0xA8076f19AFD3ff060aE2cdED33fcc8D5EAa9f1a0",
+  "source_url": "https://bscscan.com/token/0xA8076f19AFD3ff060aE2cdED33fcc8D5EAa9f1a0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1291",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

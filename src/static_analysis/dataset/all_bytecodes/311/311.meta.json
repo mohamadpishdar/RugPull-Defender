@@ -1,0 +1,15 @@
+{
+  "title": "Onigiri Neko\u00a0(ONIGI)",
+  "chain": "eth",
+  "address": "0xb4615AAD766f6De3c55330099E907fF7F13f1582",
+  "source_url": "https://etherscan.io/token/0xb4615AAD766f6De3c55330099E907fF7F13f1582",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cf",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

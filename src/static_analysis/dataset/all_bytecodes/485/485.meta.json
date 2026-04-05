@@ -1,0 +1,15 @@
+{
+  "title": "COPENHEIMER\u00a0(COPE)",
+  "chain": "eth",
+  "address": "0x1b78f8403db4de43a92d5d12336afc8b1c1d4086",
+  "source_url": "https://etherscan.io/token/0x1b78f8403db4de43a92d5d12336afc8b1c1d4086",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89db",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

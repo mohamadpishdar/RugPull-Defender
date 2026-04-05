@@ -1,0 +1,15 @@
+{
+  "title": "Lodestar\u00a0(LODE)",
+  "chain": "arbi",
+  "address": "0xF19547f9ED24aA66b03c3a552D181Ae334FBb8DB",
+  "source_url": "https://arbiscan.io/token/0xF19547f9ED24aA66b03c3a552D181Ae334FBb8DB",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe2164",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

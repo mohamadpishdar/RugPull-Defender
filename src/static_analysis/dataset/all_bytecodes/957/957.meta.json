@@ -1,0 +1,15 @@
+{
+  "title": "mETH\u00a0(mETH)",
+  "chain": "eth",
+  "address": "0xd5F7838F5C461fefF7FE49ea5ebaF7728bB0ADfa",
+  "source_url": "https://etherscan.io/token/0xd5F7838F5C461fefF7FE49ea5ebaF7728bB0ADfa",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ff",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

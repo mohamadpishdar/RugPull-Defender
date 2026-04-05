@@ -1,0 +1,15 @@
+{
+  "title": "Bent Token\u00a0(BENT)",
+  "chain": "eth",
+  "address": "0x01597e397605bf280674bf292623460b4204c375",
+  "source_url": "https://etherscan.io/token/0x01597e397605bf280674bf292623460b4204c375",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89da",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

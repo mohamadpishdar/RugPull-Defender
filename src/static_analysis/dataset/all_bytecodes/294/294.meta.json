@@ -1,0 +1,15 @@
+{
+  "title": "Kickboxer Tate\u00a0(KBTate)",
+  "chain": "eth",
+  "address": "0x5e276f6d84287260914065f83697008ce86d360c",
+  "source_url": "https://etherscan.io/token/0x5e276f6d84287260914065f83697008ce86d360c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

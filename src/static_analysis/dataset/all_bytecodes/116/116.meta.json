@@ -1,0 +1,15 @@
+{
+  "title": "GDAO\u00a0(GDAO)",
+  "chain": "bsc",
+  "address": "0xeB0dafA840Df31F5Ae18d54d96Bf9c7760fDb904",
+  "source_url": "https://bscscan.com/token/0xeB0dafA840Df31F5Ae18d54d96Bf9c7760fDb904",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1275",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "LimeWire Token\u00a0(LMWR)",
+  "chain": "eth",
+  "address": "0x628a3b2e302c7e896acc432d2d0dd22b6cb9bc88",
+  "source_url": "https://etherscan.io/token/0x628a3b2e302c7e896acc432d2d0dd22b6cb9bc88",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "MagicCraft\u00a0(MCRT)",
+  "chain": "bsc",
+  "address": "0x4b8285aB433D8f69CB48d5Ad62b415ed1a221e4f",
+  "source_url": "https://bscscan.com/token/0x4b8285aB433D8f69CB48d5Ad62b415ed1a221e4f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1367",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

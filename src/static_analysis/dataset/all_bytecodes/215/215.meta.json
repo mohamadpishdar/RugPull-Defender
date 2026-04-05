@@ -1,0 +1,15 @@
+{
+  "title": "Smurfs\u00a0(SMURFS)",
+  "chain": "eth",
+  "address": "0x5F250ed62CF3E5cF25F4F370d35D04782b0678a3",
+  "source_url": "https://etherscan.io/token/0x5F250ed62CF3E5cF25F4F370d35D04782b0678a3",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

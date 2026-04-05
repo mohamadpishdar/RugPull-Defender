@@ -1,0 +1,15 @@
+{
+  "title": "GABECOIN\u00a0(GABECOIN)",
+  "chain": "bsc",
+  "address": "0x66eede4b1afc245b3366bc71d852f0e77f29e858",
+  "source_url": "https://bscscan.com/token/0x66eede4b1afc245b3366bc71d852f0e77f29e858",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12de",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "XEND\u00a0(XEND)",
+  "chain": "eth",
+  "address": "0xe4cfe9eaa8cdb0942a80b7bc68fd8ab0f6d44903",
+  "source_url": "https://etherscan.io/token/0xe4cfe9eaa8cdb0942a80b7bc68fd8ab0f6d44903",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

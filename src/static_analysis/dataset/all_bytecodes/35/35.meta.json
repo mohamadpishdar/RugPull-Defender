@@ -1,0 +1,15 @@
+{
+  "title": "Fake Ethena Labs",
+  "chain": "bsc",
+  "address": "0xc2902f4b0c0b7ebae02ad1d85676c3afbb3d25b9",
+  "source_url": "https://bscscan.com/token/0xc2902f4b0c0b7ebae02ad1d85676c3afbb3d25b9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11fa",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

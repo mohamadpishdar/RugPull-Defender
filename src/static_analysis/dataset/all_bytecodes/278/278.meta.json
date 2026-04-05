@@ -1,0 +1,15 @@
+{
+  "title": "Kosta Finance\u00a0(KOSTA)",
+  "chain": "eth",
+  "address": "0xF4bc926C6C5A8F81089C45cFcBA9C551c5d5af99",
+  "source_url": "https://etherscan.io/token/0xF4bc926C6C5A8F81089C45cFcBA9C551c5d5af99",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

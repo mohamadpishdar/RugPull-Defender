@@ -1,0 +1,15 @@
+{
+  "title": "STAKEDAO\u00a0(STAKEDAO)",
+  "chain": "eth",
+  "address": "0x0b187097b8f273f9bfe556a7fc9aee6f99897c8c",
+  "source_url": "https://etherscan.io/token/0x0b187097b8f273f9bfe556a7fc9aee6f99897c8c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

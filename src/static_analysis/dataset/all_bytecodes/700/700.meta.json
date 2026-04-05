@@ -1,0 +1,15 @@
+{
+  "title": "JOJO\u00a0(JOJO)",
+  "chain": "bsc",
+  "address": "0x78a499a998bdd5a84cf8b5abe49100d82de12f1c",
+  "source_url": "https://bscscan.com/token/0x78a499a998bdd5a84cf8b5abe49100d82de12f1c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1349",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

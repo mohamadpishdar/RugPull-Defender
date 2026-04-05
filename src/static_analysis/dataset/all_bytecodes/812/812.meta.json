@@ -1,0 +1,15 @@
+{
+  "title": "FABWELT\u00a0(WELT)",
+  "chain": "bsc",
+  "address": "0x1785113910847770290F5F840b4c74fc46451201",
+  "source_url": "https://bscscan.com/token/0x1785113910847770290F5F840b4c74fc46451201",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b135f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

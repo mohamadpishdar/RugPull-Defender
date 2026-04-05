@@ -1,0 +1,15 @@
+{
+  "title": "BOGDANOFF\u00a0(BOGDANOFF)",
+  "chain": "bsc",
+  "address": "0xcfe4d62d41873de1a4e57b5935c930d3da2d1018",
+  "source_url": "https://bscscan.com/token/0xcfe4d62d41873de1a4e57b5935c930d3da2d1018",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12d9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

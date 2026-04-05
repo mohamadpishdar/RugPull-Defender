@@ -1,0 +1,15 @@
+{
+  "title": "Contribute.Protocol\u00a0(CTB)",
+  "chain": "eth",
+  "address": "0xF776e108e50560075f69b6754cAe708975E74a2c",
+  "source_url": "https://etherscan.io/token/0xF776e108e50560075f69b6754cAe708975E74a2c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

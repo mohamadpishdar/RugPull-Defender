@@ -1,0 +1,15 @@
+{
+  "title": "SAI token",
+  "chain": "bsc",
+  "address": "0xba4ca4a9e1ca603310df7a171d2291af9f3affaa",
+  "source_url": "https://bscscan.com/token/0xba4ca4a9e1ca603310df7a171d2291af9f3affaa",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11df",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

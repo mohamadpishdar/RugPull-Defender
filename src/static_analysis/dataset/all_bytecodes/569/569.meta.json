@@ -1,0 +1,15 @@
+{
+  "title": "Webflix Token\u00a0(WFX)",
+  "chain": "eth",
+  "address": "0xba1ed22c69ad00739ee2b4abd70e270be9e87ee2",
+  "source_url": "https://etherscan.io/token/0xba1ed22c69ad00739ee2b4abd70e270be9e87ee2",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

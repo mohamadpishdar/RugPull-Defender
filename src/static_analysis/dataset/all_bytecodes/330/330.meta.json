@@ -1,0 +1,15 @@
+{
+  "title": "Sunder Protocol\u00a0(SUNDER)",
+  "chain": "eth",
+  "address": "0xad3f6438bbf0cd94e42b58ecb461732b03deec69",
+  "source_url": "https://etherscan.io/token/0xad3f6438bbf0cd94e42b58ecb461732b03deec69",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

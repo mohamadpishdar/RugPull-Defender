@@ -1,0 +1,15 @@
+{
+  "title": "WEXO\u00a0(WEXO)",
+  "chain": "eth",
+  "address": "0xf31698DDAd0d11160Fe85c500397A470CD3d492E",
+  "source_url": "https://etherscan.io/token/0xf31698DDAd0d11160Fe85c500397A470CD3d492E",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

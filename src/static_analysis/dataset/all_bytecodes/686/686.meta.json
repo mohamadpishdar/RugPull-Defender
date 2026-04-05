@@ -1,0 +1,15 @@
+{
+  "title": "SCROOGE\u00a0(SCROOGE)",
+  "chain": "bsc",
+  "address": "0x9dfee72aea65dc7e375d50ea2bd90384313a165a",
+  "source_url": "https://bscscan.com/token/0x9dfee72aea65dc7e375d50ea2bd90384313a165a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1347",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "SafeMoonCash\u00a0(SAFEMOONCASH)",
+  "chain": "bsc",
+  "address": "0xf017e2773e4ee0590c81d79ccbcf1b2de1d22877",
+  "source_url": "https://bscscan.com/token/0xf017e2773e4ee0590c81d79ccbcf1b2de1d22877",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1345",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

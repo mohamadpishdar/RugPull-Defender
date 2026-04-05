@@ -1,0 +1,15 @@
+{
+  "title": "LINEA copycat token",
+  "chain": "eth",
+  "address": "0x00000000fEB6A772307C6aA88AB9D57b209aCb18",
+  "source_url": "https://etherscan.io/token/0x00000000fEB6A772307C6aA88AB9D57b209aCb18",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "PolkaBridge\u00a0(PBR)",
+  "chain": "eth",
+  "address": "0x298d492e8c1d909d3f63bc4a36c66c64acb3d695",
+  "source_url": "https://etherscan.io/token/0x298d492e8c1d909d3f63bc4a36c66c64acb3d695",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

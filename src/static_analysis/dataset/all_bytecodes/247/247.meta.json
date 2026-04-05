@@ -1,0 +1,15 @@
+{
+  "title": "ROACH RACE\u00a0(ROACH)",
+  "chain": "eth",
+  "address": "0xac17a40635c3c3f824562b77e79ce2f5c5295bed",
+  "source_url": "https://etherscan.io/token/0xac17a40635c3c3f824562b77e79ce2f5c5295bed",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

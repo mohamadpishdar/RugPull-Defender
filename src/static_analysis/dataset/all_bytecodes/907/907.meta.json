@@ -1,0 +1,15 @@
+{
+  "title": "Kromatika\u00a0(KROM)",
+  "chain": "eth",
+  "address": "0x3af33bef05c2dcb3c7288b77fe1c8d2aeba4d789",
+  "source_url": "https://etherscan.io/token/0x3af33bef05c2dcb3c7288b77fe1c8d2aeba4d789",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

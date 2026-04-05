@@ -1,0 +1,15 @@
+{
+  "title": "Metaland DAO\u00a0(META)",
+  "chain": "bsc",
+  "address": "0x9d52414c4cc1fb8e7864a9b59495f430f8e5de44",
+  "source_url": "https://bscscan.com/token/0x9d52414c4cc1fb8e7864a9b59495f430f8e5de44",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11fe",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

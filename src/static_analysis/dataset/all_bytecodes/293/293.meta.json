@@ -1,0 +1,15 @@
+{
+  "title": "fren\u00a0(FREN)",
+  "chain": "eth",
+  "address": "0x37941b3Fdb2bD332e667D452a58Be01bcacb923e",
+  "source_url": "https://etherscan.io/token/0x37941b3Fdb2bD332e667D452a58Be01bcacb923e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Storj\u00a0(STORJ)",
+  "chain": "eth",
+  "address": "0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac",
+  "source_url": "https://etherscan.io/token/0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fa",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

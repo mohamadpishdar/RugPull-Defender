@@ -1,0 +1,15 @@
+{
+  "title": "Reef.finance\u00a0(REEF)",
+  "chain": "eth",
+  "address": "0xfe3e6a25e6b192a42a44ecddcd13796471735acf",
+  "source_url": "https://etherscan.io/token/0xfe3e6a25e6b192a42a44ecddcd13796471735acf",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

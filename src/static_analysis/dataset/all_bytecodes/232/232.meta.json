@@ -1,0 +1,15 @@
+{
+  "title": "Reflex Staking Bot\u00a0(REFLEX)",
+  "chain": "eth",
+  "address": "0x02c7644d98637cbb962a85e5bc1ef2c73def4c4f",
+  "source_url": "https://etherscan.io/token/0x02c7644d98637cbb962a85e5bc1ef2c73def4c4f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

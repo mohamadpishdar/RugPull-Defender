@@ -1,0 +1,15 @@
+{
+  "title": "Kyber Network Crystal v2\u00a0(KNC)",
+  "chain": "eth",
+  "address": "0xdefa4e8a7bcba345f687a2f1456f5edd9ce97202",
+  "source_url": "https://etherscan.io/token/0xdefa4e8a7bcba345f687a2f1456f5edd9ce97202",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

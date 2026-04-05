@@ -1,0 +1,15 @@
+{
+  "title": "Aki Inu\u00a0(Aki)",
+  "chain": "bsc",
+  "address": "0x4b6cb2bf1f0b594d0211c4df2b0dd1aa4c7a1892",
+  "source_url": "https://bscscan.com/token/0x4b6cb2bf1f0b594d0211c4df2b0dd1aa4c7a1892",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12b6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

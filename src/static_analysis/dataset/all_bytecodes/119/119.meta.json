@@ -1,0 +1,15 @@
+{
+  "title": "iShares Bitcoin\u00a0(IBTC)",
+  "chain": "bsc",
+  "address": "0xDc68EED00bce879fb920076Eaf227a99d7927929",
+  "source_url": "https://bscscan.com/token/0xDc68EED00bce879fb920076Eaf227a99d7927929",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b127a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

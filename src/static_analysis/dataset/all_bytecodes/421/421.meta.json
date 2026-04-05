@@ -1,0 +1,15 @@
+{
+  "title": "OPM\u00a0(Opium Bird)",
+  "chain": "eth",
+  "address": "0xd9ee2fdd741f10576fdfca745d4d71f06d525bf6",
+  "source_url": "https://etherscan.io/token/0xd9ee2fdd741f10576fdfca745d4d71f06d525bf6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

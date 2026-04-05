@@ -1,0 +1,15 @@
+{
+  "title": "Gladiator \u00a0(GLA)",
+  "chain": "eth",
+  "address": "0xe9c28e4f233d3c64e2274e75701952ef35696d47",
+  "source_url": "https://etherscan.io/address/0xe9c28e4f233d3c64e2274e75701952ef35696d47",
+  "display_text": "sourse code",
+  "resolved_from": "address",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

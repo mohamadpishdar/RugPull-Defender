@@ -1,0 +1,15 @@
+{
+  "title": "Titanium BAR\u00a0(TBAR)",
+  "chain": "eth",
+  "address": "0xee8bd1502c3e9f6c543781467c01592ac51cfbb8",
+  "source_url": "https://etherscan.io/token/0xee8bd1502c3e9f6c543781467c01592ac51cfbb8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

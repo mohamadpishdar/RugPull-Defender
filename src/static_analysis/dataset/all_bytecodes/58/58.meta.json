@@ -1,0 +1,15 @@
+{
+  "title": "Sui Network\u00a0(SUI)",
+  "chain": "bsc",
+  "address": "0x34caaec040ca95f4e8fb892268f16a2a05dcc40f",
+  "source_url": "https://bscscan.com/token/0x34caaec040ca95f4e8fb892268f16a2a05dcc40f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b121e",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

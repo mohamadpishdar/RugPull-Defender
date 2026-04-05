@@ -1,0 +1,15 @@
+{
+  "title": "SOMESING\u00a0(SSX)",
+  "chain": "bsc",
+  "address": "0xD4E8839F98787eb02Fcc7c659497E13b95bF0c4C",
+  "source_url": "https://bscscan.com/token/0xD4E8839F98787eb02Fcc7c659497E13b95bF0c4C",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b123c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "5ire Token\u00a0(5IRE)",
+  "chain": "eth",
+  "address": "0x3bd7d4F524D09F4e331577247A048D56e4b67a7F",
+  "source_url": "https://etherscan.io/token/0x3bd7d4F524D09F4e331577247A048D56e4b67a7F",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

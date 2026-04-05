@@ -1,0 +1,15 @@
+{
+  "title": "ACCToken",
+  "chain": "bsc",
+  "address": "0x5dc53496e8dd50887785d75d432cba6a86f82cad",
+  "source_url": "https://bscscan.com/token/0x5dc53496e8dd50887785d75d432cba6a86f82cad",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b125f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

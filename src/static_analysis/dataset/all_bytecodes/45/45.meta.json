@@ -1,0 +1,15 @@
+{
+  "title": "MALOU\u00a0(NEVER)",
+  "chain": "bsc",
+  "address": "0xeaC7250cf7Ef47abDCCb26dF77b81BdaC3Da4cfb",
+  "source_url": "https://bscscan.com/token/0xeaC7250cf7Ef47abDCCb26dF77b81BdaC3Da4cfb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b120a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

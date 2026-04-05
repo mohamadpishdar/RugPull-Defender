@@ -1,0 +1,15 @@
+{
+  "title": "Mighty Mouse\u00a0(MIGHTY)",
+  "chain": "eth",
+  "address": "0x0d6a4f6b019dd74ea24b4569bb19161f298fd6db",
+  "source_url": "https://etherscan.io/token/0x0d6a4f6b019dd74ea24b4569bb19161f298fd6db",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

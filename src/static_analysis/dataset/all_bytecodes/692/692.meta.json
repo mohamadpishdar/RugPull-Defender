@@ -1,0 +1,11 @@
+{
+  "title": "Wrapped MOVR\u00a0(WMOVR)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://moonriver.moonscan.io/token/0x98878b06940ae243284ca214f92bb71a2b032b8a",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://moonriver.moonscan.io/token/0x98878b06940ae243284ca214f92bb71a2b032b8a"
+  ]
+}

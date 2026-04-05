@@ -1,0 +1,15 @@
+{
+  "title": "GullFinance Token\u00a0(GULL)",
+  "chain": "polygon",
+  "address": "0xe007e72142217204041c6bf08e8dc0c9387d3cca",
+  "source_url": "https://polygonscan.com/token/0xe007e72142217204041c6bf08e8dc0c9387d3cca",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba177c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

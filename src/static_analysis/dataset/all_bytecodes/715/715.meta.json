@@ -1,0 +1,15 @@
+{
+  "title": "Compound USD Coin\u00a0(cUSDC)",
+  "chain": "eth",
+  "address": "0x39aa39c021dfbae8fac545936693ac917d5e7563",
+  "source_url": "https://etherscan.io/token/0x39aa39c021dfbae8fac545936693ac917d5e7563",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

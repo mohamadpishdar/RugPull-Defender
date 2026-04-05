@@ -1,0 +1,15 @@
+{
+  "title": "Elron Token\u00a0(ELR)",
+  "chain": "bsc",
+  "address": "0xf17f7827403c166fda782ceb17b29900d1a2ad15",
+  "source_url": "https://bscscan.com/token/0xf17f7827403c166fda782ceb17b29900d1a2ad15",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1257",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

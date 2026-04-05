@@ -1,0 +1,15 @@
+{
+  "title": "OnlyChain(Only)",
+  "chain": "eth",
+  "address": "0x9eec65e5b998db6845321baa915ec3338b1a469b",
+  "source_url": "https://etherscan.io/token/0x9eec65e5b998db6845321baa915ec3338b1a469b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

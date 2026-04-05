@@ -1,0 +1,15 @@
+{
+  "title": "Axie Infinity Shard\u00a0(AXS)",
+  "chain": "eth",
+  "address": "0xbb0e17ef65f82ab018d8edd776e8dd940327b28b",
+  "source_url": "https://etherscan.io/token/0xbb0e17ef65f82ab018d8edd776e8dd940327b28b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "VERIFY\u00a0(VRFY)",
+  "chain": "bsc",
+  "address": "0x3f52ff3137b52fca2f96f41656632ee8d5e79401",
+  "source_url": "https://bscscan.com/token/0x3f52ff3137b52fca2f96f41656632ee8d5e79401",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12c3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

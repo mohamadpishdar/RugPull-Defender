@@ -1,0 +1,11 @@
+{
+  "title": "Altura\u00a0(ALU)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x8263cd1601fe73c066bf49cc09841f35348e3be0",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x8263cd1601fe73c066bf49cc09841f35348e3be0"
+  ]
+}

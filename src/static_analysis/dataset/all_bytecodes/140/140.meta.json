@@ -1,0 +1,15 @@
+{
+  "title": "EI Risitas\u00a0(KEK)",
+  "chain": "bsc",
+  "address": "0x86931EeB468b35840AfbC65B94B565717d06DB95",
+  "source_url": "https://bscscan.com/token/0x86931EeB468b35840AfbC65B94B565717d06DB95",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1298",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

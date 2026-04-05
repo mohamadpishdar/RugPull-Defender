@@ -1,0 +1,11 @@
+{
+  "title": "Mint.club\u00a0(MINT)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x1f3af095cda17d63cad238358837321e95fc5915",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x1f3af095cda17d63cad238358837321e95fc5915"
+  ]
+}

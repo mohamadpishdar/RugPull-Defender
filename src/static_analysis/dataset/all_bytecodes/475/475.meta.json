@@ -1,0 +1,15 @@
+{
+  "title": "Infinity Token\u00a0(IT)",
+  "chain": "eth",
+  "address": "0x7fe4fbad1fee10d6cf8e08198608209a9275944c",
+  "source_url": "https://etherscan.io/token/0x7fe4fbad1fee10d6cf8e08198608209a9275944c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89da",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

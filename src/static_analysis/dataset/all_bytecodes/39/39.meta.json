@@ -1,0 +1,15 @@
+{
+  "title": "LOO",
+  "chain": "bsc",
+  "address": "0xfDB0fE3dD8F7e9A671f63b7e7db0935A955659ab",
+  "source_url": "https://bscscan.com/token/0xfDB0fE3dD8F7e9A671f63b7e7db0935A955659ab",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1200",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

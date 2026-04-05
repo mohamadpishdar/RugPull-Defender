@@ -1,0 +1,15 @@
+{
+  "title": "Doge Wars\u00a0(DW)",
+  "chain": "eth",
+  "address": "0xf1bc25b7d550aff145ed733f52daaa261ebd05ad",
+  "source_url": "https://etherscan.io/token/0xf1bc25b7d550aff145ed733f52daaa261ebd05ad",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89df",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Synternet Token\u00a0(SYNT)",
+  "chain": "eth",
+  "address": "0xda987c655ebc38c801db64a8608bc1aa56cd9a31",
+  "source_url": "https://etherscan.io/token/0xda987c655ebc38c801db64a8608bc1aa56cd9a31",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

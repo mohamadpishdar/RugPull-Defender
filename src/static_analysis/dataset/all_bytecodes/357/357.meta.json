@@ -1,0 +1,15 @@
+{
+  "title": "Ethelon Finance\u00a0(ETHELON)",
+  "chain": "eth",
+  "address": "0x3db5530ebf062fb0069d80730a0b43920d7b6b1a",
+  "source_url": "https://etherscan.io/token/0x3db5530ebf062fb0069d80730a0b43920d7b6b1a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

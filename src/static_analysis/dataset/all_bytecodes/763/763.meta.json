@@ -1,0 +1,15 @@
+{
+  "title": "Gelato Network Token\u00a0(GEL)",
+  "chain": "eth",
+  "address": "0x15b7c0c907e4c6b9adaaaabc300c08991d6cea05",
+  "source_url": "https://etherscan.io/token/0x15b7c0c907e4c6b9adaaaabc300c08991d6cea05",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

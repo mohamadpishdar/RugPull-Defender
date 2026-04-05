@@ -1,0 +1,15 @@
+{
+  "title": "Wettok Market\u00a0(WTO)",
+  "chain": "bsc",
+  "address": "0xced59c3249f20ca36fba764bfdd9d94f471b3154",
+  "source_url": "https://bscscan.com/token/0xced59c3249f20ca36fba764bfdd9d94f471b3154",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1225",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

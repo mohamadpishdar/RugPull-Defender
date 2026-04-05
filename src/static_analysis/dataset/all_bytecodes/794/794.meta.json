@@ -1,0 +1,15 @@
+{
+  "title": "Perpetual\u00a0(PERP)",
+  "chain": "eth",
+  "address": "0xbc396689893d065f41bc2c6ecbee5e0085233447",
+  "source_url": "https://etherscan.io/token/0xbc396689893d065f41bc2c6ecbee5e0085233447",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

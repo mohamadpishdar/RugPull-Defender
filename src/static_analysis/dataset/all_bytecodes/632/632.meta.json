@@ -1,0 +1,11 @@
+{
+  "title": "Chess\u00a0(CHESS)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x20de22029ab63cf9a7cf5feb2b737ca1ee4c82a6",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x20de22029ab63cf9a7cf5feb2b737ca1ee4c82a6"
+  ]
+}

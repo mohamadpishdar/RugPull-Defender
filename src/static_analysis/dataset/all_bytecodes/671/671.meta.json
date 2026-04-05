@@ -1,0 +1,15 @@
+{
+  "title": "Wrapped Monero\u00a0(WXMR)",
+  "chain": "eth",
+  "address": "0x465e07d6028830124be2e4aa551fbe12805db0f5",
+  "source_url": "https://etherscan.io/token/0x465e07d6028830124be2e4aa551fbe12805db0f5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89eb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

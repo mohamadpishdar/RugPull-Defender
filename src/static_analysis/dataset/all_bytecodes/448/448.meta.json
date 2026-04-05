@@ -1,0 +1,15 @@
+{
+  "title": "Ordinals Finance\u00a0(OFI)",
+  "chain": "eth",
+  "address": "0x419e35e3515c2fdb652c898bf7a0b21fb20497dc",
+  "source_url": "https://etherscan.io/token/0x419e35e3515c2fdb652c898bf7a0b21fb20497dc",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

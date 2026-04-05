@@ -1,0 +1,15 @@
+{
+  "title": "HyperVerse Token (HVT)",
+  "chain": "bsc",
+  "address": "0xaafa10755b3b1dbf46e86d973c3f27f3671ed9db",
+  "source_url": "https://bscscan.com/address/0xaafa10755b3b1dbf46e86d973c3f27f3671ed9db",
+  "display_text": "sourse code",
+  "resolved_from": "address",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b0f4d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

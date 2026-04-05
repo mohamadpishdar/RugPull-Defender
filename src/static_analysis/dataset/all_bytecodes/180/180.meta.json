@@ -1,0 +1,15 @@
+{
+  "title": "Stonks Token\u00a0($STONKS)",
+  "chain": "bsc",
+  "address": "0xb966150c7a0150ed4ea979e04f18d109301aab95",
+  "source_url": "https://bscscan.com/token/0xb966150c7a0150ed4ea979e04f18d109301aab95",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12d2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

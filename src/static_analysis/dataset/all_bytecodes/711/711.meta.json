@@ -1,0 +1,15 @@
+{
+  "title": "Compound Dai (cDAI)",
+  "chain": "eth",
+  "address": "0x5d3a536e4d6dbd6114cc1ead35777bab948e3643",
+  "source_url": "https://etherscan.io/token/0x5d3a536e4d6dbd6114cc1ead35777bab948e3643",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

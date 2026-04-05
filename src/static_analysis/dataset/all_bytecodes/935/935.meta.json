@@ -1,0 +1,15 @@
+{
+  "title": "The Force Token\u00a0(FOR)",
+  "chain": "eth",
+  "address": "0x1fcdce58959f536621d76f5b7ffb955baa5a672f",
+  "source_url": "https://etherscan.io/token/0x1fcdce58959f536621d76f5b7ffb955baa5a672f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fe",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

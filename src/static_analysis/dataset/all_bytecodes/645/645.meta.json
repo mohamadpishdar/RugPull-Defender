@@ -1,0 +1,15 @@
+{
+  "title": "DLP Duck Token\u00a0(DUCK)",
+  "chain": "eth",
+  "address": "0xc0ba369c8db6eb3924965e5c4fd0b4c1b91e305f",
+  "source_url": "https://etherscan.io/token/0xc0ba369c8db6eb3924965e5c4fd0b4c1b91e305f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

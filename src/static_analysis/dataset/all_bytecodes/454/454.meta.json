@@ -1,0 +1,15 @@
+{
+  "title": "FoodFarmer.Finance\u00a0(FFF)",
+  "chain": "eth",
+  "address": "0xc16b2419494ae0604432297d40cdf0e8d68de8d6",
+  "source_url": "https://etherscan.io/token/0xc16b2419494ae0604432297d40cdf0e8d68de8d6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89da",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

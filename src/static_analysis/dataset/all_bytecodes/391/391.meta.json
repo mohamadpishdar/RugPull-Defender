@@ -1,0 +1,15 @@
+{
+  "title": "FlokiFarmToken\u00a0(FLK)",
+  "chain": "fantom",
+  "address": "0x710122026bf280f3c99a829f33e9fa4d8df73dc0",
+  "source_url": "https://ftmscan.com/token/0x710122026bf280f3c99a829f33e9fa4d8df73dc0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x709b1bf",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

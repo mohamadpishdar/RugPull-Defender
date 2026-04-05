@@ -1,0 +1,15 @@
+{
+  "title": "NewShiba(NIBA)",
+  "chain": "eth",
+  "address": "0x2512b4282fa84445384fe51e75a131477354d1e1",
+  "source_url": "https://etherscan.io/token/0x2512b4282fa84445384fe51e75a131477354d1e1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

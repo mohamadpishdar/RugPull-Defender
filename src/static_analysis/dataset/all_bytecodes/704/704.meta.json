@@ -1,0 +1,15 @@
+{
+  "title": "IceToken\u00a0(ICE)",
+  "chain": "eth",
+  "address": "0xf16e81dce15b08f326220742020379b855b87df9",
+  "source_url": "https://etherscan.io/token/0xf16e81dce15b08f326220742020379b855b87df9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

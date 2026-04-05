@@ -1,0 +1,15 @@
+{
+  "title": "reflect3.finance\u00a0(RFIII)",
+  "chain": "eth",
+  "address": "0x79579a3c2a3bd4c4881017ae53af0f73c31f9af5",
+  "source_url": "https://etherscan.io/token/0x79579a3c2a3bd4c4881017ae53af0f73c31f9af5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

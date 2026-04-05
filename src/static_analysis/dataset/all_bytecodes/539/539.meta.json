@@ -1,0 +1,15 @@
+{
+  "title": "SAFE MARS\u00a0(SMARS)",
+  "chain": "eth",
+  "address": "0x27f69cceada2ec66b164af620e4f845394fe8972",
+  "source_url": "https://etherscan.io/token/0x27f69cceada2ec66b164af620e4f845394fe8972",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

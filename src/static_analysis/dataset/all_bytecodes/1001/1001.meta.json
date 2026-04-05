@@ -1,0 +1,15 @@
+{
+  "title": "Frontier Token\u00a0(FRONT)",
+  "chain": "eth",
+  "address": "0xf8c3527cc04340b208c854e985240c02f7b7793f",
+  "source_url": "https://etherscan.io/token/0xf8c3527cc04340b208c854e985240c02f7b7793f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a01",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

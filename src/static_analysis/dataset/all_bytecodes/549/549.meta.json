@@ -1,0 +1,15 @@
+{
+  "title": "EcoRealEstate\u00a0(ECOREAL)",
+  "chain": "eth",
+  "address": "0xb052f8a33d8bb068414eade06af6955199f9f010",
+  "source_url": "https://etherscan.io/token/0xb052f8a33d8bb068414eade06af6955199f9f010",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

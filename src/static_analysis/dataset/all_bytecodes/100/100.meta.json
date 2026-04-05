@@ -1,0 +1,15 @@
+{
+  "title": "PAPABEAR\u00a0(PAPA)",
+  "chain": "bsc",
+  "address": "0x90F06678589c5A5Ca2BC7424506A393baA2e76f8",
+  "source_url": "https://bscscan.com/token/0x90F06678589c5A5Ca2BC7424506A393baA2e76f8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b125c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

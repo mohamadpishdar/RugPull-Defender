@@ -1,0 +1,15 @@
+{
+  "title": "C2C\u00a0(C2C)",
+  "chain": "eth",
+  "address": "0xcabd10ed33d3fd1df9609f64f53b9efce60f4155",
+  "source_url": "https://etherscan.io/token/0xcabd10ed33d3fd1df9609f64f53b9efce60f4155",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

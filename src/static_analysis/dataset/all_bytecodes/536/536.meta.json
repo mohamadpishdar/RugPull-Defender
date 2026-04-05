@@ -1,0 +1,15 @@
+{
+  "title": "XDAO\u00a0(XDAO)",
+  "chain": "eth",
+  "address": "0x7fa2f486a6f318d20bc3978e5f5271f460cb57dd",
+  "source_url": "https://etherscan.io/token/0x7fa2f486a6f318d20bc3978e5f5271f460cb57dd",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Ultima\u00a0(Ult)",
+  "chain": "eth",
+  "address": "0x3c302e18d126a7f1271f2793e5749109a2028ff0",
+  "source_url": "https://etherscan.io/token/0x3c302e18d126a7f1271f2793e5749109a2028ff0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

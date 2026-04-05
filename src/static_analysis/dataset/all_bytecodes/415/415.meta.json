@@ -1,0 +1,15 @@
+{
+  "title": "Jay Pegs Auto Mart\u00a0(JPAM)",
+  "chain": "eth",
+  "address": "0xf210d5d9dcf958803c286a6f8e278e4ac78e136e",
+  "source_url": "https://etherscan.io/token/0xf210d5d9dcf958803c286a6f8e278e4ac78e136e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

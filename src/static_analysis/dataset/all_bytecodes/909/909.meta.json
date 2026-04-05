@@ -1,0 +1,15 @@
+{
+  "title": "Quant\u00a0(QNT)",
+  "chain": "eth",
+  "address": "0x4a220e6096b25eadb88358cb44068a3248254675",
+  "source_url": "https://etherscan.io/token/0x4a220e6096b25eadb88358cb44068a3248254675",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

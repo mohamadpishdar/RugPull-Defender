@@ -1,0 +1,15 @@
+{
+  "title": "Vegetables Finance\u00a0(VEGE)",
+  "chain": "eth",
+  "address": "0x3d92941F6eBB2E131c2aF6F7725494aEd8763c5B",
+  "source_url": "https://etherscan.io/token/0x3d92941F6eBB2E131c2aF6F7725494aEd8763c5B",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

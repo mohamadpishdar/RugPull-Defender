@@ -1,0 +1,15 @@
+{
+  "title": "MAJIN BUU\u00a0(BUU)",
+  "chain": "eth",
+  "address": "0xF746d527336E299ce53E2Ed337c2668d6CfB7C5e",
+  "source_url": "https://etherscan.io/token/0xF746d527336E299ce53E2Ed337c2668d6CfB7C5e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

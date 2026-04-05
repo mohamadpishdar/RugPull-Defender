@@ -1,0 +1,15 @@
+{
+  "title": "Empty Set Dollar\u00a0(ESD)",
+  "chain": "eth",
+  "address": "0x36f3fd68e7325a35eb768f1aedaae9ea0689d723",
+  "source_url": "https://etherscan.io/token/0x36f3fd68e7325a35eb768f1aedaae9ea0689d723",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

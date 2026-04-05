@@ -1,0 +1,15 @@
+{
+  "title": "Web\u00a0(WEB)",
+  "chain": "bsc",
+  "address": "0xC6E8b0A6249e51B5b55B85Af847EF884517604d6",
+  "source_url": "https://bscscan.com/token/0xC6E8b0A6249e51B5b55B85Af847EF884517604d6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b122f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

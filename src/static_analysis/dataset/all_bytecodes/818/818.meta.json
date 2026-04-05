@@ -1,0 +1,15 @@
+{
+  "title": "Layer3 (L3)",
+  "chain": "eth",
+  "address": "0x88909d489678dd17aa6d9609f89b0419bf78fd9a",
+  "source_url": "https://etherscan.io/token/0x88909d489678dd17aa6d9609f89b0419bf78fd9a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

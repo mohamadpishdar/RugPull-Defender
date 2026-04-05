@@ -1,0 +1,15 @@
+{
+  "title": "Boson Token\u00a0(BOSON)",
+  "chain": "eth",
+  "address": "0xc477d038d5420c6a9e0b031712f61c5120090de9",
+  "source_url": "https://etherscan.io/token/0xc477d038d5420c6a9e0b031712f61c5120090de9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

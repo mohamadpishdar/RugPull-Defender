@@ -1,0 +1,15 @@
+{
+  "title": "Swash Token\u00a0(SWASH)",
+  "chain": "eth",
+  "address": "0xa130e3a33a4d84b04c3918c4e5762223ae252f80",
+  "source_url": "https://etherscan.io/token/0xa130e3a33a4d84b04c3918c4e5762223ae252f80",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Karura\u00a0(KAR)",
+  "chain": "bsc",
+  "address": "0x74fe7ecc0a5131a4a980d6b12667184954b4c752",
+  "source_url": "https://bscscan.com/token/0x74fe7ecc0a5131a4a980d6b12667184954b4c752",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12eb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Mass Vehicle Ledger Token\u00a0(MVL)",
+  "chain": "eth",
+  "address": "0xa849eaae994fb86afa73382e9bd88c2b6b18dc71",
+  "source_url": "https://etherscan.io/token/0xa849eaae994fb86afa73382e9bd88c2b6b18dc71",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

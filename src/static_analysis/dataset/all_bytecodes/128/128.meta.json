@@ -1,0 +1,15 @@
+{
+  "title": "DFuture Token\u00a0(DFT)",
+  "chain": "bsc",
+  "address": "0x42712df5009c20fee340b245b510c0395896cf6e",
+  "source_url": "https://bscscan.com/token/0x42712df5009c20fee340b245b510c0395896cf6e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1287",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

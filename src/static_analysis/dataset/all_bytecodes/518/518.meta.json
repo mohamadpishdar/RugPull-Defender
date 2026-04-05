@@ -1,0 +1,15 @@
+{
+  "title": "NITRO\u00a0(NOX)",
+  "chain": "eth",
+  "address": "0x9875095d722bc131929381361a757906cec2d6b9",
+  "source_url": "https://etherscan.io/token/0x9875095d722bc131929381361a757906cec2d6b9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89de",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

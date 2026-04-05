@@ -1,0 +1,15 @@
+{
+  "title": "zkSync\u00a0(TBD)",
+  "chain": "bsc",
+  "address": "0x8f2775e4be08055c7dd4ebf654628b183106a8e1",
+  "source_url": "https://bscscan.com/token/0x8f2775e4be08055c7dd4ebf654628b183106a8e1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b121b",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

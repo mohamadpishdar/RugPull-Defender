@@ -1,0 +1,15 @@
+{
+  "title": "CROWN\u00a0(CROWN)",
+  "chain": "bsc",
+  "address": "0x820E625965D0eAC316e98ee3EFa74fA6531f1315",
+  "source_url": "https://bscscan.com/token/0x820E625965D0eAC316e98ee3EFa74fA6531f1315",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b129a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Freddy Coin\u00a0(FREDDY)",
+  "chain": "bsc",
+  "address": "0x0cb3be0c80c70216586ae243e8117ed9bf01e5cf",
+  "source_url": "https://bscscan.com/token/0x0cb3be0c80c70216586ae243e8117ed9bf01e5cf",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1309",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

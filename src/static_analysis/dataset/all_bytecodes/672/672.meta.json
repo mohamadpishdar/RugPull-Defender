@@ -1,0 +1,15 @@
+{
+  "title": "Saddle.Finance (SADDLE)",
+  "chain": "eth",
+  "address": "0xb6a230ab37e9c8b86bbbde17e4291ff209af2b99",
+  "source_url": "https://etherscan.io/token/0xb6a230ab37e9c8b86bbbde17e4291ff209af2b99",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89eb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

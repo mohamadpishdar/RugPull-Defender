@@ -1,0 +1,15 @@
+{
+  "title": "MagicToken\u00a0(MAGIC)",
+  "chain": "fantom",
+  "address": "0x454329a3a3f7e2b98c47fd0392e863dc6f51567f",
+  "source_url": "https://ftmscan.com/token/0x454329a3a3f7e2b98c47fd0392e863dc6f51567f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x709b1c0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

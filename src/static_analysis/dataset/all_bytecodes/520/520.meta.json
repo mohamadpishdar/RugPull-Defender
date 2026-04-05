@@ -1,0 +1,15 @@
+{
+  "title": "Shibabydoge\u00a0(SBD)",
+  "chain": "eth",
+  "address": "0x9d02e3bfa181c93f99cfebefee754c768002e077",
+  "source_url": "https://etherscan.io/token/0x9d02e3bfa181c93f99cfebefee754c768002e077",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89de",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

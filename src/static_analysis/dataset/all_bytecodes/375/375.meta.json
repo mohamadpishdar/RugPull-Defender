@@ -1,0 +1,15 @@
+{
+  "title": "Wealthfront\u00a0(WF)",
+  "chain": "eth",
+  "address": "0xa837efd4500966a45148073f57fa855205597612",
+  "source_url": "https://etherscan.io/token/0xa837efd4500966a45148073f57fa855205597612",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

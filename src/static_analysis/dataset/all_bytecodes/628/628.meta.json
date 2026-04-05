@@ -1,0 +1,15 @@
+{
+  "title": "Spool DAO Token\u00a0(SPOOL)",
+  "chain": "eth",
+  "address": "0x40803cea2b2a32bda1be61d3604af6a814e70976",
+  "source_url": "https://etherscan.io/token/0x40803cea2b2a32bda1be61d3604af6a814e70976",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "ChainLink Token\u00a0(LINK)",
+  "chain": "eth",
+  "address": "0x514910771af9ca656af840dff83e8264ecf986ca",
+  "source_url": "https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "MetFi\u00a0(MFI)",
+  "chain": "bsc",
+  "address": "0xeb5bb9d14D27F75C787cf7475e7ED00D21dc7279",
+  "source_url": "https://bscscan.com/token/0xeb5bb9d14D27F75C787cf7475e7ED00D21dc7279",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b137e",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

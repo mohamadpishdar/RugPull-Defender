@@ -1,0 +1,15 @@
+{
+  "title": "Gladius\u00a0(GLA)",
+  "chain": "eth",
+  "address": "0x71d01db8d6a2fbea7f8d434599c237980c234e4c",
+  "source_url": "https://etherscan.io/token/0x71d01db8d6a2fbea7f8d434599c237980c234e4c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

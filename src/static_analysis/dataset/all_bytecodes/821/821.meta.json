@@ -1,0 +1,15 @@
+{
+  "title": "Ankr Network\u00a0(ANKR)",
+  "chain": "eth",
+  "address": "0x8290333cef9e6d528dd5618fb97a76f268f3edd4",
+  "source_url": "https://etherscan.io/token/0x8290333cef9e6d528dd5618fb97a76f268f3edd4",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

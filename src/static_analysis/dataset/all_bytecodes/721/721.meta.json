@@ -1,0 +1,11 @@
+{
+  "title": "WaultSwap\u00a0(WEX)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0xa9c41a46a6b3531d28d5c32f6633dd2ff05dfb90",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0xa9c41a46a6b3531d28d5c32f6633dd2ff05dfb90"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "DecentraWorld\u00a0($DEWO)",
+  "chain": "bsc",
+  "address": "0xCDD6494aEB193C8d5541b5B9c5e72a3809A98fdc",
+  "source_url": "https://bscscan.com/token/0xCDD6494aEB193C8d5541b5B9c5e72a3809A98fdc",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1317",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

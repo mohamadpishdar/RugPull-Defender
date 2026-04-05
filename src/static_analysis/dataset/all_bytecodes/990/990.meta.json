@@ -1,0 +1,15 @@
+{
+  "title": "Wrapped SYS\u00a0(WSYS)",
+  "chain": "bsc",
+  "address": "0x747B1223B23E53070c54Df355FAC2E198aA54708",
+  "source_url": "https://bscscan.com/token/0x747B1223B23E53070c54Df355FAC2E198aA54708",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b13a0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

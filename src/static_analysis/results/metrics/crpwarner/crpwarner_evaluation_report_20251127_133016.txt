@@ -1,0 +1,951 @@
+================================================================================
+CRPWARNER TOOL EVALUATION REPORT
+================================================================================
+Generated: 2025-11-27 13:30:16
+
+DATASET INFORMATION
+--------------------------------------------------------------------------------
+Ground Truth Dataset (Dataset 1): 1000 records
+CRPWarner Results (Dataset 2): 1000 records
+Common Contracts Compared: 1000
+
+PERFORMANCE METRICS
+--------------------------------------------------------------------------------
+Accuracy:              54.40%
+Precision:             62.73%
+Recall (Sensitivity):  56.59%
+F1-Score:              59.50%
+Specificity:           51.23%
+
+CONFUSION MATRIX
+--------------------------------------------------------------------------------
+                    Predicted Normal    Predicted Scam
+Actual Normal                    209               199
+Actual Scam                      257               335
+
+DETAILED RESULTS
+--------------------------------------------------------------------------------
+True Positives (Correctly detected scams):  335
+True Negatives (Correctly detected normal): 209
+False Positives (Incorrectly flagged):      199
+False Negatives (Missed scams):             257
+
+FALSE NEGATIVES (Missed Scams)
+--------------------------------------------------------------------------------
+  • Safuu Protocol
+    GroupID: 5
+  • Fake SAGA Token
+    GroupID: 11
+  • CryptoBike
+    GroupID: 12
+  • Ocean Ventures
+    GroupID: 14
+  • SAI token
+    GroupID: 17
+  • fcdep (EPMAX)
+    GroupID: 19
+  • Apache NFT SalesRoom (ASN)
+    GroupID: 20
+  • Changpeng Zhao (CZ)
+    GroupID: 22
+  • Dollar(PancakeLPs)
+    GroupID: 25
+  • Linda Yaccarino
+    GroupID: 27
+  • DUO
+    GroupID: 31
+  • Cake Lock (LOCK)
+    GroupID: 33
+  • LongNoseDog(LONG)
+    GroupID: 34
+  • Fake Ethena Labs
+    GroupID: 35
+  • Metaland DAO (META)
+    GroupID: 37
+  • culs (culs)
+    GroupID: 38
+  • Vip Panda Community 
+    GroupID: 40
+  • TTTT (TTTT)
+    GroupID: 41
+  • MALOU (NEVER)
+    GroupID: 45
+  • Tetris (TTR)
+    GroupID: 47
+  • MMFinance (MMF)
+    GroupID: 49
+  • Bep Finance
+    GroupID: 50
+  • Santa Coin
+    GroupID: 51
+  • Swello Token (SWLO)
+    GroupID: 52
+  • ARCHWAY (ARCH)
+    GroupID: 54
+  • ArenaPlay (APC)
+    GroupID: 55
+  • MOL (MOL)
+    GroupID: 60
+  • DMCToken (DMC)
+    GroupID: 64
+  • Astronaut NFT (AST)
+    GroupID: 65
+  • Big finance (BIGFI)
+    GroupID: 66
+  • Shi DAO (ShiD)
+    GroupID: 68
+  • Web (WEB)
+    GroupID: 69
+  • DarkProtocol (DARK)
+    GroupID: 71
+  • IPMB token
+    GroupID: 73
+  • APIG token
+    GroupID: 74
+  • Big Time (BIGTIME)
+    GroupID: 75
+  • SOMESING (SSX)
+    GroupID: 77
+  • L7 DEX (LSD7)
+    GroupID: 79
+  • OBB (OBB)
+    GroupID: 83
+  • Creso (CRE)
+    GroupID: 85
+  • LooBr (LooBr)
+    GroupID: 90
+  • CommEX (CMX)
+    GroupID: 92
+  • BabyPepe
+    GroupID: 95
+  • RepubliK (RPK)
+    GroupID: 98
+  • PIPI (PIPI)
+    GroupID: 99
+  • PAPABEAR (PAPA)
+    GroupID: 100
+  • FOMO DAO (FOMO)
+    GroupID: 102
+  • DeFido (DEFIDO)
+    GroupID: 103
+  • CBC Token (CBC)
+    GroupID: 104
+  • AISurf (AISC)
+    GroupID: 105
+  • GigaDAO (GIGS)
+    GroupID: 108
+  • Mina Protocol (MINA)
+    GroupID: 110
+  • DigiFund (DFUND)
+    GroupID: 111
+  • Dor (DOR)
+    GroupID: 112
+  • GDAO (GDAO)
+    GroupID: 116
+  • Cashera (CSR)
+    GroupID: 117
+  • iShares Bitcoin (IBTC)
+    GroupID: 119
+  • 2049 (2049)
+    GroupID: 121
+  • GameFi (GAFI)
+    GroupID: 126
+  • TSUKA (TSUKA)
+    GroupID: 127
+  • DFuture Token (DFT)
+    GroupID: 128
+  • ETXInfinity (ETX)
+    GroupID: 130
+  • Carillonium finance (CAROM)
+    GroupID: 132
+  • Openfabric AI (OFN)
+    GroupID: 133
+  • TrustPad (TPAD)
+    GroupID: 134
+  • NodyToken (NODY)
+    GroupID: 136
+  • CROWN (CROWN)
+    GroupID: 141
+  • HunterDoge (HDOGE)
+    GroupID: 144
+  • SLS (GSLS)
+    GroupID: 146
+  • Doge Twitter (DOGETWIT)
+    GroupID: 147
+  • Mango INU (MNGO)
+    GroupID: 148
+  • Block Chain Games
+    GroupID: 149
+  • TheCatWorld (CWORLD)
+    GroupID: 150
+  • Dracula (DRAC)
+    GroupID: 152
+  • ANT (ANT)
+    GroupID: 154
+  • OrbitSwap (ORBIT)
+    GroupID: 155
+  • Skate Metaverse Coin (SMC)
+    GroupID: 159
+  • iwr (IWR)
+    GroupID: 160
+  • Aki Inu (Aki)
+    GroupID: 161
+  • Loop X Network (LOOP)
+    GroupID: 162
+  • SpaceID (ID)
+    GroupID: 164
+  • DOXED (DOX)
+    GroupID: 166
+  • RETAWATCH (RTW)
+    GroupID: 167
+  • SPACE CAT (SCAT)
+    GroupID: 168
+  • VERIFY (VRFY)
+    GroupID: 170
+  • Zap Finance (ZAP)
+    GroupID: 171
+  • Neoteric (NTRC)
+    GroupID: 173
+  • ROBOT SHIB (RSHIB)
+    GroupID: 174
+  • GMT (GMT)
+    GroupID: 176
+  • Stonks Token ($STONKS)
+    GroupID: 180
+  • Dragonfly (DRAGONFLY)
+    GroupID: 182
+  • FreewayToken (FWT)
+    GroupID: 201
+  • OrdiZK (OZK)
+    GroupID: 202
+  • Humanized_AI(HMT)
+    GroupID: 207
+  • TWEETY (TWEETY)
+    GroupID: 210
+  • EigenLayer (EigenLayer)
+    GroupID: 212
+  • XSTABLE.PROTOCOL (XST)
+    GroupID: 214
+  • Smurfs (SMURFS)
+    GroupID: 215
+  • ether.fi (ETHFI)
+    GroupID: 216
+  • ROBIN HOOD (HOOD)
+    GroupID: 218
+  • Tommy VICE CITY (TOM)
+    GroupID: 219
+  • Hu Tao Spirit Soother (HUTAO)
+    GroupID: 220
+  • Plankton (PLANK)
+    GroupID: 222
+  • Gandalf The Grey (GAN)
+    GroupID: 223
+  • Hachiko token
+    GroupID: 225
+  • Lifeform (LFT)
+    GroupID: 226
+  • Gladiator  (GLA)
+    GroupID: 228
+  • Ore (ORE)
+    GroupID: 229
+  • Popeye the Sailor (POPEYE)
+    GroupID: 230
+  • Reflex Staking Bot (REFLEX)
+    GroupID: 232
+  • Elongate Deluxe (ELongD)
+    GroupID: 234
+  • Empower AI (EMPAI)
+    GroupID: 235
+  • Agent Smith (SMITH)
+    GroupID: 236
+  • stoicDAO (ZETA)
+    GroupID: 240
+  • Bare Bear (BEAR)
+    GroupID: 241
+  • Toothless - How to train meme (TOOTH)
+    GroupID: 243
+  • Mike Wazowski Monsters Inc (MIKE)
+    GroupID: 244
+  • MAJIN BUU (BUU)
+    GroupID: 245
+  • Jigsaw saw you (SAW)
+    GroupID: 246
+  • ROACH RACE (ROACH)
+    GroupID: 247
+  • AI C-3PO (C3PO)
+    GroupID: 250
+  • Jar Jar Binks (JAR)
+    GroupID: 251
+  • Kizuna AI (KIZUNA)
+    GroupID: 252
+  • Kaonashi the Faceless (NOFACE)
+    GroupID: 253
+  • SHIA (SHIA)
+    GroupID: 256
+  • YODA coin (YODA)
+    GroupID: 257
+  • Dark Matter (DARKM)
+    GroupID: 258
+  • BoringNakas (BNAKA)
+    GroupID: 260
+  • KUKUCoin (KUKU)
+    GroupID: 261
+  • GN (GN)
+    GroupID: 263
+  • ok.lets.go. (OKLG)
+    GroupID: 264
+  • APE (APE)
+    GroupID: 265
+  • Dogecoin 3.0 (DOGE3.0)
+    GroupID: 274
+  • BabyShia (BABYSHIA)
+    GroupID: 275
+  • Deez Nuts (DEEZ)
+    GroupID: 276
+  • Kosta Finance (KOSTA)
+    GroupID: 278
+  • RIFT Token (RIFT)
+    GroupID: 280
+  • EspressoBot (ESPS)
+    GroupID: 283
+  • COIN (COIN)
+    GroupID: 285
+  • MotherOfAllMemes (MOAM)
+    GroupID: 286
+  • RAIDEN GOD Thunder (RAIDEN)
+    GroupID: 288
+  • Lets Go Farming Token (LGF)
+    GroupID: 289
+  • SAUDI (SAUDI)
+    GroupID: 290
+  • Kickboxer Tate (KBTate)
+    GroupID: 294
+  • DOGETAMA (DOGETAMA)
+    GroupID: 300
+  • Cool Cats (COOL20)
+    GroupID: 302
+  • TWERK (TWERK)
+    GroupID: 306
+  • RFbtc (RFbtc)
+    GroupID: 308
+  • D4ppdao Token (D4PP)
+    GroupID: 309
+  • FOCUS (FCS)
+    GroupID: 312
+  • MANTLE (MANTLE)
+    GroupID: 313
+  • reflation (RLF)
+    GroupID: 314
+  • SLOTH INU (SLOTH INU)
+    GroupID: 315
+  • K.O.N.G Token (KONG)
+    GroupID: 316
+  • PUMP (PUMP)
+    GroupID: 318
+  • Contribute.Protocol (CTB)
+    GroupID: 320
+  • reflect3.finance (RFIII)
+    GroupID: 321
+  • Amazing Spider Man (SPIDER)
+    GroupID: 324
+  • Bezop (Bez)
+    GroupID: 327
+  • Centra (CTR)
+    GroupID: 328
+  • Shivers (SHVR)
+    GroupID: 339
+  • Kore (KORE)
+    GroupID: 342
+  • Supreme Inu (SUPRINU)
+    GroupID: 353
+  • PugDog Inu (PUGDOG)
+    GroupID: 354
+  • Fisa Inu (FISA)
+    GroupID: 355
+  • Ethelon Finance (ETHELON)
+    GroupID: 357
+  • PRG (PRG)
+    GroupID: 361
+  • Xfinance (XFI)
+    GroupID: 363
+  • Dropil (DROP)
+    GroupID: 364
+  • AirToken (AIR)
+    GroupID: 366
+  • GALIL (GALIL)
+    GroupID: 381
+  • Bonk Inu (BONK)
+    GroupID: 385
+  • Goldbank (GB)
+    GroupID: 387
+  • ArbShibAI (AISHIB)
+    GroupID: 388
+  • FIO Protocol (FIO)
+    GroupID: 389
+  • PlugToken (PLUG)
+    GroupID: 396
+  • GullFinance Token (GULL)
+    GroupID: 397
+  • TreeToken (TREE)
+    GroupID: 399
+  • Sigma (SIGMA)
+    GroupID: 400
+  • Egg (Egg)
+    GroupID: 402
+  • RivusDAO (RIVUS)
+    GroupID: 404
+  • Atlantis (ATL)
+    GroupID: 406
+  • Swaprum Token (SAPR)
+    GroupID: 407
+  • ArbiSwap (ArbiSwap)
+    GroupID: 409
+  • SuperRare (RARE)
+    GroupID: 410
+  • Dragoma (DMA)
+    GroupID: 412
+  • AnubisDAO 2.0 (ANUBISDAO2.0)
+    GroupID: 414
+  • Stable Magnet Token (SMAG)
+    GroupID: 416
+  • PAID Network (PAID)
+    GroupID: 417
+  • Mad Meerkat Finance
+    GroupID: 418
+  • OPM (Opium Bird)
+    GroupID: 421
+  • GRIMACE (GRIMACE)
+    GroupID: 424
+  • MBAPPE COIN (MBAPPE)
+    GroupID: 425
+  • Base Dawgz (DAWGZ)
+    GroupID: 426
+  • ZKasino (ZKAS)
+    GroupID: 428
+  • HUMANS (HEART)
+    GroupID: 430
+  • Pancake LPs (Cake-LP)
+    GroupID: 431
+  • ERROR 404 (ERR)
+    GroupID: 433
+  • stoicDAO (ZETA)
+    GroupID: 435
+  • BabyFlokiDoge (BABYFD)
+    GroupID: 437
+  • DeFiLABS (DLABS)
+    GroupID: 441
+  • Hakuna Share (MTT)
+    GroupID: 445
+  • Freddy Coin (FREDDY)
+    GroupID: 446
+  • fRiENDSiES (fRiENDSiES)
+    GroupID: 451
+  • FoodFarmer.Finance (FFF)
+    GroupID: 454
+  • Snowflake Token (SFE)
+    GroupID: 455
+  • FTE (FTE)
+    GroupID: 457
+  • Pokemon (Pokemon)
+    GroupID: 460
+  • DRAC Network (DRAC)
+    GroupID: 462
+  • Animoon (ANIMOON)
+    GroupID: 465
+  • Armadillo Token ($ARMADILLO)
+    GroupID: 466
+  • DecentraWorld ($DEWO)
+    GroupID: 467
+  • FuryOfTheFur (FOTF)
+    GroupID: 468
+  • Day Of Defeat (DOD)
+    GroupID: 469
+  • PLD (PLD)
+    GroupID: 471
+  • Infinity Token (IT)
+    GroupID: 475
+  • KingFund (KING)
+    GroupID: 476
+  • MetaSwap (MSC)
+    GroupID: 477
+  • EvolvedApes (EVA)
+    GroupID: 479
+  • URANIUM FINANCIAL (URF)
+    GroupID: 480
+  • InsurChain Coin (INSUR)
+    GroupID: 486
+  • StatusNetwork (SNT)
+    GroupID: 490
+  • RankingBall Gold (RBG)
+    GroupID: 492
+  • FuzeX (FXT)
+    GroupID: 494
+  • Color Coin (CLR)
+    GroupID: 495
+  • SwarmCity (SWT)
+    GroupID: 496
+  • YOYOW (YOYOW)
+    GroupID: 497
+  • Cindicator (CND)
+    GroupID: 499
+  • Fuel Token (FUEL)
+    GroupID: 501
+  • Dank Token (DANK)
+    GroupID: 502
+  • Wisdom Protocol (WIS)
+    GroupID: 503
+  • CAW 2.0 (A RUGGERS DREAM)
+    GroupID: 504
+  • HAPPYBEAR (HAPPY)
+    GroupID: 507
+  • Rabbit2023 (RABBIT)
+    GroupID: 508
+  • Satoshi Vision (SVI)
+    GroupID: 511
+  • XDAO (XDAO)
+    GroupID: 536
+  • STAKEDAO (STAKEDAO)
+    GroupID: 537
+  • ShibEreum (SHIBEREUM)
+    GroupID: 538
+  • SAFE MARS (SMARS)
+    GroupID: 539
+  • Lovely Inu Finance (LOVELY)
+    GroupID: 540
+  • Mighty Mouse (MIGHTY)
+    GroupID: 541
+  • BITCRAFT ONLINE
+    GroupID: 542
+  • SAFE MARS (SMARS)
+    GroupID: 543
+  • L7 DEX (LSD7)
+    GroupID: 544
+  • Big Time (BIGTIME)
+    GroupID: 545
+  • LGO (LGO)
+    GroupID: 547
+  • MetaversePay (MVP)
+    GroupID: 552
+  • RoyalPay (ROYAL)
+    GroupID: 553
+  • Dwagon ($Dwagon)
+    GroupID: 554
+  • CalorieCoin (CAL)
+    GroupID: 558
+  • V-ID Token (VIDT)
+    GroupID: 563
+  • qiibeeToken (QBX)
+    GroupID: 564
+  • Insureum Token (ISR)
+    GroupID: 568
+  • Webflix Token (WFX)
+    GroupID: 569
+  • SmartMesh Token (SMT)
+    GroupID: 579
+  • Contentos (COS)
+    GroupID: 582
+  • W12 Token (W12)
+    GroupID: 585
+
+FALSE POSITIVES (Incorrectly Flagged as Scam)
+--------------------------------------------------------------------------------
+  • Flare Token
+    GroupID: 4
+  • zkSync (TBD)
+    GroupID: 56
+  • Sui Network (SUI)
+    GroupID: 58
+  • Pepe (PEPE)
+    GroupID: 114
+  • Wrapped BTC (WBTC)
+    GroupID: 601
+  • Ethereum Name Service (ENS)
+    GroupID: 604
+  • FLOKI (FLOKI)
+    GroupID: 609
+  • Lido DAO Token (LDO)
+    GroupID: 614
+  • Binance-Peg Cardano Token (ADA)
+    GroupID: 616
+  • 1INCH Token (1INCH)
+    GroupID: 617
+  • Ocean Token (OCEAN)
+    GroupID: 619
+  • Binance-Peg Tezos Token (XTZ)
+    GroupID: 621
+  • AdEx Network (ADX)
+    GroupID: 622
+  • dForce (DF)
+    GroupID: 624
+  • Coin98 (C98)
+    GroupID: 625
+  • Cronos Coin (CRO)
+    GroupID: 626
+  • Spool DAO Token (SPOOL)
+    GroupID: 628
+  • LooksRare Token (LOOKS)
+    GroupID: 629
+  • Tether USD (USDT)
+    GroupID: 634
+  • Aura (AURA)
+    GroupID: 635
+  • DODO bird (DODO)
+    GroupID: 638
+  • BASv2 (BASv2)
+    GroupID: 644
+  • DLP Duck Token (DUCK)
+    GroupID: 645
+  • THE TRUTH (UFO)
+    GroupID: 650
+  • GateChainToken (GT)
+    GroupID: 651
+  • GoBlank Token (BLANK)
+    GroupID: 656
+  • Leo Token (LEO)
+    GroupID: 657
+  • Magpie Token (MGP)
+    GroupID: 662
+  • FARM Reward Token (FARM)
+    GroupID: 663
+  • DogeBonk.com (DOBO)
+    GroupID: 666
+  • Lympo Market Token (LMT)
+    GroupID: 667
+  • RAE Token (RAE)
+    GroupID: 668
+  • Saddle.Finance (SADDLE)
+    GroupID: 672
+  • Bunny Token (BUNNY)
+    GroupID: 678
+  • Deri (DERI)
+    GroupID: 680
+  • 
+Bancor (BNT)
+    GroupID: 681
+  • BitberryToken (BBR)
+    GroupID: 683
+  • Fei USD (FEI)
+    GroupID: 684
+  • SCROOGE (SCROOGE)
+    GroupID: 686
+  • Shiba Predator (QOM)
+    GroupID: 688
+  • Wrapped GLMR (WGLMR)
+    GroupID: 691
+  • Wrapped MOVR (WMOVR)
+    GroupID: 692
+  • THORChain ETH.RUNE
+    GroupID: 694
+  • Vesta (VSTA)
+    GroupID: 696
+  • Monolith (TKN)
+    GroupID: 697
+  • Olympus (OHM)
+    GroupID: 702
+  • Uquid Coin (UQC)
+    GroupID: 703
+  • IceToken (ICE)
+    GroupID: 704
+  • Fringe (FRIN)
+    GroupID: 708
+  • Hotbit Token (HTB)
+    GroupID: 709
+  • Compound Ether (cETH)
+    GroupID: 712
+  • CelerToken (CELR)
+    GroupID: 713
+  • Compound USD Coin (cUSDC)
+    GroupID: 715
+  • MoonToken (MOON)
+    GroupID: 716
+  • Wrapped TON Coin (TONCOIN)
+    GroupID: 717
+  • SpookyToken (BOO)
+    GroupID: 718
+  • Republic (REN)
+    GroupID: 719
+  • FLEX Coin (FLEX)
+    GroupID: 720
+  • WaultSwap (WEX)
+    GroupID: 721
+  • Blind Boxes Token (BLES)
+    GroupID: 725
+  • Dai Stablecoin (DAI)
+    GroupID: 729
+  • Meta (MTA)
+    GroupID: 731
+  • Oms (OMS)
+    GroupID: 733
+  • Lodestar (LODE)
+    GroupID: 734
+  • Beta Token (BETA)
+    GroupID: 736
+  • Axelar (AXL)
+    GroupID: 739
+  • Possum (PSM)
+    GroupID: 740
+  • Fuse Token (FUSE)
+    GroupID: 743
+  • Binance-Peg Ethereum Token
+    GroupID: 745
+  • Script Network (SCPT)
+    GroupID: 746
+  • SAND (SAND)
+    GroupID: 747
+  • Binance-Peg XRP Token (XRP)
+    GroupID: 750
+  • Theta Token (THETA)
+    GroupID: 753
+  • Optimism (OP)
+    GroupID: 754
+  • CyberConnect (CYBER)
+    GroupID: 756
+  • AITECH (AITECH)
+    GroupID: 757
+  • LimeWire Token (LMWR)
+    GroupID: 762
+  • GMX(GMX)
+    GroupID: 766
+  • GoMining Token (GMT)
+    GroupID: 768
+  • Cartesi Token (CTSI)
+    GroupID: 769
+  • izumi Token (iZi)
+    GroupID: 772
+  • MLTToken (ML)
+    GroupID: 776
+  • Mint.club (MINT)
+    GroupID: 782
+  • Altura (ALU)
+    GroupID: 783
+  • DODO bird (DODO)
+    GroupID: 784
+  • TokenFi (TOKEN)
+    GroupID: 786
+  • ApeCoin (APE)
+    GroupID: 787
+  • ORBOFI (OBI)
+    GroupID: 788
+  • ARPA Token (ARPA)
+    GroupID: 790
+  • LayerZero (ZRO)
+    GroupID: 791
+  • Phala (PHA)
+    GroupID: 792
+  • Perpetual (PERP)
+    GroupID: 794
+  • THORChain ETH.RUNE (RUNE)
+    GroupID: 795
+  • chiliZ (CHZ)
+    GroupID: 797
+  • IoTeX Network (IOTX)
+    GroupID: 798
+  • CreoEngine (CREO)
+    GroupID: 799
+  • Swipe (SXP)
+    GroupID: 801
+  • LTO Network Token (LTO)
+    GroupID: 803
+  • LandRocker (LRT)
+    GroupID: 805
+  • MAGA VP (MVP)
+    GroupID: 806
+  • TOPIA (TOPIA)
+    GroupID: 810
+  • FABWELT (WELT)
+    GroupID: 812
+  • SIDUS (SIDUS)
+    GroupID: 815
+  • Hot Cross Token (HOTCROSS)
+    GroupID: 820
+  • Ankr Network (ANKR)
+    GroupID: 821
+  • Polytrade (TRADE)
+    GroupID: 824
+  • Wisdomise (WSDM)
+    GroupID: 827
+  • BandToken (BAND)
+    GroupID: 830
+  • Ambire Wallet (WALLET)
+    GroupID: 831
+  • METABEAT (BEAT)
+    GroupID: 833
+  • NETVRK (NTVRK)
+    GroupID: 834
+  • BetProtocolToken (BEPRO)
+    GroupID: 835
+  • beefy.finance (BIFI)
+    GroupID: 837
+  • Cookie (COOKIE)
+    GroupID: 838
+  • MagicCraft (MCRT)
+    GroupID: 840
+  • Binance-Peg Tezos Token (XTZ)
+    GroupID: 841
+  • Morpheus.Network (MNW)
+    GroupID: 843
+  • Zeta (ZETA)
+    GroupID: 845
+  • CREDI [via ChainPort.io] (CREDI)
+    GroupID: 850
+  • AirSwap (AST)
+    GroupID: 857
+  • Monsta Infinite Token (MONI)
+    GroupID: 858
+  • RepubliK (RPK)
+    GroupID: 859
+  • Request (REQ)
+    GroupID: 860
+  • NKN (NKN)
+    GroupID: 861
+  • Adventure Gold (AGLD)
+    GroupID: 863
+  • Threshold Network Token
+    GroupID: 865
+  • Aurox Token (URUS)
+    GroupID: 869
+  • TRON (TRX)
+    GroupID: 875
+  • MATH Token (MATH)
+    GroupID: 876
+  • OpenOcean (OOE)
+    GroupID: 877
+  • BabySwap Token (BABY)
+    GroupID: 878
+  • Everdome (DOME)
+    GroupID: 879
+  • Playermon (PYM)
+    GroupID: 881
+  • TravaFinance Token (TRAVA)
+    GroupID: 883
+  • Atlas Navi (NAVI)
+    GroupID: 885
+  • Binance-Peg Zcash Token (ZEC)
+    GroupID: 887
+  • Coinweb (CWEB)
+    GroupID: 891
+  • Decentraland (MANA)
+    GroupID: 892
+  • Dai Stablecoin (DAI)
+    GroupID: 893
+  • Zentry (ZENT)
+    GroupID: 895
+  • Aragon Network Token (ANT)
+    GroupID: 896
+  • GAMEE (GMEE)
+    GroupID: 900
+  • Convex Token (CVX)
+    GroupID: 901
+  • Agoras Token (AGRS)
+    GroupID: 902
+  • Binance-Peg EOS Token (EOS)
+    GroupID: 903
+  • Mass Vehicle Ledger Token (MVL)
+    GroupID: 905
+  • Genopets (GENE)
+    GroupID: 906
+  • Dogechain Token (DC)
+    GroupID: 908
+  • Quant (QNT)
+    GroupID: 909
+  • STASIS EURS Token (EURS)
+    GroupID: 910
+  • MANTRA DAO (OM)
+    GroupID: 911
+  • Ethereum Name Service (ENS)
+    GroupID: 913
+  • Bridge (BRG)
+    GroupID: 915
+  • COS (COS)
+    GroupID: 916
+  • Pomerium Ecosystem Token (PMG)
+    GroupID: 918
+  • Lossless Token (LSS)
+    GroupID: 919
+  • Autonolas (OLAS)
+    GroupID: 922
+  • XEND (XEND)
+    GroupID: 924
+  • Chronicle (XNL)
+    GroupID: 925
+  • Messier (M87)
+    GroupID: 926
+  • Alvey Chain (wALV)
+    GroupID: 927
+  • Omni Network (OMNI)
+    GroupID: 928
+  • TOWER (TOWER)
+    GroupID: 930
+  • Everipedia IQ (IQ)
+    GroupID: 933
+  • Vita Inu (VINU)
+    GroupID: 934
+  • Polka City (POLC)
+    GroupID: 936
+  • Parsiq Token (PRQ)
+    GroupID: 937
+  • MetFi (MFI)
+    GroupID: 938
+  • NuLink token (NLK)
+    GroupID: 940
+  • SynFutures (F)
+    GroupID: 941
+  • E-RADIX (eXRD)
+    GroupID: 942
+  • AltLayer Token (ALT)
+    GroupID: 943
+  • Beyond Protocol (BP)
+    GroupID: 944
+  • Neurashi (NEI)
+    GroupID: 945
+  • PointPay Token (PXP)
+    GroupID: 948
+  • TAP Coin (TAP)
+    GroupID: 949
+  • Forward ($FORWARD)
+    GroupID: 955
+  • zkRace (ZERC)
+    GroupID: 956
+  • SELF Crypto (SELF)
+    GroupID: 958
+  • EXVERSE (EXVG)
+    GroupID: 960
+  • Okratech (ORT)
+    GroupID: 961
+  • Throne (THN)
+    GroupID: 962
+  • Polkamarkets (POLK)
+    GroupID: 963
+  • Alvey Chain (wALV)
+    GroupID: 965
+  • Metaverser Token (mtvt)
+    GroupID: 967
+  • WAX Token (WAX)
+    GroupID: 968
+  • Umbrella (UMB)
+    GroupID: 971
+  • GraphLinq (GLQ)
+    GroupID: 976
+  • XWG (XWG)
+    GroupID: 978
+  • Celsius (CEL)
+    GroupID: 980
+  • FevrToken (FEVR)
+    GroupID: 981
+  • Alchemy (ACH)
+    GroupID: 982
+  • Ispolink Token (ISP)
+    GroupID: 988
+  • Wrapped SYS (WSYS)
+    GroupID: 990
+  • Reef.finance (REEF)
+    GroupID: 991
+  • O3 Swap Token (O3)
+    GroupID: 993
+  • SOS (SOS)
+    GroupID: 994
+  • Quickswap (QUICK)
+    GroupID: 995
+  • PLANET (PLANET)
+    GroupID: 998
+

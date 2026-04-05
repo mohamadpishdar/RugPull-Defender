@@ -1,0 +1,15 @@
+{
+  "title": "CHEELEE\u00a0(CHEEL)",
+  "chain": "bsc",
+  "address": "0x1F1C90aEb2fd13EA972F0a71e35c0753848e3DB0",
+  "source_url": "https://bscscan.com/token/0x1F1C90aEb2fd13EA972F0a71e35c0753848e3DB0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b136b",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

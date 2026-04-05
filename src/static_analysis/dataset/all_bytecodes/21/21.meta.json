@@ -1,0 +1,15 @@
+{
+  "title": "XAI token\u00a0",
+  "chain": "bsc",
+  "address": "0x1D152e6352493FCe07f17A90823Cd21C51815c81",
+  "source_url": "https://bscscan.com/token/0x1D152e6352493FCe07f17A90823Cd21C51815c81",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11e6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

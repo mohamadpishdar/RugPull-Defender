@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "generated_at": "2025-11-27T13:30:16.966227",
+    "ground_truth_records": 1000,
+    "crpwarner_records": 1000,
+    "compared_contracts": 1000
+  },
+  "metrics": {
+    "accuracy": 0.544,
+    "precision": 0.6273408239700374,
+    "recall": 0.5658783783783784,
+    "f1_score": 0.5950266429840142,
+    "specificity": 0.5122549019607843,
+    "confusion_matrix": {
+      "true_negatives": 209,
+      "false_positives": 199,
+      "false_negatives": 257,
+      "true_positives": 335
+    }
+  },
+  "false_negatives_count": 257,
+  "false_positives_count": 199
+}

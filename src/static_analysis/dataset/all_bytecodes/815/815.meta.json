@@ -1,0 +1,15 @@
+{
+  "title": "SIDUS\u00a0(SIDUS)",
+  "chain": "eth",
+  "address": "0x549020a9Cb845220D66d3E9c6D9F9eF61C981102",
+  "source_url": "https://etherscan.io/token/0x549020a9Cb845220D66d3E9c6D9F9eF61C981102",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Impermax (IMX)",
+  "chain": "eth",
+  "address": "0x7b35ce522cb72e4077baeb96cb923a5529764a00",
+  "source_url": "https://etherscan.io/token/0x7b35ce522cb72e4077baeb96cb923a5529764a00",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ec",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

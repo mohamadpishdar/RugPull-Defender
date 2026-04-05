@@ -1,0 +1,15 @@
+{
+  "title": "Swaprum Token\u00a0(SAPR)",
+  "chain": "arbi",
+  "address": "0x2ae25460c44d578e6f41ab900a7a5425b6492c16",
+  "source_url": "https://arbiscan.io/token/0x2ae25460c44d578e6f41ab900a7a5425b6492c16",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe2149",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

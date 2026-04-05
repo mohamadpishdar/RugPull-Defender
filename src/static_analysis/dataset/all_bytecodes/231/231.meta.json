@@ -1,0 +1,15 @@
+{
+  "title": "DubaiCEO\u00a0(DubaiCEO)",
+  "chain": "eth",
+  "address": "0x4876c5892d975780405f1b73802221b2850feb8e",
+  "source_url": "https://etherscan.io/token/0x4876c5892d975780405f1b73802221b2850feb8e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Akropolis\u00a0(AKRO)",
+  "chain": "eth",
+  "address": "0x8ab7404063ec4dbcfd4598215992dc3f8ec853d7",
+  "source_url": "https://etherscan.io/token/0x8ab7404063ec4dbcfd4598215992dc3f8ec853d7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

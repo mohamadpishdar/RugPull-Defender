@@ -1,0 +1,15 @@
+{
+  "title": "Internet Cashowbiz\u00a0(ICBB)",
+  "chain": "eth",
+  "address": "0xfc87d4f82fc5fe80a2d1692ffee872b2517c34c7",
+  "source_url": "https://etherscan.io/token/0xfc87d4f82fc5fe80a2d1692ffee872b2517c34c7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e3",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

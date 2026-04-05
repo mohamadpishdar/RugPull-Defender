@@ -1,0 +1,15 @@
+{
+  "title": "Okratech\u00a0(ORT)",
+  "chain": "bsc",
+  "address": "0x9E711221B34A2d4B8F552BD5f4A6C4e7934920f7",
+  "source_url": "https://bscscan.com/token/0x9E711221B34A2d4B8F552BD5f4A6C4e7934920f7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b138f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

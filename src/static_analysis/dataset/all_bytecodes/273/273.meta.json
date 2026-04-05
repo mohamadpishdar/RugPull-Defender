@@ -1,0 +1,15 @@
+{
+  "title": "NOVAMIND_\u00a0(NMD)",
+  "chain": "eth",
+  "address": "0x9cb6dd255a6bbe32130ce645ec45c0a3e9d87a4a",
+  "source_url": "https://etherscan.io/token/0x9cb6dd255a6bbe32130ce645ec45c0a3e9d87a4a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

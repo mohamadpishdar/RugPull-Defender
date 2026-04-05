@@ -1,0 +1,15 @@
+{
+  "title": "X PROTOCOL\u00a0(XP)",
+  "chain": "eth",
+  "address": "0x4de7fcf157f64c791ef8359a3546fa2395bdddbd",
+  "source_url": "https://etherscan.io/token/0x4de7fcf157f64c791ef8359a3546fa2395bdddbd",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

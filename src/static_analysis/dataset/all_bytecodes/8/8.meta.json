@@ -1,0 +1,15 @@
+{
+  "title": "IPO",
+  "chain": "bsc",
+  "address": "0xb524a9a21702813f8ea7a79c16afcb5fb4660544",
+  "source_url": "https://bscscan.com/token/0xb524a9a21702813f8ea7a79c16afcb5fb4660544",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b0f57",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

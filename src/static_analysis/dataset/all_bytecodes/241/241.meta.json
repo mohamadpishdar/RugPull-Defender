@@ -1,0 +1,15 @@
+{
+  "title": "Bare Bear\u00a0(BEAR)",
+  "chain": "eth",
+  "address": "0x9d41227c99c75cccbf4fc65cb3585a5798e77009",
+  "source_url": "https://etherscan.io/token/0x9d41227c99c75cccbf4fc65cb3585a5798e77009",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

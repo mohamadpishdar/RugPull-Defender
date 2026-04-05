@@ -1,0 +1,15 @@
+{
+  "title": "Frontfanz\u00a0(FANX)",
+  "chain": "bsc",
+  "address": "0x1f373733ed5d6999908ea80b69b2d9cd2d63d98b",
+  "source_url": "https://bscscan.com/token/0x1f373733ed5d6999908ea80b69b2d9cd2d63d98b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1271",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

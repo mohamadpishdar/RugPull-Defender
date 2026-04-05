@@ -1,0 +1,11 @@
+{
+  "title": "Zest Token\u00a0(ZST)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x3ede2ed70ba2d81b7aae6e66507d2739dac44a4d",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x3ede2ed70ba2d81b7aae6e66507d2739dac44a4d"
+  ]
+}

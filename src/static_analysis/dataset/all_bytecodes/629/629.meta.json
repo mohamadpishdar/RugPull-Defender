@@ -1,0 +1,15 @@
+{
+  "title": "LooksRare Token\u00a0(LOOKS)",
+  "chain": "eth",
+  "address": "0xf4d2888d29d722226fafa5d9b24f9164c092421e",
+  "source_url": "https://etherscan.io/token/0xf4d2888d29d722226fafa5d9b24f9164c092421e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

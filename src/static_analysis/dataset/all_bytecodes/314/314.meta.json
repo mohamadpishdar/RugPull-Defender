@@ -1,0 +1,15 @@
+{
+  "title": "reflation\u00a0(RLF)",
+  "chain": "eth",
+  "address": "0xdc65d31b94dbc5188ee5e01c22618537e5e86bac",
+  "source_url": "https://etherscan.io/token/0xdc65d31b94dbc5188ee5e01c22618537e5e86bac",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cf",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

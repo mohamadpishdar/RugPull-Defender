@@ -1,0 +1,15 @@
+{
+  "title": "Music Protocol\u00a0(Music)",
+  "chain": "eth",
+  "address": "0x63ecda6ec90b1b95ab550bef67db909275b7d9aa",
+  "source_url": "https://etherscan.io/token/0x63ecda6ec90b1b95ab550bef67db909275b7d9aa",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89df",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

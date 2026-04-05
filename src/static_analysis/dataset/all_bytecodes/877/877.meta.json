@@ -1,0 +1,15 @@
+{
+  "title": "OpenOcean\u00a0(OOE)",
+  "chain": "eth",
+  "address": "0x7778360f035c589fce2f4ea5786cbd8b36e5396b",
+  "source_url": "https://etherscan.io/token/0x7778360f035c589fce2f4ea5786cbd8b36e5396b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fa",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

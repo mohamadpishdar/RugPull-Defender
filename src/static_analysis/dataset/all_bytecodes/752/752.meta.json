@@ -1,0 +1,15 @@
+{
+  "title": "Illuvium\u00a0(ILV)",
+  "chain": "eth",
+  "address": "0x767fe9edc9e0df98e07454847909b5e959d7ca0e",
+  "source_url": "https://etherscan.io/token/0x767fe9edc9e0df98e07454847909b5e959d7ca0e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

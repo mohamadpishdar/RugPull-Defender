@@ -1,0 +1,1002 @@
+Project Name,GroupID,Ground Truth,CRPWarner Prediction,Correct,Classification
+HyperVerse Token (HVT),2,scam,True,True,Correct
+Fintoch,3,scam,True,True,Correct
+Flare Token,4,normal,True,False,False Positive
+Safuu Protocol,5,scam,False,False,False Negative
+SCT,6,scam,True,True,Correct
+GMETA,7,scam,True,True,Correct
+IPO,8,scam,True,True,Correct
+IVY ,9,scam,True,True,Correct
+FSL,10,scam,True,True,Correct
+Fake SAGA Token,11,scam,False,False,False Negative
+CryptoBike,12,scam,False,False,False Negative
+IEGT Rugpull,13,scam,True,True,Correct
+Ocean Ventures,14,scam,False,False,False Negative
+USEA Token ,15,scam,True,True,Correct
+Fake Layer Zero,16,scam,True,True,Correct
+SAI token,17,scam,False,False,False Negative
+ProTradeX,18,scam,True,True,Correct
+fcdep (EPMAX),19,scam,False,False,False Negative
+Apache NFT SalesRoom (ASN),20,scam,False,False,False Negative
+XAI token ,21,normal,False,True,Correct
+Changpeng Zhao (CZ),22,scam,False,False,False Negative
+BGE (BGE),23,scam,True,True,Correct
+Cesar Hard Fork,24,scam,True,True,Correct
+Dollar(PancakeLPs),25,scam,False,False,False Negative
+MetaFinanceDAO,26,scam,True,True,Correct
+Linda Yaccarino,27,scam,False,False,False Negative
+Do Right (DR),28,scam,True,True,Correct
+GHOSTP2E (GHR),29,scam,True,True,Correct
+OpenAI ATF (ATF),30,scam,True,True,Correct
+DUO,31,scam,False,False,False Negative
+HRN (HIGH RETURN),32,scam,True,True,Correct
+Cake Lock (LOCK),33,scam,False,False,False Negative
+LongNoseDog(LONG),34,scam,False,False,False Negative
+Fake Ethena Labs,35,scam,False,False,False Negative
+BJS (BJS),36,scam,True,True,Correct
+Metaland DAO (META),37,scam,False,False,False Negative
+culs (culs),38,scam,False,False,False Negative
+LOO,39,scam,True,True,Correct
+Vip Panda Community ,40,scam,False,False,False Negative
+TTTT (TTTT),41,scam,False,False,False Negative
+SuperStep (SGMT),42,scam,True,True,Correct
+BNQ Token (BNQ),43,scam,True,True,Correct
+BlockGPT (BGPT),44,scam,True,True,Correct
+MALOU (NEVER),45,scam,False,False,False Negative
+Satori (Satori),46,scam,True,True,Correct
+Tetris (TTR),47,scam,False,False,False Negative
+CIRCLE fake token,48,scam,True,True,Correct
+MMFinance (MMF),49,scam,False,False,False Negative
+Bep Finance,50,scam,False,False,False Negative
+Santa Coin,51,scam,False,False,False Negative
+Swello Token (SWLO),52,scam,False,False,False Negative
+Defi Wz Token (DEFIWZ),53,scam,True,True,Correct
+ARCHWAY (ARCH),54,scam,False,False,False Negative
+ArenaPlay (APC),55,scam,False,False,False Negative
+zkSync (TBD),56,normal,True,False,False Positive
+Hex Trust Token,57,scam,True,True,Correct
+Sui Network (SUI),58,normal,True,False,False Positive
+DollarDoge (DollarDoge),59,scam,True,True,Correct
+MOL (MOL),60,scam,False,False,False Negative
+NwtToken (NWT),61,scam,True,True,Correct
+RWP (Real Web Project),62,scam,True,True,Correct
+Wettok Market (WTO),63,scam,True,True,Correct
+DMCToken (DMC),64,scam,False,False,False Negative
+Astronaut NFT (AST),65,scam,False,False,False Negative
+Big finance (BIGFI),66,scam,False,False,False Negative
+Meta Apes Shell (SHELL),67,scam,True,True,Correct
+Shi DAO (ShiD),68,scam,False,False,False Negative
+Web (WEB),69,scam,False,False,False Negative
+Helio Protocol (HELIO),70,scam,True,True,Correct
+DarkProtocol (DARK),71,scam,False,False,False Negative
+aspiring cooperation Community (ACC),72,scam,True,True,Correct
+IPMB token,73,scam,False,False,False Negative
+APIG token,74,scam,False,False,False Negative
+Big Time (BIGTIME),75,scam,False,False,False Negative
+Chessfarm.Tech,76,scam,True,True,Correct
+SOMESING (SSX),77,scam,False,False,False Negative
+MarbleX (MBX),78,normal,False,True,Correct
+L7 DEX (LSD7),79,scam,False,False,False Negative
+Celestia (TIA),80,normal,False,True,Correct
+Sport Move (SPORT),81,scam,True,True,Correct
+BTDOG (BTDOG),82,scam,True,True,Correct
+OBB (OBB),83,scam,False,False,False Negative
+ADAF (ADAF),84,scam,True,True,Correct
+Creso (CRE),85,scam,False,False,False Negative
+Artificial intelligence robot (AIT),86,scam,True,True,Correct
+LlamaCoin (LlamaCoin),87,scam,True,True,Correct
+FlokiMoon (FlokiMoon),88,scam,True,True,Correct
+CFL365 Finance (CFL365),89,scam,True,True,Correct
+LooBr (LooBr),90,scam,False,False,False Negative
+mCoin (MCOIN),91,scam,True,True,Correct
+CommEX (CMX),92,scam,False,False,False Negative
+Script (SCPT),93,scam,True,True,Correct
+MoveCash (MCA),94,scam,True,True,Correct
+BabyPepe,95,scam,False,False,False Negative
+Elron Token (ELR),96,scam,True,True,Correct
+Patex (PATEX),97,scam,True,True,Correct
+RepubliK (RPK),98,scam,False,False,False Negative
+PIPI (PIPI),99,scam,False,False,False Negative
+PAPABEAR (PAPA),100,scam,False,False,False Negative
+ACCToken,101,scam,True,True,Correct
+FOMO DAO (FOMO),102,scam,False,False,False Negative
+DeFido (DEFIDO),103,scam,False,False,False Negative
+CBC Token (CBC),104,scam,False,False,False Negative
+AISurf (AISC),105,scam,False,False,False Negative
+FlokiChain (FC),106,scam,True,True,Correct
+ETE Token (ETE),107,scam,True,True,Correct
+GigaDAO (GIGS),108,scam,False,False,False Negative
+To the Moon (TTM),109,scam,True,True,Correct
+Mina Protocol (MINA),110,scam,False,False,False Negative
+DigiFund (DFUND),111,scam,False,False,False Negative
+Dor (DOR),112,scam,False,False,False Negative
+Frontfanz (FANX),113,scam,True,True,Correct
+Pepe (PEPE),114,normal,True,False,False Positive
+CryptosTribe (CSTC),115,scam,True,True,Correct
+GDAO (GDAO),116,scam,False,False,False Negative
+Cashera (CSR),117,scam,False,False,False Negative
+NFDAO (NFD),118,scam,True,True,Correct
+iShares Bitcoin (IBTC),119,scam,False,False,False Negative
+Galaxy Coin (GXY),120,scam,True,True,Correct
+2049 (2049),121,scam,False,False,False Negative
+ChainGPT (CGPT),122,scam,True,True,Correct
+Finance (ARKEN),123,scam,True,True,Correct
+Zodiac Credit-ZOC (ZOC),124,scam,True,True,Correct
+Hepton (HTE),125,scam,True,True,Correct
+GameFi (GAFI),126,scam,False,False,False Negative
+TSUKA (TSUKA),127,scam,False,False,False Negative
+DFuture Token (DFT),128,scam,False,False,False Negative
+LightLink (LL),129,scam,True,True,Correct
+ETXInfinity (ETX),130,scam,False,False,False Negative
+YPT (YPT),131,scam,True,True,Correct
+Carillonium finance (CAROM),132,scam,False,False,False Negative
+Openfabric AI (OFN),133,scam,False,False,False Negative
+TrustPad (TPAD),134,scam,False,False,False Negative
+SQUID GAME (SQUIDGAME),135,scam,True,True,Correct
+NodyToken (NODY),136,scam,False,False,False Negative
+BNBpay (BNBpay),137,scam,True,True,Correct
+GEMDAO (GemDAO),138,scam,True,True,Correct
+BabyElon (BabyElon),139,scam,True,True,Correct
+EI Risitas (KEK),140,scam,True,True,Correct
+CROWN (CROWN),141,scam,False,False,False Negative
+BAT (BAT),142,scam,True,True,Correct
+Magic (Magic),143,scam,True,True,Correct
+HunterDoge (HDOGE),144,scam,False,False,False Negative
+MOON (MOON),145,scam,True,True,Correct
+SLS (GSLS),146,scam,False,False,False Negative
+Doge Twitter (DOGETWIT),147,scam,False,False,False Negative
+Mango INU (MNGO),148,scam,False,False,False Negative
+Block Chain Games,149,scam,False,False,False Negative
+TheCatWorld (CWORLD),150,scam,False,False,False Negative
+EDAO (EDAO),151,scam,True,True,Correct
+Dracula (DRAC),152,scam,False,False,False Negative
+Bitpaid (BTP),153,scam,True,True,Correct
+ANT (ANT),154,scam,False,False,False Negative
+OrbitSwap (ORBIT),155,scam,False,False,False Negative
+Bitcoin BSC (BTCBSC),156,scam,True,True,Correct
+CryptogerClub (CToger),157,scam,True,True,Correct
+LGT (LGT),158,scam,True,True,Correct
+Skate Metaverse Coin (SMC),159,scam,False,False,False Negative
+iwr (IWR),160,scam,False,False,False Negative
+Aki Inu (Aki),161,scam,False,False,False Negative
+Loop X Network (LOOP),162,scam,False,False,False Negative
+Minter (MINT),163,scam,True,True,Correct
+SpaceID (ID),164,scam,False,False,False Negative
+APPLE (APPLE),165,scam,True,True,Correct
+DOXED (DOX),166,scam,False,False,False Negative
+RETAWATCH (RTW),167,scam,False,False,False Negative
+SPACE CAT (SCAT),168,scam,False,False,False Negative
+DreamComeTrue (DCT),169,scam,True,True,Correct
+VERIFY (VRFY),170,scam,False,False,False Negative
+Zap Finance (ZAP),171,scam,False,False,False Negative
+Peace doge X (Peace doge X),172,scam,True,True,Correct
+Neoteric (NTRC),173,scam,False,False,False Negative
+ROBOT SHIB (RSHIB),174,scam,False,False,False Negative
+DUSD (DUSD),175,scam,True,True,Correct
+GMT (GMT),176,scam,False,False,False Negative
+Golden Token(GOLD),177,scam,True,True,Correct
+PenginFinance Token (PENGIN),178,scam,True,True,Correct
+TrollFace Defi (TROLL),179,scam,True,True,Correct
+Stonks Token ($STONKS),180,scam,False,False,False Negative
+AntiSocial Token (ANTI),181,scam,True,True,Correct
+Dragonfly (DRAGONFLY),182,scam,False,False,False Negative
+FormationFi (FFI),183,scam,True,True,Correct
+Bunny Token (BUNNY),184,scam,True,True,Correct
+BOGDANOFF (BOGDANOFF),185,scam,True,True,Correct
+Starlink Token (Starlink),186,scam,True,True,Correct
+DiamondHands (DiamondHands),187,scam,True,True,Correct
+GABECOIN (GABECOIN),188,scam,True,True,Correct
+Gitcoin (GTC),189,scam,True,True,Correct
+Hypernova (HNOVA),190,scam,True,True,Correct
+PiggyBank,191,scam,True,True,Correct
+ASG Token (ASG),192,scam,True,True,Correct
+TravelCake (TVL),193,scam,True,True,Correct
+Moonwalk (MOONWALK),194,scam,True,True,Correct
+Nabox (Nabox),195,scam,True,True,Correct
+Little Mouse (MOUSE),196,scam,True,True,Correct
+Karura (KAR),197,scam,True,True,Correct
+Virus (VIRUS),198,scam,True,True,Correct
+xDEF Finance (xDEF2),199,scam,True,True,Correct
+Dolphin Token (DOLPHIN),200,scam,True,True,Correct
+FreewayToken (FWT),201,scam,False,False,False Negative
+OrdiZK (OZK),202,scam,False,False,False Negative
+Safereum (SAFEREUM),203,scam,True,True,Correct
+Chedda Token (CHEDDA),204,scam,True,True,Correct
+LINEA copycat token,205,scam,True,True,Correct
+Megabot,206,scam,True,True,Correct
+Humanized_AI(HMT),207,scam,False,False,False Negative
+WSB Coin (WSB),208,scam,True,True,Correct
+Boost Coin (Boost),209,scam,True,True,Correct
+TWEETY (TWEETY),210,scam,False,False,False Negative
+Friend Tech (FT),211,scam,True,True,Correct
+EigenLayer (EigenLayer),212,scam,False,False,False Negative
+Polyhedra Network (ZK),213,scam,True,True,Correct
+XSTABLE.PROTOCOL (XST),214,scam,False,False,False Negative
+Smurfs (SMURFS),215,scam,False,False,False Negative
+ether.fi (ETHFI),216,scam,False,False,False Negative
+Worldcoin (WLD),217,scam,True,True,Correct
+ROBIN HOOD (HOOD),218,scam,False,False,False Negative
+Tommy VICE CITY (TOM),219,scam,False,False,False Negative
+Hu Tao Spirit Soother (HUTAO),220,scam,False,False,False Negative
+Scroll Network (Scroll),221,scam,True,True,Correct
+Plankton (PLANK),222,scam,False,False,False Negative
+Gandalf The Grey (GAN),223,scam,False,False,False Negative
+PEPEHUB (PEHUB),224,scam,True,True,Correct
+Hachiko token,225,scam,False,False,False Negative
+Lifeform (LFT),226,scam,False,False,False Negative
+G.O.A.T Token (G.O.A.T),227,scam,True,True,Correct
+Gladiator  (GLA),228,scam,False,False,False Negative
+Ore (ORE),229,scam,False,False,False Negative
+Popeye the Sailor (POPEYE),230,scam,False,False,False Negative
+DubaiCEO (DubaiCEO),231,scam,True,True,Correct
+Reflex Staking Bot (REFLEX),232,scam,False,False,False Negative
+STILTON MUSK (STILTON),233,scam,True,True,Correct
+Elongate Deluxe (ELongD),234,scam,False,False,False Negative
+Empower AI (EMPAI),235,scam,False,False,False Negative
+Agent Smith (SMITH),236,scam,False,False,False Negative
+Abattoir of Zir (DIABLO),237,scam,True,True,Correct
+PAULY (PAULY &#128056; &#129002;),238,scam,True,True,Correct
+Celestia (TIA),239,scam,True,True,Correct
+stoicDAO (ZETA),240,scam,False,False,False Negative
+Bare Bear (BEAR),241,scam,False,False,False Negative
+Memecoin (MEME),242,scam,True,True,Correct
+Toothless - How to train meme (TOOTH),243,scam,False,False,False Negative
+Mike Wazowski Monsters Inc (MIKE),244,scam,False,False,False Negative
+MAJIN BUU (BUU),245,scam,False,False,False Negative
+Jigsaw saw you (SAW),246,scam,False,False,False Negative
+ROACH RACE (ROACH),247,scam,False,False,False Negative
+LK-99 Protocol (LK99),248,scam,True,True,Correct
+GGBOND (GGBOND),249,scam,True,True,Correct
+AI C-3PO (C3PO),250,scam,False,False,False Negative
+Jar Jar Binks (JAR),251,scam,False,False,False Negative
+Kizuna AI (KIZUNA),252,scam,False,False,False Negative
+Kaonashi the Faceless (NOFACE),253,scam,False,False,False Negative
+MYX Finance (QMYX),254,scam,True,True,Correct
+Snake Eyes (SNAKE),255,scam,True,True,Correct
+SHIA (SHIA),256,scam,False,False,False Negative
+YODA coin (YODA),257,scam,False,False,False Negative
+Dark Matter (DARKM),258,scam,False,False,False Negative
+Fuck The Merge (FUCKMERGE),259,scam,True,True,Correct
+BoringNakas (BNAKA),260,scam,False,False,False Negative
+KUKUCoin (KUKU),261,scam,False,False,False Negative
+POOPEPE (POPE),262,scam,True,True,Correct
+GN (GN),263,scam,False,False,False Negative
+ok.lets.go. (OKLG),264,scam,False,False,False Negative
+APE (APE),265,scam,False,False,False Negative
+Towelie (TOWELIE),266,scam,True,True,Correct
+Derpman (DMAN),267,scam,True,True,Correct
+TITANX (TITANX),268,scam,True,True,Correct
+MEMEPAD (MEMEPAD),269,scam,True,True,Correct
+Power of ZUCK (ZUCK),270,scam,True,True,Correct
+Coin Merge (CMERGE),271,scam,True,True,Correct
+Julia (JULIA),272,scam,True,True,Correct
+NOVAMIND_ (NMD),273,scam,True,True,Correct
+Dogecoin 3.0 (DOGE3.0),274,scam,False,False,False Negative
+BabyShia (BABYSHIA),275,scam,False,False,False Negative
+Deez Nuts (DEEZ),276,scam,False,False,False Negative
+Jewels (JWL),277,scam,True,True,Correct
+Kosta Finance (KOSTA),278,scam,False,False,False Negative
+Beamsplittr (BSPLT),279,scam,True,True,Correct
+RIFT Token (RIFT),280,scam,False,False,False Negative
+Pike Finance (PIKE),281,scam,True,True,Correct
+Symbiogenesis (SYSIS),282,scam,True,True,Correct
+EspressoBot (ESPS),283,scam,False,False,False Negative
+One For The Books (BOOKS),284,scam,True,True,Correct
+COIN (COIN),285,scam,False,False,False Negative
+MotherOfAllMemes (MOAM),286,scam,False,False,False Negative
+Friendchips.tech (FRIENDCHIPS),287,scam,True,True,Correct
+RAIDEN GOD Thunder (RAIDEN),288,scam,False,False,False Negative
+Lets Go Farming Token (LGF),289,scam,False,False,False Negative
+SAUDI (SAUDI),290,scam,False,False,False Negative
+Hype.Bet (Hype.Bet),291,scam,True,True,Correct
+void.cash (VCASH),292,scam,True,True,Correct
+fren (FREN),293,scam,True,True,Correct
+Kickboxer Tate (KBTate),294,scam,False,False,False Negative
+MTI FINANCE (MTI),295,scam,True,True,Correct
+Yzer Token (YZER),296,scam,True,True,Correct
+Mojo Jojo (MOJO),297,scam,True,True,Correct
+loveloverocket twitter (LoveRCKT),298,scam,True,True,Correct
+GAME SWAP (GAME),299,scam,True,True,Correct
+DOGETAMA (DOGETAMA),300,scam,False,False,False Negative
+SpaceX (SpaceX),301,scam,True,True,Correct
+Cool Cats (COOL20),302,scam,False,False,False Negative
+CatDog (CTDG),303,scam,True,True,Correct
+foxi.finance (FOXI),304,scam,True,True,Correct
+Raichu Thunderstone (RAI),305,scam,True,True,Correct
+TWERK (TWERK),306,scam,False,False,False Negative
+hypechill.fund (CHILL),307,scam,True,True,Correct
+RFbtc (RFbtc),308,scam,False,False,False Negative
+D4ppdao Token (D4PP),309,scam,False,False,False Negative
+Sav3r.Finance (SAV3R),310,scam,True,True,Correct
+Onigiri Neko (ONIGI),311,scam,True,True,Correct
+FOCUS (FCS),312,scam,False,False,False Negative
+MANTLE (MANTLE),313,scam,False,False,False Negative
+reflation (RLF),314,scam,False,False,False Negative
+SLOTH INU (SLOTH INU),315,scam,False,False,False Negative
+K.O.N.G Token (KONG),316,scam,False,False,False Negative
+ELLA (ELLA),317,scam,True,True,Correct
+PUMP (PUMP),318,scam,False,False,False Negative
+GROOT.FINANCE (GRT),319,scam,True,True,Correct
+Contribute.Protocol (CTB),320,scam,False,False,False Negative
+reflect3.finance (RFIII),321,scam,False,False,False Negative
+Vegetables Finance (VEGE),322,scam,True,True,Correct
+ba5ic.finance (BASIC),323,scam,True,True,Correct
+Amazing Spider Man (SPIDER),324,scam,False,False,False Negative
+Demeter (DMT),325,scam,True,True,Correct
+BACON (BACON),326,scam,True,True,Correct
+Bezop (Bez),327,scam,False,False,False Negative
+Centra (CTR),328,scam,False,False,False Negative
+Bitcoiin (B2G),329,scam,True,True,Correct
+Sunder Protocol (SUNDER),330,scam,True,True,Correct
+Space Inu (SPACEINU),331,scam,True,True,Correct
+DogeFinance (DOFI),332,scam,True,True,Correct
+Pizza Coin (PC),333,scam,True,True,Correct
+Matcha (MATCHA),334,scam,True,True,Correct
+BOB Token (BOB),335,scam,True,True,Correct
+bitqy (BQ),336,scam,True,True,Correct
+ShipChain SHIP (SHIP),337,scam,True,True,Correct
+Titanium BAR (TBAR),338,scam,True,True,Correct
+Shivers (SHVR),339,scam,False,False,False Negative
+Eristica TOKEN (ERT),340,scam,True,True,Correct
+Veritaseum (VERI),341,scam,True,True,Correct
+Kore (KORE),342,scam,False,False,False Negative
+Gladius (GLA),343,scam,True,True,Correct
+Sether (SETH),344,scam,True,True,Correct
+uglyinu.io (UGLY),345,scam,True,True,Correct
+Stratos Network (STOS),346,scam,True,True,Correct
+Anonymus Inu (ANU),347,scam,True,True,Correct
+Goose Inu ($DGOSE),348,scam,True,True,Correct
+Bitboy Inu (BITBOYINU),349,scam,True,True,Correct
+Volcano Money (VOL),350,scam,True,True,Correct
+Jejudoge V2 (JEJUDOGEv2&#128021;),351,scam,True,True,Correct
+NewShiba(NIBA),352,scam,True,True,Correct
+Supreme Inu (SUPRINU),353,scam,False,False,False Negative
+PugDog Inu (PUGDOG),354,scam,False,False,False Negative
+Fisa Inu (FISA),355,scam,False,False,False Negative
+EthereumCate (ECATE),356,scam,True,True,Correct
+Ethelon Finance (ETHELON),357,scam,False,False,False Negative
+DragonBite (BITE),358,scam,True,True,Correct
+Green Swap (GRNS),359,scam,True,True,Correct
+EthereumSpacex (ElonVitalik),360,scam,True,True,Correct
+PRG (PRG),361,scam,False,False,False Negative
+Shopin Token (SHOP),362,scam,True,True,Correct
+Xfinance (XFI),363,scam,False,False,False Negative
+Dropil (DROP),364,scam,False,False,False Negative
+Truample (TMPL),365,scam,True,True,Correct
+AirToken (AIR),366,scam,False,False,False Negative
+yfi.mobi (YFIM),367,scam,True,True,Correct
+Zombie Shiba(ZHIBA),368,scam,True,True,Correct
+HoDooi (HOD),369,scam,True,True,Correct
+Goblin Town (GOBLIN),370,scam,True,True,Correct
+Fuck Thanos ($FTHANOS),371,scam,True,True,Correct
+Data Transaction Token (XD),372,scam,True,True,Correct
+Tierion Network Token (TNT),373,scam,True,True,Correct
+Uranus Token (URANUS),374,scam,True,True,Correct
+Wealthfront (WF),375,scam,True,True,Correct
+ANT1GOON (GOON),376,scam,True,True,Correct
+exbase.finance (EXBASE),377,scam,True,True,Correct
+xDEF Finance (xDEF2),378,scam,True,True,Correct
+Dolphin Token (DOLPHIN),379,scam,True,True,Correct
+Kanva (KNV),380,scam,True,True,Correct
+GALIL (GALIL),381,scam,False,False,False Negative
+Exorthous Finance (EXT),382,scam,True,True,Correct
+xKingdom.tech Token (XKING),383,scam,True,True,Correct
+PI (PI),384,scam,True,True,Correct
+Bonk Inu (BONK),385,scam,False,False,False Negative
+YAYO Coin (YAYO),386,scam,True,True,Correct
+Goldbank (GB),387,scam,False,False,False Negative
+ArbShibAI (AISHIB),388,scam,False,False,False Negative
+FIO Protocol (FIO),389,scam,False,False,False Negative
+Mystery (MST),390,scam,True,True,Correct
+FlokiFarmToken (FLK),391,scam,True,True,Correct
+LionKingToken (LKS),392,scam,True,True,Correct
+PolyRainbowToken (RNBW),393,scam,True,True,Correct
+MagicToken (MAGIC),394,scam,True,True,Correct
+PolyHomerToken (HOMER),395,scam,True,True,Correct
+PlugToken (PLUG),396,scam,False,False,False Negative
+GullFinance Token (GULL),397,scam,False,False,False Negative
+Cheetah Token (CHEETAH),398,scam,True,True,Correct
+TreeToken (TREE),399,scam,False,False,False Negative
+Sigma (SIGMA),400,scam,False,False,False Negative
+Rapture (RT),401,scam,True,True,Correct
+Egg (Egg),402,scam,False,False,False Negative
+PolySnow (POLYSNOW),403,scam,True,True,Correct
+RivusDAO (RIVUS),404,scam,False,False,False Negative
+Magnet Finance (MGT),405,scam,True,True,Correct
+Atlantis (ATL),406,scam,False,False,False Negative
+Swaprum Token (SAPR),407,scam,False,False,False Negative
+Merlin Token (MERL),408,scam,True,True,Correct
+ArbiSwap (ArbiSwap),409,scam,False,False,False Negative
+SuperRare (RARE),410,scam,False,False,False Negative
+Blur Finance (BLR),411,scam,True,True,Correct
+Dragoma (DMA),412,scam,False,False,False Negative
+ARBIX (ARBX),413,scam,True,True,Correct
+AnubisDAO 2.0 (ANUBISDAO2.0),414,scam,False,False,False Negative
+Jay Pegs Auto Mart (JPAM),415,scam,True,True,Correct
+Stable Magnet Token (SMAG),416,scam,False,False,False Negative
+PAID Network (PAID),417,scam,False,False,False Negative
+Mad Meerkat Finance,418,scam,False,False,False Negative
+AQUA (AQUA),419,scam,True,True,Correct
+BaseBros (BROS),420,scam,True,True,Correct
+OPM (Opium Bird),421,scam,False,False,False Negative
+Ghetto Pepe (HOOD),422,scam,True,True,Correct
+Catana Inu ($CATI),423,scam,True,True,Correct
+GRIMACE (GRIMACE),424,scam,False,False,False Negative
+MBAPPE COIN (MBAPPE),425,scam,False,False,False Negative
+Base Dawgz (DAWGZ),426,scam,False,False,False Negative
+KaraStar UMY (UMY),427,scam,True,True,Correct
+ZKasino (ZKAS),428,scam,False,False,False Negative
+AVO (AVO),429,scam,True,True,Correct
+HUMANS (HEART),430,scam,False,False,False Negative
+Pancake LPs (Cake-LP),431,scam,False,False,False Negative
+ClosedAI (CLOSEDAI),432,scam,True,True,Correct
+ERROR 404 (ERR),433,scam,False,False,False Negative
+Libra Protocol,434,scam,True,True,Correct
+stoicDAO (ZETA),435,scam,False,False,False Negative
+CKD TOKEN (CKD),436,scam,True,True,Correct
+BabyFlokiDoge (BABYFD),437,scam,False,False,False Negative
+Lucky Star Currency,438,scam,True,True,Correct
+Justus Token (JTT),439,scam,True,True,Correct
+Bald (BALD),440,scam,True,True,Correct
+DeFiLABS (DLABS),441,scam,False,False,False Negative
+Spooky Pepe (PEPESP),442,scam,True,True,Correct
+MuratiAI (MURATIAI),443,scam,True,True,Correct
+SatoshiSwap (SWAP),444,scam,True,True,Correct
+Hakuna Share (MTT),445,scam,False,False,False Negative
+Freddy Coin (FREDDY),446,scam,False,False,False Negative
+XIRTAM (XIRTAM),447,scam,True,True,Correct
+Ordinals Finance (OFI),448,scam,True,True,Correct
+Kokomo Finance (KOKO),449,scam,True,True,Correct
+FARM Reward Token (FARM),450,scam,True,True,Correct
+fRiENDSiES (fRiENDSiES),451,scam,False,False,False Negative
+Nostra (NSTR),452,scam,True,True,Correct
+Dogland (DOG),453,scam,True,True,Correct
+FoodFarmer.Finance (FFF),454,scam,False,False,False Negative
+Snowflake Token (SFE),455,scam,False,False,False Negative
+RangersProtocolGas (RPG),456,scam,True,True,Correct
+FTE (FTE),457,scam,False,False,False Negative
+The Micro Elements (TME),458,scam,True,True,Correct
+SEX DAO (SED),459,scam,True,True,Correct
+Pokemon (Pokemon),460,scam,False,False,False Negative
+axon James Musk 2.0 (Saxon James Musk 2.0),461,scam,True,True,Correct
+DRAC Network (DRAC),462,scam,False,False,False Negative
+LV PLUS (LVP),463,scam,True,True,Correct
+StarMon (SMON),464,scam,True,True,Correct
+Animoon (ANIMOON),465,scam,False,False,False Negative
+Armadillo Token ($ARMADILLO),466,scam,False,False,False Negative
+DecentraWorld ($DEWO),467,scam,False,False,False Negative
+FuryOfTheFur (FOTF),468,scam,False,False,False Negative
+Day Of Defeat (DOD),469,scam,False,False,False Negative
+BNBDeFi ($DEFI),470,scam,True,True,Correct
+PLD (PLD),471,scam,False,False,False Negative
+Baby Musk (BabyMusk),472,scam,True,True,Correct
+WeGro (WEGRO),473,scam,True,True,Correct
+Mercenary Gold (MGOLD),474,scam,True,True,Correct
+Infinity Token (IT),475,scam,False,False,False Negative
+KingFund (KING),476,scam,False,False,False Negative
+MetaSwap (MSC),477,scam,False,False,False Negative
+Bent Token (BENT),478,scam,True,True,Correct
+EvolvedApes (EVA),479,scam,False,False,False Negative
+URANIUM FINANCIAL (URF),480,scam,False,False,False Negative
+PEPECoinDAO (PEPEDAO),481,scam,True,True,Correct
+Lymex (LYM),482,scam,True,True,Correct
+BNB Hack Inu (BNBHACK),483,scam,True,True,Correct
+Open Campus (EDU),484,scam,True,True,Correct
+COPENHEIMER (COPE),485,scam,True,True,Correct
+InsurChain Coin (INSUR),486,scam,False,False,False Negative
+Pinakion (PNK),487,scam,True,True,Correct
+Airpod token (APOD),488,scam,True,True,Correct
+Robotina token (ROX),489,scam,True,True,Correct
+StatusNetwork (SNT),490,scam,False,False,False Negative
+DaTa eXchange Token (DTX),491,scam,True,True,Correct
+RankingBall Gold (RBG),492,scam,False,False,False Negative
+DRAGON (DRG),493,scam,True,True,Correct
+FuzeX (FXT),494,scam,False,False,False Negative
+Color Coin (CLR),495,scam,False,False,False Negative
+SwarmCity (SWT),496,scam,False,False,False Negative
+YOYOW (YOYOW),497,scam,False,False,False Negative
+UniCoin (UNI),498,scam,True,True,Correct
+Cindicator (CND),499,scam,False,False,False Negative
+B2BCoin (BBC),500,scam,True,True,Correct
+Fuel Token (FUEL),501,scam,False,False,False Negative
+Dank Token (DANK),502,scam,False,False,False Negative
+Wisdom Protocol (WIS),503,scam,False,False,False Negative
+CAW 2.0 (A RUGGERS DREAM),504,scam,False,False,False Negative
+X PROTOCOL (XP),505,scam,True,True,Correct
+Grinch INU (GINU),506,scam,True,True,Correct
+HAPPYBEAR (HAPPY),507,scam,False,False,False Negative
+Rabbit2023 (RABBIT),508,scam,False,False,False Negative
+Raijin (RAIJIN),509,scam,True,True,Correct
+Ultima (Ult),510,scam,True,True,Correct
+Satoshi Vision (SVI),511,scam,False,False,False Negative
+Messi (MESSI),512,scam,True,True,Correct
+Spirit Away (HAKU),513,scam,True,True,Correct
+CRISTIANO RONALDO ($CR7),514,scam,True,True,Correct
+Cancer Inu (CANCER),515,scam,True,True,Correct
+Tom ($TOM),516,scam,True,True,Correct
+Islam Makhachev Inu (ISLAM),517,scam,True,True,Correct
+NITRO (NOX),518,scam,True,True,Correct
+teh ppl (CROWS),519,scam,True,True,Correct
+Shibabydoge (SBD),520,scam,True,True,Correct
+sparta (SPARTA),521,scam,True,True,Correct
+CuzIGotHIGH (HIGH),522,scam,True,True,Correct
+Musky Swap (MUSKSWAP),523,scam,True,True,Correct
+Just a Token (OneToken),524,scam,True,True,Correct
+Baby Ape (BABYAPE),525,scam,True,True,Correct
+BabyTrump (BabyTrump),526,scam,True,True,Correct
+TEST (TEST),527,scam,True,True,Correct
+Music Protocol (Music),528,scam,True,True,Correct
+Doge Wars (DW),529,scam,True,True,Correct
+Domo (DOMO),530,scam,True,True,Correct
+Follow the she Goat (Chimera),531,scam,True,True,Correct
+Jerome Powell Inu (JPI),532,scam,True,True,Correct
+Mizuchi (MIZU),533,scam,True,True,Correct
+ToTheMoon(ARTEMIS),534,scam,True,True,Correct
+Milo Inu (MILO),535,scam,True,True,Correct
+XDAO (XDAO),536,scam,False,False,False Negative
+STAKEDAO (STAKEDAO),537,scam,False,False,False Negative
+ShibEreum (SHIBEREUM),538,scam,False,False,False Negative
+SAFE MARS (SMARS),539,scam,False,False,False Negative
+Lovely Inu Finance (LOVELY),540,scam,False,False,False Negative
+Mighty Mouse (MIGHTY),541,scam,False,False,False Negative
+BITCRAFT ONLINE,542,scam,False,False,False Negative
+SAFE MARS (SMARS),543,scam,False,False,False Negative
+L7 DEX (LSD7),544,scam,False,False,False Negative
+Big Time (BIGTIME),545,scam,False,False,False Negative
+ShowHand (HAND),546,scam,True,True,Correct
+LGO (LGO),547,scam,False,False,False Negative
+Playkey (PKT),548,scam,True,True,Correct
+EcoRealEstate (ECOREAL),549,scam,True,True,Correct
+SunContract (SNC),550,scam,True,True,Correct
+Bitsubishi (BITSU),551,scam,True,True,Correct
+MetaversePay (MVP),552,scam,False,False,False Negative
+RoyalPay (ROYAL),553,scam,False,False,False Negative
+Dwagon ($Dwagon),554,scam,False,False,False Negative
+HashCoin (HSC),555,scam,True,True,Correct
+Xystus (xys),556,scam,True,True,Correct
+MINDOL (MIN),557,scam,True,True,Correct
+CalorieCoin (CAL),558,scam,False,False,False Negative
+OnlyChain(Only),559,scam,True,True,Correct
+FXPay (FXP),560,scam,True,True,Correct
+PayX Token (PAX),561,scam,True,True,Correct
+MATT (MATT),562,scam,True,True,Correct
+V-ID Token (VIDT),563,scam,False,False,False Negative
+qiibeeToken (QBX),564,scam,False,False,False Negative
+Proton Token (PTT),565,scam,True,True,Correct
+Jobchain (JOB),566,scam,True,True,Correct
+POPCHAIN CASH TOKEN (PCHT),567,scam,True,True,Correct
+Insureum Token (ISR),568,scam,False,False,False Negative
+Webflix Token (WFX),569,scam,False,False,False Negative
+RealTract (RET),570,scam,True,True,Correct
+BezantToken (BZNT),571,scam,True,True,Correct
+blocktrade (BTT),572,scam,True,True,Correct
+Internet Cashowbiz (ICBB),573,scam,True,True,Correct
+ECOSCU (ECOSCU),574,scam,True,True,Correct
+YGGDRASH (YEED),575,scam,True,True,Correct
+ATMChain (ATM),576,scam,True,True,Correct
+Bethereum (BETHER),577,scam,True,True,Correct
+KFC Token(KFC),578,scam,True,True,Correct
+SmartMesh Token (SMT),579,scam,False,False,False Negative
+pahoo (pahoo),580,scam,True,True,Correct
+AirSwap (AST),581,scam,True,True,Correct
+Contentos (COS),582,scam,False,False,False Negative
+HuobiPoolToken (HPT),583,scam,True,True,Correct
+BFX (BFX),584,scam,True,True,Correct
+W12 Token (W12),585,scam,False,False,False Negative
+OneRoot Network (RNT),586,scam,True,True,Correct
+AIRSHIB (AIRSHIB),587,scam,True,True,Correct
+Dinosaur (Dinosaur),588,scam,True,True,Correct
+TOKAU (TOKAU),589,scam,True,True,Correct
+CargoX (CXO),590,scam,True,True,Correct
+Space Doge(SpaceDoge),591,scam,True,True,Correct
+AIREthereumMax INU (AIReMax),592,scam,True,True,Correct
+EthereumMaX (eMax),593,scam,True,True,Correct
+FoxSayfinance (FSY),594,scam,True,True,Correct
+TopONE (TopONE) ,595,scam,True,True,Correct
+Taobao Token (TAOB),596,scam,True,True,Correct
+DAOSWAP (DAOSWAP),597,scam,True,True,Correct
+Ultiverse (ULTI),598,scam,True,True,Correct
+C2C (C2C),599,scam,True,True,Correct
+ALTAVA Group (ALTAVA),600,scam,True,True,Correct
+Wrapped BTC (WBTC),601,normal,True,False,False Positive
+Render Token (RNDR),602,normal,False,True,Correct
+Ampleforth Governance (FORTH),603,normal,False,True,Correct
+Ethereum Name Service (ENS),604,normal,True,False,False Positive
+FC Santos Fan Token (SANTOS),605,normal,False,True,Correct
+FC Lazio Fan Token (LAZIO),606,normal,False,True,Correct
+ALPINE Fan Token (ALPINE),607,normal,False,True,Correct
+Baby Doge Coin (BabyDoge),608,normal,False,True,Correct
+FLOKI (FLOKI),609,normal,True,False,False Positive
+GM (GM),610,normal,False,True,Correct
+Lido Staked Ether (STETH),611,normal,False,True,Correct
+ChainLink Token (LINK),612,normal,False,True,Correct
+Compound (COMP),613,normal,False,True,Correct
+Lido DAO Token (LDO),614,normal,True,False,False Positive
+Aave Token (AAVE),615,normal,False,True,Correct
+Binance-Peg Cardano Token (ADA),616,normal,True,False,False Positive
+1INCH Token (1INCH),617,normal,True,False,False Positive
+Synthetix Network Token (SNX),618,normal,False,True,Correct
+Ocean Token (OCEAN),619,normal,True,False,False Positive
+Fetch (FET),620,normal,False,True,Correct
+Binance-Peg Tezos Token (XTZ),621,normal,True,False,False Positive
+AdEx Network (ADX),622,normal,True,False,False Positive
+Binance-Peg Maker (MKR),623,normal,False,True,Correct
+dForce (DF),624,normal,True,False,False Positive
+Coin98 (C98),625,normal,True,False,False Positive
+Cronos Coin (CRO),626,normal,True,False,False Positive
+Euler (EUL),627,normal,False,True,Correct
+Spool DAO Token (SPOOL),628,normal,True,False,False Positive
+LooksRare Token (LOOKS),629,normal,True,False,False Positive
+Rocket Pool (RPL),630,normal,False,True,Correct
+TrueUSD (TUSD),631,normal,False,True,Correct
+Chess (CHESS),632,normal,False,True,Correct
+Gearbox (GEAR),633,normal,False,True,Correct
+Tether USD (USDT),634,normal,True,False,False Positive
+Aura (AURA),635,normal,True,False,False Positive
+Ampleforth (AMPL),636,normal,False,True,Correct
+AlpacaToken (ALPACA),637,normal,False,True,Correct
+DODO bird (DODO),638,normal,True,False,False Positive
+Fodl (FODL),639,normal,False,True,Correct
+Kishu Inu (KISHU),640,normal,False,True,Correct
+Props Token (PROPS),641,normal,False,True,Correct
+Million (MM),642,normal,False,True,Correct
+Franklin (FLy),643,normal,False,True,Correct
+BASv2 (BASv2),644,normal,True,False,False Positive
+DLP Duck Token (DUCK),645,normal,True,False,False Positive
+Empty Set Dollar (ESD),646,normal,False,True,Correct
+CACHE Gold (CGT),647,normal,False,True,Correct
+Fasttoken (FTN),648,normal,False,True,Correct
+Compound Wrapped BTC (cWBTC),649,normal,False,True,Correct
+THE TRUTH (UFO),650,normal,True,False,False Positive
+GateChainToken (GT),651,normal,True,False,False Positive
+HuobiToken (HT),652,normal,False,True,Correct
+Origin Dollar (OUSD),653,normal,False,True,Correct
+Origin Ether (OETH),654,normal,False,True,Correct
+EURA (previously agEUR) (EURA),655,normal,False,True,Correct
+GoBlank Token (BLANK),656,normal,True,False,False Positive
+Leo Token (LEO),657,normal,True,False,False Positive
+Power Index Pool Token (PIPT),658,normal,False,True,Correct
+EverValueCoin (EVA),659,normal,False,True,Correct
+DeGate Token (DG),660,normal,False,True,Correct
+Idle (IDLE),661,normal,False,True,Correct
+Magpie Token (MGP),662,normal,True,False,False Positive
+FARM Reward Token (FARM),663,normal,True,False,False Positive
+Props Token (PROPS),664,normal,False,True,Correct
+Pax Dollar (USDP),665,normal,False,True,Correct
+DogeBonk.com (DOBO),666,normal,True,False,False Positive
+Lympo Market Token (LMT),667,normal,True,False,False Positive
+RAE Token (RAE),668,normal,True,False,False Positive
+Zest Token (ZST),669,normal,False,True,Correct
+VesperToken (VSP),670,normal,False,True,Correct
+Wrapped Monero (WXMR),671,normal,False,True,Correct
+Saddle.Finance (SADDLE),672,normal,True,False,False Positive
+Auric Network (AUSCM),673,normal,False,True,Correct
+Wault (WAULTx),674,normal,False,True,Correct
+Rupiah Token (IDRT),675,normal,False,True,Correct
+Impermax (IMX),676,normal,False,True,Correct
+Digital Reserve Currency (DRC),677,normal,False,True,Correct
+Bunny Token (BUNNY),678,normal,True,False,False Positive
+xToken (XTK),679,normal,False,True,Correct
+Deri (DERI),680,normal,True,False,False Positive
+"
+Bancor (BNT)",681,normal,True,False,False Positive
+Dexe (DEXE),682,normal,False,True,Correct
+BitberryToken (BBR),683,normal,True,False,False Positive
+Fei USD (FEI),684,normal,True,False,False Positive
+SafeMoonCash (SAFEMOONCASH),685,normal,False,True,Correct
+SCROOGE (SCROOGE),686,normal,True,False,False Positive
+Cryptocurrency Top 10 Tokens Index (CC10),687,normal,False,True,Correct
+Shiba Predator (QOM),688,normal,True,False,False Positive
+Concentrated Voting Power (CVP),689,normal,False,True,Correct
+Crypto20 (C20),690,normal,False,True,Correct
+Wrapped GLMR (WGLMR),691,normal,True,False,False Positive
+Wrapped MOVR (WMOVR),692,normal,True,False,False Positive
+Binance-Peg PAX Gold (PAXG),693,normal,False,True,Correct
+THORChain ETH.RUNE,694,normal,True,False,False Positive
+BENQI (QI),695,normal,False,True,Correct
+Vesta (VSTA),696,normal,True,False,False Positive
+Monolith (TKN),697,normal,True,False,False Positive
+Akropolis (AKRO),698,normal,False,True,Correct
+OKB (OKB),699,normal,False,True,Correct
+JOJO (JOJO),700,normal,False,True,Correct
+KuCoin Token (KCS),701,normal,False,True,Correct
+Olympus (OHM),702,normal,True,False,False Positive
+Uquid Coin (UQC),703,normal,True,False,False Positive
+IceToken (ICE),704,normal,True,False,False Positive
+HappyCoin (HAPPY),705,normal,False,True,Correct
+dHEDGE Top Index (DTOP),706,normal,False,True,Correct
+Kyber Network Crystal v2 (KNC),707,normal,False,True,Correct
+Fringe (FRIN),708,normal,True,False,False Positive
+Hotbit Token (HTB),709,normal,True,False,False Positive
+USDK (USDK),710,normal,False,True,Correct
+Compound Dai (cDAI),711,normal,False,True,Correct
+Compound Ether (cETH),712,normal,True,False,False Positive
+CelerToken (CELR),713,normal,True,False,False Positive
+Unitus (UTS),714,normal,False,True,Correct
+Compound USD Coin (cUSDC),715,normal,True,False,False Positive
+MoonToken (MOON),716,normal,True,False,False Positive
+Wrapped TON Coin (TONCOIN),717,normal,True,False,False Positive
+SpookyToken (BOO),718,normal,True,False,False Positive
+Republic (REN),719,normal,True,False,False Positive
+FLEX Coin (FLEX),720,normal,True,False,False Positive
+WaultSwap (WEX),721,normal,True,False,False Positive
+CompliFi (COMFI),722,normal,False,True,Correct
+Stader (SD),723,normal,False,True,Correct
+Convergence (CONV),724,normal,False,True,Correct
+Blind Boxes Token (BLES),725,normal,True,False,False Positive
+Audius (AUDIO),726,normal,False,True,Correct
+EarnX (EarnX),727,normal,False,True,Correct
+Capsule Coin (CAPS),728,normal,False,True,Correct
+Dai Stablecoin (DAI),729,normal,True,False,False Positive
+Octo.fi (OCTO),730,normal,False,True,Correct
+Meta (MTA),731,normal,True,False,False Positive
+Bird.Money (BIRD),732,normal,False,True,Correct
+Oms (OMS),733,normal,True,False,False Positive
+Lodestar (LODE),734,normal,True,False,False Positive
+Hunny Token (HUNNY),735,normal,False,True,Correct
+Beta Token (BETA),736,normal,True,False,False Positive
+UniCrypt (UNCX),737,normal,False,True,Correct
+Level Token (LVL),738,normal,False,True,Correct
+Axelar (AXL),739,normal,True,False,False Positive
+Possum (PSM),740,normal,True,False,False Positive
+Finance.Vote Token (FVT),741,normal,False,True,Correct
+DSLA (DSLA),742,normal,False,True,Correct
+Fuse Token (FUSE),743,normal,True,False,False Positive
+UNIC (UNIC),744,normal,False,True,Correct
+Binance-Peg Ethereum Token,745,normal,True,False,False Positive
+Script Network (SCPT),746,normal,True,False,False Positive
+SAND (SAND),747,normal,True,False,False Positive
+Arbitrum (ARB),748,normal,False,True,Correct
+Aptos Coin (APT),749,normal,False,True,Correct
+Binance-Peg XRP Token (XRP),750,normal,True,False,False Positive
+bitsCrunch Token (BCUT),751,normal,False,True,Correct
+Illuvium (ILV),752,normal,False,True,Correct
+Theta Token (THETA),753,normal,True,False,False Positive
+Optimism (OP),754,normal,True,False,False Positive
+HanChain (HAN),755,normal,False,True,Correct
+CyberConnect (CYBER),756,normal,True,False,False Positive
+AITECH (AITECH),757,normal,True,False,False Positive
+Radio Caca V2 (RACA),758,normal,False,True,Correct
+VeChain (VET),759,normal,False,True,Correct
+DexCheck (DCK),760,normal,False,True,Correct
+Wrapped PAW (wPAW),761,normal,False,True,Correct
+LimeWire Token (LMWR),762,normal,True,False,False Positive
+Gelato Network Token (GEL),763,normal,False,True,Correct
+PORTAL (PORTAL),764,normal,False,True,Correct
+Miracleplay Token (MPT),765,normal,False,True,Correct
+GMX(GMX),766,normal,True,False,False Positive
+ZKLink (ZKL),767,normal,False,True,Correct
+GoMining Token (GMT),768,normal,True,False,False Positive
+Cartesi Token (CTSI),769,normal,True,False,False Positive
+SeedifyFund (SFUND),770,normal,False,True,Correct
+Boba Token (BOBA),771,normal,False,True,Correct
+izumi Token (iZi),772,normal,True,False,False Positive
+Openfabric (OFN),773,normal,False,True,Correct
+ChronoTech Token (TIME),774,normal,False,True,Correct
+Geodnet Token (GEOD),775,normal,False,True,Correct
+MLTToken (ML),776,normal,True,False,False Positive
+Masa Token (MASA),777,normal,False,True,Correct
+OPEN GPU (oGPU),778,normal,False,True,Correct
+Rubic (BRBC),779,normal,False,True,Correct
+BOSAGORA (BOA),780,normal,False,True,Correct
+5ire Token (5IRE),781,normal,False,True,Correct
+Mint.club (MINT),782,normal,True,False,False Positive
+Altura (ALU),783,normal,True,False,False Positive
+DODO bird (DODO),784,normal,True,False,False Positive
+SafePal Token (SFP),785,normal,False,True,Correct
+TokenFi (TOKEN),786,normal,True,False,False Positive
+ApeCoin (APE),787,normal,True,False,False Positive
+ORBOFI (OBI),788,normal,True,False,False Positive
+Boson Token (BOSON),789,normal,False,True,Correct
+ARPA Token (ARPA),790,normal,True,False,False Positive
+LayerZero (ZRO),791,normal,True,False,False Positive
+Phala (PHA),792,normal,True,False,False Positive
+Tellor Tributes (TRB),793,normal,False,True,Correct
+Perpetual (PERP),794,normal,True,False,False Positive
+THORChain ETH.RUNE (RUNE),795,normal,True,False,False Positive
+Brickken (BKN),796,normal,False,True,Correct
+chiliZ (CHZ),797,normal,True,False,False Positive
+IoTeX Network (IOTX),798,normal,True,False,False Positive
+CreoEngine (CREO),799,normal,True,False,False Positive
+MARBLEX on BNB (MBX),800,normal,False,True,Correct
+Swipe (SXP),801,normal,True,False,False Positive
+Singularity Dao (SDAO),802,normal,False,True,Correct
+LTO Network Token (LTO),803,normal,True,False,False Positive
+Mysterium (PoS) (MYST),804,normal,False,True,Correct
+LandRocker (LRT),805,normal,True,False,False Positive
+MAGA VP (MVP),806,normal,True,False,False Positive
+Swash Token (SWASH),807,normal,False,True,Correct
+Ethena (ENA),808,normal,False,True,Correct
+Binance-Peg COTI Token (COTI),809,normal,False,True,Correct
+TOPIA (TOPIA),810,normal,True,False,False Positive
+PayPal USD (PYUSD),811,normal,False,True,Correct
+FABWELT (WELT),812,normal,True,False,False Positive
+OpulousToken (OPUL),813,normal,False,True,Correct
+Ondo U.S. Dollar Yield (USDY),814,normal,False,True,Correct
+SIDUS (SIDUS),815,normal,True,False,False Positive
+Injective Token (INJ),816,normal,False,True,Correct
+NFE (NFE),817,normal,False,True,Correct
+Layer3 (L3),818,normal,False,True,Correct
+BSCS Token (BSCS),819,normal,False,True,Correct
+Hot Cross Token (HOTCROSS),820,normal,True,False,False Positive
+Ankr Network (ANKR),821,normal,True,False,False Positive
+Pendle (PENDLE),822,normal,False,True,Correct
+HORD Token (HORD),823,normal,False,True,Correct
+Polytrade (TRADE),824,normal,True,False,False Positive
+Tribal Token (TRIBL),825,normal,False,True,Correct
+Maple Token (MPL),826,normal,False,True,Correct
+Wisdomise (WSDM),827,normal,True,False,False Positive
+EdgeMatrix Computing network (EMC),828,normal,False,True,Correct
+Curve DAO Token (CRV),829,normal,False,True,Correct
+BandToken (BAND),830,normal,True,False,False Positive
+Ambire Wallet (WALLET),831,normal,True,False,False Positive
+Locus Chain (LOCUS),832,normal,False,True,Correct
+METABEAT (BEAT),833,normal,True,False,False Positive
+NETVRK (NTVRK),834,normal,True,False,False Positive
+BetProtocolToken (BEPRO),835,normal,True,False,False Positive
+Artrade Token (ATR),836,normal,False,True,Correct
+beefy.finance (BIFI),837,normal,True,False,False Positive
+Cookie (COOKIE),838,normal,True,False,False Positive
+iMe Lab (LIME),839,normal,False,True,Correct
+MagicCraft (MCRT),840,normal,True,False,False Positive
+Binance-Peg Tezos Token (XTZ),841,normal,True,False,False Positive
+First Digital USD (FDUSD),842,normal,False,True,Correct
+Morpheus.Network (MNW),843,normal,True,False,False Positive
+XinFin XDCE (XDCE),844,normal,False,True,Correct
+Zeta (ZETA),845,normal,True,False,False Positive
+KEEP Token (KEEP),846,normal,False,True,Correct
+Lumerin (LMR),847,normal,False,True,Correct
+Dimitra Token (DMTR),848,normal,False,True,Correct
+Bholdus Token (BHO),849,normal,False,True,Correct
+CREDI [via ChainPort.io] (CREDI),850,normal,True,False,False Positive
+CHEELEE (CHEEL),851,normal,False,True,Correct
+pTokens TLOS (TLOS),852,normal,False,True,Correct
+Forta (FORT),853,normal,False,True,Correct
+SquidGrow (SQGROW),854,normal,False,True,Correct
+VOXEL Token (VOXEL),855,normal,False,True,Correct
+PYR Token (PYR),856,normal,False,True,Correct
+AirSwap (AST),857,normal,True,False,False Positive
+Monsta Infinite Token (MONI),858,normal,True,False,False Positive
+RepubliK (RPK),859,normal,True,False,False Positive
+Request (REQ),860,normal,True,False,False Positive
+NKN (NKN),861,normal,True,False,False Positive
+Victoria VR (VR),862,normal,False,True,Correct
+Adventure Gold (AGLD),863,normal,True,False,False Positive
+PAAL AI ($PAAL),864,normal,False,True,Correct
+Threshold Network Token,865,normal,True,False,False Positive
+Venus (XVS),866,normal,False,True,Correct
+Stader (SD),867,normal,False,True,Correct
+DeFiYieldProtocol (DYP),868,normal,False,True,Correct
+Aurox Token (URUS),869,normal,True,False,False Positive
+Binance-Peg Filecoin (FIL),870,normal,False,True,Correct
+Rai.Finance (SOFI),871,normal,False,True,Correct
+Perion Credits (PERC),872,normal,False,True,Correct
+Oraichain Token (ORAI),873,normal,False,True,Correct
+Marlin POND (POND),874,normal,False,True,Correct
+TRON (TRX),875,normal,True,False,False Positive
+MATH Token (MATH),876,normal,True,False,False Positive
+OpenOcean (OOE),877,normal,True,False,False Positive
+BabySwap Token (BABY),878,normal,True,False,False Positive
+Everdome (DOME),879,normal,True,False,False Positive
+tomi Token (TOMI),880,normal,False,True,Correct
+Playermon (PYM),881,normal,True,False,False Positive
+Granary Token (GRAIN),882,normal,False,True,Correct
+TravaFinance Token (TRAVA),883,normal,True,False,False Positive
+Pepe (PEPE),884,normal,False,True,Correct
+Atlas Navi (NAVI),885,normal,True,False,False Positive
+SKALE (SKL),886,normal,False,True,Correct
+Binance-Peg Zcash Token (ZEC),887,normal,True,False,False Positive
+Lever (LEVER),888,normal,False,True,Correct
+Storj (STORJ),889,normal,False,True,Correct
+DAO Maker (DAO),890,normal,False,True,Correct
+Coinweb (CWEB),891,normal,True,False,False Positive
+Decentraland (MANA),892,normal,True,False,False Positive
+Dai Stablecoin (DAI),893,normal,True,False,False Positive
+Synternet Token (SYNT),894,normal,False,True,Correct
+Zentry (ZENT),895,normal,True,False,False Positive
+Aragon Network Token (ANT),896,normal,True,False,False Positive
+Axie Infinity Shard (AXS),897,normal,False,True,Correct
+Clearpool (CPOOL),898,normal,False,True,Correct
+Lithium (LITH),899,normal,False,True,Correct
+GAMEE (GMEE),900,normal,True,False,False Positive
+Convex Token (CVX),901,normal,True,False,False Positive
+Agoras Token (AGRS),902,normal,True,False,False Positive
+Binance-Peg EOS Token (EOS),903,normal,True,False,False Positive
+Arkham (ARKM),904,normal,False,True,Correct
+Mass Vehicle Ledger Token (MVL),905,normal,True,False,False Positive
+Genopets (GENE),906,normal,True,False,False Positive
+Kromatika (KROM),907,normal,False,True,Correct
+Dogechain Token (DC),908,normal,True,False,False Positive
+Quant (QNT),909,normal,True,False,False Positive
+STASIS EURS Token (EURS),910,normal,True,False,False Positive
+MANTRA DAO (OM),911,normal,True,False,False Positive
+Frax (FRAX),912,normal,False,True,Correct
+Ethereum Name Service (ENS),913,normal,True,False,False Positive
+Wrapped Flow (WFLOW),914,normal,False,True,Correct
+Bridge (BRG),915,normal,True,False,False Positive
+COS (COS),916,normal,True,False,False Positive
+BSC-Peg Thunder Token (TT),917,normal,False,True,Correct
+Pomerium Ecosystem Token (PMG),918,normal,True,False,False Positive
+Lossless Token (LSS),919,normal,True,False,False Positive
+UniCrypt (UNCX),920,normal,False,True,Correct
+hoge.finance (HOGE),921,normal,False,True,Correct
+Autonolas (OLAS),922,normal,True,False,False Positive
+PolkaBridge (PBR),923,normal,False,True,Correct
+XEND (XEND),924,normal,True,False,False Positive
+Chronicle (XNL),925,normal,True,False,False Positive
+Messier (M87),926,normal,True,False,False Positive
+Alvey Chain (wALV),927,normal,True,False,False Positive
+Omni Network (OMNI),928,normal,True,False,False Positive
+Dimo (DIMO),929,normal,False,True,Correct
+TOWER (TOWER),930,normal,True,False,False Positive
+VIDT DAO (VIDT),931,normal,False,True,Correct
+ZigCoin (ZIG),932,normal,False,True,Correct
+Everipedia IQ (IQ),933,normal,True,False,False Positive
+Vita Inu (VINU),934,normal,True,False,False Positive
+The Force Token (FOR),935,normal,False,True,Correct
+Polka City (POLC),936,normal,True,False,False Positive
+Parsiq Token (PRQ),937,normal,True,False,False Positive
+MetFi (MFI),938,normal,True,False,False Positive
+ZEBEC (ZBC),939,normal,False,True,Correct
+NuLink token (NLK),940,normal,True,False,False Positive
+SynFutures (F),941,normal,True,False,False Positive
+E-RADIX (eXRD),942,normal,True,False,False Positive
+AltLayer Token (ALT),943,normal,True,False,False Positive
+Beyond Protocol (BP),944,normal,True,False,False Positive
+Neurashi (NEI),945,normal,True,False,False Positive
+KISSAN (KSN),946,normal,False,True,Correct
+DeHub (DeHub),947,normal,False,True,Correct
+PointPay Token (PXP),948,normal,True,False,False Positive
+TAP Coin (TAP),949,normal,True,False,False Positive
+Thetan Gem (THG),950,normal,False,True,Correct
+Aurora (AURORA),951,normal,False,True,Correct
+MARS4 (MARS4),952,normal,False,True,Correct
+qiibeeToken (QBX),953,normal,False,True,Correct
+Woonkly Power (WOOP),954,normal,False,True,Correct
+Forward ($FORWARD),955,normal,True,False,False Positive
+zkRace (ZERC),956,normal,True,False,False Positive
+mETH (mETH),957,normal,False,True,Correct
+SELF Crypto (SELF),958,normal,True,False,False Positive
+haDAO (MAHA),959,normal,False,True,Correct
+EXVERSE (EXVG),960,normal,True,False,False Positive
+Okratech (ORT),961,normal,True,False,False Positive
+Throne (THN),962,normal,True,False,False Positive
+Polkamarkets (POLK),963,normal,True,False,False Positive
+Onyxcoin (XCN),964,normal,False,True,Correct
+Alvey Chain (wALV),965,normal,True,False,False Positive
+MarsDAO (MDAO),966,normal,False,True,Correct
+Metaverser Token (mtvt),967,normal,True,False,False Positive
+WAX Token (WAX),968,normal,True,False,False Positive
+AiMalls (AIT),969,normal,False,True,Correct
+Playbux (PBUX),970,normal,False,True,Correct
+Umbrella (UMB),971,normal,True,False,False Positive
+Civic (CVC),972,normal,False,True,Correct
+Position Token (POSI),973,normal,False,True,Correct
+Metahero (HERO),974,normal,False,True,Correct
+Keep3rV1 (KP3R),975,normal,False,True,Correct
+GraphLinq (GLQ),976,normal,True,False,False Positive
+World Coin (World Coin),977,normal,False,True,Correct
+XWG (XWG),978,normal,True,False,False Positive
+eesee (ESE),979,normal,False,True,Correct
+Celsius (CEL),980,normal,True,False,False Positive
+FevrToken (FEVR),981,normal,True,False,False Positive
+Alchemy (ACH),982,normal,True,False,False Positive
+WEXO (WEXO),983,normal,False,True,Correct
+Inspect (INSP),984,normal,False,True,Correct
+Ferrum Network Token (FRM),985,normal,False,True,Correct
+Movement (MOVE),986,normal,False,True,Correct
+Energi (NRG),987,normal,False,True,Correct
+Ispolink Token (ISP),988,normal,True,False,False Positive
+BlackCardCoin (BCCoin),989,normal,False,True,Correct
+Wrapped SYS (WSYS),990,normal,True,False,False Positive
+Reef.finance (REEF),991,normal,True,False,False Positive
+Reserve Rights (RSR),992,normal,False,True,Correct
+O3 Swap Token (O3),993,normal,True,False,False Positive
+SOS (SOS),994,normal,True,False,False Positive
+Quickswap (QUICK),995,normal,True,False,False Positive
+Dvision (DVI),996,normal,False,True,Correct
+Metars (MRS),997,normal,False,True,Correct
+PLANET (PLANET),998,normal,True,False,False Positive
+Gnosis (GNO),999,normal,False,True,Correct
+WAM (WAM),1000,normal,False,True,Correct
+Frontier Token (FRONT),1001,normal,False,True,Correct

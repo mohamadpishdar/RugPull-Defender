@@ -1,0 +1,15 @@
+{
+  "title": "PAULY\u00a0(PAULY &#128056; &#129002;)",
+  "chain": "eth",
+  "address": "0xf1f8444b084d8d92f121ec4194ab8eddbc74cdc8",
+  "source_url": "https://etherscan.io/token/0xf1f8444b084d8d92f121ec4194ab8eddbc74cdc8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

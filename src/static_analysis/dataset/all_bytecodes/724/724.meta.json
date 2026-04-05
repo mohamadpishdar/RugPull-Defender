@@ -1,0 +1,15 @@
+{
+  "title": "Convergence\u00a0(CONV)",
+  "chain": "eth",
+  "address": "0xc834fa996fa3bec7aad3693af486ae53d8aa8b50",
+  "source_url": "https://etherscan.io/token/0xc834fa996fa3bec7aad3693af486ae53d8aa8b50",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ef",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

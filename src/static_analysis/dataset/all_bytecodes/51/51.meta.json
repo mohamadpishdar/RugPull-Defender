@@ -1,0 +1,15 @@
+{
+  "title": "Santa Coin",
+  "chain": "bsc",
+  "address": "0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
+  "source_url": "https://bscscan.com/token/0x4F1A6FC6A7B65Dc7ebC4EB692Dc3641bE997c2F2",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1212",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

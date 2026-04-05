@@ -1,0 +1,15 @@
+{
+  "title": "LionKingToken\u00a0(LKS)",
+  "chain": "fantom",
+  "address": "0xbdcfc20eb75d52e6a408aba5e16e8999b18a2653",
+  "source_url": "https://ftmscan.com/token/0xbdcfc20eb75d52e6a408aba5e16e8999b18a2653",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x709b1bf",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

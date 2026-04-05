@@ -1,0 +1,15 @@
+{
+  "title": "Tether USD\u00a0(USDT)",
+  "chain": "eth",
+  "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+  "source_url": "https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

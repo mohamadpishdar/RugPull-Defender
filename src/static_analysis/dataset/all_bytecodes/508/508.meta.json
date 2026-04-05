@@ -1,0 +1,15 @@
+{
+  "title": "Rabbit2023\u00a0(RABBIT)",
+  "chain": "eth",
+  "address": "0xf1a355a72e7e90a0de8b1f28e50079361cb4a620",
+  "source_url": "https://etherscan.io/token/0xf1a355a72e7e90a0de8b1f28e50079361cb4a620",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

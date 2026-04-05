@@ -1,0 +1,15 @@
+{
+  "title": "RAE Token (RAE)",
+  "chain": "eth",
+  "address": "0xe5a3229ccb22b6484594973a03a3851dcd948756",
+  "source_url": "https://etherscan.io/token/0xe5a3229ccb22b6484594973a03a3851dcd948756",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89eb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

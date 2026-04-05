@@ -1,0 +1,15 @@
+{
+  "title": "Script\u00a0(SCPT)",
+  "chain": "bsc",
+  "address": "0xd4ac227eb1a4c0384aae06f7808f08bb8f516ebf",
+  "source_url": "https://bscscan.com/token/0xd4ac227eb1a4c0384aae06f7808f08bb8f516ebf",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1253",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

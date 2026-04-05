@@ -1,0 +1,15 @@
+{
+  "title": "SKALE\u00a0(SKL)",
+  "chain": "eth",
+  "address": "0x00c83aecc790e8a4453e5dd3b0b4b3680501a7a7",
+  "source_url": "https://etherscan.io/token/0x00c83aecc790e8a4453e5dd3b0b4b3680501a7a7",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fa",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

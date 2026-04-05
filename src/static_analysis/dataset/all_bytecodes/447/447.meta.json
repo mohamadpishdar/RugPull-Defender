@@ -1,0 +1,15 @@
+{
+  "title": "XIRTAM\u00a0(XIRTAM)",
+  "chain": "arbi",
+  "address": "0xe73394F6a157A0Fa656Da2b73BbEDA85c38dfDeC",
+  "source_url": "https://arbiscan.io/token/0xe73394F6a157A0Fa656Da2b73BbEDA85c38dfDeC",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe2151",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

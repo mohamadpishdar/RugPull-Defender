@@ -1,0 +1,15 @@
+{
+  "title": "Lovely Inu Finance\u00a0(LOVELY)",
+  "chain": "eth",
+  "address": "0x5773681cbebf0f3fb79fdb139bda12efbc12a7a9",
+  "source_url": "https://etherscan.io/token/0x5773681cbebf0f3fb79fdb139bda12efbc12a7a9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

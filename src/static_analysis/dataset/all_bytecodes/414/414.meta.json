@@ -1,0 +1,15 @@
+{
+  "title": "AnubisDAO 2.0\u00a0(ANUBISDAO2.0)",
+  "chain": "eth",
+  "address": "0xde0ecf83b7c1b149e295091a514240a635653f66",
+  "source_url": "https://etherscan.io/token/0xde0ecf83b7c1b149e295091a514240a635653f66",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

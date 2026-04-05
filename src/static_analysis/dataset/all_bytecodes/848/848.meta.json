@@ -1,0 +1,15 @@
+{
+  "title": "Dimitra Token\u00a0(DMTR)",
+  "chain": "eth",
+  "address": "0x51cb253744189f11241becb29bedd3f1b5384fdb",
+  "source_url": "https://etherscan.io/token/0x51cb253744189f11241becb29bedd3f1b5384fdb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

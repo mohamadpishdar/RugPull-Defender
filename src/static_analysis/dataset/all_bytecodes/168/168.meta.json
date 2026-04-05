@@ -1,0 +1,15 @@
+{
+  "title": "SPACE CAT\u00a0(SCAT)",
+  "chain": "bsc",
+  "address": "0x22a681b2b57050Ab42cb4a426d56A733c6ca859A",
+  "source_url": "https://bscscan.com/token/0x22a681b2b57050Ab42cb4a426d56A733c6ca859A",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12c1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "World Coin\u00a0(World Coin)",
+  "chain": "bsc",
+  "address": "0xecFc421d2320E3769e61FDE488E1FeF439568888",
+  "source_url": "https://bscscan.com/token/0xecFc421d2320E3769e61FDE488E1FeF439568888",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b139a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

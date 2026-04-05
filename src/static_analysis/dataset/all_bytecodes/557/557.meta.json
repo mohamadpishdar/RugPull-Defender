@@ -1,0 +1,15 @@
+{
+  "title": "MINDOL\u00a0(MIN)",
+  "chain": "eth",
+  "address": "0x5d64d850c8368008afb39224e92ad0dceff3cf38",
+  "source_url": "https://etherscan.io/token/0x5d64d850c8368008afb39224e92ad0dceff3cf38",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

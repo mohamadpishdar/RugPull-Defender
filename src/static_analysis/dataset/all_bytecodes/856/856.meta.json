@@ -1,0 +1,15 @@
+{
+  "title": "PYR Token\u00a0(PYR)",
+  "chain": "eth",
+  "address": "0x430ef9263e76dae63c84292c3409d61c598e9682",
+  "source_url": "https://etherscan.io/token/0x430ef9263e76dae63c84292c3409d61c598e9682",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

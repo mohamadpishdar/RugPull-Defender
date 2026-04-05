@@ -1,0 +1,15 @@
+{
+  "title": "USEA Token\u00a0",
+  "chain": "bsc",
+  "address": "0xDF7ff95Aa3D855A6fB21399432166A92FdcF1b1A",
+  "source_url": "https://bscscan.com/token/0xDF7ff95Aa3D855A6fB21399432166A92FdcF1b1A",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11dc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

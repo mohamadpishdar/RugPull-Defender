@@ -1,0 +1,15 @@
+{
+  "title": "ALTAVA Group\u00a0(ALTAVA)",
+  "chain": "eth",
+  "address": "0xc6fbe1a9ad6ce9a9cc939a006e54d7976b3ffe32",
+  "source_url": "https://etherscan.io/token/0xc6fbe1a9ad6ce9a9cc939a006e54d7976b3ffe32",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

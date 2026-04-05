@@ -1,0 +1,15 @@
+{
+  "title": "Victoria VR\u00a0(VR)",
+  "chain": "eth",
+  "address": "0x7d5121505149065b562c789a0145ed750e6e8cdd",
+  "source_url": "https://etherscan.io/token/0x7d5121505149065b562c789a0145ed750e6e8cdd",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

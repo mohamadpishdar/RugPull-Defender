@@ -1,0 +1,15 @@
+{
+  "title": "CommEX\u00a0(CMX)",
+  "chain": "bsc",
+  "address": "0xD1C3ee0f845bCc38a8cB9Dc5337dFd5a372Bb8Ed",
+  "source_url": "https://bscscan.com/token/0xD1C3ee0f845bCc38a8cB9Dc5337dFd5a372Bb8Ed",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1251",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

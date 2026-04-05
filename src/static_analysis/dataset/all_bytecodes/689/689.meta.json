@@ -1,0 +1,15 @@
+{
+  "title": "Concentrated Voting Power\u00a0(CVP)",
+  "chain": "eth",
+  "address": "0x38e4adb44ef08f22f5b5b76a8f0c2d0dcbe7dca1",
+  "source_url": "https://etherscan.io/token/0x38e4adb44ef08f22f5b5b76a8f0c2d0dcbe7dca1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ed",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

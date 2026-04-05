@@ -1,0 +1,15 @@
+{
+  "title": "FLOKI\u00a0(FLOKI)",
+  "chain": "eth",
+  "address": "0xcf0c122c6b73ff809c693db761e7baebe62b6a2e",
+  "source_url": "https://etherscan.io/token/0xcf0c122c6b73ff809c693db761e7baebe62b6a2e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

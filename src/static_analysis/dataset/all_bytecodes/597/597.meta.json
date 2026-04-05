@@ -1,0 +1,15 @@
+{
+  "title": "DAOSWAP\u00a0(DAOSWAP)",
+  "chain": "eth",
+  "address": "0xdb5c9b5a9b8fa9ee9643fe96f88b7f813f895eb0",
+  "source_url": "https://etherscan.io/token/0xdb5c9b5a9b8fa9ee9643fe96f88b7f813f895eb0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

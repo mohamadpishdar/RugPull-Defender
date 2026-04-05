@@ -1,0 +1,15 @@
+{
+  "title": "NFE\u00a0(NFE)",
+  "chain": "bsc",
+  "address": "0xf03Ca04Dd56D695a410f46F14feF4028B22FB79A",
+  "source_url": "https://bscscan.com/token/0xf03Ca04Dd56D695a410f46F14feF4028B22FB79A",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b135f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

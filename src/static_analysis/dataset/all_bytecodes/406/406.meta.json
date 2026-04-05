@@ -1,0 +1,15 @@
+{
+  "title": "Atlantis\u00a0(ATL)",
+  "chain": "bsc",
+  "address": "0x1fd991fb6c3102873ba68a4e6e6a87b3a5c10271",
+  "source_url": "https://bscscan.com/token/0x1fd991fb6c3102873ba68a4e6e6a87b3a5c10271",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "SEX DAO\u00a0(SED)",
+  "chain": "eth",
+  "address": "0xf0b692aCE03fFB689628E68D4919F91723D1c5a2",
+  "source_url": "https://etherscan.io/token/0xf0b692aCE03fFB689628E68D4919F91723D1c5a2",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89da",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

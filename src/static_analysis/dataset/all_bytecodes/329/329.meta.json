@@ -1,0 +1,15 @@
+{
+  "title": "Bitcoiin\u00a0(B2G)",
+  "chain": "eth",
+  "address": "0xbb8a43af111b59c7742f36e9cd245357d04059fd",
+  "source_url": "https://etherscan.io/token/0xbb8a43af111b59c7742f36e9cd245357d04059fd",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

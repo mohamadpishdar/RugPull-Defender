@@ -1,0 +1,15 @@
+{
+  "title": "FARM Reward Token\u00a0(FARM)",
+  "chain": "eth",
+  "address": "0xa0246c9032bC3A600820415aE600c6388619A14D",
+  "source_url": "https://etherscan.io/token/0xa0246c9032bC3A600820415aE600c6388619A14D",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

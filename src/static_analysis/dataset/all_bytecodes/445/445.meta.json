@@ -1,0 +1,11 @@
+{
+  "title": "Hakuna Share\u00a0(MTT)",
+  "chain": "crono",
+  "address": null,
+  "source_url": "https://cronoscan.com/token/0x388c07066aa6cea2be4db58e702333df92c3a074",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://cronoscan.com/token/0x388c07066aa6cea2be4db58e702333df92c3a074"
+  ]
+}

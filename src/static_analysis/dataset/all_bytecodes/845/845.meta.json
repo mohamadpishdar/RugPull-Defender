@@ -1,0 +1,15 @@
+{
+  "title": "Zeta\u00a0(ZETA)",
+  "chain": "eth",
+  "address": "0xf091867EC603A6628eD83D274E835539D82e9cc8",
+  "source_url": "https://etherscan.io/token/0xf091867EC603A6628eD83D274E835539D82e9cc8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

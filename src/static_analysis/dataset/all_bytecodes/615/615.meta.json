@@ -1,0 +1,15 @@
+{
+  "title": "Aave Token\u00a0(AAVE)",
+  "chain": "eth",
+  "address": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+  "source_url": "https://etherscan.io/token/0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

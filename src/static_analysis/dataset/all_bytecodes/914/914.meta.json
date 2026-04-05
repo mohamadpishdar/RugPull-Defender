@@ -1,0 +1,15 @@
+{
+  "title": "Wrapped Flow\u00a0(WFLOW)",
+  "chain": "eth",
+  "address": "0x5c147e74D63B1D31AA3Fd78Eb229B65161983B2b",
+  "source_url": "https://etherscan.io/token/0x5c147e74D63B1D31AA3Fd78Eb229B65161983B2b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

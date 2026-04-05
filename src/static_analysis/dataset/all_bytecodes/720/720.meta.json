@@ -1,0 +1,15 @@
+{
+  "title": "FLEX Coin\u00a0(FLEX)",
+  "chain": "eth",
+  "address": "0xFcF8eda095e37A41e002E266DaAD7efC1579bc0A",
+  "source_url": "https://etherscan.io/token/0xFcF8eda095e37A41e002E266DaAD7efC1579bc0A",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ef",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

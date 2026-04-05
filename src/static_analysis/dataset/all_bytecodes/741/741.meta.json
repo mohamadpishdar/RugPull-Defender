@@ -1,0 +1,15 @@
+{
+  "title": "Finance.Vote Token\u00a0(FVT)",
+  "chain": "eth",
+  "address": "0x45080a6531d671ddff20db42f93792a489685e32",
+  "source_url": "https://etherscan.io/token/0x45080a6531d671ddff20db42f93792a489685e32",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f0",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "KEEP Token\u00a0(KEEP)",
+  "chain": "eth",
+  "address": "0x85eee30c52b0b379b046fb0f85f4f3dc3009afec",
+  "source_url": "https://etherscan.io/token/0x85eee30c52b0b379b046fb0f85f4f3dc3009afec",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Zodiac Credit-ZOC\u00a0(ZOC)",
+  "chain": "bsc",
+  "address": "0x76401604de3dc379aec0cf54005c0d0937a11717",
+  "source_url": "https://bscscan.com/token/0x76401604de3dc379aec0cf54005c0d0937a11717",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1282",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Ghetto Pepe\u00a0(HOOD)",
+  "chain": "eth",
+  "address": "0xed33d5b7001d0c56b14284bbd9df94fd5ee144ab",
+  "source_url": "https://etherscan.io/token/0xed33d5b7001d0c56b14284bbd9df94fd5ee144ab",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

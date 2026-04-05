@@ -1,0 +1,15 @@
+{
+  "title": "NETVRK\u00a0(NTVRK)",
+  "chain": "eth",
+  "address": "0xfc0d6cf33e38bce7ca7d89c0e292274031b7157a",
+  "source_url": "https://etherscan.io/token/0xfc0d6cf33e38bce7ca7d89c0e292274031b7157a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

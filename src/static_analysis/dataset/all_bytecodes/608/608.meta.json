@@ -1,0 +1,15 @@
+{
+  "title": "Baby Doge Coin\u00a0(BabyDoge)",
+  "chain": "bsc",
+  "address": "0xc748673057861a797275cd8a068abb95a902e8de",
+  "source_url": "https://bscscan.com/token/0xc748673057861a797275cd8a068abb95a902e8de",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1336",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

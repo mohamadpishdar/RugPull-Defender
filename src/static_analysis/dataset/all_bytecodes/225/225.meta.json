@@ -1,0 +1,15 @@
+{
+  "title": "Hachiko token",
+  "chain": "eth",
+  "address": "0x7bfebd989ef62f7f794d9936908565da42fa6d70",
+  "source_url": "https://etherscan.io/token/0x7bfebd989ef62f7f794d9936908565da42fa6d70",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

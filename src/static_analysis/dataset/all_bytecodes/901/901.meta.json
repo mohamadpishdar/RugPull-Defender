@@ -1,0 +1,15 @@
+{
+  "title": "Convex Token\u00a0(CVX)",
+  "chain": "eth",
+  "address": "0x4e3fbd56cd56c3e72c1403e103b45db9da5b9d2b",
+  "source_url": "https://etherscan.io/token/0x4e3fbd56cd56c3e72c1403e103b45db9da5b9d2b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

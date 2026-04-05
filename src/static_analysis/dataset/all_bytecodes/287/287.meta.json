@@ -1,0 +1,15 @@
+{
+  "title": "Friendchips.tech\u00a0(FRIENDCHIPS)",
+  "chain": "eth",
+  "address": "0x082D7215fdfa70D969D7Fb5E783F8fE86A463330",
+  "source_url": "https://etherscan.io/token/0x082D7215fdfa70D969D7Fb5E783F8fE86A463330",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

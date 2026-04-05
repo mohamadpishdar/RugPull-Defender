@@ -1,0 +1,15 @@
+{
+  "title": "Cancer Inu\u00a0(CANCER)",
+  "chain": "eth",
+  "address": "0x30a4b61e2990ee8458bc351d9321565bedd3d7aa",
+  "source_url": "https://etherscan.io/token/0x30a4b61e2990ee8458bc351d9321565bedd3d7aa",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89de",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

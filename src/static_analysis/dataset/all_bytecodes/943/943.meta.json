@@ -1,0 +1,15 @@
+{
+  "title": "AltLayer Token\u00a0(ALT)",
+  "chain": "eth",
+  "address": "0x8457CA5040ad67fdebbCC8EdCE889A335Bc0fbFB",
+  "source_url": "https://etherscan.io/token/0x8457CA5040ad67fdebbCC8EdCE889A335Bc0fbFB",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ff",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

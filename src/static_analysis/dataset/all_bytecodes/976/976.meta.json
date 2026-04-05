@@ -1,0 +1,15 @@
+{
+  "title": "GraphLinq\u00a0(GLQ)",
+  "chain": "eth",
+  "address": "0x9f9c8ec3534c3ce16f928381372bfbfbfb9f4d24",
+  "source_url": "https://etherscan.io/token/0x9f9c8ec3534c3ce16f928381372bfbfbfb9f4d24",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Ferrum Network Token\u00a0(FRM)",
+  "chain": "eth",
+  "address": "0xe5caef4af8780e59df925470b050fb23c43ca68c",
+  "source_url": "https://etherscan.io/token/0xe5caef4af8780e59df925470b050fb23c43ca68c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

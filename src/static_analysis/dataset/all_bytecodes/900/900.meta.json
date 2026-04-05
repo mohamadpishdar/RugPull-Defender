@@ -1,0 +1,15 @@
+{
+  "title": "GAMEE\u00a0(GMEE)",
+  "chain": "eth",
+  "address": "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373",
+  "source_url": "https://etherscan.io/token/0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

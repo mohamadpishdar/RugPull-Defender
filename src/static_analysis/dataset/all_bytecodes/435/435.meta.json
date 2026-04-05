@@ -1,0 +1,15 @@
+{
+  "title": "stoicDAO\u00a0(ZETA)",
+  "chain": "eth",
+  "address": "0xb281d84989c06e2a6ccdc5ea7bf1663c79a1c31a",
+  "source_url": "https://etherscan.io/token/0xb281d84989c06e2a6ccdc5ea7bf1663c79a1c31a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

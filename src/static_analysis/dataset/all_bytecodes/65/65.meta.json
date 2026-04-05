@@ -1,0 +1,11 @@
+{
+  "title": "Astronaut NFT\u00a0(AST)",
+  "chain": "bsc",
+  "address": null,
+  "source_url": "https://etherscan.io/token/0x4a524d236760d918993ccfb8675c7e35e9a767a6",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://etherscan.io/token/0x4a524d236760d918993ccfb8675c7e35e9a767a6"
+  ]
+}

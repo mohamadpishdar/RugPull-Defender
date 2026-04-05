@@ -1,0 +1,11 @@
+{
+  "title": "Mango INU\u00a0(MNGO)",
+  "chain": "bsc",
+  "address": null,
+  "source_url": "https://etherscan.io/token/0x335E14d18D8A903B782A39059Dc35d61b94e1c1B",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://etherscan.io/token/0x335E14d18D8A903B782A39059Dc35d61b94e1c1B"
+  ]
+}

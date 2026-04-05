@@ -1,0 +1,15 @@
+{
+  "title": "Binance-Peg COTI Token\u00a0(COTI)",
+  "chain": "bsc",
+  "address": "0xadbaf88b39d37dc68775ed1541f1bf83a5a45feb",
+  "source_url": "https://bscscan.com/token/0xadbaf88b39d37dc68775ed1541f1bf83a5a45feb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b135b",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "beefy.finance\u00a0(BIFI)",
+  "chain": "bsc",
+  "address": "0xca3f508b8e4dd382ee878a314789373d80a5190a",
+  "source_url": "https://bscscan.com/token/0xca3f508b8e4dd382ee878a314789373d80a5190a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1362",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

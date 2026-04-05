@@ -1,0 +1,15 @@
+{
+  "title": "Cesar Hard Fork",
+  "chain": "bsc",
+  "address": "0x71C349EEcc025F1B618f7674aD5Efcb9Dda135e9",
+  "source_url": "https://bscscan.com/token/0x71C349EEcc025F1B618f7674aD5Efcb9Dda135e9",
+  "display_text": "Sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11ea",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

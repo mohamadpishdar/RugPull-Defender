@@ -1,0 +1,15 @@
+{
+  "title": "FormationFi\u00a0(FFI)",
+  "chain": "bsc",
+  "address": "0xe83be3ea0b2553ca127951880b9bf9164d64bcb5",
+  "source_url": "https://bscscan.com/token/0xe83be3ea0b2553ca127951880b9bf9164d64bcb5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12d7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

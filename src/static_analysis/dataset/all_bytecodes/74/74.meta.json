@@ -1,0 +1,15 @@
+{
+  "title": "APIG token",
+  "chain": "bsc",
+  "address": "0xDc630Fb4F95FaAeE087E0CE45d5b9c4fc9888888",
+  "source_url": "https://bscscan.com/token/0xDc630Fb4F95FaAeE087E0CE45d5b9c4fc9888888",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1237",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

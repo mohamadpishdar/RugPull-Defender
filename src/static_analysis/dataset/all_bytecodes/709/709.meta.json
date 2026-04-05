@@ -1,0 +1,15 @@
+{
+  "title": "Hotbit Token\u00a0(HTB)",
+  "chain": "eth",
+  "address": "0x6be61833fc4381990e82d7d4a9f4c9b3f67ea941",
+  "source_url": "https://etherscan.io/token/0x6be61833fc4381990e82d7d4a9f4c9b3f67ea941",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ee",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

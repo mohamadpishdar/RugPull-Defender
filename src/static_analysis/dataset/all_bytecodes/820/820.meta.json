@@ -1,0 +1,11 @@
+{
+  "title": "Hot Cross Token\u00a0(HOTCROSS)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x4fa7163e153419e0e1064e418dd7a99314ed27b6",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x4fa7163e153419e0e1064e418dd7a99314ed27b6"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Aura\u00a0(AURA)",
+  "chain": "eth",
+  "address": "0xc0c293ce456ff0ed870add98a0828dd4d2903dbf",
+  "source_url": "https://etherscan.io/token/0xc0c293ce456ff0ed870add98a0828dd4d2903dbf",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

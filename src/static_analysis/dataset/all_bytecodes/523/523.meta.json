@@ -1,0 +1,15 @@
+{
+  "title": "Musky Swap\u00a0(MUSKSWAP)",
+  "chain": "eth",
+  "address": "0x8ba9c4f29781b132f15f4b67d3aaa1a995aa9ac8",
+  "source_url": "https://etherscan.io/token/0x8ba9c4f29781b132f15f4b67d3aaa1a995aa9ac8",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89df",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

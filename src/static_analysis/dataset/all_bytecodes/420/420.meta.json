@@ -1,0 +1,15 @@
+{
+  "title": "BaseBros\u00a0(BROS)",
+  "chain": "base",
+  "address": "0x9721B1cE4Ffd8aF047BBDfd87e4e20dDc544513a",
+  "source_url": "https://basescan.org/token/0x9721B1cE4Ffd8aF047BBDfd87e4e20dDc544513a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x24af46e",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

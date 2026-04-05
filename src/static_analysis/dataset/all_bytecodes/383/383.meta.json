@@ -1,0 +1,15 @@
+{
+  "title": "xKingdom.tech Token\u00a0(XKING)",
+  "chain": "arbi",
+  "address": "0xF05F2fA8f169EED50110f3f80b4aA712a758be96",
+  "source_url": "https://arbiscan.io/token/0xF05F2fA8f169EED50110f3f80b4aA712a758be96",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe2137",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

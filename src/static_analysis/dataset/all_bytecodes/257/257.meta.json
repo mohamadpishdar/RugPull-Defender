@@ -1,0 +1,15 @@
+{
+  "title": "YODA coin\u00a0(YODA)",
+  "chain": "eth",
+  "address": "0xdd53E7944fBe2f0eB5C024caab96bBd5a818166C",
+  "source_url": "https://etherscan.io/token/0xdd53E7944fBe2f0eB5C024caab96bBd5a818166C",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

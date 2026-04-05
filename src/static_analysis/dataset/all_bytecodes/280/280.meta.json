@@ -1,0 +1,15 @@
+{
+  "title": "RIFT Token\u00a0(RIFT)",
+  "chain": "eth",
+  "address": "0xadeee1bcb63f3477c45400249e78bc4f565a59e0",
+  "source_url": "https://etherscan.io/token/0xadeee1bcb63f3477c45400249e78bc4f565a59e0",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

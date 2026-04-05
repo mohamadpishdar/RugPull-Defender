@@ -1,0 +1,15 @@
+{
+  "title": "B2BCoin\u00a0(BBC)",
+  "chain": "eth",
+  "address": "0xe7d3e4413e29ae35b0893140f4500965c74365e5",
+  "source_url": "https://etherscan.io/token/0xe7d3e4413e29ae35b0893140f4500965c74365e5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89dc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

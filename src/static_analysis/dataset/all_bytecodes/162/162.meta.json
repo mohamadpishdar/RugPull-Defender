@@ -1,0 +1,15 @@
+{
+  "title": "Loop X Network (LOOP)",
+  "chain": "bsc",
+  "address": "0xB3b361Ba28b1058f2dBDfBbB5Bb3B98cf46b4540",
+  "source_url": "https://bscscan.com/token/0xB3b361Ba28b1058f2dBDfBbB5Bb3B98cf46b4540",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12b9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Cronos Coin\u00a0(CRO)",
+  "chain": "eth",
+  "address": "0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b",
+  "source_url": "https://etherscan.io/token/0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

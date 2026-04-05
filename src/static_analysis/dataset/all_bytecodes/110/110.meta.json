@@ -1,0 +1,15 @@
+{
+  "title": "Mina Protocol\u00a0(MINA)",
+  "chain": "bsc",
+  "address": "0xDC2cE29256a7F44C3A291f8C08D575593455bc39",
+  "source_url": "https://bscscan.com/token/0xDC2cE29256a7F44C3A291f8C08D575593455bc39",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b126c",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

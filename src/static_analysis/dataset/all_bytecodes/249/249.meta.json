@@ -1,0 +1,15 @@
+{
+  "title": "GGBOND\u00a0(GGBOND)",
+  "chain": "eth",
+  "address": "0xf6af193b542ce3fd00f120a49e1a5c343f74cf4a",
+  "source_url": "https://etherscan.io/token/0xf6af193b542ce3fd00f120a49e1a5c343f74cf4a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

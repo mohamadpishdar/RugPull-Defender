@@ -1,0 +1,15 @@
+{
+  "title": "Miracleplay Token\u00a0(MPT)",
+  "chain": "polygon",
+  "address": "0x2237C1299473b80C5F482E4974D8A0eCc318f775",
+  "source_url": "https://polygonscan.com/token/0x2237C1299473b80C5F482E4974D8A0eCc318f775",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba1780",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

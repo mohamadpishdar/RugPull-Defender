@@ -1,0 +1,15 @@
+{
+  "title": "Maple Token\u00a0(MPL)",
+  "chain": "eth",
+  "address": "0x33349b282065b0284d756f0577fb39c158f935e6",
+  "source_url": "https://etherscan.io/token/0x33349b282065b0284d756f0577fb39c158f935e6",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

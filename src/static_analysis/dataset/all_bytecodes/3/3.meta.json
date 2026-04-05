@@ -1,0 +1,15 @@
+{
+  "title": "Fintoch",
+  "chain": "bsc",
+  "address": "0x19a00e359990ec7daf6e9dd9a2fb7664014bb5f7",
+  "source_url": "https://bscscan.com/address/0x19a00e359990ec7daf6e9dd9a2fb7664014bb5f7",
+  "display_text": "sourse code",
+  "resolved_from": "address",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b0f50",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

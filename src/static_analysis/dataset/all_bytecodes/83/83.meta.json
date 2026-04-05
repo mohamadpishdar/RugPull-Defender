@@ -1,0 +1,15 @@
+{
+  "title": "OBB\u00a0(OBB)",
+  "chain": "bsc",
+  "address": "0xd23b64dbd334d12c38f09cc9eb23350aa1034c30",
+  "source_url": "https://bscscan.com/token/0xd23b64dbd334d12c38f09cc9eb23350aa1034c30",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1244",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

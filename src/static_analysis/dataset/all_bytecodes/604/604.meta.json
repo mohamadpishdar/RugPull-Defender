@@ -1,0 +1,15 @@
+{
+  "title": "Ethereum Name Service\u00a0(ENS)",
+  "chain": "eth",
+  "address": "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
+  "source_url": "https://etherscan.io/token/0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

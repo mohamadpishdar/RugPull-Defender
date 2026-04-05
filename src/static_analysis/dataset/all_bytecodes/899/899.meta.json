@@ -1,0 +1,15 @@
+{
+  "title": "Lithium\u00a0(LITH)",
+  "chain": "eth",
+  "address": "0x188e817b02e635d482ae4d81e25dda98a97c4a42",
+  "source_url": "https://etherscan.io/token/0x188e817b02e635d482ae4d81e25dda98a97c4a42",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

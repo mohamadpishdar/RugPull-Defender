@@ -1,0 +1,11 @@
+{
+  "title": "Big Time\u00a0(BIGTIME)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0xb3a194ad6604b6e9d8c0a4cb286d4e7d137bfe56",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0xb3a194ad6604b6e9d8c0a4cb286d4e7d137bfe56"
+  ]
+}

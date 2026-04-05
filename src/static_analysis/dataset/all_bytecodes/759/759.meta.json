@@ -1,0 +1,11 @@
+{
+  "title": "VeChain\u00a0(VET)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x6FDcdfef7c496407cCb0cEC90f9C5Aaa1Cc8D888",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x6FDcdfef7c496407cCb0cEC90f9C5Aaa1Cc8D888"
+  ]
+}

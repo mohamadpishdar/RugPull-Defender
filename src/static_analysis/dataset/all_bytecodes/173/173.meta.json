@@ -1,0 +1,15 @@
+{
+  "title": "Neoteric\u00a0(NTRC)",
+  "chain": "bsc",
+  "address": "0x733A90389db7d9c246D064A257E5652f7Be36B8A",
+  "source_url": "https://bscscan.com/token/0x733A90389db7d9c246D064A257E5652f7Be36B8A",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12c8",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

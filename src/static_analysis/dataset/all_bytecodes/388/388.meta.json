@@ -1,0 +1,15 @@
+{
+  "title": "ArbShibAI\u00a0(AISHIB)",
+  "chain": "arbi",
+  "address": "0xc97522deaae1d3d94cc491cc4f81e0b33f33a13a",
+  "source_url": "https://arbiscan.io/token/0xc97522deaae1d3d94cc491cc4f81e0b33f33a13a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe2143",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

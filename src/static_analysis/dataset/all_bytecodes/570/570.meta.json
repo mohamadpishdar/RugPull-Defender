@@ -1,0 +1,15 @@
+{
+  "title": "RealTract\u00a0(RET)",
+  "chain": "eth",
+  "address": "0xd7394087e1dbbe477fe4f1cf373b9ac9459565ff",
+  "source_url": "https://etherscan.io/token/0xd7394087e1dbbe477fe4f1cf373b9ac9459565ff",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e2",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

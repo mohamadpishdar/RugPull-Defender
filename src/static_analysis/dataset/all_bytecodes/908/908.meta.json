@@ -1,0 +1,15 @@
+{
+  "title": "Dogechain Token\u00a0(DC)",
+  "chain": "eth",
+  "address": "0x7B4328c127B85369D9f82ca0503B000D09CF9180",
+  "source_url": "https://etherscan.io/token/0x7B4328c127B85369D9f82ca0503B000D09CF9180",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

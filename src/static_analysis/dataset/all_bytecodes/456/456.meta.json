@@ -1,0 +1,15 @@
+{
+  "title": "RangersProtocolGas\u00a0(RPG)",
+  "chain": "eth",
+  "address": "0x1f16D41f9B3dB03b462BDD6c92245ee708D1C103",
+  "source_url": "https://etherscan.io/token/0x1f16D41f9B3dB03b462BDD6c92245ee708D1C103",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89da",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Hypernova\u00a0(HNOVA)",
+  "chain": "bsc",
+  "address": "0x527726d63b916fdebcb0b69e0f8c9469f56775c1",
+  "source_url": "https://bscscan.com/token/0x527726d63b916fdebcb0b69e0f8c9469f56775c1",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12e1",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "NKN\u00a0(NKN)",
+  "chain": "eth",
+  "address": "0x5cf04716ba20127f1e2297addcf4b5035000c9eb",
+  "source_url": "https://etherscan.io/token/0x5cf04716ba20127f1e2297addcf4b5035000c9eb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

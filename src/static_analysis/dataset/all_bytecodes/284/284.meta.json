@@ -1,0 +1,15 @@
+{
+  "title": "One For The Books\u00a0(BOOKS)",
+  "chain": "eth",
+  "address": "0x2a763105e8abf596f9fb1a3fd07e776a26720b08",
+  "source_url": "https://etherscan.io/token/0x2a763105e8abf596f9fb1a3fd07e776a26720b08",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

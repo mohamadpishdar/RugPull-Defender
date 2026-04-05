@@ -1,0 +1,15 @@
+{
+  "title": "Thetan Gem\u00a0(THG)",
+  "chain": "bsc",
+  "address": "0x9fd87aefe02441b123c3c32466cd9db4c578618f",
+  "source_url": "https://bscscan.com/token/0x9fd87aefe02441b123c3c32466cd9db4c578618f",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1387",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

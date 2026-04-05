@@ -1,0 +1,15 @@
+{
+  "title": "Nostra\u00a0(NSTR)",
+  "chain": "eth",
+  "address": "0x610dbd98a28ebba525e9926b6aaf88f9159edbfd",
+  "source_url": "https://etherscan.io/token/0x610dbd98a28ebba525e9926b6aaf88f9159edbfd",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89da",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Monolith\u00a0(TKN)",
+  "chain": "eth",
+  "address": "0xaaaf91d9b90df800df4f55c205fd6989c977e73a",
+  "source_url": "https://etherscan.io/token/0xaaaf91d9b90df800df4f55c205fd6989c977e73a",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ed",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

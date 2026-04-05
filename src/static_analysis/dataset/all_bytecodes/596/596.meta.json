@@ -1,0 +1,15 @@
+{
+  "title": "Taobao Token\u00a0(TAOB)",
+  "chain": "eth",
+  "address": "0x6daa2195d0a67c23b4976bd388736c56e71c3f39",
+  "source_url": "https://etherscan.io/token/0x6daa2195d0a67c23b4976bd388736c56e71c3f39",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89e5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

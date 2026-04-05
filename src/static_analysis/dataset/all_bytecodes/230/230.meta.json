@@ -1,0 +1,15 @@
+{
+  "title": "Popeye the Sailor\u00a0(POPEYE)",
+  "chain": "eth",
+  "address": "0x0f5dd8d652b3910feebf6dae75df794a35e2fd93",
+  "source_url": "https://etherscan.io/token/0x0f5dd8d652b3910feebf6dae75df794a35e2fd93",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

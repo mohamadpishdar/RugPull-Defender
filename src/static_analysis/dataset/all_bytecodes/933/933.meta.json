@@ -1,0 +1,15 @@
+{
+  "title": "Everipedia IQ\u00a0(IQ)",
+  "chain": "eth",
+  "address": "0x579cea1889991f68acc35ff5c3dd0621ff29b0c9",
+  "source_url": "https://etherscan.io/token/0x579cea1889991f68acc35ff5c3dd0621ff29b0c9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fe",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

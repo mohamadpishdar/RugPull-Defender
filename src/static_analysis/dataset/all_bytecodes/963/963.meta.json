@@ -1,0 +1,15 @@
+{
+  "title": "Polkamarkets\u00a0(POLK)",
+  "chain": "eth",
+  "address": "0xd478161c952357f05f0292b56012cd8457f1cfbf",
+  "source_url": "https://etherscan.io/token/0xd478161c952357f05f0292b56012cd8457f1cfbf",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b8a00",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

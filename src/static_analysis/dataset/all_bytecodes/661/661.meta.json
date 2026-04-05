@@ -1,0 +1,15 @@
+{
+  "title": "Idle\u00a0(IDLE)",
+  "chain": "eth",
+  "address": "0x875773784af8135ea0ef43b5a374aad105c5d39e",
+  "source_url": "https://etherscan.io/token/0x875773784af8135ea0ef43b5a374aad105c5d39e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89eb",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

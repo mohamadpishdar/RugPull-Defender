@@ -1,0 +1,15 @@
+{
+  "title": "DeFiLABS\u00a0(DLABS)",
+  "chain": "eth",
+  "address": "0xff9315c2c4c0208edb5152f4c4ebec75e74010c5",
+  "source_url": "https://ww6.etherscan.io/token/0xff9315c2c4c0208edb5152f4c4ebec75e74010c5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d9",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

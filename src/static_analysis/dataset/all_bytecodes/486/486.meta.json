@@ -1,0 +1,15 @@
+{
+  "title": "InsurChain Coin\u00a0(INSUR)",
+  "chain": "eth",
+  "address": "0x6ea6531b603f270d23d9edd2d8279135dc5d6773",
+  "source_url": "https://etherscan.io/token/0x6ea6531b603f270d23d9edd2d8279135dc5d6773",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89db",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

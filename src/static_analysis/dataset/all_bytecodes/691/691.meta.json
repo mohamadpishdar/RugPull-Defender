@@ -1,0 +1,11 @@
+{
+  "title": "Wrapped GLMR\u00a0(WGLMR)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://moonscan.io/token/0xacc15dc74880c9944775448304b263d191c6077f",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://moonscan.io/token/0xacc15dc74880c9944775448304b263d191c6077f"
+  ]
+}

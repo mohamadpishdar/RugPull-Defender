@@ -1,0 +1,12 @@
+{
+  "title": "Optimism\u00a0(OP)",
+  "chain": "eth",
+  "address": "0x4200000000000000000000000000000000000042",
+  "source_url": "https://optimistic.etherscan.io/token/0x4200000000000000000000000000000000000042",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "failed",
+  "errors": [
+    "Failed to fetch runtime bytecode for 0x4200000000000000000000000000000000000042"
+  ]
+}

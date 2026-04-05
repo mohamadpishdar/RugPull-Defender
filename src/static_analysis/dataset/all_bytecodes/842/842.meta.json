@@ -1,0 +1,15 @@
+{
+  "title": "First Digital USD\u00a0(FDUSD)",
+  "chain": "eth",
+  "address": "0xc5f0f7b66764F6ec8C8Dff7BA683102295E16409",
+  "source_url": "https://etherscan.io/token/0xc5f0f7b66764F6ec8C8Dff7BA683102295E16409",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

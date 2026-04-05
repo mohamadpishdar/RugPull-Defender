@@ -1,0 +1,15 @@
+{
+  "title": "ZEBEC\u00a0(ZBC)",
+  "chain": "bsc",
+  "address": "0x37a56cdcd83dce2868f721de58cb3830c44c6303",
+  "source_url": "https://bscscan.com/token/0x37a56cdcd83dce2868f721de58cb3830c44c6303",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b137f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

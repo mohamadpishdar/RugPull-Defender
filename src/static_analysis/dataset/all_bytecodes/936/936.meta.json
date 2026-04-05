@@ -1,0 +1,15 @@
+{
+  "title": "Polka City\u00a0(POLC)",
+  "chain": "eth",
+  "address": "0xaa8330fb2b4d5d07abfe7a72262752a8505c6b37",
+  "source_url": "https://etherscan.io/token/0xaa8330fb2b4d5d07abfe7a72262752a8505c6b37",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89fe",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

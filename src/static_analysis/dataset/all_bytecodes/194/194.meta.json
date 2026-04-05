@@ -1,0 +1,15 @@
+{
+  "title": "Moonwalk\u00a0(MOONWALK)",
+  "chain": "bsc",
+  "address": "0xe64f4a5c364a92ab62e27076907d55334609c8ad",
+  "source_url": "https://bscscan.com/token/0xe64f4a5c364a92ab62e27076907d55334609c8ad",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12e7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

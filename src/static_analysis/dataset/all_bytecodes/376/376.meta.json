@@ -1,0 +1,15 @@
+{
+  "title": "ANT1GOON\u00a0(GOON)",
+  "chain": "eth",
+  "address": "0x61db2fb090d890ea9fc09dd837fd47cf2f92ee26",
+  "source_url": "https://etherscan.io/token/0x61db2fb090d890ea9fc09dd837fd47cf2f92ee26",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

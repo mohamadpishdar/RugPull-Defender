@@ -1,0 +1,15 @@
+{
+  "title": "DOGETAMA\u00a0(DOGETAMA)",
+  "chain": "eth",
+  "address": "0x25e44e0250f0492C188918f2d726B4861263ef5b",
+  "source_url": "https://etherscan.io/token/0x25e44e0250f0492C188918f2d726B4861263ef5b",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cd",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

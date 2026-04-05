@@ -1,0 +1,15 @@
+{
+  "title": "DUSD\u00a0(DUSD)",
+  "chain": "bsc",
+  "address": "0x738ea75b01d8db931b4374c6ebd3de82d7d3a272",
+  "source_url": "https://bscscan.com/token/0x738ea75b01d8db931b4374c6ebd3de82d7d3a272",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b12cc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

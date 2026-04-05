@@ -1,0 +1,15 @@
+{
+  "title": "Binance-Peg Filecoin\u00a0(FIL)",
+  "chain": "bsc",
+  "address": "0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153",
+  "source_url": "https://bscscan.com/token/0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b136d",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

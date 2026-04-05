@@ -1,0 +1,15 @@
+{
+  "title": "Auric Network\u00a0(AUSCM)",
+  "chain": "eth",
+  "address": "0x1c7BBADc81E18F7177A95eb1593e5f5f35861B10",
+  "source_url": "https://etherscan.io/token/0x1c7BBADc81E18F7177A95eb1593e5f5f35861B10",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ec",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

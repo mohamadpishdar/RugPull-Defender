@@ -1,0 +1,15 @@
+{
+  "title": "Artrade Token\u00a0(ATR)",
+  "chain": "bsc",
+  "address": "0x7559C49c3Aec50E763A486bB232fA8d0d76078e4",
+  "source_url": "https://bscscan.com/token/0x7559C49c3Aec50E763A486bB232fA8d0d76078e4",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b135f",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

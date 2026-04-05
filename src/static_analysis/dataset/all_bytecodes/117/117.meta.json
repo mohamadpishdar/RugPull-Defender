@@ -1,0 +1,15 @@
+{
+  "title": "Cashera\u00a0(CSR)",
+  "chain": "bsc",
+  "address": "0x6e8ff72962750f0fa57a906f7833d1c657614abe",
+  "source_url": "https://bscscan.com/token/0x6e8ff72962750f0fa57a906f7833d1c657614abe",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1277",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "title": "loveloverocket twitter\u00a0(LoveRCKT)",
+  "chain": "eth",
+  "address": null,
+  "source_url": "https://bscscan.com/token/0x86931EeB468b35840AfbC65B94B565717d06DB95",
+  "display_text": "sourse code",
+  "resolved_from": "none",
+  "errors": [
+    "Could not resolve contract address from URL: https://bscscan.com/token/0x86931EeB468b35840AfbC65B94B565717d06DB95"
+  ]
+}

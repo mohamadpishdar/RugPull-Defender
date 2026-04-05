@@ -1,0 +1,15 @@
+{
+  "title": "Kokomo Finance\u00a0(KOKO)",
+  "chain": "arbi",
+  "address": "0x7Da25Bc4cFAed3F29414C6779676e53B19a356f5",
+  "source_url": "https://arbiscan.io/token/0x7Da25Bc4cFAed3F29414C6779676e53B19a356f5",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x17fe2156",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

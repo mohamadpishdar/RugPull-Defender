@@ -1,0 +1,15 @@
+{
+  "title": "Wisdomise\u00a0(WSDM)",
+  "chain": "polygon",
+  "address": "0x5F2F8818002dc64753daeDF4A6CB2CcB757CD220",
+  "source_url": "https://polygonscan.com/token/0x5F2F8818002dc64753daeDF4A6CB2CcB757CD220",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x4ba1782",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

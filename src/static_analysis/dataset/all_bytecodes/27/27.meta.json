@@ -1,0 +1,15 @@
+{
+  "title": "Linda Yaccarino",
+  "chain": "bsc",
+  "address": "0x8883fa1d06b1653b08557f90f19c92b86c382cfb",
+  "source_url": "https://bscscan.com/token/0x8883fa1d06b1653b08557f90f19c92b86c382cfb",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11ef",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

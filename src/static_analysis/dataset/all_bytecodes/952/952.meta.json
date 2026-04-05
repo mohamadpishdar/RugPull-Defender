@@ -1,0 +1,15 @@
+{
+  "title": "MARS4\u00a0(MARS4)",
+  "chain": "eth",
+  "address": "0x16cda4028e9e872a38acb903176719299beaed87",
+  "source_url": "https://etherscan.io/token/0x16cda4028e9e872a38acb903176719299beaed87",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ff",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

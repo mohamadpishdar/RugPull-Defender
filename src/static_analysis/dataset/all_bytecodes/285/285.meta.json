@@ -1,0 +1,15 @@
+{
+  "title": "COIN\u00a0(COIN)",
+  "chain": "eth",
+  "address": "0x517ac17DbCD76F97C994DFE3d322F0c2fF9eDA17",
+  "source_url": "https://etherscan.io/token/0x517ac17DbCD76F97C994DFE3d322F0c2fF9eDA17",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

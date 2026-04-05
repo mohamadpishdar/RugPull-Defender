@@ -1,0 +1,15 @@
+{
+  "title": "CryptoBike",
+  "chain": "bsc",
+  "address": "0xf66a8a197d5cb0e2799d79be115208899332a0ba",
+  "source_url": "https://www.bscscan.com/token/0xf66a8a197d5cb0e2799d79be115208899332a0ba?a=0x9e44EA0a4C546bF0a3F53d00AA0ea18B0Dd30018",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11d7",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

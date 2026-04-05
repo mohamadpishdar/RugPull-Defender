@@ -1,0 +1,15 @@
+{
+  "title": "Goblin Town\u00a0(GOBLIN)",
+  "chain": "eth",
+  "address": "0xbb7f05aa2dd33425ea0848cda8e4ea54718c6336",
+  "source_url": "https://etherscan.io/token/0xbb7f05aa2dd33425ea0848cda8e4ea54718c6336",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89d6",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

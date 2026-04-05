@@ -1,0 +1,15 @@
+{
+  "title": "culs\u00a0(culs)",
+  "chain": "bsc",
+  "address": "0xc31AbB4BE8d38772b90b46BE7e88f84Cfe08cef9",
+  "source_url": "https://bscscan.com/token/0xc31AbB4BE8d38772b90b46BE7e88f84Cfe08cef9",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b11ff",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

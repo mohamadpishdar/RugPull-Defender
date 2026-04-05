@@ -1,0 +1,15 @@
+{
+  "title": "Justus Token\u00a0(JTT)",
+  "chain": "bsc",
+  "address": "0xcdb3d3642fb4d48d2b5e4fb4a014448a2761c063",
+  "source_url": "https://bscscan.com/token/0xcdb3d3642fb4d48d2b5e4fb4a014448a2761c063",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b1303",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

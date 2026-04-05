@@ -1,0 +1,15 @@
+{
+  "title": "MotherOfAllMemes\u00a0(MOAM)",
+  "chain": "eth",
+  "address": "0xA5bCD14f6bE77b9035B5718DFae59aE6421a3401",
+  "source_url": "https://etherscan.io/token/0xA5bCD14f6bE77b9035B5718DFae59aE6421a3401",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89cc",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

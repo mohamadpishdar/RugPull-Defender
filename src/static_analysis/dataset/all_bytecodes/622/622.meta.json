@@ -1,0 +1,15 @@
+{
+  "title": "AdEx Network\u00a0(ADX)",
+  "chain": "bsc",
+  "address": "0x6bff4fb161347ad7de4a625ae5aa3a1ca7077819",
+  "source_url": "https://bscscan.com/token/0x6bff4fb161347ad7de4a625ae5aa3a1ca7077819",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x40b133a",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

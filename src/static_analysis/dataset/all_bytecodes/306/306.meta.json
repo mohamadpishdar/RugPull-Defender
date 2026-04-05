@@ -1,0 +1,15 @@
+{
+  "title": "TWERK\u00a0(TWERK)",
+  "chain": "eth",
+  "address": "0xf0b47eE3D3BDBEf94999b2B8F4b81a52fbE2E3eD",
+  "source_url": "https://etherscan.io/token/0xf0b47eE3D3BDBEf94999b2B8F4b81a52fbE2E3eD",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89ce",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

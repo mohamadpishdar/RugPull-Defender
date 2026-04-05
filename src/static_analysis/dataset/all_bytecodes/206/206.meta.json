@@ -1,0 +1,15 @@
+{
+  "title": "Megabot",
+  "chain": "eth",
+  "address": "0x201b5B64438843553E3C3671810Ae671C93C685c",
+  "source_url": "https://etherscan.io/token/0x201b5B64438843553E3C3671810Ae671C93C685c",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89c5",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

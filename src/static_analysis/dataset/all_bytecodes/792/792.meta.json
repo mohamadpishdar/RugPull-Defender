@@ -1,0 +1,15 @@
+{
+  "title": "Phala\u00a0(PHA)",
+  "chain": "eth",
+  "address": "0x6c5ba91642f10282b576d91922ae6448c9d52f4e",
+  "source_url": "https://etherscan.io/token/0x6c5ba91642f10282b576d91922ae6448c9d52f4e",
+  "display_text": "sourse code",
+  "resolved_from": "token",
+  "fetch_method": "rpc",
+  "fetched_at_block": "0x16b89f4",
+  "creation_tx": null,
+  "errors": [
+    "Creation transaction not found",
+    "Creation bytecode not available"
+  ]
+}

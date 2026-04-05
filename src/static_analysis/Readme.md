@@ -1,4 +1,4 @@
-# RugPull Detection Framework (Multi-Detector Benckmark)
+# RugPull Defender Static Analysis Part
 
 This repository provides a reproducible framework for analyzing smart contracts involved in **rugpull attacks**. It supports:
 

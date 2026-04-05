@@ -8,7 +8,7 @@ Rug-Pull Defender is an ensemble learning framework designed to identify systemi
 2. **Structural Layer:** Static analysis focusing on control flow and vulnerabilities.
 3. **Heuristic Layer:** Domain-expert rules and knowledge-based features.
 
-Our model achieves an **F1-score of 0.774** and an **AUC of 0.79** on a manually validated, leakage-proof dataset of 1,028 projects.
+Our model achieves an **F1-score of 0.774** and an **AUC of 0.79** on a manually validated, leakage-proof dataset of 1000 projects.
 
 ## 🛠️ Installation
 ```bash

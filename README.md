@@ -9,3 +9,8 @@ Rug-Pull Defender is an ensemble learning framework designed to identify systemi
 3. **Heuristic Layer:** Domain-expert rules and knowledge-based features.
 
 Our model achieves an **F1-score of 0.774** and an **AUC of 0.79** on a manually validated, leakage-proof dataset of 1000 projects.
+
+
+This project is licensed under the Creative Commons Attribution‑NonCommercial 4.0 International (CC BY‑NC 4.0) license.
+
+

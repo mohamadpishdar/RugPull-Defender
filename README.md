@@ -1,4 +1,5 @@
 🧠 Rug‑Pull Defender — Repository Overview
+
 This repository provides a complete, research‑grade framework for early detection of rug‑pull scams in blockchain projects. It combines a leakage‑free forensic dataset, static smart‑contract analysis, and a multi‑modal ensemble detection system to enable robust and reproducible research on DeFi security.
 Unlike prior work that focuses on a single modality (e.g., transactions only or contract patterns only), this project is designed around the principle that rug‑pull attacks are multi‑dimensional phenomena, requiring semantic, structural, and behavioral evidence.
 

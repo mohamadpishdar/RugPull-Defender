@@ -46,16 +46,3 @@ The workflow:
   └── metrics/ ← Precision/Recall/F1 for each detector
 ```
 
----
-
-## 🧭 Roadmap
-
-| Phase                            | Status  |
-| -------------------------------- | ------- |
-| CRPWarner setup                  | ✅ Done |
-| Compile all contracts using solc | ✅ Done |
-| Bytecode collection pipeline     | ✅ Done |
-| CRPWarner batch analysis         | ✅ Done |
-| Gather other bytecodes manually  | ✅ Done |
-| Compare CRPWarner                | ✅ Done |
-

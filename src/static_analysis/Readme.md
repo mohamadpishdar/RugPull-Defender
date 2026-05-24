@@ -3,7 +3,7 @@
 This repository provides a reproducible framework for analyzing smart contracts involved in **rugpull attacks**. It supports:
 
 - **Bytecode extraction** (from chain or local compilation)
-- **Static smart contract analysis** with **CRPWarner** (CRPWarner + Gigahorse + Soufflé)
+- **Static smart contract analysis** with **CRPWarner** 
 - **Evaluation against a manually labeled dataset**
 
 The structure and workflow are designed for **research replication**, benchmarking, and extension to more detectors in the future.

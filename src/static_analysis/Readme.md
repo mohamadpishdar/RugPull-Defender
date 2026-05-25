@@ -1,18 +1,18 @@
 # RugPull Defender Static Analysis Part
 
-This repository provides a reproducible framework for analyzing smart contracts involved in **rugpull attacks**. It supports:
+This repository presents a reproducible approach to the analysis of smart contracts used in **rugpull attacks**. It allows:
 
 - **Bytecode extraction** (from chain or local compilation)
 - **Static smart contract analysis** with **CRPWarner** 
 - **Evaluation against a manually labeled dataset**
 
-The structure and workflow are designed for **research replication**, benchmarking, and extension to more detectors in the future.
+The workflow is geared towards **replicating research**, benchmarking, and scaling to incorporate additional contracts in the future.
 
 ---
 
 ## 🚀 Project Overview
 
-Rugpulls are a form of scam where the contract deployers manipulate token ownership, liquidity, or privileged roles to drain user funds. This project analyzes contracts suspected of rugpull behavior using static bytecode-level reasoning tools and combines them with dynamic versions.
+Rug pulls represent another type of scam, whereby contract creators manipulate token ownership or other factors to transfer user assets. In this paper, we will analyze contract codes suspected to carry out rug pulls using static analysis on bytecodes, which will be combined with their dynamic counterparts.
 
 The workflow:
 

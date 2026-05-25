@@ -43,7 +43,7 @@ RESULTS_DIR = '/content/results'
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 # 1) UPLOAD FILES
-print("لطفاً فایل‌های زیر را آپلود کنید:\n1) dataset.xlsx\n2) SOURCE CODE.zip/rar\n3) crpwarner.xlsx")
+print(" Please upload the files below \n1) dataset.xlsx\n2) SOURCE CODE.zip/rar\n3) crpwarner.xlsx")
 uploaded = files.upload()
 
 excel_file = [f for f in uploaded if 'dataset' in f.lower()][0]
@@ -54,7 +54,7 @@ crp_file = [f for f in uploaded if 'crp' in f.lower()][0]
 df = pd.read_excel(excel_file)
 crp = pd.read_excel(crp_file)
 
-# 🔑 تبدیل ستون کلیدی به رشته در همه جا
+# converting key columns to strings
 df["Smart Contract Offline"] = df["Smart Contract Offline"].astype(str)
 crp["Smart Contract Offline"] = crp["Smart Contract Offline"].astype(str)
 
@@ -231,14 +231,14 @@ joblib.dump(clf, "/content/results/model.joblib")
 joblib.dump(scaler, "/content/results/scaler.joblib")
 merged.to_csv("/content/results/final_features.csv", index=False)
 
-print("✅ DONE.")
+print(" DONE.")
 
 import pandas as pd
 df = pd.read_excel("dataset.xlsx")
-print("تمام ستون‌های dataset.xlsx:")
+print("All Columns of dataset.xlsx:")
 for i, col in enumerate(df.columns):
     print(f"{i+1}. '{col}'")
-print("\nآیا ستونی شبیه این‌ها وجود دارد؟")
+print("\n are there columns similar to these?")
 print("- is_scam, label, target")
 print("- honeypot, proxy, verified")
 print("- has_mint, has_blacklist, is_erc20")
@@ -273,7 +273,7 @@ SEED = 42
 # ===========================
 # 1) Upload
 # ===========================
-print("آپلود کنید:\n1) dataset.xlsx\n2) SOURCE_CODE.zip یا rar")
+print("Please Upload \n1) dataset.xlsx\n2) SOURCE_CODE.zip یا rar")
 uploaded = files.upload()
 
 excel_file = [f for f in uploaded if 'dataset' in f.lower()][0]
@@ -422,7 +422,7 @@ print(classification_report(y, y_final))
 print("Accuracy:", round((y == y_final).mean(), 4))
 print("ROC-AUC:", round(roc_auc_score(y, yp), 4))
 
-print("✅ DONE")
+print(" DONE")
 
 # ===========================
 # FINAL THREE-LAYER ARCHITECTURE
@@ -467,11 +467,11 @@ df["y"] = df["Label"].map({"normal": 0, "scam": 1, 0: 0, 1: 1}).astype(int)
 df_crp = pd.read_excel(crp_file)
 df_crp["Smart Contract Offline"] = df_crp["Smart Contract Offline"].astype(str)
 
-# تضمین همسانی ردیف‌ها بر اساس "Smart Contract Offline"
+# "Checking of rows based on Smart Contract Offline"
 df = df.merge(df_crp[["Smart Contract Offline", "HiddenMint", "LeakingToken", "LimitingSell"]],
               on="Smart Contract Offline", how="left")
 
-# جایگزینی مقادیر NaN با 0 (در صورت عدم وجود برای برخی قراردادها)
+# replacing values that not exists in the dataset with 0 
 df[["HiddenMint", "LeakingToken", "LimitingSell"]] = df[["HiddenMint", "LeakingToken", "LimitingSell"]].fillna(0).astype(int)
 
 # ===========================
@@ -642,12 +642,12 @@ y_pred[LOW]  = 0
 # 11) Evaluation
 # ===========================
 print("\n" + "="*50)
-print("✅ THREE-LAYER MODEL EVALUATION")
+print(" THREE-LAYER MODEL EVALUATION")
 print("="*50)
 print(classification_report(y, y_pred, target_names=["Normal", "Scam"]))
 print("Accuracy:  ", round((y == y_pred).mean(), 4))
 print("ROC-AUC:   ", round(roc_auc_score(y, yp), 4))
-print("\n✅ DONE — Forta (Sun et al.) + CodeBERT + CRP-WARNER + LightGBM")
+print("\n DONE — Forta (Sun et al.) + CodeBERT + CRP-WARNER + LightGBM")
 
 # ===========================
 # FINAL OPTIMIZED THREE-LAYER MODEL
@@ -678,7 +678,7 @@ SEED = 42
 # ===========================
 # 1) Upload files
 # ===========================
-print("آپلود کنید:\n1) dataset.xlsx\n2) crpwarner.xlsx\n3) SOURCE_CODE.zip یا rar")
+print(" Please upload \n1) dataset.xlsx\n2) crpwarner.xlsx\n3) SOURCE_CODE.zip or  rar")
 uploaded = files.upload()
 
 excel_file = [f for f in uploaded if 'dataset' in f.lower()][0]
@@ -857,13 +857,13 @@ y_pred[LOW] = 0   # Low-risk → normal
 # 10) Evaluation
 # ===========================
 print("\n" + "="*60)
-print("✅ FINAL MODEL — Three-Layer + One Scientific Combination")
+print(" FINAL MODEL — Three-Layer + One Scientific Combination")
 print("   Aligned with Sun et al. (2024) Table I (Token Distribution)")
 print("="*60)
 print(classification_report(y, y_pred, target_names=["Normal", "Scam"]))
 print("Accuracy:  ", round((y == y_pred).mean(), 4))
 print("ROC-AUC:   ", round(roc_auc_score(y, yp), 4))
-print("\n✅ DONE — Optimized with scientific rigor and empirical stability.")
+print("\n DONE — Optimized with scientific rigor and empirical stability.")
 
 # ===========================
 # FINAL THREE-LAYER MODEL — Fully Aligned with Sun et al. (2024)
@@ -894,7 +894,7 @@ SEED = 42
 # ===========================
 # 1) Upload: dataset.xlsx, crpwarner.xlsx, SOURCE_CODE
 # ===========================
-print("آپلود کنید:\n1) dataset.xlsx\n2) crpwarner.xlsx\n3) SOURCE_CODE.zip یا rar")
+print(" please upload \n1) dataset.xlsx\n2) crpwarner.xlsx\n3) SOURCE_CODE.zip یا rar")
 uploaded = files.upload()
 
 excel_file = [f for f in uploaded if 'dataset' in f.lower()][0]
@@ -1099,7 +1099,7 @@ y_pred[LOW] = 0   # Force low-risk → normal
 # 11) Final Evaluation
 # ===========================
 print("\n" + "="*60)
-print("✅ FINAL MODEL — Three-Layer Architecture")
+print(" FINAL MODEL — Three-Layer Architecture")
 print("   Forta: Sun et al. (2024) Table I + Financial Loss Weights")
 print("   CodeBERT: Semantic code understanding")
 print("   CRP-WARNER: Static analyzer features")
@@ -1107,15 +1107,15 @@ print("="*60)
 print(classification_report(y, y_pred, target_names=["Normal", "Scam"]))
 print("Accuracy:  ", round((y == y_pred).mean(), 4))
 print("ROC-AUC:   ", round(roc_auc_score(y, yp), 4))
-print("\n✅ DONE — Ready for research or deployment.")
+print("\n DONE — Ready for research or deployment.")
 
 # ========================
-# ⚙️ نصب پیش‌نیازها
+#  install prerequirements
 # ========================
 !pip install -q transformers datasets accelerate openpyxl lightgbm matplotlib seaborn scikit-learn rarfile tqdm
 
 # ========================
-# 📦 آپلود فایل‌ها
+# Upload files
 # ========================
 from google.colab import files
 import os, pandas as pd, numpy as np
@@ -1135,13 +1135,12 @@ import rarfile
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-print("📂 آپلود dataset.xlsx"); dataset_file = list(files.upload().keys())[0]
-print("📂 آپلود crpwarner.xlsx"); crp_file = list(files.upload().keys())[0]
-print("📂 آپلود SOURCE CODE.rar"); rar_file = list(files.upload().keys())[0]
+print(" Please upload dataset.xlsx"); dataset_file = list(files.upload().keys())[0]
+print(" Please upload crpwarner.xlsx"); crp_file = list(files.upload().keys())[0]
+print(" Please upload SOURCE CODE.rar"); rar_file = list(files.upload().keys())[0]
 
-# ========================
-# 📊 بارگذاری داده‌ها
-# ========================
+# ======================== read files
+
 df = pd.read_excel(dataset_file)
 df_crp = pd.read_excel(crp_file)
 
@@ -1159,7 +1158,7 @@ y = df["y"].values
 contract_ids = df["Smart Contract Offline"].values
 
 # ========================
-# 📂 استخراج کدها
+# Code extraction
 # ========================
 CODE_DIR = "/content/SOURCE_CODE"
 os.makedirs(CODE_DIR, exist_ok=True)
@@ -1177,10 +1176,10 @@ for root, _, files in os.walk(CODE_DIR):
 codes = [open(paths.get(cid, ""), "r", encoding="utf-8", errors="ignore").read() if cid in paths else ""
          for cid in contract_ids]
 
-print(f"✅ تعداد کدهای بارگذاری‌شده: {sum(1 for c in codes if c)} / {len(codes)}")
+print(f" Number of extracted codes {sum(1 for c in codes if c)} / {len(codes)}")
 
 # ========================
-# 🔍 1. Forta
+#  1. Forta
 # ========================
 def forta_prob(code):
     rules = ["mint(", "blacklist", "onlyowner", "withdraw",
@@ -1190,12 +1189,12 @@ def forta_prob(code):
 forta_scores = np.array([forta_prob(c) for c in codes])
 
 # ========================
-# 🔍 2. CRP
+#  2. CRP
 # ========================
 crp_scores = df[["HiddenMint", "LeakingToken", "LimitingSell"]].sum(axis=1).values / 3
 
 # ========================
-# 🤖 3. CodeBERT خالص (برای تست‌ست)
+#  3. CodeBERT for test
 # ========================
 data = pd.DataFrame({"code": codes, "label": y})
 data = data[data["code"] != ""].reset_index(drop=True)
@@ -1255,21 +1254,21 @@ trainer = Trainer(
 
 trainer.train()
 
-# احتمالات CodeBERT
+# Probability in CodeBERT
 cb_probs = trainer.predict(tokenized_test).predictions
 cb_scores = torch.softmax(torch.tensor(cb_probs), dim=1).numpy()[:, 1]
 cb_preds = np.argmax(cb_probs, axis=1)
 
-# اندیس‌های تست
+# test indexs
 test_indices = test_df.index.tolist()
 y_test = y[test_indices]
 forta_test_scores = forta_scores[test_indices]
 crp_test_scores = crp_scores[test_indices]
 
 # ========================
-# 🧠 4. Ensemble (OOF)
+#  4. Ensemble (OOF)
 # ========================
-print("🔄 در حال محاسبه Embedding CodeBERT برای تمام داده...")
+print(" Calculating Embedding CodeBERT for all data...")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 tok = AutoTokenizer.from_pretrained(MODEL_NAME)
 bert = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME).to(device).eval()
@@ -1279,7 +1278,7 @@ def embed(c):
     t = tok(c, truncation=True, max_length=512, padding="max_length", return_tensors="pt")
     t = {k: v.to(device) for k, v in t.items()}
     with torch.no_grad():
-        o = bert.roberta(**t)  # فقط encoder
+        o = bert.roberta(**t)  # only encoder
     return o.last_hidden_state.mean(1).cpu().numpy().flatten()
 
 E = np.vstack([embed(c) for c in tqdm(codes)])
@@ -1314,7 +1313,7 @@ ens_test_scores = oof_ens[test_indices]
 ens_preds = (ens_test_scores >= 0.5).astype(int)
 
 # ========================
-# 📊 جمع‌آوری امتیازات و پیش‌بینی‌ها
+# collecting prediction points
 # ========================
 methods = ["Forta", "CRP", "CodeBERT", "Ensemble"]
 scores = [forta_test_scores, crp_test_scores, cb_scores, ens_test_scores]
@@ -1328,12 +1327,12 @@ for name, pred in zip(methods, preds):
     results[name] = {"Accuracy": acc, "Precision": prec, "Recall": rec, "F1": f1, "AUC": auc}
 
 # ========================
-# 📈 رسم 8 نمودار مقایسه‌ای
+#  digram 8
 # ========================
 sns.set_style("whitegrid")
 fig = plt.figure(figsize=(20, 24))
 
-# 1. معیارهای اصلی
+# 1. key factors
 ax1 = plt.subplot(3, 3, 1)
 metrics = ["Accuracy", "F1", "AUC"]
 x = np.arange(len(metrics))
@@ -1381,7 +1380,7 @@ prob_df = pd.DataFrame({
 sns.violinplot(data=prob_df, x="Method", y="Score", ax=ax5, palette="Set2")
 ax5.set_title("Probability Score Distribution"); ax5.set_ylim(-0.05, 1.05)
 
-# 6. Feature Importance Heatmap (فقط Ensemble)
+# 6. Feature Importance Heatmap (only Ensemble)
 ax6 = plt.subplot(3, 3, 6)
 if meta_models:
     imp = np.mean([m.feature_importances_ for m in meta_models], axis=0)
@@ -1425,10 +1424,10 @@ plt.savefig("/content/comprehensive_comparison.png", dpi=150, bbox_inches='tight
 plt.show()
 
 # ========================
-# 📋 گزارش نهایی
+#  final report
 # ========================
 print("\n" + "="*60)
-print("📊 نتایج نهایی (روی تست‌ست یکسان)")
+print(" final results on the same dataset)")
 print("="*60)
 for name, met in results.items():
     print(f"\n🔹 {name}:")
@@ -1436,11 +1435,11 @@ for name, met in results.items():
         print(f"  {k}: {v:.4f}")
 
 pd.DataFrame(results).T.to_csv("/content/model_comparison.csv")
-print("\n✅ نتایج در /content/model_comparison.csv ذخیره شد.")
-print("✅ نمودارها در /content/comprehensive_comparison.png ذخیره شد.")
+print("\n results saved in /content/model_comparison.csv ")
+print(" results saved in /content/comprehensive_comparison.png ")
 
 # ========================
-# 📈 رسم 8+ نمودار و ذخیره در PDF
+#  saving diagram in pdf
 # ========================
 from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plt
@@ -1451,7 +1450,7 @@ pdf_path = "/content/comprehensive_comparison_results.pdf"
 
 with PdfPages(pdf_path) as pdf:
 
-    # --- نمودار 1: معیارهای اصلی ---
+    # key factors diagram 1
     fig, ax = plt.subplots(figsize=(8, 6))
     metrics = ["Accuracy", "F1", "AUC"]
     x = np.arange(len(metrics))
@@ -1467,7 +1466,7 @@ with PdfPages(pdf_path) as pdf:
     pdf.savefig(fig)
     plt.close(fig)
 
-    # --- نمودار 2: Confusion Matrix Ensemble ---
+    # --- diagram 2: Confusion Matrix Ensemble ---
     fig, ax = plt.subplots(figsize=(6, 5))
     cm = confusion_matrix(y_test, ens_preds, normalize='true')
     sns.heatmap(cm, annot=True, fmt=".2f", cmap="Blues", ax=ax, cbar=False)
@@ -1476,7 +1475,7 @@ with PdfPages(pdf_path) as pdf:
     pdf.savefig(fig)
     plt.close(fig)
 
-    # --- نمودار 3: ROC Curves ---
+    # --- diagram 3: ROC Curves ---
     fig, ax = plt.subplots(figsize=(7, 6))
     for name, score in zip(methods, scores):
         fpr, tpr, _ = roc_curve(y_test, score)
@@ -1488,7 +1487,7 @@ with PdfPages(pdf_path) as pdf:
     pdf.savefig(fig)
     plt.close(fig)
 
-    # --- نمودار 4: Precision-Recall Curves ---
+    # --- diagram 4: Precision-Recall Curves ---
     fig, ax = plt.subplots(figsize=(7, 6))
     for name, score in zip(methods, scores):
         prec, rec, _ = precision_recall_curve(y_test, score)
@@ -1498,7 +1497,7 @@ with PdfPages(pdf_path) as pdf:
     pdf.savefig(fig)
     plt.close(fig)
 
-    # --- نمودار 5: Probability Density (Violin) ---
+    # --- diagram 5: Probability Density (Violin) ---
     fig, ax = plt.subplots(figsize=(8, 6))
     prob_df = pd.DataFrame({
         "Score": np.concatenate(scores),
@@ -1509,7 +1508,7 @@ with PdfPages(pdf_path) as pdf:
     pdf.savefig(fig)
     plt.close(fig)
 
-    # --- نمودار 6: Feature Importance Heatmap ---
+    # --- diagram 6: Feature Importance Heatmap ---
     if meta_models:
         fig, ax = plt.subplots(figsize=(8, 3))
         imp = np.mean([m.feature_importances_ for m in meta_models], axis=0)
@@ -1519,7 +1518,7 @@ with PdfPages(pdf_path) as pdf:
         pdf.savefig(fig)
         plt.close(fig)
 
-    # --- نمودار 7: Score Histogram ---
+    # --- diagram 7: Score Histogram ---
     fig, ax = plt.subplots(figsize=(8, 6))
     for name, score in zip(methods, scores):
         ax.hist(score[y_test == 0], alpha=0.5, label=f"{name} (Normal)", bins=20, density=True)
@@ -1529,7 +1528,7 @@ with PdfPages(pdf_path) as pdf:
     pdf.savefig(fig)
     plt.close(fig)
 
-    # --- نمودار 8: Accuracy vs Threshold ---
+    # --- diagram  8: Accuracy vs Threshold ---
     fig, ax = plt.subplots(figsize=(7, 6))
     thresholds = np.linspace(0, 1, 100)
     for name, score in zip(methods, scores):
@@ -1540,7 +1539,7 @@ with PdfPages(pdf_path) as pdf:
     pdf.savefig(fig)
     plt.close(fig)
 
-    # --- نمودار 9: Precision vs Recall (by Threshold) ---
+    # --- diagram  9: Precision vs Recall (by Threshold) ---
     fig, ax = plt.subplots(figsize=(7, 6))
     for name, score in zip(methods, scores):
         prs, recs = [], []
@@ -1555,7 +1554,7 @@ with PdfPages(pdf_path) as pdf:
     pdf.savefig(fig)
     plt.close(fig)
 
-    # --- صفحه نتایج متنی (اختیاری) ---
+    # --- text results (optional)---
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.axis('off')
     text = "Model Comparison Results (Test Set)\n\n"
@@ -1565,12 +1564,12 @@ with PdfPages(pdf_path) as pdf:
             text += f"  {k}: {v:.4f}\n"
         text += "\n"
     ax.text(0.1, 0.9, text, transform=ax.transAxes, fontsize=10, verticalalignment='top', family='monospace')
-    ax.set_title("📊 Final Metrics Summary", fontsize=14)
+    ax.set_title(" Final Metrics Summary", fontsize=14)
     pdf.savefig(fig)
     plt.close(fig)
 
-print(f"✅ تمام نمودارها در فایل ذخیره شدند: {pdf_path}")
+print(f" all diagrams saved in {pdf_path}")
 
-# دانلود خودکار فایل PDF (اختیاری)
+# auto upload (optional)
 from google.colab import files
 files.download(pdf_path)

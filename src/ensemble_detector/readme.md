@@ -1,121 +1,128 @@
+## Overview
 
-This Python script implements an end‑to‑end rug‑pull detection pipeline for smart contracts. The code loads smart contract source code, extracts multiple types of risk signals, and combines them into a single machine‑learning model to predict whether a contract is a rug‑pull scam or benign.
-Below is a step‑by‑step explanation of what the script does.
+The following is a Python code that executes an end-to-end detection of the rug-pull pattern in smart contracts. The program reads smart contract source code files, identifies various risk factors, and creates a machine learning model from the risk factors to detect whether a smart contract is a rug pull scam or a safe one.
 
-1. Environment Setup and Dependencies
-The script first installs and imports all required libraries, including:
+## What does the Python code do?
 
-PyTorch and Transformers for CodeBERT embeddings
-LightGBM for the ensemble classifier
-Pandas and NumPy for data processing
-Scikit‑learn for PCA, scaling, and evaluation
-RAR/ZIP utilities to extract smart contract source files
+### 1. Environment Setup and Dependencies
 
-This ensures the entire pipeline can run inside a single notebook or execution environment (e.g., Google Colab).
+Before running any code, we first install and import all necessary libraries, including:
 
-2. Input Data Loading
+- PyTorch and Transformers for CodeBERT embeddings  
+- LightGBM for the ensemble classifier  
+- Pandas and NumPy for data processing  
+- Scikit‑learn for PCA, scaling, and evaluation  
+- RAR/ZIP utilities to extract smart contract source files  
+
+This allows for the entire pipeline to be executed within a single notebook/execution environment, like Google Colab.
+
+### 2. Input Data Loading
+
 The script expects three main inputs:
 
-An Excel file containing:
+- An Excel file containing:
+  - Smart contract identifiers  
+  - Ground‑truth labels (scam / normal)  
 
-Smart contract identifiers
-Ground‑truth labels (scam / normal)
+- ZIP or RAR archive containing Solidity source code of the contracts.  
+- (Optional) Output from CRP-Warner tool containing static risk scores.  
 
+Identifiers of all contracts are converted to strings.
 
-A ZIP or RAR archive containing the Solidity source code of the contracts
-(Optional) A CRP‑Warner output file containing static risk indicators
+### 3. Source Code Extraction
 
-All contract identifiers are normalized to strings to ensure consistent matching across files.
+Contract source code archive is unpacked to a local directory.  
+Every contract's file name is associated with the identifier of the contract.  
 
-3. Source Code Extraction
-The compressed archive containing contract source code is extracted into a local folder.
-Each contract file is mapped to its identifier using its filename.
-If a contract’s source code is missing, the script safely handles it by assigning empty features.
+Missing contract's source code leads to handling of an error gracefully – an empty set of features.
 
-4. Forta‑Inspired Rule‑Based Risk Scoring
-The script implements a lightweight simulation of Forta‑style heuristic rules.
-For each smart contract, it scans the source code for suspicious patterns such as:
+### 4. Forta-Inspired Risk Scoring Using Heuristics
 
-Owner‑only privileges (onlyOwner)
-Token minting (mint)
-Liquidity withdrawal (withdraw, drain)
-Blacklisting or fee manipulation
-Low‑level calls and inline assembly
+We use a simplified version of the Forta risk scoring based on heuristics to score the risk level of every smart contract based on patterns in the source code such as:
 
-Each pattern contributes a weighted risk score.
-The result is a numeric heuristic risk feature, representing knowledge‑based detection signals.
+- Owner‑only privileges (onlyOwner)  
+- Token minting (mint)  
+- Liquidity withdrawal (withdraw, drain)  
+- Blacklisting or fee manipulation  
+- Low‑level calls and inline assembly  
 
-This layer does not replicate Forta itself—it approximates its core rule‑based logic in a reproducible and lightweight way.
+Every pattern has its weighted risk value.  
+The output becomes a numeric heuristics-based risk feature, which represents risk signals based on knowledge-based detection.
 
+In contrast to Forta, this layer only mimics the rule-based engine logic, but in a much simpler manner.
 
-5. CodeBERT Semantic Embedding
-Each smart contract source code is processed using CodeBERT:
+### 5. CodeBERT Semantic Embeddings
 
-The code is tokenized and truncated to a maximum of 512 tokens
-CodeBERT encodes the code using a transformer model
-The output token representations are averaged into a single 768‑dimensional embedding vector
+The source code of each smart contract is passed through CodeBERT:
 
-This embedding captures the semantic intent of the code, even when names are obfuscated or misleading.
-If a contract has no source code, a zero vector is used instead.
+- Code is tokenized and truncated to at most 512 tokens  
+- The code is encoded by CodeBERT’s transformer-based model  
+- Average the token embeddings to obtain a 768‑dimensional vector representation of the code  
 
-6. Dimensionality Reduction (PCA)
-Because CodeBERT embeddings are high‑dimensional, the script applies Principal Component Analysis (PCA) to reduce them to a smaller feature space (e.g., 128 dimensions).
-This improves:
+This provides a semantic understanding of the code even if the naming convention is obscure or deceptive.
 
-Training stability
-Computational efficiency
-Generalization of the ensemble model
+Zero vectors are used for contracts without source code.
 
+### 6. Dimensionality Reduction Using PCA
 
-7. Structural Risk Features (CRP‑Warner)
+As CodeBERT embeddings are high-dimensional, PCA is performed on them to create low-dimensional features (say, 128 dimensions).  
+
+This helps:
+
+- Training stability  
+- Computational efficiency  
+- Generalization of the ensemble model  
+
+### 7. Structural Risk Features (CRP‑Warner)
+
 If available, static analysis features are added, such as:
 
-Hidden minting behavior
-Liquidity leakage patterns
-Sell‑restriction mechanisms
+- Hidden minting behavior  
+- Liquidity leakage patterns  
+- Sell‑restriction mechanisms  
 
-These features represent structural vulnerabilities that may not be visible at the semantic level.
+These are vulnerabilities inherent in the structure which are not immediately apparent at the semantic level.
 
-8. Feature Fusion
-All extracted features are merged into a single feature vector per contract:
+### 8. Feature Fusion
 
-CodeBERT semantic features (after PCA)
-Forta‑inspired heuristic scores
-CRP‑Warner structural indicators
+All extracted features are aggregated into one feature vector per contract:
 
-The resulting dataset combines semantic, lexical, and structural signals.
+- CodeBERT semantic features (post-PCA)  
+- Forta-inspired heuristic scores  
+- CRP-Warner structural features  
 
-9. Model Training with LightGBM
-The combined features are standardized and split into training and test sets.
-A LightGBM binary classifier is trained to predict whether a contract is malicious.
-Key properties of this step:
+The output feature vectors thus incorporate semantic, lexical and structural information.
 
-Handles heterogeneous feature types well
-Supports class imbalance via weighting
-Efficient enough for large‑scale or near‑real‑time use
+### 9. LightGBM Model Training
 
+The combined feature set is normalized and split into train/test subsets.  
+A binary LightGBM classifier is trained on the data, predicting the presence of malice.
 
-10. Optional Soft‑Cascade Overrides
-In some versions of the script:
+Properties of this step:
 
-Extremely high‑risk contracts (top percentile of heuristic scores) are force‑classified as scams
-Extremely low‑risk contracts are force‑classified as benign
+- Effective with mixed feature types  
+- Ability to account for imbalanced classes via weighting  
+- Suitably efficient to be applicable to scale  
 
-This implements a soft cascade, where rule‑based knowledge only overrides the model in extreme cases.
+### 10. Optional Soft Cascade Overrides
 
-11. Evaluation and Output
-The script evaluates the final predictions using:
+Optional in some implementations of the code:
 
-Precision, recall, F1‑score
-ROC‑AUC
-Confusion matrices and threshold sensitivity analysis
+- Contracts with extremely high risk (in terms of heuristic score) are manually classified as scams  
+- Contracts with very low risk are manually classified as benign  
+
+This represents a soft cascade, whereby rule-based domain knowledge overrides model decisions only in extreme cases.
+
+### 11. Evaluation and Output
+
+The script performs an evaluation using the final results based on:
+
+- Precision, Recall and F1-score  
+- ROC-AUC  
+- Confusion matrices and thresholding sensitivity analysis  
 
 Finally, it:
 
-Saves the trained model and scaler
-Exports the final feature table for inspection
-Optionally produces plots comparing different detection methods
-
-
-One‑Sentence Summary
-This script takes smart contract source code, extracts semantic, heuristic, and structural risk signals, and fuses them using a LightGBM ensemble model to reliably detect rug‑pull scams.
+- Outputs and saves the fitted model and normalization scaler  
+- Outputs the final table of feature vectors  
+- Optionally outputs visualizations comparing detection approaches  

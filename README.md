@@ -1,81 +1,94 @@
-🧠 Rug‑Pull Defender — Repository Overview
+# Rug‑Pull Defender — Repository Overview
 
-This repository provides a complete, research‑grade framework for early detection of rug‑pull scams in blockchain projects. It combines a leakage‑free forensic dataset, static smart‑contract analysis, and a multi‑modal ensemble detection system to enable robust and reproducible research on DeFi security.
-Unlike prior work that focuses on a single modality (e.g., transactions only or contract patterns only), this project is designed around the principle that rug‑pull attacks are multi‑dimensional phenomena, requiring semantic, structural, and behavioral evidence.
+The present repository offers a comprehensive, research-ready solution for detecting rug-pull scams in blockchain projects by incorporating an airtight forensic data set, static code analysis of smart contracts, and multimodal ensemble scam detection methods for conducting reliable research on DeFi security.
 
-📦 Repository Components
-The repository is organized into three main pillars:
+In contrast to existing research that relies on only one modality (such as just transactions or patterns from contracts), this project was developed based on the idea that rug-pulls represent multidimensional events.
 
-📊 Dataset (dataset/)
-This directory contains the TM‑RugPull dataset, a carefully curated and leakage‑free benchmark designed for early‑stage rug‑pull detection.
-🔑 Key Characteristics
+## Repository Components
 
+Three major pillars constitute the repository:
 
-1000 labeled token projects spanning multiple categories:
+## Dataset (dataset/)
 
-DeFi protocols
-Meme coins
-NFTs
-Celebrity‑themed and experimental tokens
+This directory includes the TM-RugPull dataset, which is carefully designed and is leakage-free to test early-stage rug-pull detection algorithms.
 
+### Key Characteristics
 
+1000 tokenized projects, belonging to various categories:
+- DeFi protocols
+- Meme coins
+- NFTs
+- Celebrity‑themed and experimental tokens
 
-Temporal hygiene
-All features are extracted strictly from the first half of each project’s lifecycle, preventing any form of post‑hoc data leakage.
+### Temporal hygiene
 
+All features were extracted using solely the first half of each project’s lifecycle and thereby precluding any post-hoc data leakage.
 
-Expert‑validated labels
-Labels are derived from forensic evidence of liquidity withdrawal, abandonment, and long‑term inactivity.
+### Expert‑validated labels
 
+The labels were acquired based on forensic signs of liquidity drain, abandonment, and extended inactivity periods.
 
-🏗️ Multimodal Features
+### Multimodal Features
+
 The dataset provides features across three complementary layers:
 
-On‑chain activity (transactions, liquidity events)
-Smart‑contract metadata (structure and permissions)
-OSINT indicators (social media footprint and reputation signals)
+- On‑chain activity (transactions, liquidity events)
+- Smart‑contract metadata (structure and permissions)
+- OSINT indicators (social media footprint and reputation signals)
 
-✔️ This design makes the dataset suitable for causal and early‑warning detection models, rather than retrospective classification.
+The design is conducive to building causal and early warning detection systems, but not classifiers.
 
-🔎 Static Analysis (static_analysis/)
-This directory provides a reproducible static smart‑contract analysis pipeline, centered around CRPWarner and bytecode‑level reasoning.
-⚙️ Core Capabilities
+## Static Analysis (static_analysis/)
 
-Runtime bytecode extraction (from on‑chain sources or local compilation)
-Static analysis using CRPWarner + Gigahorse + Soufflé
-Batch execution and benchmarking against expert‑labeled ground truth
+This directory provides a reproducible pipeline for analyzing static smart contract code, with an emphasis on using CRPWarner and bytecode-level logic.
 
-🎯 Design Goals
+### Core Capabilities
+
+- Runtime bytecode extraction (from on‑chain sources or local compilation)
+- Static analysis using CRPWarner + Gigahorse + Soufflé
+- Batch execution and benchmarking against expert‑labeled ground truth
+
+### Design Goals
+
 The workflow is designed to support:
 
-Research replication
-Detector benchmarking
-Extension to future static analyzers
+- Research replication
+- Detector benchmarking
+- Extension to future static analyzers
 
-All necessary scripts for compilation, bytecode retrieval, CRPWarner execution, and result comparison are provided.
+All scripts required to compile contracts, retrieve their bytecode, analyze them using CRPWarner, and compare results are provided.
 
-🤖 Ensemble Detector (ensemble_detector/)
-This directory contains the core implementation of Rug‑Pull Defender, a multi‑modal ensemble detection system that integrates heterogeneous risk signals into a unified decision model.
-🧩 Detection Modalities
+## Ensemble Detector (ensemble_detector/)
+
+This directory provides the core implementation of Rug-Pull Defender, which builds a multi-modal ensemble detector for rug pulls from different risk signals.
+
+## Detection Modalities
+
 The detection pipeline combines three complementary perspectives:
-🔹 Semantic Analysis (CodeBERT)
-Transformer‑based embeddings capture the intent and logic of smart contracts, providing robustness against semantic obfuscation and misleading identifiers.
-🔹 Knowledge‑Driven Heuristics (Forta‑Inspired Rules)
+
+### Semantic Analysis (CodeBERT)
+
+Transform-based embeddings encode the meaning and semantics of smart contracts, allowing resilience against any semantic misrepresentation and confusing naming conventions.
+
+### Knowledge-Based Heuristics (Forta-Supported Rules)
+
 Lightweight rule‑based analysis detects well‑known rug‑pull patterns such as:
 
-Minting privileges
-Owner‑only withdrawals
-Blacklist and fee manipulation
+- Minting privileges
+- Owner‑only withdrawals
+- Blacklist and fee manipulation
 
-🔹 Structural Analysis (CRP‑Warner Features)
+### Structural Analysis (CRP‑Warner Features)
+
 Bytecode‑level indicators reveal:
 
-Hidden minting behavior
-Liquidity leakage paths
-Sell‑restriction mechanisms
+- Hidden minting behavior
+- Liquidity leakage paths
+- Sell‑restriction mechanisms
 
-🔧 Ensemble Fusion
-All signals are fused using a LightGBM ensemble classifier, resulting in robust and well‑calibrated predictions suitable for:
+## Ensemble Fusion
 
-Experimental evaluation
-Deployment‑oriented settings (e.g., real‑time mempool screening)
+Fusion of all signals is done via a LightGBM ensemble classifier, producing well-calibrated and robust prediction models appropriate for:
+
+- Experimental evaluation
+- Deployment‑oriented settings (e.g., real‑time mempool screening)

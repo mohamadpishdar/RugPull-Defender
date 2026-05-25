@@ -28,13 +28,6 @@ All features were extracted using solely the first half of each project’s life
 
 The labels were acquired based on forensic signs of liquidity drain, abandonment, and extended inactivity periods.
 
-### Multimodal Features
-
-The dataset provides features across three complementary layers:
-
-- On‑chain activity (transactions, liquidity events)
-- Smart‑contract metadata (structure and permissions)
-- OSINT indicators (social media footprint and reputation signals)
 
 The design is conducive to building causal and early warning detection systems, but not classifiers.
 

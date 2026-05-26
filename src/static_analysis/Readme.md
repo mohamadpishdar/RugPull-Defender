@@ -1,29 +1,29 @@
 # RugPull Defender Static Analysis Part
 
-This repository presents a reproducible approach to the analysis of smart contracts used in **rugpull attacks**. It allows:
+The present repository provides the tools for analyzing smart contracts involved in **rugpull attacks**. Specifically, it is possible to:
 
-- **Bytecode extraction** (from chain or local compilation)
-- **Static smart contract analysis** with **CRPWarner** 
-- **Evaluation against a manually labeled dataset**
+- Extract **bytecode** from chain or locally compiled contract
+- Perform **static smart contract analysis** with **CRPWarner** 
+- Compare with **manually annotated dataset**
 
-The workflow is geared towards **replicating research**, benchmarking, and scaling to incorporate additional contracts in the future.
+The approach is designed for reproducing research, benchmarking, and potentially adding more contracts later.
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
-Rug pulls represent another type of scam, whereby contract creators manipulate token ownership or other factors to transfer user assets. In this paper, we will analyze contract codes suspected to carry out rug pulls using static analysis on bytecodes, which will be combined with their dynamic counterparts.
+Rug pulls constitute yet another form of scams, where the creators of a contract use certain tactics that can help them steal users' funds by manipulating ownership or other aspects. This paper will explore suspected smart contracts capable of performing rug pull attacks, through static analysis of bytecodes, which is complemented with dynamic ones.
 
 The workflow:
 
-1. Collect contract bytecode (preferably from-chain)
-2. Run CRPWarner and additional detectors
-3. Compare results against expert annotations from our dataset
-4. Report metrics and insights
+1. Retrieve contract bytecode (ideally on-chain)
+2. Perform CRPWarner and additional static analyses
+3. Evaluate results against manual annotations from our data set
+4. Metrics and findings
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```text
 ├── README.md ← You are here

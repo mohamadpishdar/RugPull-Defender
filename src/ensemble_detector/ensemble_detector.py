@@ -453,7 +453,7 @@ SEED = 42
 # ===========================
 # 1) Upload: dataset.xlsx, crpwarner.xlsx, SOURCE_CODE
 # ===========================
-print("آپلود کنید:\n1) dataset.xlsx\n2) crpwarner.xlsx\n3) SOURCE_CODE.zip or rar")
+print("Please Uploead :\n1) dataset.xlsx\n2) crpwarner.xlsx\n3) SOURCE_CODE.zip or rar")
 uploaded = files.upload()
 
 excel_file = [f for f in uploaded if 'dataset' in f.lower()][0]

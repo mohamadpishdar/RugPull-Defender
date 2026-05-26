@@ -11,7 +11,7 @@ Before running any code, we first install and import all necessary libraries, in
 - PyTorch and Transformers for CodeBERT embeddings  
 - LightGBM for the ensemble classifier  
 - Pandas and NumPy for data processing  
-- Scikit‑learn for PCA, scaling, and evaluation  
+- Scikit-learn for PCA, scaling, and evaluation  
 - RAR/ZIP utilities to extract smart contract source files  
 
 This allows for the entire pipeline to be executed within a single notebook/execution environment, like Google Colab.
@@ -22,7 +22,7 @@ The script expects three main inputs:
 
 - An Excel file containing:
   - Smart contract identifiers  
-  - Ground‑truth labels (scam / normal)  
+  - Ground-truth labels (scam / normal)  
 
 - ZIP or RAR archive containing Solidity source code of the contracts.  
 - (Optional) Output from CRP-Warner tool containing static risk scores.  
@@ -34,17 +34,17 @@ Identifiers of all contracts are converted to strings.
 Contract source code archive is unpacked to a local directory.  
 Every contract's file name is associated with the identifier of the contract.  
 
-Missing contract's source code leads to handling of an error gracefully – an empty set of features.
+Missing contract's source code leads to handling of an error gracefully - an empty set of features.
 
 ### 4. Forta-Inspired Risk Scoring Using Heuristics
 
 We use a simplified version of the Forta risk scoring based on heuristics to score the risk level of every smart contract based on patterns in the source code such as:
 
-- Owner‑only privileges (onlyOwner)  
+- Owner-only privileges (onlyOwner)  
 - Token minting (mint)  
 - Liquidity withdrawal (withdraw, drain)  
 - Blacklisting or fee manipulation  
-- Low‑level calls and inline assembly  
+- Low-level calls and inline assembly  
 
 Every pattern has its weighted risk value.  
 The output becomes a numeric heuristics-based risk feature, which represents risk signals based on knowledge-based detection.
@@ -56,8 +56,8 @@ In contrast to Forta, this layer only mimics the rule-based engine logic, but in
 The source code of each smart contract is passed through CodeBERT:
 
 - Code is tokenized and truncated to at most 512 tokens  
-- The code is encoded by CodeBERT’s transformer-based model  
-- Average the token embeddings to obtain a 768‑dimensional vector representation of the code  
+- The code is encoded by CodeBERT's transformer-based model  
+- Average the token embeddings to obtain a 768-dimensional vector representation of the code  
 
 This provides a semantic understanding of the code even if the naming convention is obscure or deceptive.
 
@@ -73,13 +73,13 @@ This helps:
 - Computational efficiency  
 - Generalization of the ensemble model  
 
-### 7. Structural Risk Features (CRP‑Warner)
+### 7. Structural Risk Features (CRP-Warner)
 
 If available, static analysis features are added, such as:
 
 - Hidden minting behavior  
 - Liquidity leakage patterns  
-- Sell‑restriction mechanisms  
+- Sell-restriction mechanisms  
 
 These are vulnerabilities inherent in the structure which are not immediately apparent at the semantic level.
 

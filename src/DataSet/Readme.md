@@ -1,4 +1,4 @@
-# TM-RUGPULL
+# TM-RUGPULL DataSet
 
 This is a well-crafted leakage-free Dataset aimed at spotting rug-pull frauds in their early stages. In contrast to other datasets where only DeFi projects have been considered, the TM-RugPull Dataset contains a mixture of projects comprising meme coins, NFTs, and even tokens associated with celebrities.
 

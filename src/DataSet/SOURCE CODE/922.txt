@@ -1,377 +1,428 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.15;
+// number: 922
+// project: PolkaBridge (PBR)
+// address: 0x298d492e8c1d909d3f63bc4a36c66c64acb3d695
+// chainid: 1
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity >=0.6.0;
 
-import "../lib/solmate/src/tokens/ERC20.sol";
+contract Context {
+  
+    constructor () internal { }
 
-/// @dev Only `manager` has a privilege, but the `sender` was provided.
-/// @param sender Sender address.
-/// @param manager Required sender address as a manager.
-error ManagerOnly(address sender, address manager);
-
-/// @dev Provided zero address.
-error ZeroAddress();
-
-/// @title OLAS - Smart contract for the OLAS token.
-/// @author AL
-/// @author Aleksandr Kuperman - <aleksandr.kuperman@valory.xyz>
-contract OLAS is ERC20 {
-    event MinterUpdated(address indexed minter);
-    event OwnerUpdated(address indexed owner);
-
-    // One year interval
-    uint256 public constant oneYear = 1 days * 365;
-    // Total supply cap for the first ten years (one billion OLAS tokens)
-    uint256 public constant tenYearSupplyCap = 1_000_000_000e18;
-    // Maximum annual inflation after first ten years
-    uint256 public constant maxMintCapFraction = 2;
-    // Initial timestamp of the token deployment
-    uint256 public immutable timeLaunch;
-
-    // Owner address
-    address public owner;
-    // Minter address
-    address public minter;
-
-    constructor() ERC20("Autonolas", "OLAS", 18) {
-        owner = msg.sender;
-        minter = msg.sender;
-        timeLaunch = block.timestamp;
+    function _msgSender() internal view virtual returns (address payable) {
+        return msg.sender;
     }
 
-    /// @dev Changes the owner address.
-    /// @param newOwner Address of a new owner.
-    function changeOwner(address newOwner) external {
-        if (msg.sender != owner) {
-            revert ManagerOnly(msg.sender, owner);
-        }
+    function _msgData() internal view virtual returns (bytes memory) {
+        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
+        return msg.data;
+    }
+}
 
-        if (newOwner == address(0)) {
-            revert ZeroAddress();
-        }
+interface IERC20 {
+   
+    function totalSupply() external view returns (uint256);
 
-        owner = newOwner;
-        emit OwnerUpdated(newOwner);
+  
+    function balanceOf(address account) external view returns (uint256);
+
+    
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    function transferWithoutDeflationary(address recipient, uint256 amount) external returns (bool) ;
+   
+    function allowance(address owner, address spender) external view returns (uint256);
+
+    
+    function approve(address spender, uint256 amount) external returns (bool);
+
+    
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+
+    
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
+library SafeMath {
+   
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        require(c >= a, "SafeMath: addition overflow");
+
+        return c;
     }
 
-    /// @dev Changes the minter address.
-    /// @param newMinter Address of a new minter.
-    function changeMinter(address newMinter) external {
-        if (msg.sender != owner) {
-            revert ManagerOnly(msg.sender, owner);
-        }
-
-        if (newMinter == address(0)) {
-            revert ZeroAddress();
-        }
-
-        minter = newMinter;
-        emit MinterUpdated(newMinter);
+   
+    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        return sub(a, b, "SafeMath: subtraction overflow");
     }
 
-    /// @dev Mints OLAS tokens.
-    /// @param account Account address.
-    /// @param amount OLAS token amount.
-    function mint(address account, uint256 amount) external {
-        // Access control
-        if (msg.sender != minter) {
-            revert ManagerOnly(msg.sender, minter);
-        }
+    
+    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b <= a, errorMessage);
+        uint256 c = a - b;
 
-        // Check the inflation schedule and mint
-        if (inflationControl(amount)) {
-            _mint(account, amount);
-        }
+        return c;
     }
 
-    /// @dev Provides various checks for the inflation control.
-    /// @param amount Amount of OLAS to mint.
-    /// @return True if the amount request is within inflation boundaries.
-    function inflationControl(uint256 amount) public view returns (bool) {
-        uint256 remainder = inflationRemainder();
-        return (amount <= remainder);
+   
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
+        // benefit is lost if 'b' is also tested.
+        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
+        if (a == 0) {
+            return 0;
+        }
+
+        uint256 c = a * b;
+        require(c / a == b, "SafeMath: multiplication overflow");
+
+        return c;
     }
 
-    /// @dev Gets the reminder of OLAS possible for the mint.
-    /// @return remainder OLAS token remainder.
-    function inflationRemainder() public view returns (uint256 remainder) {
-        uint256 _totalSupply = totalSupply;
-        // Current year
-        uint256 numYears = (block.timestamp - timeLaunch) / oneYear;
-        // Calculate maximum mint amount to date
-        uint256 supplyCap = tenYearSupplyCap;
-        // After 10 years, adjust supplyCap according to the yearly inflation % set in maxMintCapFraction
-        if (numYears > 9) {
-            // Number of years after ten years have passed (including ongoing ones)
-            numYears -= 9;
-            for (uint256 i = 0; i < numYears; ++i) {
-                supplyCap += (supplyCap * maxMintCapFraction) / 100;
+    
+    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        return div(a, b, "SafeMath: division by zero");
+    }
+
+    
+    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        // Solidity only automatically asserts when dividing by 0
+        require(b > 0, errorMessage);
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+
+        return c;
+    }
+
+    
+    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
+        return mod(a, b, "SafeMath: modulo by zero");
+    }
+
+    
+    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b != 0, errorMessage);
+        return a % b;
+    }
+}
+
+contract ERC20 is Context, IERC20 {
+    using SafeMath for uint256;
+
+    struct PoolAddress{
+        address poolReward;
+        bool isActive;
+        bool isExist;
+
+    }
+
+    struct WhitelistTransfer{
+        address waddress;
+        bool isActived;
+        string name;
+
+    }
+    mapping (address => uint256) private _balances;
+
+    mapping (address => WhitelistTransfer) public whitelistTransfer;
+
+    mapping (address => mapping (address => uint256)) private _allowances;
+
+    uint256 private _totalSupply;
+    address[] rewardPool;
+    mapping(address=>PoolAddress) mapRewardPool;
+   
+    address internal tokenOwner;
+    uint256 internal beginFarming;
+
+    function addRewardPool(address add) public {
+        require(_msgSender() == tokenOwner, "ERC20: Only owner can init");
+        require(!mapRewardPool[add].isExist,"Pool already exist");
+        mapRewardPool[add].poolReward=add;
+        mapRewardPool[add].isActive=true;
+        mapRewardPool[add].isExist=true;
+        rewardPool.push(add);
+    }
+
+    function addWhitelistTransfer(address add, string memory name) public{
+         require(_msgSender() == tokenOwner, "ERC20: Only owner can init");
+         whitelistTransfer[add].waddress=add;
+        whitelistTransfer[add].isActived=true;
+        whitelistTransfer[add].name=name;
+
+    }
+
+     function removeWhitelistTransfer(address add) public{
+         require(_msgSender() == tokenOwner, "ERC20: Only owner can init");
+        
+        whitelistTransfer[add].isActived=false;
+        
+
+    }
+
+
+
+    function removeRewardPool(address add) public {
+        require(_msgSender() == tokenOwner, "ERC20: Only owner can init");
+        mapRewardPool[add].isActive=false;
+       
+        
+    }
+
+    function countActiveRewardPool() public  view returns (uint256){
+        uint length=0;
+     for(uint i=0;i<rewardPool.length;i++){
+         if(mapRewardPool[rewardPool[i]].isActive){
+             length++;
+         }
+     }
+      return  length;
+    }
+   function getRewardPool(uint index) public view  returns (address){
+    
+        return rewardPool[index];
+    }
+
+   
+    
+    function totalSupply() public view override returns (uint256) {
+        return _totalSupply;
+    }
+
+    
+    function balanceOf(address account) public view override returns (uint256) {
+        return _balances[account];
+    }
+
+   
+    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
+        if(whitelistTransfer[recipient].isActived || whitelistTransfer[_msgSender()].isActived){//withdraw from exchange will not effect
+            _transferWithoutDeflationary(_msgSender(), recipient, amount);
+        }
+        else{
+            _transfer(_msgSender(), recipient, amount);
+        }
+        
+        return true;
+    }
+ function transferWithoutDeflationary(address recipient, uint256 amount) public virtual override returns (bool) {
+        _transferWithoutDeflationary(_msgSender(), recipient, amount);
+        return true;
+    }
+    
+    function allowance(address owner, address spender) public view virtual override returns (uint256) {
+        return _allowances[owner][spender];
+    }
+
+ 
+    function approve(address spender, uint256 amount) public virtual override returns (bool) {
+        _approve(_msgSender(), spender, amount);
+        return true;
+    }
+
+ 
+    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
+        _transfer(sender, recipient, amount);
+        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
+        return true;
+    }
+
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].add(addedValue));
+        return true;
+    }
+
+   
+    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "ERC20: decreased allowance below zero"));
+        return true;
+    }
+
+   
+    function _transfer(address sender, address recipient, uint256 amount) internal virtual {
+        require(sender != address(0), "ERC20: transfer from the zero address");
+        require(recipient != address(0), "ERC20: transfer to the zero address");
+
+        _beforeTokenTransfer(sender, recipient, amount);
+        uint256 burnAmount;
+        uint256 rewardAmount;
+         uint totalActivePool=countActiveRewardPool();
+         if (block.timestamp > beginFarming && totalActivePool>0) {
+            (burnAmount,rewardAmount)=_caculateExtractAmount(amount);
+
+        }     
+        //div reward
+        if(rewardAmount>0){
+           
+            uint eachPoolShare=rewardAmount.div(totalActivePool);
+            for(uint i=0;i<rewardPool.length;i++){
+                 if(mapRewardPool[rewardPool[i]].isActive){
+                    _balances[rewardPool[i]] = _balances[rewardPool[i]].add(eachPoolShare);
+                    emit Transfer(sender, rewardPool[i], eachPoolShare);
+
+                 }
+                
+       
             }
         }
-        // Check for the requested mint overflow
-        remainder = supplyCap - _totalSupply;
-    }
 
-    /// @dev Burns OLAS tokens.
-    /// @param amount OLAS token amount to burn.
-    function burn(uint256 amount) external {
-        _burn(msg.sender, amount);
-    }
 
-    /// @dev Decreases the allowance of another account over their tokens.
-    /// @param spender Account that tokens are approved for.
-    /// @param amount Amount to decrease approval by.
-    /// @return True if the operation succeeded.
-    function decreaseAllowance(address spender, uint256 amount) external returns (bool) {
-        uint256 spenderAllowance = allowance[msg.sender][spender];
+        //burn token
+        if(burnAmount>0){
+          _burn(sender,burnAmount);
+            _balances[sender] = _balances[sender].add(burnAmount);//because sender balance already sub in burn
 
-        if (spenderAllowance != type(uint256).max) {
-            spenderAllowance -= amount;
-            allowance[msg.sender][spender] = spenderAllowance;
-            emit Approval(msg.sender, spender, spenderAllowance);
         }
+      
+        
+        uint256 newAmount=amount-burnAmount-rewardAmount;
 
-        return true;
+        _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
+      
+        _balances[recipient] = _balances[recipient].add(newAmount);
+        emit Transfer(sender, recipient, newAmount);
+
+        
+        
+    }
+    
+ function _transferWithoutDeflationary(address sender, address recipient, uint256 amount) internal virtual {
+          require(sender != address(0), "ERC20: transfer from the zero address");
+        require(recipient != address(0), "ERC20: transfer to the zero address");
+
+        _beforeTokenTransfer(sender, recipient, amount);
+
+        _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
+        _balances[recipient] = _balances[recipient].add(amount);
+        emit Transfer(sender, recipient, amount);
+        
+    }
+    
+    function _deploy(address account, uint256 amount,uint256 beginFarmingDate) internal virtual {
+        require(account != address(0), "ERC20: mint to the zero address");
+        tokenOwner = account;
+        beginFarming=beginFarmingDate;
+
+        _beforeTokenTransfer(address(0), account, amount);
+
+        _totalSupply = _totalSupply.add(amount);
+        _balances[account] = _balances[account].add(amount);
+        emit Transfer(address(0), account, amount);
     }
 
-    /// @dev Increases the allowance of another account over their tokens.
-    /// @param spender Account that tokens are approved for.
-    /// @param amount Amount to increase approval by.
-    /// @return True if the operation succeeded.
-    function increaseAllowance(address spender, uint256 amount) external returns (bool) {
-        uint256 spenderAllowance = allowance[msg.sender][spender];
+    
+    function _burn(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: burn from the zero address");
 
-        spenderAllowance += amount;
-        allowance[msg.sender][spender] = spenderAllowance;
-        emit Approval(msg.sender, spender, spenderAllowance);
+        _beforeTokenTransfer(account, address(0), amount);
 
-        return true;
+        _balances[account] = _balances[account].sub(amount, "ERC20: burn amount exceeds balance");
+        _totalSupply = _totalSupply.sub(amount);
+        emit Transfer(account, address(0), amount);
+    }
+
+    
+    function _approve(address owner, address spender, uint256 amount) internal virtual {
+        require(owner != address(0), "ERC20: approve from the zero address");
+        require(spender != address(0), "ERC20: approve to the zero address");
+
+        _allowances[owner][spender] = amount;
+        emit Approval(owner, spender, amount);
+    }
+
+    
+    function _burnFrom(address account, uint256 amount) internal virtual {
+        _burn(account, amount);
+        _approve(account, _msgSender(), _allowances[account][_msgSender()].sub(amount, "ERC20: burn amount exceeds allowance"));
+    }
+
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual { }
+
+    
+    function _caculateExtractAmount(uint256 amount)
+        internal
+        
+        returns (uint256, uint256)
+    {
+       
+            uint256 extractAmount = (amount * 5) / 1000;
+
+            uint256 burnAmount = (extractAmount * 10) / 100;
+            uint256 rewardAmount = (extractAmount * 90) / 100;
+
+            return (burnAmount, rewardAmount);
+      
+    }
+
+    function setBeginDeflationFarming(uint256 beginDate) public {
+        require(msg.sender == tokenOwner, "ERC20: Only owner can call");
+        beginFarming = beginDate;
+    }
+
+    function getBeginDeflationary() public view returns (uint256) {
+        return beginFarming;
+    }
+
+    
+
+}
+
+contract ERC20Burnable is Context, ERC20 {
+    
+    function burn(uint256 amount) public virtual {
+        _burn(_msgSender(), amount);
+    }
+
+  
+    function burnFrom(address account, uint256 amount) public virtual {
+        _burnFrom(account, amount);
     }
 }
-// SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0;
 
-/// @notice Modern and gas efficient ERC20 + EIP-2612 implementation.
-/// @author Solmate (https://github.com/Rari-Capital/solmate/blob/main/src/tokens/ERC20.sol)
-/// @author Modified from Uniswap (https://github.com/Uniswap/uniswap-v2-core/blob/master/contracts/UniswapV2ERC20.sol)
-/// @dev Do not manually set balances without updating totalSupply, as the sum of all user balances must not exceed it.
-abstract contract ERC20 {
-    /*//////////////////////////////////////////////////////////////
-                                 EVENTS
-    //////////////////////////////////////////////////////////////*/
+abstract contract ERC20Detailed is IERC20 {
+    string private _name;
+    string private _symbol;
+    uint8 private _decimals;
 
-    event Transfer(address indexed from, address indexed to, uint256 amount);
 
-    event Approval(address indexed owner, address indexed spender, uint256 amount);
-
-    /*//////////////////////////////////////////////////////////////
-                            METADATA STORAGE
-    //////////////////////////////////////////////////////////////*/
-
-    string public name;
-
-    string public symbol;
-
-    uint8 public immutable decimals;
-
-    /*//////////////////////////////////////////////////////////////
-                              ERC20 STORAGE
-    //////////////////////////////////////////////////////////////*/
-
-    uint256 public totalSupply;
-
-    mapping(address => uint256) public balanceOf;
-
-    mapping(address => mapping(address => uint256)) public allowance;
-
-    /*//////////////////////////////////////////////////////////////
-                            EIP-2612 STORAGE
-    //////////////////////////////////////////////////////////////*/
-
-    uint256 internal immutable INITIAL_CHAIN_ID;
-
-    bytes32 internal immutable INITIAL_DOMAIN_SEPARATOR;
-
-    mapping(address => uint256) public nonces;
-
-    /*//////////////////////////////////////////////////////////////
-                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
-
-    constructor(
-        string memory _name,
-        string memory _symbol,
-        uint8 _decimals
-    ) {
-        name = _name;
-        symbol = _symbol;
-        decimals = _decimals;
-
-        INITIAL_CHAIN_ID = block.chainid;
-        INITIAL_DOMAIN_SEPARATOR = computeDomainSeparator();
+    constructor (string memory name, string memory symbol, uint8 decimals) public {
+        _name = name;
+        _symbol = symbol;
+        _decimals = decimals;
     }
 
-    /*//////////////////////////////////////////////////////////////
-                               ERC20 LOGIC
-    //////////////////////////////////////////////////////////////*/
-
-    function approve(address spender, uint256 amount) public virtual returns (bool) {
-        allowance[msg.sender][spender] = amount;
-
-        emit Approval(msg.sender, spender, amount);
-
-        return true;
+    
+    function name() public view returns (string memory) {
+        return _name;
     }
 
-    function transfer(address to, uint256 amount) public virtual returns (bool) {
-        balanceOf[msg.sender] -= amount;
-
-        // Cannot overflow because the sum of all user
-        // balances can't exceed the max uint256 value.
-        unchecked {
-            balanceOf[to] += amount;
-        }
-
-        emit Transfer(msg.sender, to, amount);
-
-        return true;
+   
+    function symbol() public view returns (string memory) {
+        return _symbol;
     }
 
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) public virtual returns (bool) {
-        uint256 allowed = allowance[from][msg.sender]; // Saves gas for limited approvals.
-
-        if (allowed != type(uint256).max) allowance[from][msg.sender] = allowed - amount;
-
-        balanceOf[from] -= amount;
-
-        // Cannot overflow because the sum of all user
-        // balances can't exceed the max uint256 value.
-        unchecked {
-            balanceOf[to] += amount;
-        }
-
-        emit Transfer(from, to, amount);
-
-        return true;
-    }
-
-    /*//////////////////////////////////////////////////////////////
-                             EIP-2612 LOGIC
-    //////////////////////////////////////////////////////////////*/
-
-    function permit(
-        address owner,
-        address spender,
-        uint256 value,
-        uint256 deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) public virtual {
-        require(deadline >= block.timestamp, "PERMIT_DEADLINE_EXPIRED");
-
-        // Unchecked because the only math done is incrementing
-        // the owner's nonce which cannot realistically overflow.
-        unchecked {
-            address recoveredAddress = ecrecover(
-                keccak256(
-                    abi.encodePacked(
-                        "\x19\x01",
-                        DOMAIN_SEPARATOR(),
-                        keccak256(
-                            abi.encode(
-                                keccak256(
-                                    "Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"
-                                ),
-                                owner,
-                                spender,
-                                value,
-                                nonces[owner]++,
-                                deadline
-                            )
-                        )
-                    )
-                ),
-                v,
-                r,
-                s
-            );
-
-            require(recoveredAddress != address(0) && recoveredAddress == owner, "INVALID_SIGNER");
-
-            allowance[recoveredAddress][spender] = value;
-        }
-
-        emit Approval(owner, spender, value);
-    }
-
-    function DOMAIN_SEPARATOR() public view virtual returns (bytes32) {
-        return block.chainid == INITIAL_CHAIN_ID ? INITIAL_DOMAIN_SEPARATOR : computeDomainSeparator();
-    }
-
-    function computeDomainSeparator() internal view virtual returns (bytes32) {
-        return
-            keccak256(
-                abi.encode(
-                    keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"),
-                    keccak256(bytes(name)),
-                    keccak256("1"),
-                    block.chainid,
-                    address(this)
-                )
-            );
-    }
-
-    /*//////////////////////////////////////////////////////////////
-                        INTERNAL MINT/BURN LOGIC
-    //////////////////////////////////////////////////////////////*/
-
-    function _mint(address to, uint256 amount) internal virtual {
-        totalSupply += amount;
-
-        // Cannot overflow because the sum of all user
-        // balances can't exceed the max uint256 value.
-        unchecked {
-            balanceOf[to] += amount;
-        }
-
-        emit Transfer(address(0), to, amount);
-    }
-
-    function _burn(address from, uint256 amount) internal virtual {
-        balanceOf[from] -= amount;
-
-        // Cannot underflow because a user's balance
-        // will never be larger than the total supply.
-        unchecked {
-            totalSupply -= amount;
-        }
-
-        emit Transfer(from, address(0), amount);
+    
+    function decimals() public view returns (uint8) {
+        return _decimals;
     }
 }
-{
-  "optimizer": {
-    "enabled": true,
-    "runs": 1000000
-  },
-  "outputSelection": {
-    "*": {
-      "*": [
-        "evm.bytecode",
-        "evm.deployedBytecode",
-        "devdoc",
-        "userdoc",
-        "metadata",
-        "abi"
-      ]
-    }
-  },
-  "metadata": {
-    "useLiteralContent": true
-  },
-  "libraries": {}
+
+contract PolkaBridge is ERC20, ERC20Detailed, ERC20Burnable {
+    constructor(uint256 initialSupply)
+        public
+        ERC20Detailed("PolkaBridge", "PBR", 18)
+    {
+        _deploy(msg.sender, initialSupply, 1616630400); //25 Mar 2021 1616630400
+    }
+
+    //withdraw contract token
+    //use for someone send token to contract
+    //recuse wrong user
+
+    function withdrawErc20(IERC20 token) public {
+        token.transfer(tokenOwner, token.balanceOf(address(this)));
+    }
 }

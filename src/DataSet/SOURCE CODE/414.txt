@@ -1,102 +1,212 @@
-/**
- *Submitted for verification at Etherscan.io on 2023-06-29
-*/
-
-/*
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@BB@@BB@@%8BBB%B&&Md0c|]~l^. ',<[|nLb*W88B%%B%%%@@B%@@BB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B@B%%88#Qt+^.''...... ..............''.'..`~tY#%@B%BBBBB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B@%@%B@W0-;..'' .'-upoW8%BB@@%@@@BB@@BBB@BB#adu-``` ' `"?J*@&@8BB@BB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@B&h[.`.'^^>L%8B%@@B88B8%8MMM#MMooo##MW&%BB%%@B%%@BBBZ+". ' ._bMBB@@@B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@BB%L]"` .;/m8B%@BBBMdCj]ili!ii!!!!>+11-i!!!!i!i!!>[jJkW@8@%%%8dtI.'.'-C8%%B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@Wn"^'."cW8B@8&Boj_i+i!i!!!!!!iil"xo#/>-(hWuIii>ii!!!!i>l;+</a@8@%8%WX:.` :(#B8BB@%@B@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@BBh|^..`)a8B@@Bkj<;+Iii!!il>!l!!!!i!iYWhI>iiiIm8Ziilii!!!i!I!~>;!!~l<udB%8B@#),'`.1hB%BBB@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@%%%BBBj"' ,uMB%B&dn-l![QWa*%av~!i<;>!!!!!i~$%cii>i!>_B%?lil!!!ii!l<!t#%MoWO{!>iuk@%%8Mu"'.`|#B%B%BB@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@BB%Bpl^` tW&8BBO}!l!i<a0:>!i!L%B1!l!!!!!!!l>kB0!!I>liu8*li!ii!!!>!i_W@w_Iii+ZW(;lii?088@%Mr`,.lZBM@B@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@B%%v`^ !k%8&B0-;!i!il+#8[!i!>iIq%hli<li!!!!!l.w%ni~ii/BwIi!!!!!i!l!!bMqili>!i-#&?Ill>l<~Z8&BBa?''`rW%@B@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@B8Wt'''|&B&Bd1I!l>!ii!ilM%cll>l!>!Bpii!!l!!!l>|oUUZoI!wmcUaXl>!!!!i!~IZ@{i!i!<l(@B]!ii!!iiIi[h%%8&v`'`|#%$B@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@BB@M).'`z%*B@Y<!:!i!>!i!i!ic%%f,i!>:Ch!18+>!!i!l;-vzXXr:itXCUL|!!>i!iiihflaZ!<<<l)*8J<i!!!!!!i~:-!xBB%BY,'`]BB%B@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@%%j`^"Y8@MWf!<i!lIiii>i_jrX[rqB8C(l>8&88kt<I>~[/XqM%B@@BBBB%W*mc|]<<>I)p&B@%+~<XM&k/?YQn1;><iil<+l?"j8&B8C,' j&@8BB@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@B%BO,^'xB%BWjiii!i!l<!!ljW&%B8BBBWm*B/l??>(Uh&BB8B@B@@@@@@BBB@BB@@BB%BBBBoCt~_[>1B8Z*8%BB8%8%z!>ilil!Iii>|&%BWU.`,UBB%@@@@@@@@@@@@@@@
-@@@@@@@@@@@@%B%@%&<` -&B@#j;+L%B@%@#[l>|B%&Y/jrO&%8%&U0&@@%%BBBBabqO00OO00ZZO0O0QOZqqo%B@BB%%@&Qn*@%8&kYunYW88Ll>>pB@888p!!(MB8B}`.;W@B@%B@@@@@@@@@@@
-@@@@@@@@@@@@BB%8J``;m%BBClIvp<+I!!Y%8z<oBBY-_}/ft|CWB8%BB&aqOQQOOOb&B%B@@%BB@@@%BBWhmZ000OmkW@@&8@%pvnvuj)tn8B%~v@80>>iIlwLIizBW8b: "XB%@@@@@@@@@@@@@
-@@@@@@@@@@@@B@#+"'/8%%d?I>j%1i!ii!!i*8]BB%!`.'"-|(f/u*%%BkZQ0OOd&@BB&dQJLCUUUYUOdMB@%8kOOOOQd8@%&Ouunu/><<<<#8@fBB]<i!lii~%Xii>b8B%t"^+*%B@@@@@@@@@@@
-@@@@@@@@@@@BBw```d8BBnl>l!wBc!il<!>lfbf88B'.'^'':|t/f/c&8@8mmO&@@%&%@%%B@@@@BB@B%%&&@@@MqLZa@B8Zrvunv[<;><>lhB@Q*c!>i!!li[@ol!i;r8%@#"'"ZB@@B@@@@@@@@
-@@@@@@@@@B@BC'`i8B8*<>iii!>MBp_l<l>!x&@8@B..`!MW1ltt/t(/0%%@a8%B@BWamXxf/|((|t/cOb#WBB@%Bo%@%*xcxvcx}-o8u<>!0@B@%vllI<I<OBB|>;~Ii<b%@W~^.tB8@%@@@@@@@
-@@@@@@@@@B8r`'1%@%J>i!i!!>~:LBWBkd*]:>|%@@  'a@%@Yl//tt)/ja%%B%88%aU/tt/jnnnxr|/|/zh%BB%%BBMUnvnvnz]n&BB@<><wBBq~i?dkpM&80<!i!i!!>lU%8Br `18%%@@@@@@@
-@@@@@@@@@&(``v%%&f>!!>!!!ii>"ll>~w@o~|#B@B` .@@%B@#n]r/(/t)U&@%pv&%%BB8B@@B@@@@B&BB&%00%BBqvvuxvvf/#%B@B@~>>aB@WjIhBp~l>!>;!>iii!l<<j&%@z^`?B@B@@@@@@
-@@@@@@@BB{^'XB881!!il;l!i!I>lildBo|i*%@@@@;..#%%BB8B%bxx/|/)jp#m|/b%@#Jjt/||/tnUMBBacn0aWJrvuxvvZ%&@@BBBB<>>M%BBB&-1#@L~iiil>!iil!l!i[&%@C^`<BB@@@@@@
-@@@@@@BB)''X@BB}l!ii!ii!!!!i!i!>l!cBB@#B@@+  L8B#qwd&@8@%ou/ttt/tf/q&%Cf|//j//tz%BanuuuvnunXh%8@%8akbMBB8>~-W@@#@BBQlli!!!!!!!!!i!!!!!?WB%J''~8%@%@@@
-@@@@@@Br.'x%%W1~!!i!ii!!!!!!!iiI>h8@%qOW@@).'Iv,^ ''.LB#X|f||/tf/t/n%88BBBB%B%B%8B0vnnzunnxzcUqW#?<~<<Ir/>>-BB%0w8@&W>l>l!!!!ii!!iii!i>?W@@Y `|%B%B@@
-@@@@@B0^ |B@B|!i1w8%bn+liIiliiI/8B@#Z00bBBO... ...^`(Jx|/tttttt////j&B%b0XvnvCq8B8JuuuuuuuuuuxvuLC~;<>i<!i>r@B*ZLZa@%@xi>!I!>>I:f0%#J)I>-8%Bj^ YB%B@@
-@@@@Ba. <8@%f!)WmvnU*%8L!oz]l!XBB%aLO00m@@8".'.ij]~|///|///tt//////fM%Bc/|t//tv#B8uxnuuuuuuuuuuvxvx)1z(l<!<o@BkQmQOd%%BL;<[JZin8%&Zvcw#f<t8B&+ '08@@@
-@@@B@l^ *%@O>)d-~ili>ln%jJ@Z!UB%Bq0LZOOO@@Bj';#%88v(t|ttt/t////tttt|wB%%BB%@&BWB%oxvuuuuuuuuuunuuvnv*8@8x:)B@%bOOQZQp&@@p!qBUfBJli<I!+Id{!z%%8,.,@@B@
-@@%@f''m@%aliqJ+!iliiiiYb%#~L8%8w0OmQO0M%@@aQ@%8qj|/t//////////tttt|U%BW*&%B8oo%BdnvuuuuuuuuuuuuunuuxO88%hw@BB%m00O0Qm%B%dIh%k*~il>li!<f#i>w%BZ''[8@@
-@BBW`'+B@B}!iY@cliiiii!!i)>U%8Bw0OQ0O0k@%@@B%8ar/ttttt/////////tt//|x%@M&8B%@%hBBOvunuuuuuuuuuuuuuvuuuxh%B%@BBB&OOOOO0Z8%&m>|>li>ii!i;u8pii]@BB[.`W@@
-@BW+ 'W@BJl~Ilq8%&OttZW%p<{BBBmOOOOO0q%BB&BBBO|//tttt///ttt/ttt/f//ffB%B%q1(L8%@%CxcuuuuuuuuuuuuuuuuuuvxCWBBa%B@W0O00OOZB%@Xiq8&o}-0M%Bal!>!u8@* ',B%
-@BW''}BB8-iI!;~;XqhkL<o&J<%B@kZOOOOOZ8BB%@B%Q)t//ttttttttt////t//ftC&B8qro#oMzwW%8pxvuuuuuuuuuuuuuuuuuuvxC&%B%BB%kQOZOOOpBB%{n@m<Jb*hc-Ii<li_BBBx'^Z@
-@8+.'kB@Yil<!ii!i>;~ro8Qib@@oO00OOO0W@%*Q@Bh/t/ttt/tt/j|/fxUbW&bc|vW8BZtLoYJkk)L8B%CxzpW8#mzvuznuuuuuuunnvZB@km%8Bw0OZ0OO*@BhiZW&vlil>il!>!ilj@@h.'~B
-B#" }B@8}!lIii!i!!>ll!~+/%8%w0OOO00hB%&jWBBO/t/ttttttt(xh&8@@BBB%WY(m88&wa8WaJ&88bvn*B%@B@8W8MLvuuuuuuuunuJ8%8|dB%&ZOZ0O0ZB@%X~+I+!;iiiii!>l>!&8@?' h
-&Q''UB%p!<!I>ii!i!iil>>l*8%*QOZLOQb%B%L|MB8X/t/ttttttff//08B@B%BBBWcj)bB8&xn#%B*cvrW%%%%@%BB#rvuuuuuuuvvvnz%%&xtMBB#OQ0OZ0k%B*!ll!i!li!!!i!il;p@Bb 'n
-B~ .#@B/iilii!iiii!iii~(BB@mZQZZZZ8@B8B&BB8u///////tttftttZMB8%BBB%C||/xd%BBB*Jxuuv%%BB%%B8aYvvunuuuuuuunnu%BB#BB@BBk0OOO0O8@@jl!ii!!!!!!iilli1B@W' ~
-W.'~B@B_i!iii>ii!iii!>;OBBMO000O0M@BMh8B8%%t////tt////(/|/|(/r(/nZ*dj(1)(XoaCnvcvvO*dLzcuuxrvvuuunuuuuununu8@%@B*bBBBO0O0O0#%B*!iii!!!!!!!!!il<WBBl.'
-b. j@BWlili!?1(_i!jYU}<oB@d00000bB%&nvuQ%B&/tt|t///?l^`''`''`"!+)|t/t/t///t/ruuuuvvnvn(-~i!i>><i>~)nxvnuuuuW%BbcnxpBB&Z000Oq@@&+?UYXiI~{)+i<IilhB%f'.
-Q' Q@Bol!-dB%BB%%kiCB/<@B%mQO00q8B%Yj1tn&@8ff/ttt?,'..   . .. '`'l{t/f/tttt/ruuucnnn]<i>>i>ii>>!!<!>1uuuuuu&BB0f|ft*%@o0OOOZ%B@-t%piwBBB$&Ww>>lZ@Bd` 
-X  d@@ml-#Z];!>IinWL@}tBB%ZOQZQ8@%@8X(/n8B%j|tj/_`. .           ..`_///ttt//rvnvxvj<>>>>>>>>>>i>>>!+!]urvuvM%8Uj|rp%B%BkQZ0O&%@|)@b%XiI!!l<mW!!C@8&. 
-v .b@@Q!u0llIii!l>il]-x@@8O0ZQ#BB&%B%8hUMB%vt|t1^.              . .^_t//////xuuuvf~>>>>>>>>>>>>>i><>>i|nunu%B8Up88BB8%BBmOOQW%%v<_l<~i!l!!i!zX!Y@BB'.
-n''bB@Cljw!I!ii!<>[nn!cBB8OOQb@B&JuCM%%@%8%Q(tt~`..             .. .^I)///t/runn}i<i>>>>>>>>>>ii>>>>ii~xvuY8BBBBBWpXuaB%WZZLW@BX-uu)lilii!i!pr!X@@B' 
-c''b@%L+~k%UI;!^)&dwB!v@B&00m8B%C)ffcvL&%8@d/|)I. . ... . ..`.    '^"`'!|rf/vuxi<~<!>>>>><!!I!>>>>>>>><rnx0B@@%dzunt(jW%%aQQM@@z}Ba081il,>r%h>IX@BB''
-U  w@@bil!rwBB%%*r!dW>1@B8OZWB@8c|/|t/tcUBBWjt/,........!1<'.'.   .'(&8B@%BB%B%B%q-i>>>ii<!_j}i~i>>>>>>xxu*&Bmnutt/||tbBBBqO&@B(]Bh;j*B8&BWzl+lL@@*..
-Z..LBBM!!iilii>!!!1fnl<&@BOhBB@@B8pu(t|t/M%%p1(; .......b%Bd`'     -B@@@@@@@@BB@BBQ>>~!>i!X%8%}<ii>>>>>rnJBBBc|(t(tQ*B%B@@8wBBBi!(([l!l!i!l!il!qB%q. 
-h  )@@W!!!i!i!l!>i<!><>h@@k%%BJO88%&%qj/*%@%#(/l.     .^ wB%a^     `M%%B@@@@@BB@B@]>!>i<!0B%M_<!~ii>>><jxb%B%&c{LW%%B%kY#@@WB&#~~!<><ilii!!i!iloB%( .
-&`.;%@%~i>l!i!ii!il>>IiQB@@%%ptvvcq8%BBB@BBB%Zt~`.. .  '.^OB@0.    'IW%B@@@@@BBB%n<<!>~lu%8#+<!~i>>>>>+vU8BB%BBBB%%*Lrvxv%8BBBh!i>ll!!!ii!!liI~8B%".'
-B{..h@@xii!iii!!!!i!!>>]@&@B#ft(/rnvCpB@&bx88%z(`....     "BB%n'.. .'^xW@%%@%B%m-ii<>i~?@8@1l>i>>>i>>>jv&%%zU&B@MUxzjf|t|QB8@%[<i!i!!!!!!!>iiivBB* `1
-Bq .cB@&>!ii!!!!!i!!!i!!Z@%B@8Zr|tt(/d@Bo|tX%%&X>.'..     '"WB&<.' '. ^. :]1?!~?+ii!>i~#BBu><i>>>>>>![u*%BO/t08%%/(//|/z#B8%Ba^]:Il!!!!!!ii!iiaB@Q 'Y
-@&`.~BB@{i>>i!ii!i!-w%@jWB8W&%%%WCf|L%B#ff/(Y%B*J'..'     ..t&%8Ot[1nw&B%@BBBB%&kQntrq%8%k>!>i>>i~;~iu#88q////b%Bqf|chBB8%*%@%c&8O{I!<i!I>!<;+%@B~.`o
-@B/..0@B0iliiI[m#B%MX+&%%%oYvYd&%B%M8B&z/////r&&BQ`''    ' ''iZ&%%BBB%%%%%%%%%%%BBB@B@B#tI>!~i>>><!ic8%BX/(j/jf#8@#&%BBMQvuw8B@&)vo&8#C+l<!!>J@Bp.')B
-@@@,'_@@@1l!ip&@q/iI]M%88%jtjnzuco%@@BQ(j||/I: w@M%t.         . .m%B*ZwwwwmmwwqZ0a&B@<I>!ii>>>+i<i]M%B&l^;))j/tuBBBB&LcxXt(jb@8@*{ilthBWQ!!i-%%8).'bB
-BB%/'`m8@qi!(8Xi+!ll>I#@%8Jj|//rznwB%atf|t}". ''-#%%q         ..':8%&mOOOOOZZZ0mm#BBx>i!ii>>>il<iC%WWf. ..`_t//|OB%oxUn|tt(vaB@@jlli!!!v@}<Iw88q'`+BB
-BB%&I :&@Br;(*iI?ll>IO%B%B8%*U(tfn8B8c/|t+^'..'''.I},         ...`n%%WOZZZZmZZZOo8%k!>i>>i>>>i>i<i/1!". ..."I//ffM%&C1j(xk%8B@@%W_<i<lii@{>j%&@+`^%8@
-@BB@U 'rB&&>!p/;~!iI?@%BYUoB%%BacpBBh//|I.'..                    ' w8M8oZ00ZQZdW%##i<>>>i>>>>>>i>><>!>l^  . ."{f1LB%#jZ8B%%&mr&B%OI>~i!}W>~&B@c` z@@@
-@@B@B)'`ZBBMiIC%hh8BBW%wtzvuQo88B@8%%%Z<'....                     .`_d%B%BBBBB@@%v>><>>>i>>>>>>i>>ii<ii<!I:^``;J8MB%%%B%Wqzucrj&B&WkqqWq:>q@8o`.-88@@
-@@@@B*`.:o%@L!ii{uzd%B&rtf|rvcc0#%%B@B%B#)^`....              .'''....'i)tvcnx?>~!>>i!i><>>>>>>>>>i>>ii>~!~l)hBBB%@BB%bzvcrftf/w8BWLC)+!!U@%M: "#@B@@
-@@@@%BM.'!B%%c!!!I_8@B%omn)|j/ncucq8%B@@@8@m,.^ '             '~@8o]'"..''`!~>~<_;]d@%U~<>>>>>>>>>i>>i!<>!Q%BBBB%B8kUucxtr)(jY#&8%8Llliln%@B~^.wBB@@@
-@@@@BB%Q'`-%B%n>l!OB%B%88B%B#Ouf/rzxzb8BB%@B&W(^.  .          .`xW8%%d(<:I>i<i_tZ&@8@w-!i>>>>>>>i><i><I/#%BBBB%%*Qzxuj(rJhW%B8BB%BB%_>I/@%%(`.C8@%B@@
-@@@B@BB@X^.}%B@ni[%%Br|fuO#%%8B%WqvtvvvYk8@%%B&%w>..'         ..`,)a%&MBBB%%BBB%B%#n~!>>>>>>>>>>>><i~0BBB@%BB*QcxzrfC*&%%8B8pUj/(aB@m;r@MB(''c%B@@@@@
-@@@@B@%@@X'']8@%JoB%bfj|){u||Jb&B%%8%U(zvuChBB%&BB@j'          . ^`lI<~nd&W#Wau(<I<>+<>>>>>>>>i<>>tM&%%%%%WOzucjrhBBBB%Mwx|j|{|/fz%@%ZBBB)`.x@@@@@@@@
-@@@@@@@@BBU''i8B&%BB88dUn//wO0w/jUh%BB%MXnvcu0*8B@%8Bh<"'   '      'I>i>>>i>>i>>>>i>>iiii<i!>!~_m&BBBBBWqXvzxxb%88%MZx(rkChu/fvmM88%B8@W? 'xB&@@@@@@@
-@@@@@@@@@BBw''lW%88#8BB8%%WqJv{|/t|jrb%8%BpxxczuZW%@@8%WJ` '       . "i>>>>>>ii>>>>>>iiiii>!>jM8@%@B8bzrUxjLMB8B&Yj/|(/|rud*8B@%8W&&@Ba<  CB%%@@@@@@@
-@@@@@@@@@@@88:.^Z88%rI!r*BBB%%8Zf1coQatY&%%%W)xvcxYO&B8@%Ba+....' .   .I~!<>>>>>>>>>>!~<ll+d@@B@B8oXcvXjrJ%&@WqtwwqCt{v#88%BB#Z~I1B@&0l.'a@@@@@@@@@@@
-@@@@@@@@@@B@%W-^'t8%@mi>!>iX%%B8%WOCZU|t)va%%%djtcvcuYp8B%888c;`^... .':iii>>>>>ii>>i>><x#B%B@%#Jvcuzx(J&8%&L||/rZQUa8B88#zdqIiiZB8Mr'"!8BB@@@@@@@@@@
-@@@@@@@@@@BBB%BY..;kWBWnI<;f%J>Y&@%&#X(/t/|x*%@W0|tncvcuh%%BB%B#rI>>i>i>i<i>>>>>ii>ii{h&%8%B%8Lvccvn(vWB88Qf//||ta8B%Ba}i;rk>>(%B8aI'.xB8W@@@@@@@@@@@
-@@@@@@@@@@@@@@BBhl'.|@@Bo_i>wwl_;~p@8B&m)fxdqc&%&a//fvzca%@#ObB%@%m+I<li><>>!~;~ii>z%@@BoOp%8BYvvnj(Q8%8kvhX((x#8@8%B&@%&&/:_bWB%z.'lb@%@@@@@@@@@@@@@
-@@@@@@@@@@@@@BB@8@u^'"Z&B@k~IjMXfup&B%B%&Ymppc(*%%&jjvzzo@@B%8#*&B%8Wrl<ii>><<il1b@8B8*MWB%BB%Ycvu/ZB%8Xfbmkza%BBp-lI!i!!~lm%@&b:'`nB@@BB@@@@@@@@@@@@
-@@@@@@@@@@@@@@@BBB8#?'^:aBBBm<!I(fj-~!v%@Baj////dBBWucczaB&&8&%8B%%B%8%b{l~li_X%B%8B&%BB%&o&8BXuYxmBBWv//t|O&B%h_ii!<ii!~U@B%oi''+a8@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@BBB%8!.,<MB8@ki>i>;lIi<dB&%X)t/thB&#vznoB8#(|jJk&%B88@@@Mx1hBBBBBB88*Zu|(n8B8XvvQB%&ut)t/hM&%/IiI~:i<<dBB*&~'^,pB8%%@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@B@B@%q! '~b%B8*j!!~;ii:Y8B8Y/t|f8BBwvvh%B8#put|/(//uYw#B%8%8bUvf/(|/(j0#%BBBXzX%B%C|1tfo%%M-l>ll<l(#8BBa<`.Iw%&B@B%@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@B%8p;'^;0B8@&w+i!!I!u8B%cpZhXBBWcua@@@BB%%%aCx|(tf(rb*c|ft/(/Uk8B%BB&@@BYXmBB#dZpjM@%kI>lii!0%%%%wI`.!O%&@BB@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@8B&%BW-',.)MB@#BC~i!;U%%%Ck0fM%BOvkBB&&8dM@@8&@BWpvzo*ZvO*B@88@&%#%Bk%B8zv8B&JcpwqBB*i;<ic%8BB*`'-h@%B%@8@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@B#L:`';X8WB%8Q?~aB%0/f/kB8hJw%@%&%/v%WLkB8BB&#JwhB@8%%#0WB0/8B*BBMzwB%Bx(tr8B%t_J8BBB&Ji.""c*BB@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@B@8Bo1'''lv&B%B%*@8M/ttz#B%B%BBB88tx&%tXB&c8kx#MmpBZQBp|M%Ot8%8%B@%%%&J|//J&B8W%@&%C>`^ ]k@BB@%@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B@@@Bo]`.'^1oB@&BWx|/j(|08&B@%%Btn8&/U%%o8UhQdowBBp%p/#%Q|&BB@BB8bn()|//kB@88Wx^''.~q@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B@@@%aj:`'`+%%%X(/(Uakvr8@@@%tu88tYB@#%coOwkkMBk%p(#%0/8B@@%p(dbw|j/|W%&c'`',(k%B%B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@8@8%%%m];8B88*C/zo#u|oBBBBun88tY%Ba%Xo0q#QB@wBd/*B0f%@@@%ntdod|cb&BB%x+O8%%@%8BB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@8@$%B@@B@Bonx)dB@%&B%W8bp%W|#M|ZkLo%xO8*q8%%&B&@B%j|rL&@@%BBB@B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B@@@@B@BBBB&hh%B8?Yo@8B@&@B%8%o#%BBB%%%%B@#Q/x8@Wp8&B%@BB@B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B@@@BB@#I.'`',if&8B@BB@BB@@WX_:'  '`uBB@@B@@B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-*/
-
+// number: 414
+// project: Jay Pegs Auto Mart (JPAM)
+// address: 0xf210d5d9dcf958803c286a6f8e278e4ac78e136e
+// chainid: 1
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.10;
+pragma solidity 0.8.7;
 
-abstract contract Context {
-    function _msgSender() internal view virtual returns (address) {
-        return msg.sender;
+contract KiaSedona is VRFConsumerBase, ERC721Enumerable, Ownable {
+    using Strings for uint256;
+
+    address public constant LINK_TOKEN = 0x514910771AF9Ca656af840dff83E8264EcF986CA;
+    address public constant VRF_COORDINATOR = 0xf0d54349aDdcf704F77AE15b96510dEA15cb7952;
+    address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
+    uint256 public constant LOT_SIZE = 500;
+    uint256 public constant MAX_SUPPLY = 10000;
+    address public immutable dona;
+    uint8 public immutable donaDecimals;
+    uint256 public immutable startBlock;
+
+    string public tempURI;
+    bytes32 public keyHash;
+    uint256 public fee;
+
+    event RoofSlap(uint256 indexed tokenId, address indexed slapper);
+    event LotURISet(uint256 lotId, string uri);
+
+    struct Lot {
+        uint256 randomness;
+        string uri;
     }
 
-    function _msgData() internal view virtual returns (bytes calldata) {
-        return msg.data;
+    mapping(uint256 => Lot) public lotData;
+    // requestId => lotId
+    mapping(bytes32 => uint256) public randomnessRequests;
+    // tokenId => slap count
+    mapping(uint256 => uint256) public slapCounter;
+
+    constructor(address _donaToken, string memory _tempURI, uint256 _startBlock)
+        VRFConsumerBase(VRF_COORDINATOR, LINK_TOKEN)
+        ERC721("Jay Pegs Auto Mart", "JPAM")
+    {
+        dona = _donaToken;
+        tempURI = _tempURI;
+        startBlock = _startBlock;
+        donaDecimals = ERC20(_donaToken).decimals();
+        keyHash = 0xAA77729D3466CA35AE8D28B3BBAC7CC36A5031EFDC430821C02BC31A238AF445;
+        fee = 2 * 10**ERC20(LINK_TOKEN).decimals();
+    }
+
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+
+        uint256 lotId = tokenId / LOT_SIZE;
+        Lot storage lot = lotData[lotId];
+        uint256 randomness = lot.randomness;
+        string memory baseURI = lot.uri;
+        if (randomness == 0 || bytes(baseURI).length == 0) return tempURI;
+
+        return string(abi.encodePacked(baseURI, uriId(tokenId, randomness).toString()));
+    }
+
+    function roofSlap(uint256 tokenId) external {
+        slapCounter[tokenId] += 1;
+        emit RoofSlap(tokenId, msg.sender);
+    }
+
+    function mint(uint256 quantity) external {
+        require(block.number >= startBlock, "Not started");
+        require(quantity > 0, "Cannot mint 0");
+        require(
+            ERC20(dona).transferFrom(
+                msg.sender,
+                BURN_ADDRESS,
+                quantity * 10**donaDecimals
+            ),
+            "cannot burn DONA"
+        );
+
+        uint256 tokenId = totalSupply();
+        for(uint256 i = 0; i < quantity; i++) {
+            _safeMint(msg.sender, tokenId + i);
+        }
+        // should never happen since there's only 10k DONA but better safe than sorry
+        require(totalSupply() <= MAX_SUPPLY, "Max supply already minted");
+    }
+
+    function uriId(uint256 tokenId, uint256 randomness) public pure returns (uint256) {
+        uint256 lotId = tokenId / LOT_SIZE;
+
+        uint256 lotMin = lotId * LOT_SIZE;
+        uint256 lotMax = lotMin + LOT_SIZE - 1;
+        uint256 randomNumber = randomness % LOT_SIZE;
+        uint256 randomizedTokenId = tokenId + randomNumber;
+        if (randomizedTokenId > lotMax) {
+            randomizedTokenId -= LOT_SIZE;
+        }
+        return randomizedTokenId;
+    }
+
+    function getRandomNumber(uint256 lotId) internal returns (bytes32 requestId) {
+        require(LINK.balanceOf(address(this)) >= fee, "Not enough LINK - fill contract with faucet");
+        requestId = requestRandomness(keyHash, fee);
+        randomnessRequests[requestId] = lotId;
+    }
+
+    function fulfillRandomness(bytes32 requestId, uint256 randomness) internal override {
+        uint256 lotId = randomnessRequests[requestId];
+        Lot storage lot = lotData[lotId];
+        lot.randomness = randomness;
+    }
+
+    // Admin functions
+
+    function setLotURI(uint256 lotId, string memory uri) external onlyOwner returns (bytes32 requestId) {
+        if (lotId > 0) {
+            require(bytes(lotData[lotId - 1].uri).length > 0, "Previous lot not set");
+        }
+
+        Lot storage lot = lotData[lotId];
+        lot.uri = uri;
+        emit LotURISet(lotId, uri);
+
+        if (lot.randomness == 0) return getRandomNumber(lotId);
+    }
+
+    function setLinkFee(uint256 newFee) external onlyOwner {
+        fee = newFee;
+    }
+
+    function withdrawLink() external onlyOwner {
+        LINK.transfer(owner(), LINK.balanceOf(address(this)));
     }
 }
+
+/**
+ * @dev String operations.
+ */
+library Strings {
+    bytes16 private constant _HEX_SYMBOLS = "0123456789abcdef";
+
+    /**
+     * @dev Converts a `uint256` to its ASCII `string` decimal representation.
+     */
+    function toString(uint256 value) internal pure returns (string memory) {
+        // Inspired by OraclizeAPI's implementation - MIT licence
+        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol
+
+        if (value == 0) {
+            return "0";
+        }
+        uint256 temp = value;
+        uint256 digits;
+        while (temp != 0) {
+            digits++;
+            temp /= 10;
+        }
+        bytes memory buffer = new bytes(digits);
+        while (value != 0) {
+            digits -= 1;
+            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+            value /= 10;
+        }
+        return string(buffer);
+    }
+
+    /**
+     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation.
+     */
+    function toHexString(uint256 value) internal pure returns (string memory) {
+        if (value == 0) {
+            return "0x00";
+        }
+        uint256 temp = value;
+        uint256 length = 0;
+        while (temp != 0) {
+            length++;
+            temp >>= 8;
+        }
+        return toHexString(value, length);
+    }
+
+    /**
+     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.
+     */
+    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
+        bytes memory buffer = new bytes(2 * length + 2);
+        buffer[0] = "0";
+        buffer[1] = "x";
+        for (uint256 i = 2 * length + 1; i > 1; --i) {
+            buffer[i] = _HEX_SYMBOLS[value & 0xf];
+            value >>= 4;
+        }
+        require(value == 0, "Strings: hex length insufficient");
+        return string(buffer);
+    }
+}
+
+/**
+ * @dev Contract module which provides a basic access control mechanism, where
+ * there is an account (an owner) that can be granted exclusive access to
+ * specific functions.
+ *
+ * By default, the owner account will be the one that deploys the contract. This
+ * can later be changed with {transferOwnership}.
+ *
+ * This module is used through inheritance. It will make available the modifier
+ * `onlyOwner`, which can be applied to your functions to restrict their use to
+ * the owner.
+ */
 abstract contract Ownable is Context {
     address private _owner;
 
@@ -106,7 +216,7 @@ abstract contract Ownable is Context {
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
     constructor() {
-        _transferOwnership(_msgSender());
+        _setOwner(_msgSender());
     }
 
     /**
@@ -132,7 +242,7 @@ abstract contract Ownable is Context {
      * thereby removing any functionality that is only available to the owner.
      */
     function renounceOwnership() public virtual onlyOwner {
-        _transferOwnership(address(0));
+        _setOwner(address(0));
     }
 
     /**
@@ -141,111 +251,407 @@ abstract contract Ownable is Context {
      */
     function transferOwnership(address newOwner) public virtual onlyOwner {
         require(newOwner != address(0), "Ownable: new owner is the zero address");
-        _transferOwnership(newOwner);
+        _setOwner(newOwner);
     }
 
-    /**
-     * @dev Transfers ownership of the contract to a new account (`newOwner`).
-     * Internal function without access restriction.
-     */
-    function _transferOwnership(address newOwner) internal virtual {
+    function _setOwner(address newOwner) private {
         address oldOwner = _owner;
         _owner = newOwner;
         emit OwnershipTransferred(oldOwner, newOwner);
     }
 }
 
-interface IERC20 {
-    /**
-     * @dev Returns the amount of tokens in existence.
-     */
-    function totalSupply() external view returns (uint256);
+/** ****************************************************************************
+ * @notice Interface for contracts using VRF randomness
+ * *****************************************************************************
+ * @dev PURPOSE
+ *
+ * @dev Reggie the Random Oracle (not his real job) wants to provide randomness
+ * @dev to Vera the verifier in such a way that Vera can be sure he's not
+ * @dev making his output up to suit himself. Reggie provides Vera a public key
+ * @dev to which he knows the secret key. Each time Vera provides a seed to
+ * @dev Reggie, he gives back a value which is computed completely
+ * @dev deterministically from the seed and the secret key.
+ *
+ * @dev Reggie provides a proof by which Vera can verify that the output was
+ * @dev correctly computed once Reggie tells it to her, but without that proof,
+ * @dev the output is indistinguishable to her from a uniform random sample
+ * @dev from the output space.
+ *
+ * @dev The purpose of this contract is to make it easy for unrelated contracts
+ * @dev to talk to Vera the verifier about the work Reggie is doing, to provide
+ * @dev simple access to a verifiable source of randomness.
+ * *****************************************************************************
+ * @dev USAGE
+ *
+ * @dev Calling contracts must inherit from VRFConsumerBase, and can
+ * @dev initialize VRFConsumerBase's attributes in their constructor as
+ * @dev shown:
+ *
+ * @dev   contract VRFConsumer {
+ * @dev     constuctor(<other arguments>, address _vrfCoordinator, address _link)
+ * @dev       VRFConsumerBase(_vrfCoordinator, _link) public {
+ * @dev         <initialization with other arguments goes here>
+ * @dev       }
+ * @dev   }
+ *
+ * @dev The oracle will have given you an ID for the VRF keypair they have
+ * @dev committed to (let's call it keyHash), and have told you the minimum LINK
+ * @dev price for VRF service. Make sure your contract has sufficient LINK, and
+ * @dev call requestRandomness(keyHash, fee, seed), where seed is the input you
+ * @dev want to generate randomness from.
+ *
+ * @dev Once the VRFCoordinator has received and validated the oracle's response
+ * @dev to your request, it will call your contract's fulfillRandomness method.
+ *
+ * @dev The randomness argument to fulfillRandomness is the actual random value
+ * @dev generated from your seed.
+ *
+ * @dev The requestId argument is generated from the keyHash and the seed by
+ * @dev makeRequestId(keyHash, seed). If your contract could have concurrent
+ * @dev requests open, you can use the requestId to track which seed is
+ * @dev associated with which randomness. See VRFRequestIDBase.sol for more
+ * @dev details. (See "SECURITY CONSIDERATIONS" for principles to keep in mind,
+ * @dev if your contract could have multiple requests in flight simultaneously.)
+ *
+ * @dev Colliding `requestId`s are cryptographically impossible as long as seeds
+ * @dev differ. (Which is critical to making unpredictable randomness! See the
+ * @dev next section.)
+ *
+ * *****************************************************************************
+ * @dev SECURITY CONSIDERATIONS
+ *
+ * @dev A method with the ability to call your fulfillRandomness method directly
+ * @dev could spoof a VRF response with any random value, so it's critical that
+ * @dev it cannot be directly called by anything other than this base contract
+ * @dev (specifically, by the VRFConsumerBase.rawFulfillRandomness method).
+ *
+ * @dev For your users to trust that your contract's random behavior is free
+ * @dev from malicious interference, it's best if you can write it so that all
+ * @dev behaviors implied by a VRF response are executed *during* your
+ * @dev fulfillRandomness method. If your contract must store the response (or
+ * @dev anything derived from it) and use it later, you must ensure that any
+ * @dev user-significant behavior which depends on that stored value cannot be
+ * @dev manipulated by a subsequent VRF request.
+ *
+ * @dev Similarly, both miners and the VRF oracle itself have some influence
+ * @dev over the order in which VRF responses appear on the blockchain, so if
+ * @dev your contract could have multiple VRF requests in flight simultaneously,
+ * @dev you must ensure that the order in which the VRF responses arrive cannot
+ * @dev be used to manipulate your contract's user-significant behavior.
+ *
+ * @dev Since the ultimate input to the VRF is mixed with the block hash of the
+ * @dev block in which the request is made, user-provided seeds have no impact
+ * @dev on its economic security properties. They are only included for API
+ * @dev compatability with previous versions of this contract.
+ *
+ * @dev Since the block hash of the block which contains the requestRandomness
+ * @dev call is mixed into the input to the VRF *last*, a sufficiently powerful
+ * @dev miner could, in principle, fork the blockchain to evict the block
+ * @dev containing the request, forcing the request to be included in a
+ * @dev different block with a different hash, and therefore a different input
+ * @dev to the VRF. However, such an attack would incur a substantial economic
+ * @dev cost. This cost scales with the number of blocks the VRF oracle waits
+ * @dev until it calls responds to a request.
+ */
+abstract contract VRFConsumerBase is VRFRequestIDBase {
 
-    /**
-     * @dev Returns the amount of tokens owned by `account`.
-     */
-    function balanceOf(address account) external view returns (uint256);
+  /**
+   * @notice fulfillRandomness handles the VRF response. Your contract must
+   * @notice implement it. See "SECURITY CONSIDERATIONS" above for important
+   * @notice principles to keep in mind when implementing your fulfillRandomness
+   * @notice method.
+   *
+   * @dev VRFConsumerBase expects its subcontracts to have a method with this
+   * @dev signature, and will call it once it has verified the proof
+   * @dev associated with the randomness. (It is triggered via a call to
+   * @dev rawFulfillRandomness, below.)
+   *
+   * @param requestId The Id initially returned by requestRandomness
+   * @param randomness the VRF output
+   */
+  function fulfillRandomness(
+    bytes32 requestId,
+    uint256 randomness
+  )
+    internal
+    virtual;
 
-    /**
-     * @dev Moves `amount` tokens from the caller's account to `recipient`.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * Emits a {Transfer} event.
-     */
-    function transfer(address recipient, uint256 amount) external returns (bool);
+  /**
+   * @dev In order to keep backwards compatibility we have kept the user
+   * seed field around. We remove the use of it because given that the blockhash
+   * enters later, it overrides whatever randomness the used seed provides.
+   * Given that it adds no security, and can easily lead to misunderstandings,
+   * we have removed it from usage and can now provide a simpler API.
+   */
+  uint256 constant private USER_SEED_PLACEHOLDER = 0;
 
-    /**
-     * @dev Returns the remaining number of tokens that `spender` will be
-     * allowed to spend on behalf of `owner` through {transferFrom}. This is
-     * zero by default.
-     *
-     * This value changes when {approve} or {transferFrom} are called.
-     */
-    function allowance(address owner, address spender) external view returns (uint256);
+  /**
+   * @notice requestRandomness initiates a request for VRF output given _seed
+   *
+   * @dev The fulfillRandomness method receives the output, once it's provided
+   * @dev by the Oracle, and verified by the vrfCoordinator.
+   *
+   * @dev The _keyHash must already be registered with the VRFCoordinator, and
+   * @dev the _fee must exceed the fee specified during registration of the
+   * @dev _keyHash.
+   *
+   * @dev The _seed parameter is vestigial, and is kept only for API
+   * @dev compatibility with older versions. It can't *hurt* to mix in some of
+   * @dev your own randomness, here, but it's not necessary because the VRF
+   * @dev oracle will mix the hash of the block containing your request into the
+   * @dev VRF seed it ultimately uses.
+   *
+   * @param _keyHash ID of public key against which randomness is generated
+   * @param _fee The amount of LINK to send with the request
+   *
+   * @return requestId unique ID for this request
+   *
+   * @dev The returned requestId can be used to distinguish responses to
+   * @dev concurrent requests. It is passed as the first argument to
+   * @dev fulfillRandomness.
+   */
+  function requestRandomness(
+    bytes32 _keyHash,
+    uint256 _fee
+  )
+    internal
+    returns (
+      bytes32 requestId
+    )
+  {
+    LINK.transferAndCall(vrfCoordinator, _fee, abi.encode(_keyHash, USER_SEED_PLACEHOLDER));
+    // This is the seed passed to VRFCoordinator. The oracle will mix this with
+    // the hash of the block containing this request to obtain the seed/input
+    // which is finally passed to the VRF cryptographic machinery.
+    uint256 vRFSeed  = makeVRFInputSeed(_keyHash, USER_SEED_PLACEHOLDER, address(this), nonces[_keyHash]);
+    // nonces[_keyHash] must stay in sync with
+    // VRFCoordinator.nonces[_keyHash][this], which was incremented by the above
+    // successful LINK.transferAndCall (in VRFCoordinator.randomnessRequest).
+    // This provides protection against the user repeating their input seed,
+    // which would result in a predictable/duplicate output, if multiple such
+    // requests appeared in the same block.
+    nonces[_keyHash] = nonces[_keyHash] + 1;
+    return makeRequestId(_keyHash, vRFSeed);
+  }
 
-    /**
-     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * IMPORTANT: Beware that changing an allowance with this method brings the risk
-     * that someone may use both the old and the new allowance by unfortunate
-     * transaction ordering. One possible solution to mitigate this race
-     * condition is to first reduce the spender's allowance to 0 and set the
-     * desired value afterwards:
-     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-     *
-     * Emits an {Approval} event.
-     */
-    function approve(address spender, uint256 amount) external returns (bool);
+  LinkTokenInterface immutable internal LINK;
+  address immutable private vrfCoordinator;
 
-    /**
-     * @dev Moves `amount` tokens from `sender` to `recipient` using the
-     * allowance mechanism. `amount` is then deducted from the caller's
-     * allowance.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * Emits a {Transfer} event.
-     */
-    function transferFrom(
-        address sender,
-        address recipient,
-        uint256 amount
-    ) external returns (bool);
+  // Nonces for each VRF key from which randomness has been requested.
+  //
+  // Must stay in sync with VRFCoordinator[_keyHash][this]
+  mapping(bytes32 /* keyHash */ => uint256 /* nonce */) private nonces;
 
-    /**
-     * @dev Emitted when `value` tokens are moved from one account (`from`) to
-     * another (`to`).
-     *
-     * Note that `value` may be zero.
-     */
-    event Transfer(address indexed from, address indexed to, uint256 value);
+  /**
+   * @param _vrfCoordinator address of VRFCoordinator contract
+   * @param _link address of LINK token contract
+   *
+   * @dev https://docs.chain.link/docs/link-token-contracts
+   */
+  constructor(
+    address _vrfCoordinator,
+    address _link
+  ) {
+    vrfCoordinator = _vrfCoordinator;
+    LINK = LinkTokenInterface(_link);
+  }
 
-    /**
-     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
-     * a call to {approve}. `value` is the new allowance.
-     */
-    event Approval(address indexed owner, address indexed spender, uint256 value);
+  // rawFulfillRandomness is called by VRFCoordinator when it receives a valid VRF
+  // proof. rawFulfillRandomness then calls fulfillRandomness, after validating
+  // the origin of the call
+  function rawFulfillRandomness(
+    bytes32 requestId,
+    uint256 randomness
+  )
+    external
+  {
+    require(msg.sender == vrfCoordinator, "Only VRFCoordinator can fulfill");
+    fulfillRandomness(requestId, randomness);
+  }
 }
 
-interface IERC20Metadata is IERC20 {
-    /**
-     * @dev Returns the name of the token.
-     */
-    function name() external view returns (string memory);
+/**
+ * @dev This implements an optional extension of {ERC721} defined in the EIP that adds
+ * enumerability of all the token ids in the contract as well as all token ids owned by each
+ * account.
+ */
+abstract contract ERC721Enumerable is ERC721, IERC721Enumerable {
+    // Mapping from owner to list of owned token IDs
+    mapping(address => mapping(uint256 => uint256)) private _ownedTokens;
+
+    // Mapping from token ID to index of the owner tokens list
+    mapping(uint256 => uint256) private _ownedTokensIndex;
+
+    // Array with all token ids, used for enumeration
+    uint256[] private _allTokens;
+
+    // Mapping from token id to position in the allTokens array
+    mapping(uint256 => uint256) private _allTokensIndex;
 
     /**
-     * @dev Returns the symbol of the token.
+     * @dev See {IERC165-supportsInterface}.
      */
-    function symbol() external view returns (string memory);
+    function supportsInterface(bytes4 interfaceId) public view virtual override(IERC165, ERC721) returns (bool) {
+        return interfaceId == type(IERC721Enumerable).interfaceId || super.supportsInterface(interfaceId);
+    }
 
     /**
-     * @dev Returns the decimals places of the token.
+     * @dev See {IERC721Enumerable-tokenOfOwnerByIndex}.
      */
-    function decimals() external view returns (uint8);
+    function tokenOfOwnerByIndex(address owner, uint256 index) public view virtual override returns (uint256) {
+        require(index < ERC721.balanceOf(owner), "ERC721Enumerable: owner index out of bounds");
+        return _ownedTokens[owner][index];
+    }
+
+    /**
+     * @dev See {IERC721Enumerable-totalSupply}.
+     */
+    function totalSupply() public view virtual override returns (uint256) {
+        return _allTokens.length;
+    }
+
+    /**
+     * @dev See {IERC721Enumerable-tokenByIndex}.
+     */
+    function tokenByIndex(uint256 index) public view virtual override returns (uint256) {
+        require(index < ERC721Enumerable.totalSupply(), "ERC721Enumerable: global index out of bounds");
+        return _allTokens[index];
+    }
+
+    /**
+     * @dev Hook that is called before any token transfer. This includes minting
+     * and burning.
+     *
+     * Calling conditions:
+     *
+     * - When `from` and `to` are both non-zero, ``from``'s `tokenId` will be
+     * transferred to `to`.
+     * - When `from` is zero, `tokenId` will be minted for `to`.
+     * - When `to` is zero, ``from``'s `tokenId` will be burned.
+     * - `from` cannot be the zero address.
+     * - `to` cannot be the zero address.
+     *
+     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
+     */
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId
+    ) internal virtual override {
+        super._beforeTokenTransfer(from, to, tokenId);
+
+        if (from == address(0)) {
+            _addTokenToAllTokensEnumeration(tokenId);
+        } else if (from != to) {
+            _removeTokenFromOwnerEnumeration(from, tokenId);
+        }
+        if (to == address(0)) {
+            _removeTokenFromAllTokensEnumeration(tokenId);
+        } else if (to != from) {
+            _addTokenToOwnerEnumeration(to, tokenId);
+        }
+    }
+
+    /**
+     * @dev Private function to add a token to this extension's ownership-tracking data structures.
+     * @param to address representing the new owner of the given token ID
+     * @param tokenId uint256 ID of the token to be added to the tokens list of the given address
+     */
+    function _addTokenToOwnerEnumeration(address to, uint256 tokenId) private {
+        uint256 length = ERC721.balanceOf(to);
+        _ownedTokens[to][length] = tokenId;
+        _ownedTokensIndex[tokenId] = length;
+    }
+
+    /**
+     * @dev Private function to add a token to this extension's token tracking data structures.
+     * @param tokenId uint256 ID of the token to be added to the tokens list
+     */
+    function _addTokenToAllTokensEnumeration(uint256 tokenId) private {
+        _allTokensIndex[tokenId] = _allTokens.length;
+        _allTokens.push(tokenId);
+    }
+
+    /**
+     * @dev Private function to remove a token from this extension's ownership-tracking data structures. Note that
+     * while the token is not assigned a new owner, the `_ownedTokensIndex` mapping is _not_ updated: this allows for
+     * gas optimizations e.g. when performing a transfer operation (avoiding double writes).
+     * This has O(1) time complexity, but alters the order of the _ownedTokens array.
+     * @param from address representing the previous owner of the given token ID
+     * @param tokenId uint256 ID of the token to be removed from the tokens list of the given address
+     */
+    function _removeTokenFromOwnerEnumeration(address from, uint256 tokenId) private {
+        // To prevent a gap in from's tokens array, we store the last token in the index of the token to delete, and
+        // then delete the last slot (swap and pop).
+
+        uint256 lastTokenIndex = ERC721.balanceOf(from) - 1;
+        uint256 tokenIndex = _ownedTokensIndex[tokenId];
+
+        // When the token to delete is the last token, the swap operation is unnecessary
+        if (tokenIndex != lastTokenIndex) {
+            uint256 lastTokenId = _ownedTokens[from][lastTokenIndex];
+
+            _ownedTokens[from][tokenIndex] = lastTokenId; // Move the last token to the slot of the to-delete token
+            _ownedTokensIndex[lastTokenId] = tokenIndex; // Update the moved token's index
+        }
+
+        // This also deletes the contents at the last position of the array
+        delete _ownedTokensIndex[tokenId];
+        delete _ownedTokens[from][lastTokenIndex];
+    }
+
+    /**
+     * @dev Private function to remove a token from this extension's token tracking data structures.
+     * This has O(1) time complexity, but alters the order of the _allTokens array.
+     * @param tokenId uint256 ID of the token to be removed from the tokens list
+     */
+    function _removeTokenFromAllTokensEnumeration(uint256 tokenId) private {
+        // To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and
+        // then delete the last slot (swap and pop).
+
+        uint256 lastTokenIndex = _allTokens.length - 1;
+        uint256 tokenIndex = _allTokensIndex[tokenId];
+
+        // When the token to delete is the last token, the swap operation is unnecessary. However, since this occurs so
+        // rarely (when the last minted token is burnt) that we still do the swap here to avoid the gas cost of adding
+        // an 'if' statement (like in _removeTokenFromOwnerEnumeration)
+        uint256 lastTokenId = _allTokens[lastTokenIndex];
+
+        _allTokens[tokenIndex] = lastTokenId; // Move the last token to the slot of the to-delete token
+        _allTokensIndex[lastTokenId] = tokenIndex; // Update the moved token's index
+
+        // This also deletes the contents at the last position of the array
+        delete _allTokensIndex[tokenId];
+        _allTokens.pop();
+    }
 }
+
+/**
+ * @dev Implementation of the {IERC20} interface.
+ *
+ * This implementation is agnostic to the way tokens are created. This means
+ * that a supply mechanism has to be added in a derived contract using {_mint}.
+ * For a generic mechanism see {ERC20PresetMinterPauser}.
+ *
+ * TIP: For a detailed writeup see our guide
+ * https://forum.zeppelin.solutions/t/how-to-implement-erc20-supply-mechanisms/226[How
+ * to implement supply mechanisms].
+ *
+ * We have followed general OpenZeppelin Contracts guidelines: functions revert
+ * instead returning `false` on failure. This behavior is nonetheless
+ * conventional and does not conflict with the expectations of ERC20
+ * applications.
+ *
+ * Additionally, an {Approval} event is emitted on calls to {transferFrom}.
+ * This allows applications to reconstruct the allowance for all accounts just
+ * by listening to said events. Other implementations of the EIP may not emit
+ * these events, as it isn't required by the specification.
+ *
+ * Finally, the non-standard {decreaseAllowance} and {increaseAllowance}
+ * functions have been added to mitigate the well-known issues around setting
+ * allowances. See {IERC20-approve}.
+ */
 contract ERC20 is Context, IERC20, IERC20Metadata {
     mapping(address => uint256) private _balances;
 
@@ -378,6 +784,47 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     }
 
     /**
+     * @dev Atomically increases the allowance granted to `spender` by the caller.
+     *
+     * This is an alternative to {approve} that can be used as a mitigation for
+     * problems described in {IERC20-approve}.
+     *
+     * Emits an {Approval} event indicating the updated allowance.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     */
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender] + addedValue);
+        return true;
+    }
+
+    /**
+     * @dev Atomically decreases the allowance granted to `spender` by the caller.
+     *
+     * This is an alternative to {approve} that can be used as a mitigation for
+     * problems described in {IERC20-approve}.
+     *
+     * Emits an {Approval} event indicating the updated allowance.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     * - `spender` must have allowance for the caller of at least
+     * `subtractedValue`.
+     */
+    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
+        uint256 currentAllowance = _allowances[_msgSender()][spender];
+        require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
+        unchecked {
+            _approve(_msgSender(), spender, currentAllowance - subtractedValue);
+        }
+
+        return true;
+    }
+
+    /**
      * @dev Moves `amount` of tokens from `sender` to `recipient`.
      *
      * This internal function is equivalent to {transfer}, and can be used to
@@ -434,6 +881,33 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         _afterTokenTransfer(address(0), account, amount);
     }
 
+    /**
+     * @dev Destroys `amount` tokens from `account`, reducing the
+     * total supply.
+     *
+     * Emits a {Transfer} event with `to` set to the zero address.
+     *
+     * Requirements:
+     *
+     * - `account` cannot be the zero address.
+     * - `account` must have at least `amount` tokens.
+     */
+    function _burn(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: burn from the zero address");
+
+        _beforeTokenTransfer(account, address(0), amount);
+
+        uint256 accountBalance = _balances[account];
+        require(accountBalance >= amount, "ERC20: burn amount exceeds balance");
+        unchecked {
+            _balances[account] = accountBalance - amount;
+        }
+        _totalSupply -= amount;
+
+        emit Transfer(account, address(0), amount);
+
+        _afterTokenTransfer(account, address(0), amount);
+    }
 
     /**
      * @dev Sets `amount` as the allowance of `spender` over the `owner` s tokens.
@@ -501,576 +975,1140 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     ) internal virtual {}
 }
 
-library SafeMath {
-    /**
-     * @dev Returns the addition of two unsigned integers, with an overflow flag.
-     *
-     * _Available since v3.4._
-     */
-    function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        unchecked {
-            uint256 c = a + b;
-            if (c < a) return (false, 0);
-            return (true, c);
-        }
+/**
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
+ */
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address) {
+        return msg.sender;
     }
 
-    /**
-     * @dev Returns the substraction of two unsigned integers, with an overflow flag.
-     *
-     * _Available since v3.4._
-     */
-    function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        unchecked {
-            if (b > a) return (false, 0);
-            return (true, a - b);
-        }
-    }
-
-    /**
-     * @dev Returns the multiplication of two unsigned integers, with an overflow flag.
-     *
-     * _Available since v3.4._
-     */
-    function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        unchecked {
-            // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
-            // benefit is lost if 'b' is also tested.
-            // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
-            if (a == 0) return (true, 0);
-            uint256 c = a * b;
-            if (c / a != b) return (false, 0);
-            return (true, c);
-        }
-    }
-
-    /**
-     * @dev Returns the division of two unsigned integers, with a division by zero flag.
-     *
-     * _Available since v3.4._
-     */
-    function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        unchecked {
-            if (b == 0) return (false, 0);
-            return (true, a / b);
-        }
-    }
-
-    /**
-     * @dev Returns the remainder of dividing two unsigned integers, with a division by zero flag.
-     *
-     * _Available since v3.4._
-     */
-    function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        unchecked {
-            if (b == 0) return (false, 0);
-            return (true, a % b);
-        }
-    }
-
-    /**
-     * @dev Returns the addition of two unsigned integers, reverting on
-     * overflow.
-     *
-     * Counterpart to Solidity's `+` operator.
-     *
-     * Requirements:
-     *
-     * - Addition cannot overflow.
-     */
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        return a + b;
-    }
-
-    /**
-     * @dev Returns the subtraction of two unsigned integers, reverting on
-     * overflow (when the result is negative).
-     *
-     * Counterpart to Solidity's `-` operator.
-     *
-     * Requirements:
-     *
-     * - Subtraction cannot overflow.
-     */
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        return a - b;
-    }
-
-    /**
-     * @dev Returns the multiplication of two unsigned integers, reverting on
-     * overflow.
-     *
-     * Counterpart to Solidity's `*` operator.
-     *
-     * Requirements:
-     *
-     * - Multiplication cannot overflow.
-     */
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-        return a * b;
-    }
-
-    /**
-     * @dev Returns the integer division of two unsigned integers, reverting on
-     * division by zero. The result is rounded towards zero.
-     *
-     * Counterpart to Solidity's `/` operator.
-     *
-     * Requirements:
-     *
-     * - The divisor cannot be zero.
-     */
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        return a / b;
-    }
-
-    /**
-     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
-     * reverting when dividing by zero.
-     *
-     * Counterpart to Solidity's `%` operator. This function uses a `revert`
-     * opcode (which leaves remaining gas untouched) while Solidity uses an
-     * invalid opcode to revert (consuming all remaining gas).
-     *
-     * Requirements:
-     *
-     * - The divisor cannot be zero.
-     */
-    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-        return a % b;
-    }
-
-    /**
-     * @dev Returns the subtraction of two unsigned integers, reverting with custom message on
-     * overflow (when the result is negative).
-     *
-     * CAUTION: This function is deprecated because it requires allocating memory for the error
-     * message unnecessarily. For custom revert reasons use {trySub}.
-     *
-     * Counterpart to Solidity's `-` operator.
-     *
-     * Requirements:
-     *
-     * - Subtraction cannot overflow.
-     */
-    function sub(
-        uint256 a,
-        uint256 b,
-        string memory errorMessage
-    ) internal pure returns (uint256) {
-        unchecked {
-            require(b <= a, errorMessage);
-            return a - b;
-        }
-    }
-
-    /**
-     * @dev Returns the integer division of two unsigned integers, reverting with custom message on
-     * division by zero. The result is rounded towards zero.
-     *
-     * Counterpart to Solidity's `/` operator. Note: this function uses a
-     * `revert` opcode (which leaves remaining gas untouched) while Solidity
-     * uses an invalid opcode to revert (consuming all remaining gas).
-     *
-     * Requirements:
-     *
-     * - The divisor cannot be zero.
-     */
-    function div(
-        uint256 a,
-        uint256 b,
-        string memory errorMessage
-    ) internal pure returns (uint256) {
-        unchecked {
-            require(b > 0, errorMessage);
-            return a / b;
-        }
-    }
-
-    /**
-     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
-     * reverting with custom message when dividing by zero.
-     *
-     * CAUTION: This function is deprecated because it requires allocating memory for the error
-     * message unnecessarily. For custom revert reasons use {tryMod}.
-     *
-     * Counterpart to Solidity's `%` operator. This function uses a `revert`
-     * opcode (which leaves remaining gas untouched) while Solidity uses an
-     * invalid opcode to revert (consuming all remaining gas).
-     *
-     * Requirements:
-     *
-     * - The divisor cannot be zero.
-     */
-    function mod(
-        uint256 a,
-        uint256 b,
-        string memory errorMessage
-    ) internal pure returns (uint256) {
-        unchecked {
-            require(b > 0, errorMessage);
-            return a % b;
-        }
+    function _msgData() internal view virtual returns (bytes calldata) {
+        return msg.data;
     }
 }
 
-interface IUniswapV2Factory {
-    event PairCreated(
-        address indexed token0,
-        address indexed token1,
-        address pair,
-        uint256
+interface LinkTokenInterface {
+
+  function allowance(
+    address owner,
+    address spender
+  )
+    external
+    view
+    returns (
+      uint256 remaining
     );
 
-    function createPair(address tokenA, address tokenB)
-        external
-        returns (address pair);
+  function approve(
+    address spender,
+    uint256 value
+  )
+    external
+    returns (
+      bool success
+    );
+
+  function balanceOf(
+    address owner
+  )
+    external
+    view
+    returns (
+      uint256 balance
+    );
+
+  function decimals()
+    external
+    view
+    returns (
+      uint8 decimalPlaces
+    );
+
+  function decreaseApproval(
+    address spender,
+    uint256 addedValue
+  )
+    external
+    returns (
+      bool success
+    );
+
+  function increaseApproval(
+    address spender,
+    uint256 subtractedValue
+  ) external;
+
+  function name()
+    external
+    view
+    returns (
+      string memory tokenName
+    );
+
+  function symbol()
+    external
+    view
+    returns (
+      string memory tokenSymbol
+    );
+
+  function totalSupply()
+    external
+    view
+    returns (
+      uint256 totalTokensIssued
+    );
+
+  function transfer(
+    address to,
+    uint256 value
+  )
+    external
+    returns (
+      bool success
+    );
+
+  function transferAndCall(
+    address to,
+    uint256 value,
+    bytes calldata data
+  )
+    external
+    returns (
+      bool success
+    );
+
+  function transferFrom(
+    address from,
+    address to,
+    uint256 value
+  )
+    external
+    returns (
+      bool success
+    );
+
 }
 
-interface IUniswapV2Router02 {
-    function factory() external pure returns (address);
+contract VRFRequestIDBase {
 
-    function swapExactTokensForTokensSupportingFeeOnTransferTokens(
-        uint256 amountIn,
-        uint256 amountOutMin,
-        address[] calldata path,
+  /**
+   * @notice returns the seed which is actually input to the VRF coordinator
+   *
+   * @dev To prevent repetition of VRF output due to repetition of the
+   * @dev user-supplied seed, that seed is combined in a hash with the
+   * @dev user-specific nonce, and the address of the consuming contract. The
+   * @dev risk of repetition is mostly mitigated by inclusion of a blockhash in
+   * @dev the final seed, but the nonce does protect against repetition in
+   * @dev requests which are included in a single block.
+   *
+   * @param _userSeed VRF seed input provided by user
+   * @param _requester Address of the requesting contract
+   * @param _nonce User-specific nonce at the time of the request
+   */
+  function makeVRFInputSeed(
+    bytes32 _keyHash,
+    uint256 _userSeed,
+    address _requester,
+    uint256 _nonce
+  )
+    internal
+    pure
+    returns (
+      uint256
+    )
+  {
+    return uint256(keccak256(abi.encode(_keyHash, _userSeed, _requester, _nonce)));
+  }
+
+  /**
+   * @notice Returns the id for this request
+   * @param _keyHash The serviceAgreement ID to be used for this request
+   * @param _vRFInputSeed The seed to be passed directly to the VRF
+   * @return The id for this request
+   *
+   * @dev Note that _vRFInputSeed is not the seed passed by the consuming
+   * @dev contract, but the one generated by makeVRFInputSeed
+   */
+  function makeRequestId(
+    bytes32 _keyHash,
+    uint256 _vRFInputSeed
+  )
+    internal
+    pure
+    returns (
+      bytes32
+    )
+  {
+    return keccak256(abi.encodePacked(_keyHash, _vRFInputSeed));
+  }
+}
+
+/**
+ * @dev Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including
+ * the Metadata extension, but not including the Enumerable extension, which is available separately as
+ * {ERC721Enumerable}.
+ */
+contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
+    using Address for address;
+    using Strings for uint256;
+
+    // Token name
+    string private _name;
+
+    // Token symbol
+    string private _symbol;
+
+    // Mapping from token ID to owner address
+    mapping(uint256 => address) private _owners;
+
+    // Mapping owner address to token count
+    mapping(address => uint256) private _balances;
+
+    // Mapping from token ID to approved address
+    mapping(uint256 => address) private _tokenApprovals;
+
+    // Mapping from owner to operator approvals
+    mapping(address => mapping(address => bool)) private _operatorApprovals;
+
+    /**
+     * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
+     */
+    constructor(string memory name_, string memory symbol_) {
+        _name = name_;
+        _symbol = symbol_;
+    }
+
+    /**
+     * @dev See {IERC165-supportsInterface}.
+     */
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
+        return
+            interfaceId == type(IERC721).interfaceId ||
+            interfaceId == type(IERC721Metadata).interfaceId ||
+            super.supportsInterface(interfaceId);
+    }
+
+    /**
+     * @dev See {IERC721-balanceOf}.
+     */
+    function balanceOf(address owner) public view virtual override returns (uint256) {
+        require(owner != address(0), "ERC721: balance query for the zero address");
+        return _balances[owner];
+    }
+
+    /**
+     * @dev See {IERC721-ownerOf}.
+     */
+    function ownerOf(uint256 tokenId) public view virtual override returns (address) {
+        address owner = _owners[tokenId];
+        require(owner != address(0), "ERC721: owner query for nonexistent token");
+        return owner;
+    }
+
+    /**
+     * @dev See {IERC721Metadata-name}.
+     */
+    function name() public view virtual override returns (string memory) {
+        return _name;
+    }
+
+    /**
+     * @dev See {IERC721Metadata-symbol}.
+     */
+    function symbol() public view virtual override returns (string memory) {
+        return _symbol;
+    }
+
+    /**
+     * @dev See {IERC721Metadata-tokenURI}.
+     */
+    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+
+        string memory baseURI = _baseURI();
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
+    }
+
+    /**
+     * @dev Base URI for computing {tokenURI}. If set, the resulting URI for each
+     * token will be the concatenation of the `baseURI` and the `tokenId`. Empty
+     * by default, can be overriden in child contracts.
+     */
+    function _baseURI() internal view virtual returns (string memory) {
+        return "";
+    }
+
+    /**
+     * @dev See {IERC721-approve}.
+     */
+    function approve(address to, uint256 tokenId) public virtual override {
+        address owner = ERC721.ownerOf(tokenId);
+        require(to != owner, "ERC721: approval to current owner");
+
+        require(
+            _msgSender() == owner || isApprovedForAll(owner, _msgSender()),
+            "ERC721: approve caller is not owner nor approved for all"
+        );
+
+        _approve(to, tokenId);
+    }
+
+    /**
+     * @dev See {IERC721-getApproved}.
+     */
+    function getApproved(uint256 tokenId) public view virtual override returns (address) {
+        require(_exists(tokenId), "ERC721: approved query for nonexistent token");
+
+        return _tokenApprovals[tokenId];
+    }
+
+    /**
+     * @dev See {IERC721-setApprovalForAll}.
+     */
+    function setApprovalForAll(address operator, bool approved) public virtual override {
+        require(operator != _msgSender(), "ERC721: approve to caller");
+
+        _operatorApprovals[_msgSender()][operator] = approved;
+        emit ApprovalForAll(_msgSender(), operator, approved);
+    }
+
+    /**
+     * @dev See {IERC721-isApprovedForAll}.
+     */
+    function isApprovedForAll(address owner, address operator) public view virtual override returns (bool) {
+        return _operatorApprovals[owner][operator];
+    }
+
+    /**
+     * @dev See {IERC721-transferFrom}.
+     */
+    function transferFrom(
+        address from,
         address to,
-        uint256 deadline
-    ) external;
-}
+        uint256 tokenId
+    ) public virtual override {
+        //solhint-disable-next-line max-line-length
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
 
-contract anubisDAO2POINT0 is ERC20, Ownable {
-    using SafeMath for uint256;
-
-    IUniswapV2Router02 public immutable uniswapV2Router;
-    address public immutable uniswapV2Pair;
-    address public constant deadAddress = address(0xdead);
-    address public ETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
-
-    bool private swapping;
-
-    address public devWallet;
-
-    uint256 public maxTransactionAmount;
-    uint256 public swapTokensAtAmount;
-    uint256 public maxWallet;
-
-    bool public limitsInEffect = true;
-    bool public tradingActive = false;
-    bool public swapEnabled = false;
-
-    uint256 public buyTotalFees;
-    uint256 public buyDevFee;
-    uint256 public buyLiquidityFee;
-
-    uint256 public sellTotalFees;
-    uint256 public sellDevFee;
-    uint256 public sellLiquidityFee;
-
-    /******************/
-
-    // exlcude from fees and max transaction amount
-    mapping(address => bool) private _isExcludedFromFees;
-    mapping(address => bool) public _isExcludedMaxTransactionAmount;
-
-
-    event ExcludeFromFees(address indexed account, bool isExcluded);
-
-    event devWalletUpdated(
-        address indexed newWallet,
-        address indexed oldWallet
-    );
-
-    constructor() ERC20("AnubisDAO 2.0", "ANUBISDAO2.0") {
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(
-            0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D
-        );
-
-        excludeFromMaxTransaction(address(_uniswapV2Router), true);
-        uniswapV2Router = _uniswapV2Router;
-
-        uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
-            .createPair(address(this), ETH);
-        excludeFromMaxTransaction(address(uniswapV2Pair), true);
-
-
-        uint256 _buyDevFee = 22;
-        uint256 _buyLiquidityFee = 0;
-
-        uint256 _sellDevFee = 22;
-        uint256 _sellLiquidityFee = 0;
-
-        uint256 totalSupply = 65_000_000 * 1e18;
-
-        maxTransactionAmount =  totalSupply * 2 / 100; // 2% from total supply maxTransactionAmountTxn
-        maxWallet = totalSupply * 2 / 100; // 2% from total supply maxWallet
-        swapTokensAtAmount = (totalSupply * 5) / 10000; // 0.05% swap wallet
-
-        buyDevFee = _buyDevFee;
-        buyLiquidityFee = _buyLiquidityFee;
-        buyTotalFees = buyDevFee + buyLiquidityFee;
-
-        sellDevFee = _sellDevFee;
-        sellLiquidityFee = _sellLiquidityFee;
-        sellTotalFees = sellDevFee + sellLiquidityFee;
-
-        devWallet = address(0x7E30554266e0a2da9D37Ace672C72fF170e7B905); 
-
-        // exclude from paying fees or having max transaction amount
-        excludeFromFees(owner(), true);
-        excludeFromFees(address(this), true);
-        excludeFromFees(address(0xdead), true);
-        excludeFromFees(address(devWallet), true);
-        
-
-        excludeFromMaxTransaction(owner(), true);
-        excludeFromMaxTransaction(address(this), true);
-        excludeFromMaxTransaction(address(0xdead), true);
-        excludeFromMaxTransaction(address(devWallet), true);
-
-        /*
-            _mint is an internal function in ERC20.sol that is only called here,
-            and CANNOT be called ever again
-        */
-        _mint(msg.sender, totalSupply);
+        _transfer(from, to, tokenId);
     }
 
-    receive() external payable {}
-
-    // once enabled, can never be turned off
-    function enableTrading() external onlyOwner {
-        tradingActive = true;
-        swapEnabled = true;
+    /**
+     * @dev See {IERC721-safeTransferFrom}.
+     */
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public virtual override {
+        safeTransferFrom(from, to, tokenId, "");
     }
 
-    // remove limits after token is stable
-    function removeLimits() external onlyOwner returns (bool) {
-        limitsInEffect = false;
-        return true;
+    /**
+     * @dev See {IERC721-safeTransferFrom}.
+     */
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes memory _data
+    ) public virtual override {
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
+        _safeTransfer(from, to, tokenId, _data);
     }
 
-    // change the minimum amount of tokens to sell from fees
-    function updateSwapTokensAtAmount(uint256 newAmount)
-        external
-        onlyOwner
-        returns (bool)
-    {
+    /**
+     * @dev Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients
+     * are aware of the ERC721 protocol to prevent tokens from being forever locked.
+     *
+     * `_data` is additional data, it has no specified format and it is sent in call to `to`.
+     *
+     * This internal function is equivalent to {safeTransferFrom}, and can be used to e.g.
+     * implement alternative mechanisms to perform token transfer, such as signature-based.
+     *
+     * Requirements:
+     *
+     * - `from` cannot be the zero address.
+     * - `to` cannot be the zero address.
+     * - `tokenId` token must exist and be owned by `from`.
+     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
+     *
+     * Emits a {Transfer} event.
+     */
+    function _safeTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes memory _data
+    ) internal virtual {
+        _transfer(from, to, tokenId);
+        require(_checkOnERC721Received(from, to, tokenId, _data), "ERC721: transfer to non ERC721Receiver implementer");
+    }
+
+    /**
+     * @dev Returns whether `tokenId` exists.
+     *
+     * Tokens can be managed by their owner or approved accounts via {approve} or {setApprovalForAll}.
+     *
+     * Tokens start existing when they are minted (`_mint`),
+     * and stop existing when they are burned (`_burn`).
+     */
+    function _exists(uint256 tokenId) internal view virtual returns (bool) {
+        return _owners[tokenId] != address(0);
+    }
+
+    /**
+     * @dev Returns whether `spender` is allowed to manage `tokenId`.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must exist.
+     */
+    function _isApprovedOrOwner(address spender, uint256 tokenId) internal view virtual returns (bool) {
+        require(_exists(tokenId), "ERC721: operator query for nonexistent token");
+        address owner = ERC721.ownerOf(tokenId);
+        return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));
+    }
+
+    /**
+     * @dev Safely mints `tokenId` and transfers it to `to`.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must not exist.
+     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
+     *
+     * Emits a {Transfer} event.
+     */
+    function _safeMint(address to, uint256 tokenId) internal virtual {
+        _safeMint(to, tokenId, "");
+    }
+
+    /**
+     * @dev Same as {xref-ERC721-_safeMint-address-uint256-}[`_safeMint`], with an additional `data` parameter which is
+     * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
+     */
+    function _safeMint(
+        address to,
+        uint256 tokenId,
+        bytes memory _data
+    ) internal virtual {
+        _mint(to, tokenId);
         require(
-            newAmount >= (totalSupply() * 1) / 100000,
-            "Swap amount cannot be lower than 0.001% total supply."
+            _checkOnERC721Received(address(0), to, tokenId, _data),
+            "ERC721: transfer to non ERC721Receiver implementer"
         );
-        require(
-            newAmount <= (totalSupply() * 5) / 1000,
-            "Swap amount cannot be higher than 0.5% total supply."
-        );
-        swapTokensAtAmount = newAmount;
-        return true;
     }
 
-    function updateMaxTxnAmount(uint256 newNum) external onlyOwner {
-        require(
-            newNum >= ((totalSupply() * 1) / 1000) / 1e18,
-            "Cannot set maxTransactionAmount lower than 0.1%"
-        );
-        maxTransactionAmount = newNum * (10**18);
+    /**
+     * @dev Mints `tokenId` and transfers it to `to`.
+     *
+     * WARNING: Usage of this method is discouraged, use {_safeMint} whenever possible
+     *
+     * Requirements:
+     *
+     * - `tokenId` must not exist.
+     * - `to` cannot be the zero address.
+     *
+     * Emits a {Transfer} event.
+     */
+    function _mint(address to, uint256 tokenId) internal virtual {
+        require(to != address(0), "ERC721: mint to the zero address");
+        require(!_exists(tokenId), "ERC721: token already minted");
+
+        _beforeTokenTransfer(address(0), to, tokenId);
+
+        _balances[to] += 1;
+        _owners[tokenId] = to;
+
+        emit Transfer(address(0), to, tokenId);
     }
 
-    function updateMaxWalletAmount(uint256 newNum) external onlyOwner {
-        require(
-            newNum >= ((totalSupply() * 5) / 1000) / 1e18,
-            "Cannot set maxWallet lower than 0.5%"
-        );
-        maxWallet = newNum * (10**18);
+    /**
+     * @dev Destroys `tokenId`.
+     * The approval is cleared when the token is burned.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must exist.
+     *
+     * Emits a {Transfer} event.
+     */
+    function _burn(uint256 tokenId) internal virtual {
+        address owner = ERC721.ownerOf(tokenId);
+
+        _beforeTokenTransfer(owner, address(0), tokenId);
+
+        // Clear approvals
+        _approve(address(0), tokenId);
+
+        _balances[owner] -= 1;
+        delete _owners[tokenId];
+
+        emit Transfer(owner, address(0), tokenId);
     }
 
-    function excludeFromMaxTransaction(address updAds, bool isEx)
-        public
-        onlyOwner
-    {
-        _isExcludedMaxTransactionAmount[updAds] = isEx;
-    }
-
-    // only use to disable contract sales if absolutely necessary (emergency use only)
-    function updateSwapEnabled(bool enabled) external onlyOwner {
-        swapEnabled = enabled;
-    }
-
-    function updateBuyFees(
-        uint256 _devFee,
-        uint256 _liquidityFee
-    ) external onlyOwner {
-        buyDevFee = _devFee;
-        buyLiquidityFee = _liquidityFee;
-        buyTotalFees = buyDevFee + buyLiquidityFee;
-        require(buyTotalFees <= 45, "Must keep fees at 49% or less ;)" );
-    }
-
-    function updateSellFees(
-        uint256 _devFee,
-        uint256 _liquidityFee
-    ) external onlyOwner {
-        sellDevFee = _devFee;
-        sellLiquidityFee = _liquidityFee;
-        sellTotalFees = sellDevFee + sellLiquidityFee;
-        require(sellTotalFees <= 45, "Must keep fees at 30% or less ;)");
-    }
-
-    function excludeFromFees(address account, bool excluded) public onlyOwner {
-        _isExcludedFromFees[account] = excluded;
-        emit ExcludeFromFees(account, excluded);
-    }
-
-    function updateDevWallet(address newDevWallet)
-        external
-        onlyOwner
-    {
-        emit devWalletUpdated(newDevWallet, devWallet);
-        devWallet = newDevWallet;
-    }
-
-
-    function isExcludedFromFees(address account) public view returns (bool) {
-        return _isExcludedFromFees[account];
-    }
-
+    /**
+     * @dev Transfers `tokenId` from `from` to `to`.
+     *  As opposed to {transferFrom}, this imposes no restrictions on msg.sender.
+     *
+     * Requirements:
+     *
+     * - `to` cannot be the zero address.
+     * - `tokenId` token must be owned by `from`.
+     *
+     * Emits a {Transfer} event.
+     */
     function _transfer(
         address from,
         address to,
+        uint256 tokenId
+    ) internal virtual {
+        require(ERC721.ownerOf(tokenId) == from, "ERC721: transfer of token that is not own");
+        require(to != address(0), "ERC721: transfer to the zero address");
+
+        _beforeTokenTransfer(from, to, tokenId);
+
+        // Clear approvals from the previous owner
+        _approve(address(0), tokenId);
+
+        _balances[from] -= 1;
+        _balances[to] += 1;
+        _owners[tokenId] = to;
+
+        emit Transfer(from, to, tokenId);
+    }
+
+    /**
+     * @dev Approve `to` to operate on `tokenId`
+     *
+     * Emits a {Approval} event.
+     */
+    function _approve(address to, uint256 tokenId) internal virtual {
+        _tokenApprovals[tokenId] = to;
+        emit Approval(ERC721.ownerOf(tokenId), to, tokenId);
+    }
+
+    /**
+     * @dev Internal function to invoke {IERC721Receiver-onERC721Received} on a target address.
+     * The call is not executed if the target address is not a contract.
+     *
+     * @param from address representing the previous owner of the given token ID
+     * @param to target address that will receive the tokens
+     * @param tokenId uint256 ID of the token to be transferred
+     * @param _data bytes optional data to send along with the call
+     * @return bool whether the call correctly returned the expected magic value
+     */
+    function _checkOnERC721Received(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes memory _data
+    ) private returns (bool) {
+        if (to.isContract()) {
+            try IERC721Receiver(to).onERC721Received(_msgSender(), from, tokenId, _data) returns (bytes4 retval) {
+                return retval == IERC721Receiver.onERC721Received.selector;
+            } catch (bytes memory reason) {
+                if (reason.length == 0) {
+                    revert("ERC721: transfer to non ERC721Receiver implementer");
+                } else {
+                    assembly {
+                        revert(add(32, reason), mload(reason))
+                    }
+                }
+            }
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * @dev Hook that is called before any token transfer. This includes minting
+     * and burning.
+     *
+     * Calling conditions:
+     *
+     * - When `from` and `to` are both non-zero, ``from``'s `tokenId` will be
+     * transferred to `to`.
+     * - When `from` is zero, `tokenId` will be minted for `to`.
+     * - When `to` is zero, ``from``'s `tokenId` will be burned.
+     * - `from` and `to` are never both zero.
+     *
+     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
+     */
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId
+    ) internal virtual {}
+}
+
+/**
+ * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
+ * @dev See https://eips.ethereum.org/EIPS/eip-721
+ */
+interface IERC721Enumerable is IERC721 {
+    /**
+     * @dev Returns the total amount of tokens stored by the contract.
+     */
+    function totalSupply() external view returns (uint256);
+
+    /**
+     * @dev Returns a token ID owned by `owner` at a given `index` of its token list.
+     * Use along with {balanceOf} to enumerate all of ``owner``'s tokens.
+     */
+    function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256 tokenId);
+
+    /**
+     * @dev Returns a token ID at a given `index` of all the tokens stored by the contract.
+     * Use along with {totalSupply} to enumerate all tokens.
+     */
+    function tokenByIndex(uint256 index) external view returns (uint256);
+}
+
+/**
+ * @dev Required interface of an ERC721 compliant contract.
+ */
+interface IERC721 is IERC165 {
+    /**
+     * @dev Emitted when `tokenId` token is transferred from `from` to `to`.
+     */
+    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+
+    /**
+     * @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.
+     */
+    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
+
+    /**
+     * @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.
+     */
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+
+    /**
+     * @dev Returns the number of tokens in ``owner``'s account.
+     */
+    function balanceOf(address owner) external view returns (uint256 balance);
+
+    /**
+     * @dev Returns the owner of the `tokenId` token.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must exist.
+     */
+    function ownerOf(uint256 tokenId) external view returns (address owner);
+
+    /**
+     * @dev Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients
+     * are aware of the ERC721 protocol to prevent tokens from being forever locked.
+     *
+     * Requirements:
+     *
+     * - `from` cannot be the zero address.
+     * - `to` cannot be the zero address.
+     * - `tokenId` token must exist and be owned by `from`.
+     * - If the caller is not `from`, it must be have been allowed to move this token by either {approve} or {setApprovalForAll}.
+     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
+     *
+     * Emits a {Transfer} event.
+     */
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) external;
+
+    /**
+     * @dev Transfers `tokenId` token from `from` to `to`.
+     *
+     * WARNING: Usage of this method is discouraged, use {safeTransferFrom} whenever possible.
+     *
+     * Requirements:
+     *
+     * - `from` cannot be the zero address.
+     * - `to` cannot be the zero address.
+     * - `tokenId` token must be owned by `from`.
+     * - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) external;
+
+    /**
+     * @dev Gives permission to `to` to transfer `tokenId` token to another account.
+     * The approval is cleared when the token is transferred.
+     *
+     * Only a single account can be approved at a time, so approving the zero address clears previous approvals.
+     *
+     * Requirements:
+     *
+     * - The caller must own the token or be an approved operator.
+     * - `tokenId` must exist.
+     *
+     * Emits an {Approval} event.
+     */
+    function approve(address to, uint256 tokenId) external;
+
+    /**
+     * @dev Returns the account approved for `tokenId` token.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must exist.
+     */
+    function getApproved(uint256 tokenId) external view returns (address operator);
+
+    /**
+     * @dev Approve or remove `operator` as an operator for the caller.
+     * Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller.
+     *
+     * Requirements:
+     *
+     * - The `operator` cannot be the caller.
+     *
+     * Emits an {ApprovalForAll} event.
+     */
+    function setApprovalForAll(address operator, bool _approved) external;
+
+    /**
+     * @dev Returns if the `operator` is allowed to manage all of the assets of `owner`.
+     *
+     * See {setApprovalForAll}
+     */
+    function isApprovedForAll(address owner, address operator) external view returns (bool);
+
+    /**
+     * @dev Safely transfers `tokenId` token from `from` to `to`.
+     *
+     * Requirements:
+     *
+     * - `from` cannot be the zero address.
+     * - `to` cannot be the zero address.
+     * - `tokenId` token must exist and be owned by `from`.
+     * - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.
+     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
+     *
+     * Emits a {Transfer} event.
+     */
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes calldata data
+    ) external;
+}
+
+/**
+ * @title ERC721 token receiver interface
+ * @dev Interface for any contract that wants to support safeTransfers
+ * from ERC721 asset contracts.
+ */
+interface IERC721Receiver {
+    /**
+     * @dev Whenever an {IERC721} `tokenId` token is transferred to this contract via {IERC721-safeTransferFrom}
+     * by `operator` from `from`, this function is called.
+     *
+     * It must return its Solidity selector to confirm the token transfer.
+     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.
+     *
+     * The selector can be obtained in Solidity with `IERC721.onERC721Received.selector`.
+     */
+    function onERC721Received(
+        address operator,
+        address from,
+        uint256 tokenId,
+        bytes calldata data
+    ) external returns (bytes4);
+}
+
+/**
+ * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
+ * @dev See https://eips.ethereum.org/EIPS/eip-721
+ */
+interface IERC721Metadata is IERC721 {
+    /**
+     * @dev Returns the token collection name.
+     */
+    function name() external view returns (string memory);
+
+    /**
+     * @dev Returns the token collection symbol.
+     */
+    function symbol() external view returns (string memory);
+
+    /**
+     * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
+     */
+    function tokenURI(uint256 tokenId) external view returns (string memory);
+}
+
+/**
+ * @dev Collection of functions related to the address type
+ */
+library Address {
+    /**
+     * @dev Returns true if `account` is a contract.
+     *
+     * [IMPORTANT]
+     * ====
+     * It is unsafe to assume that an address for which this function returns
+     * false is an externally-owned account (EOA) and not a contract.
+     *
+     * Among others, `isContract` will return false for the following
+     * types of addresses:
+     *
+     *  - an externally-owned account
+     *  - a contract in construction
+     *  - an address where a contract will be created
+     *  - an address where a contract lived, but was destroyed
+     * ====
+     */
+    function isContract(address account) internal view returns (bool) {
+        // This method relies on extcodesize, which returns 0 for contracts in
+        // construction, since the code is only stored at the end of the
+        // constructor execution.
+
+        uint256 size;
+        assembly {
+            size := extcodesize(account)
+        }
+        return size > 0;
+    }
+
+    /**
+     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to
+     * `recipient`, forwarding all available gas and reverting on errors.
+     *
+     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost
+     * of certain opcodes, possibly making contracts go over the 2300 gas limit
+     * imposed by `transfer`, making them unable to receive funds via
+     * `transfer`. {sendValue} removes this limitation.
+     *
+     * https://diligence.consensys.net/posts/2019/09/stop-using-soliditys-transfer-now/[Learn more].
+     *
+     * IMPORTANT: because control is transferred to `recipient`, care must be
+     * taken to not create reentrancy vulnerabilities. Consider using
+     * {ReentrancyGuard} or the
+     * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
+     */
+    function sendValue(address payable recipient, uint256 amount) internal {
+        require(address(this).balance >= amount, "Address: insufficient balance");
+
+        (bool success, ) = recipient.call{value: amount}("");
+        require(success, "Address: unable to send value, recipient may have reverted");
+    }
+
+    /**
+     * @dev Performs a Solidity function call using a low level `call`. A
+     * plain `call` is an unsafe replacement for a function call: use this
+     * function instead.
+     *
+     * If `target` reverts with a revert reason, it is bubbled up by this
+     * function (like regular Solidity function calls).
+     *
+     * Returns the raw returned data. To convert to the expected return value,
+     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].
+     *
+     * Requirements:
+     *
+     * - `target` must be a contract.
+     * - calling `target` with `data` must not revert.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionCall(target, data, "Address: low-level call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`], but with
+     * `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, 0, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but also transferring `value` wei to `target`.
+     *
+     * Requirements:
+     *
+     * - the calling contract must have an ETH balance of at least `value`.
+     * - the called Solidity function must be `payable`.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(
+        address target,
+        bytes memory data,
+        uint256 value
+    ) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but
+     * with `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(
+        address target,
+        bytes memory data,
+        uint256 value,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        require(address(this).balance >= value, "Address: insufficient balance for call");
+        require(isContract(target), "Address: call to non-contract");
+
+        (bool success, bytes memory returndata) = target.call{value: value}(data);
+        return verifyCallResult(success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but performing a static call.
+     *
+     * _Available since v3.3._
+     */
+    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {
+        return functionStaticCall(target, data, "Address: low-level static call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-string-}[`functionCall`],
+     * but performing a static call.
+     *
+     * _Available since v3.3._
+     */
+    function functionStaticCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal view returns (bytes memory) {
+        require(isContract(target), "Address: static call to non-contract");
+
+        (bool success, bytes memory returndata) = target.staticcall(data);
+        return verifyCallResult(success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but performing a delegate call.
+     *
+     * _Available since v3.4._
+     */
+    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionDelegateCall(target, data, "Address: low-level delegate call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-string-}[`functionCall`],
+     * but performing a delegate call.
+     *
+     * _Available since v3.4._
+     */
+    function functionDelegateCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        require(isContract(target), "Address: delegate call to non-contract");
+
+        (bool success, bytes memory returndata) = target.delegatecall(data);
+        return verifyCallResult(success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Tool to verifies that a low level call was successful, and revert if it wasn't, either by bubbling the
+     * revert reason using the provided one.
+     *
+     * _Available since v4.3._
+     */
+    function verifyCallResult(
+        bool success,
+        bytes memory returndata,
+        string memory errorMessage
+    ) internal pure returns (bytes memory) {
+        if (success) {
+            return returndata;
+        } else {
+            // Look for revert reason and bubble it up if present
+            if (returndata.length > 0) {
+                // The easiest way to bubble the revert reason is using memory via assembly
+
+                assembly {
+                    let returndata_size := mload(returndata)
+                    revert(add(32, returndata), returndata_size)
+                }
+            } else {
+                revert(errorMessage);
+            }
+        }
+    }
+}
+
+/**
+ * @dev Implementation of the {IERC165} interface.
+ *
+ * Contracts that want to implement ERC165 should inherit from this contract and override {supportsInterface} to check
+ * for the additional interface id that will be supported. For example:
+ *
+ * ```solidity
+ * function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
+ *     return interfaceId == type(MyInterface).interfaceId || super.supportsInterface(interfaceId);
+ * }
+ * ```
+ *
+ * Alternatively, {ERC165Storage} provides an easier to use but more expensive implementation.
+ */
+abstract contract ERC165 is IERC165 {
+    /**
+     * @dev See {IERC165-supportsInterface}.
+     */
+    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
+        return interfaceId == type(IERC165).interfaceId;
+    }
+}
+
+/**
+ * @dev Interface of the ERC165 standard, as defined in the
+ * https://eips.ethereum.org/EIPS/eip-165[EIP].
+ *
+ * Implementers can declare support of contract interfaces, which can then be
+ * queried by others ({ERC165Checker}).
+ *
+ * For an implementation, see {ERC165}.
+ */
+interface IERC165 {
+    /**
+     * @dev Returns true if this contract implements the interface defined by
+     * `interfaceId`. See the corresponding
+     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]
+     * to learn more about how these ids are created.
+     *
+     * This function call must use less than 30 000 gas.
+     */
+    function supportsInterface(bytes4 interfaceId) external view returns (bool);
+}
+
+/**
+ * @dev Interface of the ERC20 standard as defined in the EIP.
+ */
+interface IERC20 {
+    /**
+     * @dev Returns the amount of tokens in existence.
+     */
+    function totalSupply() external view returns (uint256);
+
+    /**
+     * @dev Returns the amount of tokens owned by `account`.
+     */
+    function balanceOf(address account) external view returns (uint256);
+
+    /**
+     * @dev Moves `amount` tokens from the caller's account to `recipient`.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transfer(address recipient, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Returns the remaining number of tokens that `spender` will be
+     * allowed to spend on behalf of `owner` through {transferFrom}. This is
+     * zero by default.
+     *
+     * This value changes when {approve} or {transferFrom} are called.
+     */
+    function allowance(address owner, address spender) external view returns (uint256);
+
+    /**
+     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * IMPORTANT: Beware that changing an allowance with this method brings the risk
+     * that someone may use both the old and the new allowance by unfortunate
+     * transaction ordering. One possible solution to mitigate this race
+     * condition is to first reduce the spender's allowance to 0 and set the
+     * desired value afterwards:
+     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     *
+     * Emits an {Approval} event.
+     */
+    function approve(address spender, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Moves `amount` tokens from `sender` to `recipient` using the
+     * allowance mechanism. `amount` is then deducted from the caller's
+     * allowance.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transferFrom(
+        address sender,
+        address recipient,
         uint256 amount
-    ) internal override {
-        require(from != address(0), "ERC20: transfer from the zero address");
-        require(to != address(0), "ERC20: transfer to the zero address");
+    ) external returns (bool);
 
-        if (amount == 0) {
-            super._transfer(from, to, 0);
-            return;
-        }
+    /**
+     * @dev Emitted when `value` tokens are moved from one account (`from`) to
+     * another (`to`).
+     *
+     * Note that `value` may be zero.
+     */
+    event Transfer(address indexed from, address indexed to, uint256 value);
 
-        if (limitsInEffect) {
-            if (
-                from != owner() &&
-                to != owner() &&
-                to != address(0) &&
-                to != address(0xdead) &&
-                !swapping
-            ) {
-                if (!tradingActive) {
-                    require(
-                        _isExcludedFromFees[from] || _isExcludedFromFees[to],
-                        "Trading is not active."
-                    );
-                }
+    /**
+     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
+     * a call to {approve}. `value` is the new allowance.
+     */
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+}
 
-                // at launch if the transfer delay is enabled, ensure the block timestamps for purchasers is set -- during launch.
-                //when buy
-                if (
-                    from == uniswapV2Pair &&
-                    !_isExcludedMaxTransactionAmount[to]
-                ) {
-                    require(
-                        amount <= maxTransactionAmount,
-                        "Buy transfer amount exceeds the maxTransactionAmount."
-                    );
-                    require(
-                        amount + balanceOf(to) <= maxWallet,
-                        "Max wallet exceeded"
-                    );
-                }
-                else if (!_isExcludedMaxTransactionAmount[to]) {
-                    require(
-                        amount + balanceOf(to) <= maxWallet,
-                        "Max wallet exceeded"
-                    );
-                }
-            }
-        }
+/**
+ * @dev Interface for the optional metadata functions from the ERC20 standard.
+ *
+ * _Available since v4.1._
+ */
+interface IERC20Metadata is IERC20 {
+    /**
+     * @dev Returns the name of the token.
+     */
+    function name() external view returns (string memory);
 
-        uint256 contractTokenBalance = balanceOf(address(this));
+    /**
+     * @dev Returns the symbol of the token.
+     */
+    function symbol() external view returns (string memory);
 
-        bool canSwap = contractTokenBalance >= swapTokensAtAmount;
-
-        if (
-            canSwap &&
-            swapEnabled &&
-            !swapping &&
-            to == uniswapV2Pair &&
-            !_isExcludedFromFees[from] &&
-            !_isExcludedFromFees[to]
-        ) {
-            swapping = true;
-
-            swapBack();
-
-            swapping = false;
-        }
-
-        bool takeFee = !swapping;
-
-        // if any account belongs to _isExcludedFromFee account then remove the fee
-        if (_isExcludedFromFees[from] || _isExcludedFromFees[to]) {
-            takeFee = false;
-        }
-
-        uint256 fees = 0;
-        uint256 tokensForLiquidity = 0;
-        uint256 tokensForDev = 0;
-        // only take fees on buys/sells, do not take on wallet transfers
-        if (takeFee) {
-            // on sell
-            if (to == uniswapV2Pair && sellTotalFees > 0) {
-                fees = amount.mul(sellTotalFees).div(100);
-                tokensForLiquidity = (fees * sellLiquidityFee) / sellTotalFees;
-                tokensForDev = (fees * sellDevFee) / sellTotalFees;
-            }
-            // on buy
-            else if (from == uniswapV2Pair && buyTotalFees > 0) {
-                fees = amount.mul(buyTotalFees).div(100);
-                tokensForLiquidity = (fees * buyLiquidityFee) / buyTotalFees; 
-                tokensForDev = (fees * buyDevFee) / buyTotalFees;
-            }
-
-            if (fees> 0) {
-                super._transfer(from, address(this), fees);
-            }
-            if (tokensForLiquidity > 0) {
-                super._transfer(address(this), uniswapV2Pair, tokensForLiquidity);
-            }
-
-            amount -= fees;
-        }
-
-        super._transfer(from, to, amount);
-    }
-
-    function swapTokensForETH(uint256 tokenAmount) private {
-        // generate the uniswap pair path of token -> weth
-        address[] memory path = new address[](2);
-        path[0] = address(this);
-        path[1] = ETH;
-
-        _approve(address(this), address(uniswapV2Router), tokenAmount);
-
-        // make the swap
-        uniswapV2Router.swapExactTokensForTokensSupportingFeeOnTransferTokens(
-            tokenAmount,
-            0, // accept any amount of ETH
-            path,
-            devWallet,
-            block.timestamp
-        );
-    }
-
-    function swapBack() private {
-        uint256 contractBalance = balanceOf(address(this));
-        if (contractBalance == 0) {
-            return;
-        }
-
-        if (contractBalance > swapTokensAtAmount * 20) {
-            contractBalance = swapTokensAtAmount * 20;
-        }
-
-        swapTokensForETH(contractBalance);
-    }
-
+    /**
+     * @dev Returns the decimals places of the token.
+     */
+    function decimals() external view returns (uint8);
 }

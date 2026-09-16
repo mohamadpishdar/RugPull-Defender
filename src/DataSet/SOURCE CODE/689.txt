@@ -1,320 +1,455 @@
-/**
- *Submitted for verification at Etherscan.io on 2020-08-20
-*/
+// number: 689
+// project: Crypto20 (C20)
+// address: 0x26e75307fc0c021472feb8f727839531f112f317
+// chainid: 1
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity 0.4.11;
 
-/*
-https://powerpool.finance/     
-                                                                                                                                                                                                       
-          wrrrw r wrr                                                                                    
-         ppwr rrr wppr0       prwwwrp                                 prwwwrp                   wr0      
-        rr 0rrrwrrprpwp0      pp   pr  prrrr0 pp   0r  prrrr0  0rwrrr pp   pr  prrrr0  prrrr0    r0      
-        rrp pr   wr00rrp      prwww0  pp   wr pp w00r prwwwpr  0rw    prwww0  pp   wr pp   wr    r0      
-        r0rprprwrrrp pr0      pp      wr   pr pp rwwr wr       0r     pp      wr   pr wr   pr    r0      
-         prwr wrr0wpwr        00        www0   0w0ww    www0   0w     00        www0    www0   0www0     
-          wrr ww0rrrr                                                                                    
-                                                                                                                                                                                                                      
-*/
-
-
-
-pragma solidity ^0.5.16;
-pragma experimental ABIEncoderV2;
-
-contract Cvp {
-    /// @notice EIP-20 token name for this token
-    string public constant name = "Concentrated Voting Power";
-
-    /// @notice EIP-20 token symbol for this token
-    string public constant symbol = "CVP";
-
-    /// @notice EIP-20 token decimals for this token
-    uint8 public constant decimals = 18;
-
-    /// @notice Total number of tokens in circulation
-    uint public constant totalSupply = 100000000e18;
-
-    /// @notice Allowance amounts on behalf of others
-    mapping (address => mapping (address => uint96)) internal allowances;
-
-    /// @notice Official record of token balances for each account
-    mapping (address => uint96) internal balances;
-
-    /// @notice A record of each accounts delegate
-    mapping (address => address) public delegates;
-
-    /// @notice A checkpoint for marking number of votes from a given block
-    struct Checkpoint {
-        uint32 fromBlock;
-        uint96 votes;
-    }
-
-    /// @notice A record of votes checkpoints for each account, by index
-    mapping (address => mapping (uint32 => Checkpoint)) public checkpoints;
-
-    /// @notice The number of checkpoints for each account
-    mapping (address => uint32) public numCheckpoints;
-
-    /// @notice The EIP-712 typehash for the contract's domain
-    bytes32 public constant DOMAIN_TYPEHASH = keccak256("EIP712Domain(string name,uint256 chainId,address verifyingContract)");
-
-    /// @notice The EIP-712 typehash for the delegation struct used by the contract
-    bytes32 public constant DELEGATION_TYPEHASH = keccak256("Delegation(address delegatee,uint256 nonce,uint256 expiry)");
-
-    /// @notice A record of states for signing / validating signatures
-    mapping (address => uint) public nonces;
-
-    /// @notice An event thats emitted when an account changes its delegate
-    event DelegateChanged(address indexed delegator, address indexed fromDelegate, address indexed toDelegate);
-
-    /// @notice An event thats emitted when a delegate account's vote balance changes
-    event DelegateVotesChanged(address indexed delegate, uint previousBalance, uint newBalance);
-
-    /// @notice The standard EIP-20 transfer event
-    event Transfer(address indexed from, address indexed to, uint256 amount);
-
-    /// @notice The standard EIP-20 approval event
-    event Approval(address indexed owner, address indexed spender, uint256 amount);
-
-    /**
-     * @notice Construct a new Cvp token
-     * @param account The initial account to grant all the tokens
-     */
-    constructor(address account) public {
-        balances[account] = uint96(totalSupply);
-        emit Transfer(address(0), account, totalSupply);
-    }
-
-    /**
-     * @notice Get the number of tokens `spender` is approved to spend on behalf of `account`
-     * @param account The address of the account holding the funds
-     * @param spender The address of the account spending the funds
-     * @return The number of tokens approved
-     */
-    function allowance(address account, address spender) external view returns (uint) {
-        return allowances[account][spender];
-    }
-
-    /**
-     * @notice Approve `spender` to transfer up to `amount` from `src`
-     * @dev This will overwrite the approval amount for `spender`
-     *  and is subject to issues noted [here](https://eips.ethereum.org/EIPS/eip-20#approve)
-     * @param spender The address of the account which may transfer tokens
-     * @param rawAmount The number of tokens that are approved (2^256-1 means infinite)
-     * @return Whether or not the approval succeeded
-     */
-    function approve(address spender, uint rawAmount) external returns (bool) {
-        uint96 amount;
-        if (rawAmount == uint(-1)) {
-            amount = uint96(-1);
-        } else {
-            amount = safe96(rawAmount, "Cvp::approve: amount exceeds 96 bits");
-        }
-
-        allowances[msg.sender][spender] = amount;
-
-        emit Approval(msg.sender, spender, amount);
-        return true;
-    }
-
-    /**
-     * @notice Get the number of tokens held by the `account`
-     * @param account The address of the account to get the balance of
-     * @return The number of tokens held
-     */
-    function balanceOf(address account) external view returns (uint) {
-        return balances[account];
-    }
-
-    /**
-     * @notice Transfer `amount` tokens from `msg.sender` to `dst`
-     * @param dst The address of the destination account
-     * @param rawAmount The number of tokens to transfer
-     * @return Whether or not the transfer succeeded
-     */
-    function transfer(address dst, uint rawAmount) external returns (bool) {
-        uint96 amount = safe96(rawAmount, "Cvp::transfer: amount exceeds 96 bits");
-        _transferTokens(msg.sender, dst, amount);
-        return true;
-    }
-
-    /**
-     * @notice Transfer `amount` tokens from `src` to `dst`
-     * @param src The address of the source account
-     * @param dst The address of the destination account
-     * @param rawAmount The number of tokens to transfer
-     * @return Whether or not the transfer succeeded
-     */
-    function transferFrom(address src, address dst, uint rawAmount) external returns (bool) {
-        address spender = msg.sender;
-        uint96 spenderAllowance = allowances[src][spender];
-        uint96 amount = safe96(rawAmount, "Cvp::approve: amount exceeds 96 bits");
-
-        if (spender != src && spenderAllowance != uint96(-1)) {
-            uint96 newAllowance = sub96(spenderAllowance, amount, "Cvp::transferFrom: transfer amount exceeds spender allowance");
-            allowances[src][spender] = newAllowance;
-
-            emit Approval(src, spender, newAllowance);
-        }
-
-        _transferTokens(src, dst, amount);
-        return true;
-    }
-
-    /**
-     * @notice Delegate votes from `msg.sender` to `delegatee`
-     * @param delegatee The address to delegate votes to
-     */
-    function delegate(address delegatee) public {
-        return _delegate(msg.sender, delegatee);
-    }
-
-    /**
-     * @notice Delegates votes from signatory to `delegatee`
-     * @param delegatee The address to delegate votes to
-     * @param nonce The contract state required to match the signature
-     * @param expiry The time at which to expire the signature
-     * @param v The recovery byte of the signature
-     * @param r Half of the ECDSA signature pair
-     * @param s Half of the ECDSA signature pair
-     */
-    function delegateBySig(address delegatee, uint nonce, uint expiry, uint8 v, bytes32 r, bytes32 s) public {
-        bytes32 domainSeparator = keccak256(abi.encode(DOMAIN_TYPEHASH, keccak256(bytes(name)), getChainId(), address(this)));
-        bytes32 structHash = keccak256(abi.encode(DELEGATION_TYPEHASH, delegatee, nonce, expiry));
-        bytes32 digest = keccak256(abi.encodePacked("\x19\x01", domainSeparator, structHash));
-        address signatory = ecrecover(digest, v, r, s);
-        require(signatory != address(0), "Cvp::delegateBySig: invalid signature");
-        require(nonce == nonces[signatory]++, "Cvp::delegateBySig: invalid nonce");
-        require(now <= expiry, "Cvp::delegateBySig: signature expired");
-        return _delegate(signatory, delegatee);
-    }
-
-    /**
-     * @notice Gets the current votes balance for `account`
-     * @param account The address to get votes balance
-     * @return The number of current votes for `account`
-     */
-    function getCurrentVotes(address account) external view returns (uint96) {
-        uint32 nCheckpoints = numCheckpoints[account];
-        return nCheckpoints > 0 ? checkpoints[account][nCheckpoints - 1].votes : 0;
-    }
-
-    /**
-     * @notice Determine the prior number of votes for an account as of a block number
-     * @dev Block number must be a finalized block or else this function will revert to prevent misinformation.
-     * @param account The address of the account to check
-     * @param blockNumber The block number to get the vote balance at
-     * @return The number of votes the account had as of the given block
-     */
-    function getPriorVotes(address account, uint blockNumber) public view returns (uint96) {
-        require(blockNumber < block.number, "Cvp::getPriorVotes: not yet determined");
-
-        uint32 nCheckpoints = numCheckpoints[account];
-        if (nCheckpoints == 0) {
-            return 0;
-        }
-
-        // First check most recent balance
-        if (checkpoints[account][nCheckpoints - 1].fromBlock <= blockNumber) {
-            return checkpoints[account][nCheckpoints - 1].votes;
-        }
-
-        // Next check implicit zero balance
-        if (checkpoints[account][0].fromBlock > blockNumber) {
-            return 0;
-        }
-
-        uint32 lower = 0;
-        uint32 upper = nCheckpoints - 1;
-        while (upper > lower) {
-            uint32 center = upper - (upper - lower) / 2; // ceil, avoiding overflow
-            Checkpoint memory cp = checkpoints[account][center];
-            if (cp.fromBlock == blockNumber) {
-                return cp.votes;
-            } else if (cp.fromBlock < blockNumber) {
-                lower = center;
-            } else {
-                upper = center - 1;
-            }
-        }
-        return checkpoints[account][lower].votes;
-    }
-
-    function _delegate(address delegator, address delegatee) internal {
-        address currentDelegate = delegates[delegator];
-        uint96 delegatorBalance = balances[delegator];
-        delegates[delegator] = delegatee;
-
-        emit DelegateChanged(delegator, currentDelegate, delegatee);
-
-        _moveDelegates(currentDelegate, delegatee, delegatorBalance);
-    }
-
-    function _transferTokens(address src, address dst, uint96 amount) internal {
-        require(src != address(0), "Cvp::_transferTokens: cannot transfer from the zero address");
-        require(dst != address(0), "Cvp::_transferTokens: cannot transfer to the zero address");
-
-        balances[src] = sub96(balances[src], amount, "Cvp::_transferTokens: transfer amount exceeds balance");
-        balances[dst] = add96(balances[dst], amount, "Cvp::_transferTokens: transfer amount overflows");
-        emit Transfer(src, dst, amount);
-
-        _moveDelegates(delegates[src], delegates[dst], amount);
-    }
-
-    function _moveDelegates(address srcRep, address dstRep, uint96 amount) internal {
-        if (srcRep != dstRep && amount > 0) {
-            if (srcRep != address(0)) {
-                uint32 srcRepNum = numCheckpoints[srcRep];
-                uint96 srcRepOld = srcRepNum > 0 ? checkpoints[srcRep][srcRepNum - 1].votes : 0;
-                uint96 srcRepNew = sub96(srcRepOld, amount, "Cvp::_moveVotes: vote amount underflows");
-                _writeCheckpoint(srcRep, srcRepNum, srcRepOld, srcRepNew);
-            }
-
-            if (dstRep != address(0)) {
-                uint32 dstRepNum = numCheckpoints[dstRep];
-                uint96 dstRepOld = dstRepNum > 0 ? checkpoints[dstRep][dstRepNum - 1].votes : 0;
-                uint96 dstRepNew = add96(dstRepOld, amount, "Cvp::_moveVotes: vote amount overflows");
-                _writeCheckpoint(dstRep, dstRepNum, dstRepOld, dstRepNew);
-            }
-        }
-    }
-
-    function _writeCheckpoint(address delegatee, uint32 nCheckpoints, uint96 oldVotes, uint96 newVotes) internal {
-      uint32 blockNumber = safe32(block.number, "Cvp::_writeCheckpoint: block number exceeds 32 bits");
-
-      if (nCheckpoints > 0 && checkpoints[delegatee][nCheckpoints - 1].fromBlock == blockNumber) {
-          checkpoints[delegatee][nCheckpoints - 1].votes = newVotes;
-      } else {
-          checkpoints[delegatee][nCheckpoints] = Checkpoint(blockNumber, newVotes);
-          numCheckpoints[delegatee] = nCheckpoints + 1;
-      }
-
-      emit DelegateVotesChanged(delegatee, oldVotes, newVotes);
-    }
-
-    function safe32(uint n, string memory errorMessage) internal pure returns (uint32) {
-        require(n < 2**32, errorMessage);
-        return uint32(n);
-    }
-
-    function safe96(uint n, string memory errorMessage) internal pure returns (uint96) {
-        require(n < 2**96, errorMessage);
-        return uint96(n);
-    }
-
-    function add96(uint96 a, uint96 b, string memory errorMessage) internal pure returns (uint96) {
-        uint96 c = a + b;
-        require(c >= a, errorMessage);
-        return c;
-    }
-
-    function sub96(uint96 a, uint96 b, string memory errorMessage) internal pure returns (uint96) {
-        require(b <= a, errorMessage);
-        return a - b;
-    }
-
-    function getChainId() internal pure returns (uint) {
-        uint256 chainId;
-        assembly { chainId := chainid() }
-        return chainId;
-    }
+contract SafeMath {
+
+  function safeMul(uint a, uint b) internal returns (uint) {
+    uint c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+  function safeSub(uint a, uint b) internal returns (uint) {
+    assert(b <= a);
+    return a - b;
+  }
+  function safeAdd(uint a, uint b) internal returns (uint) {
+    uint c = a + b;
+    assert(c>=a && c>=b);
+    return c;
+  }
+
+  // mitigate short address attack
+  // thanks to https://github.com/numerai/contract/blob/c182465f82e50ced8dacb3977ec374a892f5fa8c/contracts/Safe.sol#L30-L34.
+  // TODO: doublecheck implication of >= compared to ==
+  modifier onlyPayloadSize(uint numWords) {
+     assert(msg.data.length >= numWords * 32 + 4);
+     _;
+  }
+
+}
+
+
+contract Token { // ERC20 standard
+
+    function balanceOf(address _owner) constant returns (uint256 balance);
+    function transfer(address _to, uint256 _value) returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+    function approve(address _spender, uint256 _value) returns (bool success);
+    function allowance(address _owner, address _spender) constant returns (uint256 remaining);
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+
+}
+
+
+contract StandardToken is Token, SafeMath {
+
+    uint256 public totalSupply;
+
+    // TODO: update tests to expect throw
+    function transfer(address _to, uint256 _value) onlyPayloadSize(2) returns (bool success) {
+        require(_to != address(0));
+        require(balances[msg.sender] >= _value && _value > 0);
+        balances[msg.sender] = safeSub(balances[msg.sender], _value);
+        balances[_to] = safeAdd(balances[_to], _value);
+        Transfer(msg.sender, _to, _value);
+
+        return true;
+    }
+
+    // TODO: update tests to expect throw
+    function transferFrom(address _from, address _to, uint256 _value) onlyPayloadSize(3) returns (bool success) {
+        require(_to != address(0));
+        require(balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0);
+        balances[_from] = safeSub(balances[_from], _value);
+        balances[_to] = safeAdd(balances[_to], _value);
+        allowed[_from][msg.sender] = safeSub(allowed[_from][msg.sender], _value);
+        Transfer(_from, _to, _value);
+
+        return true;
+    }
+
+    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+
+    // To change the approve amount you first have to reduce the addresses'
+    //  allowance to zero by calling 'approve(_spender, 0)' if it is not
+    //  already 0 to mitigate the race condition described here:
+    //  https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+    function approve(address _spender, uint256 _value) onlyPayloadSize(2) returns (bool success) {
+        require((_value == 0) || (allowed[msg.sender][_spender] == 0));
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+
+        return true;
+    }
+
+    function changeApproval(address _spender, uint256 _oldValue, uint256 _newValue) onlyPayloadSize(3) returns (bool success) {
+        require(allowed[msg.sender][_spender] == _oldValue);
+        allowed[msg.sender][_spender] = _newValue;
+        Approval(msg.sender, _spender, _newValue);
+
+        return true;
+    }
+
+    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+      return allowed[_owner][_spender];
+    }
+
+    mapping (address => uint256) balances;
+    mapping (address => mapping (address => uint256)) allowed;
+
+}
+
+
+contract C20 is StandardToken {
+
+    // FIELDS
+
+    string public name = "Crypto20";
+    string public symbol = "C20";
+    uint256 public decimals = 18;
+    string public version = "9.0";
+
+    uint256 public tokenCap = 86206896 * 10**18;
+
+    // crowdsale parameters
+    uint256 public fundingStartBlock;
+    uint256 public fundingEndBlock;
+
+    // vesting fields
+    address public vestingContract;
+    bool private vestingSet = false;
+
+    // root control
+    address public fundWallet;
+    // control of liquidity and limited control of updatePrice
+    address public controlWallet;
+    // time to wait between controlWallet price updates
+    uint256 public waitTime = 5 hours;
+
+    // fundWallet controlled state variables
+    // halted: halt buying due to emergency, tradeable: signal that assets have been acquired
+    bool public halted = false;
+    bool public tradeable = false;
+
+    // -- totalSupply defined in StandardToken
+    // -- mapping to token balances done in StandardToken
+
+    uint256 public previousUpdateTime = 0;
+    Price public currentPrice;
+    uint256 public minAmount = 0.04 ether;
+
+    // map participant address to a withdrawal request
+    mapping (address => Withdrawal) public withdrawals;
+    // maps previousUpdateTime to the next price
+    mapping (uint256 => Price) public prices;
+    // maps addresses
+    mapping (address => bool) public whitelist;
+
+    // TYPES
+
+    struct Price { // tokensPerEth
+        uint256 numerator;
+        uint256 denominator;
+    }
+
+    struct Withdrawal {
+        uint256 tokens;
+        uint256 time; // time for each withdrawal is set to the previousUpdateTime
+    }
+
+    // EVENTS
+
+    event Buy(address indexed participant, address indexed beneficiary, uint256 ethValue, uint256 amountTokens);
+    event AllocatePresale(address indexed participant, uint256 amountTokens);
+    event Whitelist(address indexed participant);
+    event PriceUpdate(uint256 numerator, uint256 denominator);
+    event AddLiquidity(uint256 ethAmount);
+    event RemoveLiquidity(uint256 ethAmount);
+    event WithdrawRequest(address indexed participant, uint256 amountTokens);
+    event Withdraw(address indexed participant, uint256 amountTokens, uint256 etherAmount);
+
+    // MODIFIERS
+
+    modifier isTradeable { // exempt vestingContract and fundWallet to allow dev allocations
+        require(tradeable || msg.sender == fundWallet || msg.sender == vestingContract);
+        _;
+    }
+
+    modifier onlyWhitelist {
+        require(whitelist[msg.sender]);
+        _;
+    }
+
+    modifier onlyFundWallet {
+        require(msg.sender == fundWallet);
+        _;
+    }
+
+    modifier onlyManagingWallets {
+        require(msg.sender == controlWallet || msg.sender == fundWallet);
+        _;
+    }
+
+    modifier only_if_controlWallet {
+        if (msg.sender == controlWallet) _;
+    }
+    modifier require_waited {
+        require(safeSub(now, waitTime) >= previousUpdateTime);
+        _;
+    }
+    modifier only_if_increase (uint256 newNumerator) {
+        if (newNumerator > currentPrice.numerator) _;
+    }
+
+    // CONSTRUCTOR
+
+    function C20(address controlWalletInput, uint256 priceNumeratorInput, uint256 startBlockInput, uint256 endBlockInput) {
+        require(controlWalletInput != address(0));
+        require(priceNumeratorInput > 0);
+        require(endBlockInput > startBlockInput);
+        fundWallet = msg.sender;
+        controlWallet = controlWalletInput;
+        whitelist[fundWallet] = true;
+        whitelist[controlWallet] = true;
+        currentPrice = Price(priceNumeratorInput, 1000); // 1 token = 1 usd at ICO start
+        fundingStartBlock = startBlockInput;
+        fundingEndBlock = endBlockInput;
+        previousUpdateTime = now;
+    }
+
+    // METHODS
+
+    function setVestingContract(address vestingContractInput) external onlyFundWallet {
+        require(vestingContractInput != address(0));
+        vestingContract = vestingContractInput;
+        whitelist[vestingContract] = true;
+        vestingSet = true;
+    }
+
+    // allows controlWallet to update the price within a time contstraint, allows fundWallet complete control
+    function updatePrice(uint256 newNumerator) external onlyManagingWallets {
+        require(newNumerator > 0);
+        require_limited_change(newNumerator);
+        // either controlWallet command is compliant or transaction came from fundWallet
+        currentPrice.numerator = newNumerator;
+        // maps time to new Price (if not during ICO)
+        prices[previousUpdateTime] = currentPrice;
+        previousUpdateTime = now;
+        PriceUpdate(newNumerator, currentPrice.denominator);
+    }
+
+    function require_limited_change (uint256 newNumerator)
+        private
+        only_if_controlWallet
+        require_waited
+        only_if_increase(newNumerator)
+    {
+        uint256 percentage_diff = 0;
+        percentage_diff = safeMul(newNumerator, 100) / currentPrice.numerator;
+        percentage_diff = safeSub(percentage_diff, 100);
+        // controlWallet can only increase price by max 20% and only every waitTime
+        require(percentage_diff <= 20);
+    }
+
+    function updatePriceDenominator(uint256 newDenominator) external onlyFundWallet {
+        require(block.number > fundingEndBlock);
+        require(newDenominator > 0);
+        currentPrice.denominator = newDenominator;
+        // maps time to new Price
+        prices[previousUpdateTime] = currentPrice;
+        previousUpdateTime = now;
+        PriceUpdate(currentPrice.numerator, newDenominator);
+    }
+
+    function allocateTokens(address participant, uint256 amountTokens) private {
+        require(vestingSet);
+        // 13% of total allocated for PR, Marketing, Team, Advisors
+        uint256 developmentAllocation = safeMul(amountTokens, 14942528735632185) / 100000000000000000;
+        // check that token cap is not exceeded
+        uint256 newTokens = safeAdd(amountTokens, developmentAllocation);
+        require(safeAdd(totalSupply, newTokens) <= tokenCap);
+        // increase token supply, assign tokens to participant
+        totalSupply = safeAdd(totalSupply, newTokens);
+        balances[participant] = safeAdd(balances[participant], amountTokens);
+        balances[vestingContract] = safeAdd(balances[vestingContract], developmentAllocation);
+    }
+
+    function allocatePresaleTokens(address participant, uint amountTokens) external onlyFundWallet {
+        require(block.number < fundingEndBlock);
+        require(participant != address(0));
+        whitelist[participant] = true; // automatically whitelist accepted presale
+        allocateTokens(participant, amountTokens);
+        Whitelist(participant);
+        AllocatePresale(participant, amountTokens);
+    }
+
+    function verifyParticipant(address participant) external onlyManagingWallets {
+        whitelist[participant] = true;
+        Whitelist(participant);
+    }
+
+    function buy() external payable {
+        buyTo(msg.sender);
+    }
+
+    function buyTo(address participant) public payable onlyWhitelist {
+        require(!halted);
+        require(participant != address(0));
+        require(msg.value >= minAmount);
+        require(block.number >= fundingStartBlock && block.number < fundingEndBlock);
+        uint256 icoDenominator = icoDenominatorPrice();
+        uint256 tokensToBuy = safeMul(msg.value, currentPrice.numerator) / icoDenominator;
+        allocateTokens(participant, tokensToBuy);
+        // send ether to fundWallet
+        fundWallet.transfer(msg.value);
+        Buy(msg.sender, participant, msg.value, tokensToBuy);
+    }
+
+    // time based on blocknumbers, assuming a blocktime of 30s
+    function icoDenominatorPrice() public constant returns (uint256) {
+        uint256 icoDuration = safeSub(block.number, fundingStartBlock);
+        uint256 denominator;
+        if (icoDuration < 2880) { // #blocks = 24*60*60/30 = 2880
+            return currentPrice.denominator;
+        } else if (icoDuration < 80640 ) { // #blocks = 4*7*24*60*60/30 = 80640
+            denominator = safeMul(currentPrice.denominator, 105) / 100;
+            return denominator;
+        } else {
+            denominator = safeMul(currentPrice.denominator, 110) / 100;
+            return denominator;
+        }
+    }
+
+    function requestWithdrawal(uint256 amountTokensToWithdraw) external isTradeable onlyWhitelist {
+        require(block.number > fundingEndBlock);
+        require(amountTokensToWithdraw > 0);
+        address participant = msg.sender;
+        require(balanceOf(participant) >= amountTokensToWithdraw);
+        require(withdrawals[participant].tokens == 0); // participant cannot have outstanding withdrawals
+        balances[participant] = safeSub(balances[participant], amountTokensToWithdraw);
+        withdrawals[participant] = Withdrawal({tokens: amountTokensToWithdraw, time: previousUpdateTime});
+        WithdrawRequest(participant, amountTokensToWithdraw);
+    }
+
+    function withdraw() external {
+        address participant = msg.sender;
+        uint256 tokens = withdrawals[participant].tokens;
+        require(tokens > 0); // participant must have requested a withdrawal
+        uint256 requestTime = withdrawals[participant].time;
+        // obtain the next price that was set after the request
+        Price price = prices[requestTime];
+        require(price.numerator > 0); // price must have been set
+        uint256 withdrawValue = safeMul(tokens, price.denominator) / price.numerator;
+        // if contract ethbal > then send + transfer tokens to fundWallet, otherwise give tokens back
+        withdrawals[participant].tokens = 0;
+        if (this.balance >= withdrawValue)
+            enact_withdrawal_greater_equal(participant, withdrawValue, tokens);
+        else
+            enact_withdrawal_less(participant, withdrawValue, tokens);
+    }
+
+    function enact_withdrawal_greater_equal(address participant, uint256 withdrawValue, uint256 tokens)
+        private
+    {
+        assert(this.balance >= withdrawValue);
+        balances[fundWallet] = safeAdd(balances[fundWallet], tokens);
+        participant.transfer(withdrawValue);
+        Withdraw(participant, tokens, withdrawValue);
+    }
+    function enact_withdrawal_less(address participant, uint256 withdrawValue, uint256 tokens)
+        private
+    {
+        assert(this.balance < withdrawValue);
+        balances[participant] = safeAdd(balances[participant], tokens);
+        Withdraw(participant, tokens, 0); // indicate a failed withdrawal
+    }
+
+
+    function checkWithdrawValue(uint256 amountTokensToWithdraw) constant returns (uint256 etherValue) {
+        require(amountTokensToWithdraw > 0);
+        require(balanceOf(msg.sender) >= amountTokensToWithdraw);
+        uint256 withdrawValue = safeMul(amountTokensToWithdraw, currentPrice.denominator) / currentPrice.numerator;
+        require(this.balance >= withdrawValue);
+        return withdrawValue;
+    }
+
+    // allow fundWallet or controlWallet to add ether to contract
+    function addLiquidity() external onlyManagingWallets payable {
+        require(msg.value > 0);
+        AddLiquidity(msg.value);
+    }
+
+    // allow fundWallet to remove ether from contract
+    function removeLiquidity(uint256 amount) external onlyManagingWallets {
+        require(amount <= this.balance);
+        fundWallet.transfer(amount);
+        RemoveLiquidity(amount);
+    }
+
+    function changeFundWallet(address newFundWallet) external onlyFundWallet {
+        require(newFundWallet != address(0));
+        fundWallet = newFundWallet;
+    }
+
+    function changeControlWallet(address newControlWallet) external onlyFundWallet {
+        require(newControlWallet != address(0));
+        controlWallet = newControlWallet;
+    }
+
+    function changeWaitTime(uint256 newWaitTime) external onlyFundWallet {
+        waitTime = newWaitTime;
+    }
+
+    function updateFundingStartBlock(uint256 newFundingStartBlock) external onlyFundWallet {
+        require(block.number < fundingStartBlock);
+        require(block.number < newFundingStartBlock);
+        fundingStartBlock = newFundingStartBlock;
+    }
+
+    function updateFundingEndBlock(uint256 newFundingEndBlock) external onlyFundWallet {
+        require(block.number < fundingEndBlock);
+        require(block.number < newFundingEndBlock);
+        fundingEndBlock = newFundingEndBlock;
+    }
+
+    function halt() external onlyFundWallet {
+        halted = true;
+    }
+    function unhalt() external onlyFundWallet {
+        halted = false;
+    }
+
+    function enableTrading() external onlyFundWallet {
+        require(block.number > fundingEndBlock);
+        tradeable = true;
+    }
+
+    // fallback function
+    function() payable {
+        require(tx.origin == msg.sender);
+        buyTo(msg.sender);
+    }
+
+    function claimTokens(address _token) external onlyFundWallet {
+        require(_token != address(0));
+        Token token = Token(_token);
+        uint256 balance = token.balanceOf(this);
+        token.transfer(fundWallet, balance);
+     }
+
+    // prevent transfers until trading allowed
+    function transfer(address _to, uint256 _value) isTradeable returns (bool success) {
+        return super.transfer(_to, _value);
+    }
+    function transferFrom(address _from, address _to, uint256 _value) isTradeable returns (bool success) {
+        return super.transferFrom(_from, _to, _value);
+    }
+
 }

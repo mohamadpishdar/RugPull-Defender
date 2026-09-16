@@ -1,2792 +1,1093 @@
-PUSH1 0x80
-PUSH1 0x40
-MSTORE
-PUSH1 0x04
-CALLDATASIZE
-LT
-PUSH2 0x00f3
-JUMPI
-PUSH1 0x00
-CALLDATALOAD
-PUSH1 0xe0
-SHR
-DUP1
-PUSH4 0x81f4f399
-GT
-PUSH2 0x008a
-JUMPI
-DUP1
-PUSH4 0xcae9ca51
-GT
-PUSH2 0x0059
-JUMPI
-DUP1
-PUSH4 0xcae9ca51
-EQ
-PUSH2 0x0568
-JUMPI
-DUP1
-PUSH4 0xd4ee1d90
-EQ
-PUSH2 0x0672
-JUMPI
-DUP1
-PUSH4 0xdd62ed3e
-EQ
-PUSH2 0x06c9
-JUMPI
-DUP1
-PUSH4 0xf2fde38b
-EQ
-PUSH2 0x074e
-JUMPI
-PUSH2 0x00f3
-JUMP
-JUMPDEST
-DUP1
-PUSH4 0x81f4f399
-EQ
-PUSH2 0x03bd
-JUMPI
-DUP1
-PUSH4 0x8da5cb5b
-EQ
-PUSH2 0x040e
-JUMPI
-DUP1
-PUSH4 0x95d89b41
-EQ
-PUSH2 0x0465
-JUMPI
-DUP1
-PUSH4 0xa9059cbb
-EQ
-PUSH2 0x04f5
-JUMPI
-PUSH2 0x00f3
-JUMP
-JUMPDEST
-DUP1
-PUSH4 0x23b872dd
-GT
-PUSH2 0x00c6
-JUMPI
-DUP1
-PUSH4 0x23b872dd
-EQ
-PUSH2 0x027d
-JUMPI
-DUP1
-PUSH4 0x313ce567
-EQ
-PUSH2 0x0310
-JUMPI
-DUP1
-PUSH4 0x70a08231
-EQ
-PUSH2 0x0341
-JUMPI
-DUP1
-PUSH4 0x79ba5097
-EQ
-PUSH2 0x03a6
-JUMPI
-PUSH2 0x00f3
-JUMP
-JUMPDEST
-DUP1
-PUSH4 0x06fdde03
-EQ
-PUSH2 0x00f8
-JUMPI
-DUP1
-PUSH4 0x095ea7b3
-EQ
-PUSH2 0x0188
-JUMPI
-DUP1
-PUSH4 0x18160ddd
-EQ
-PUSH2 0x01fb
-JUMPI
-DUP1
-PUSH4 0x1ee59f20
-EQ
-PUSH2 0x0226
-JUMPI
-JUMPDEST
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x0104
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x010d
-PUSH2 0x079f
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP1
-PUSH1 0x20
-ADD
-DUP3
-DUP2
-SUB
-DUP3
-MSTORE
-DUP4
-DUP2
-DUP2
-MLOAD
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-DUP1
-MLOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-DUP1
-DUP4
-DUP4
-PUSH1 0x00
-JUMPDEST
-DUP4
-DUP2
-LT
-ISZERO
-PUSH2 0x014d
-JUMPI
-DUP1
-DUP3
-ADD
-MLOAD
-DUP2
-DUP5
-ADD
-MSTORE
-PUSH1 0x20
-DUP2
-ADD
-SWAP1
-POP
-PUSH2 0x0132
-JUMP
-JUMPDEST
-POP
-POP
-POP
-POP
-SWAP1
-POP
-SWAP1
-DUP2
-ADD
-SWAP1
-PUSH1 0x1f
-AND
-DUP1
-ISZERO
-PUSH2 0x017a
-JUMPI
-DUP1
-DUP3
-SUB
-DUP1
-MLOAD
-PUSH1 0x01
-DUP4
-PUSH1 0x20
-SUB
-PUSH2 0x0100
-EXP
-SUB
-NOT
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-JUMPDEST
-POP
-SWAP3
-POP
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x0194
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x01e1
-PUSH1 0x04
-DUP1
-CALLDATASIZE
-SUB
-PUSH1 0x40
-DUP2
-LT
-ISZERO
-PUSH2 0x01ab
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-ADD
-SWAP1
-DUP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-DUP1
-CALLDATALOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-POP
-POP
-POP
-PUSH2 0x083d
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-ISZERO
-ISZERO
-ISZERO
-ISZERO
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x0207
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x0210
-PUSH2 0x092f
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x0232
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x023b
-PUSH2 0x098a
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x0289
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x02f6
-PUSH1 0x04
-DUP1
-CALLDATASIZE
-SUB
-PUSH1 0x60
-DUP2
-LT
-ISZERO
-PUSH2 0x02a0
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-ADD
-SWAP1
-DUP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-DUP1
-CALLDATALOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-POP
-POP
-POP
-PUSH2 0x09b0
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-ISZERO
-ISZERO
-ISZERO
-ISZERO
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x031c
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x0325
-PUSH2 0x0df5
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-PUSH1 0xff
-AND
-PUSH1 0xff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x034d
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x0390
-PUSH1 0x04
-DUP1
-CALLDATASIZE
-SUB
-PUSH1 0x20
-DUP2
-LT
-ISZERO
-PUSH2 0x0364
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-ADD
-SWAP1
-DUP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-POP
-POP
-POP
-PUSH2 0x0e08
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x03b2
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x03bb
-PUSH2 0x0e51
-JUMP
-JUMPDEST
-STOP
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x03c9
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x040c
-PUSH1 0x04
-DUP1
-CALLDATASIZE
-SUB
-PUSH1 0x20
-DUP2
-LT
-ISZERO
-PUSH2 0x03e0
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-ADD
-SWAP1
-DUP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-POP
-POP
-POP
-PUSH2 0x0fee
-JUMP
-JUMPDEST
-STOP
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x041a
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x0423
-PUSH2 0x108b
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x0471
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x047a
-PUSH2 0x10b0
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP1
-PUSH1 0x20
-ADD
-DUP3
-DUP2
-SUB
-DUP3
-MSTORE
-DUP4
-DUP2
-DUP2
-MLOAD
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-DUP1
-MLOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-DUP1
-DUP4
-DUP4
-PUSH1 0x00
-JUMPDEST
-DUP4
-DUP2
-LT
-ISZERO
-PUSH2 0x04ba
-JUMPI
-DUP1
-DUP3
-ADD
-MLOAD
-DUP2
-DUP5
-ADD
-MSTORE
-PUSH1 0x20
-DUP2
-ADD
-SWAP1
-POP
-PUSH2 0x049f
-JUMP
-JUMPDEST
-POP
-POP
-POP
-POP
-SWAP1
-POP
-SWAP1
-DUP2
-ADD
-SWAP1
-PUSH1 0x1f
-AND
-DUP1
-ISZERO
-PUSH2 0x04e7
-JUMPI
-DUP1
-DUP3
-SUB
-DUP1
-MLOAD
-PUSH1 0x01
-DUP4
-PUSH1 0x20
-SUB
-PUSH2 0x0100
-EXP
-SUB
-NOT
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-JUMPDEST
-POP
-SWAP3
-POP
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x0501
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x054e
-PUSH1 0x04
-DUP1
-CALLDATASIZE
-SUB
-PUSH1 0x40
-DUP2
-LT
-ISZERO
-PUSH2 0x0518
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-ADD
-SWAP1
-DUP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-DUP1
-CALLDATALOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-POP
-POP
-POP
-PUSH2 0x114e
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-ISZERO
-ISZERO
-ISZERO
-ISZERO
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x0574
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x0658
-PUSH1 0x04
-DUP1
-CALLDATASIZE
-SUB
-PUSH1 0x60
-DUP2
-LT
-ISZERO
-PUSH2 0x058b
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-ADD
-SWAP1
-DUP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-DUP1
-CALLDATALOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-DUP1
-CALLDATALOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-PUSH5 0x0100000000
-DUP2
-GT
-ISZERO
-PUSH2 0x05d2
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP3
-ADD
-DUP4
-PUSH1 0x20
-DUP3
-ADD
-GT
-ISZERO
-PUSH2 0x05e4
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP1
-CALLDATALOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP2
-DUP5
-PUSH1 0x01
-DUP4
-MUL
-DUP5
-ADD
-GT
-PUSH5 0x0100000000
-DUP4
-GT
-OR
-ISZERO
-PUSH2 0x0606
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-SWAP2
-SWAP1
-DUP1
-DUP1
-PUSH1 0x1f
-ADD
-PUSH1 0x20
-DUP1
-SWAP2
-DIV
-MUL
-PUSH1 0x20
-ADD
-PUSH1 0x40
-MLOAD
-SWAP1
-DUP2
-ADD
-PUSH1 0x40
-MSTORE
-DUP1
-SWAP4
-SWAP3
-SWAP2
-SWAP1
-DUP2
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-DUP4
-DUP4
-DUP1
-DUP3
-DUP5
-CALLDATACOPY
-PUSH1 0x00
-DUP2
-DUP5
-ADD
-MSTORE
-PUSH1 0x1f
-NOT
-PUSH1 0x1f
-DUP3
-ADD
-AND
-SWAP1
-POP
-DUP1
-DUP4
-ADD
-SWAP3
-POP
-POP
-POP
-POP
-POP
-POP
-POP
-SWAP2
-SWAP3
-SWAP2
-SWAP3
-SWAP1
-POP
-POP
-POP
-PUSH2 0x13ad
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-ISZERO
-ISZERO
-ISZERO
-ISZERO
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x067e
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x0687
-PUSH2 0x15e0
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x06d5
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x0738
-PUSH1 0x04
-DUP1
-CALLDATASIZE
-SUB
-PUSH1 0x40
-DUP2
-LT
-ISZERO
-PUSH2 0x06ec
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-ADD
-SWAP1
-DUP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-POP
-POP
-POP
-PUSH2 0x1606
-JUMP
-JUMPDEST
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-CALLVALUE
-DUP1
-ISZERO
-PUSH2 0x075a
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-PUSH2 0x079d
-PUSH1 0x04
-DUP1
-CALLDATASIZE
-SUB
-PUSH1 0x20
-DUP2
-LT
-ISZERO
-PUSH2 0x0771
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-ADD
-SWAP1
-DUP1
-DUP1
-CALLDATALOAD
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-SWAP3
-SWAP2
-SWAP1
-POP
-POP
-POP
-PUSH2 0x168d
-JUMP
-JUMPDEST
-STOP
-JUMPDEST
-PUSH1 0x03
-DUP1
-SLOAD
-PUSH1 0x01
-DUP2
-PUSH1 0x01
-AND
-ISZERO
-PUSH2 0x0100
-MUL
-SUB
-AND
-PUSH1 0x02
-SWAP1
-DIV
-DUP1
-PUSH1 0x1f
-ADD
-PUSH1 0x20
-DUP1
-SWAP2
-DIV
-MUL
-PUSH1 0x20
-ADD
-PUSH1 0x40
-MLOAD
-SWAP1
-DUP2
-ADD
-PUSH1 0x40
-MSTORE
-DUP1
-SWAP3
-SWAP2
-SWAP1
-DUP2
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-DUP3
-DUP1
-SLOAD
-PUSH1 0x01
-DUP2
-PUSH1 0x01
-AND
-ISZERO
-PUSH2 0x0100
-MUL
-SUB
-AND
-PUSH1 0x02
-SWAP1
-DIV
-DUP1
-ISZERO
-PUSH2 0x0835
-JUMPI
-DUP1
-PUSH1 0x1f
-LT
-PUSH2 0x080a
-JUMPI
-PUSH2 0x0100
-DUP1
-DUP4
-SLOAD
-DIV
-MUL
-DUP4
-MSTORE
-SWAP2
-PUSH1 0x20
-ADD
-SWAP2
-PUSH2 0x0835
-JUMP
-JUMPDEST
-DUP3
-ADD
-SWAP2
-SWAP1
-PUSH1 0x00
-MSTORE
-PUSH1 0x20
-PUSH1 0x00
-SHA3
-SWAP1
-JUMPDEST
-DUP2
-SLOAD
-DUP2
-MSTORE
-SWAP1
-PUSH1 0x01
-ADD
-SWAP1
-PUSH1 0x20
-ADD
-DUP1
-DUP4
-GT
-PUSH2 0x0818
-JUMPI
-DUP3
-SWAP1
-SUB
-PUSH1 0x1f
-AND
-DUP3
-ADD
-SWAP2
-JUMPDEST
-POP
-POP
-POP
-POP
-POP
-DUP2
-JUMP
-JUMPDEST
-PUSH1 0x00
-DUP2
-PUSH1 0x08
-PUSH1 0x00
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-PUSH1 0x00
-DUP6
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-DUP2
-SWAP1
-SSTORE
-POP
-DUP3
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH32 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925
-DUP5
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-LOG3
-PUSH1 0x01
-SWAP1
-POP
-SWAP3
-SWAP2
-POP
-POP
-JUMP
-JUMPDEST
-PUSH1 0x00
-PUSH2 0x0985
-PUSH1 0x07
-PUSH1 0x00
-DUP1
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-SLOAD
-PUSH1 0x05
-SLOAD
-PUSH2 0x172a
-SWAP1
-SWAP2
-SWAP1
-PUSH4 0xffffffff
-AND
-JUMP
-JUMPDEST
-SWAP1
-POP
-SWAP1
-JUMP
-JUMPDEST
-PUSH1 0x06
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-JUMP
-JUMPDEST
-PUSH1 0x00
-DUP1
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP5
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-EQ
-ISZERO
-DUP1
-ISZERO
-PUSH2 0x0a3c
-JUMPI
-POP
-PUSH1 0x00
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH1 0x06
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-EQ
-JUMPDEST
-ISZERO
-PUSH2 0x0a87
-JUMPI
-DUP3
-PUSH1 0x06
-PUSH1 0x00
-PUSH2 0x0100
-EXP
-DUP2
-SLOAD
-DUP2
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-MUL
-NOT
-AND
-SWAP1
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-MUL
-OR
-SWAP1
-SSTORE
-POP
-PUSH2 0x0b4c
-JUMP
-JUMPDEST
-PUSH1 0x06
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-EQ
-ISZERO
-PUSH2 0x0b4b
-JUMPI
-PUSH1 0x40
-MLOAD
-PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000
-DUP2
-MSTORE
-PUSH1 0x04
-ADD
-DUP1
-DUP1
-PUSH1 0x20
-ADD
-DUP3
-DUP2
-SUB
-DUP3
-MSTORE
-PUSH1 0x0b
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-DUP1
-PUSH32 0x706c656173652077616974000000000000000000000000000000000000000000
-DUP2
-MSTORE
-POP
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-REVERT
-JUMPDEST
-JUMPDEST
-PUSH2 0x0b9e
-DUP3
-PUSH1 0x07
-PUSH1 0x00
-DUP8
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-SLOAD
-PUSH2 0x172a
-SWAP1
-SWAP2
-SWAP1
-PUSH4 0xffffffff
-AND
-JUMP
-JUMPDEST
-PUSH1 0x07
-PUSH1 0x00
-DUP7
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-DUP2
-SWAP1
-SSTORE
-POP
-PUSH2 0x0c70
-DUP3
-PUSH1 0x08
-PUSH1 0x00
-DUP8
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-PUSH1 0x00
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-SLOAD
-PUSH2 0x172a
-SWAP1
-SWAP2
-SWAP1
-PUSH4 0xffffffff
-AND
-JUMP
-JUMPDEST
-PUSH1 0x08
-PUSH1 0x00
-DUP7
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-PUSH1 0x00
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-DUP2
-SWAP1
-SSTORE
-POP
-PUSH2 0x0d42
-DUP3
-PUSH1 0x07
-PUSH1 0x00
-DUP7
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-SLOAD
-PUSH2 0x1744
-SWAP1
-SWAP2
-SWAP1
-PUSH4 0xffffffff
-AND
-JUMP
-JUMPDEST
-PUSH1 0x07
-PUSH1 0x00
-DUP6
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-DUP2
-SWAP1
-SSTORE
-POP
-DUP3
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP5
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH32 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
-DUP5
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-LOG3
-PUSH1 0x01
-SWAP1
-POP
-SWAP4
-SWAP3
-POP
-POP
-POP
-JUMP
-JUMPDEST
-PUSH1 0x04
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH1 0xff
-AND
-DUP2
-JUMP
-JUMPDEST
-PUSH1 0x00
-PUSH1 0x07
-PUSH1 0x00
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-SLOAD
-SWAP1
-POP
-SWAP2
-SWAP1
-POP
-JUMP
-JUMPDEST
-PUSH1 0x01
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-EQ
-PUSH2 0x0eab
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-PUSH1 0x01
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH1 0x00
-DUP1
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH32 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0
-PUSH1 0x40
-MLOAD
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-LOG3
-PUSH1 0x01
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH1 0x00
-DUP1
-PUSH2 0x0100
-EXP
-DUP2
-SLOAD
-DUP2
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-MUL
-NOT
-AND
-SWAP1
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-MUL
-OR
-SWAP1
-SSTORE
-POP
-PUSH1 0x00
-PUSH1 0x01
-PUSH1 0x00
-PUSH2 0x0100
-EXP
-DUP2
-SLOAD
-DUP2
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-MUL
-NOT
-AND
-SWAP1
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-MUL
-OR
-SWAP1
-SSTORE
-POP
-JUMP
-JUMPDEST
-PUSH1 0x00
-DUP1
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-EQ
-PUSH2 0x1047
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP1
-PUSH1 0x06
-PUSH1 0x00
-PUSH2 0x0100
-EXP
-DUP2
-SLOAD
-DUP2
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-MUL
-NOT
-AND
-SWAP1
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-MUL
-OR
-SWAP1
-SSTORE
-POP
-POP
-JUMP
-JUMPDEST
-PUSH1 0x00
-DUP1
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-JUMP
-JUMPDEST
-PUSH1 0x02
-DUP1
-SLOAD
-PUSH1 0x01
-DUP2
-PUSH1 0x01
-AND
-ISZERO
-PUSH2 0x0100
-MUL
-SUB
-AND
-PUSH1 0x02
-SWAP1
-DIV
-DUP1
-PUSH1 0x1f
-ADD
-PUSH1 0x20
-DUP1
-SWAP2
-DIV
-MUL
-PUSH1 0x20
-ADD
-PUSH1 0x40
-MLOAD
-SWAP1
-DUP2
-ADD
-PUSH1 0x40
-MSTORE
-DUP1
-SWAP3
-SWAP2
-SWAP1
-DUP2
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-DUP3
-DUP1
-SLOAD
-PUSH1 0x01
-DUP2
-PUSH1 0x01
-AND
-ISZERO
-PUSH2 0x0100
-MUL
-SUB
-AND
-PUSH1 0x02
-SWAP1
-DIV
-DUP1
-ISZERO
-PUSH2 0x1146
-JUMPI
-DUP1
-PUSH1 0x1f
-LT
-PUSH2 0x111b
-JUMPI
-PUSH2 0x0100
-DUP1
-DUP4
-SLOAD
-DIV
-MUL
-DUP4
-MSTORE
-SWAP2
-PUSH1 0x20
-ADD
-SWAP2
-PUSH2 0x1146
-JUMP
-JUMPDEST
-DUP3
-ADD
-SWAP2
-SWAP1
-PUSH1 0x00
-MSTORE
-PUSH1 0x20
-PUSH1 0x00
-SHA3
-SWAP1
-JUMPDEST
-DUP2
-SLOAD
-DUP2
-MSTORE
-SWAP1
-PUSH1 0x01
-ADD
-SWAP1
-PUSH1 0x20
-ADD
-DUP1
-DUP4
-GT
-PUSH2 0x1129
-JUMPI
-DUP3
-SWAP1
-SUB
-PUSH1 0x1f
-AND
-DUP3
-ADD
-SWAP2
-JUMPDEST
-POP
-POP
-POP
-POP
-POP
-DUP2
-JUMP
-JUMPDEST
-PUSH1 0x00
-PUSH1 0x06
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-EQ
-ISZERO
-PUSH2 0x1214
-JUMPI
-PUSH1 0x40
-MLOAD
-PUSH32 0x08c379a000000000000000000000000000000000000000000000000000000000
-DUP2
-MSTORE
-PUSH1 0x04
-ADD
-DUP1
-DUP1
-PUSH1 0x20
-ADD
-DUP3
-DUP2
-SUB
-DUP3
-MSTORE
-PUSH1 0x0b
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-DUP1
-PUSH32 0x706c656173652077616974000000000000000000000000000000000000000000
-DUP2
-MSTORE
-POP
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-REVERT
-JUMPDEST
-PUSH2 0x1266
-DUP3
-PUSH1 0x07
-PUSH1 0x00
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-SLOAD
-PUSH2 0x172a
-SWAP1
-SWAP2
-SWAP1
-PUSH4 0xffffffff
-AND
-JUMP
-JUMPDEST
-PUSH1 0x07
-PUSH1 0x00
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-DUP2
-SWAP1
-SSTORE
-POP
-PUSH2 0x12fb
-DUP3
-PUSH1 0x07
-PUSH1 0x00
-DUP7
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-SLOAD
-PUSH2 0x1744
-SWAP1
-SWAP2
-SWAP1
-PUSH4 0xffffffff
-AND
-JUMP
-JUMPDEST
-PUSH1 0x07
-PUSH1 0x00
-DUP6
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-DUP2
-SWAP1
-SSTORE
-POP
-DUP3
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH32 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
-DUP5
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-LOG3
-PUSH1 0x01
-SWAP1
-POP
-SWAP3
-SWAP2
-POP
-POP
-JUMP
-JUMPDEST
-PUSH1 0x00
-DUP3
-PUSH1 0x08
-PUSH1 0x00
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-PUSH1 0x00
-DUP7
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-DUP2
-SWAP1
-SSTORE
-POP
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH32 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925
-DUP6
-PUSH1 0x40
-MLOAD
-DUP1
-DUP3
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-LOG3
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH4 0x8f4ffcb1
-CALLER
-DUP6
-ADDRESS
-DUP7
-PUSH1 0x40
-MLOAD
-DUP6
-PUSH4 0xffffffff
-AND
-PUSH1 0xe0
-SHL
-DUP2
-MSTORE
-PUSH1 0x04
-ADD
-DUP1
-DUP6
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-DUP5
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-DUP1
-PUSH1 0x20
-ADD
-DUP3
-DUP2
-SUB
-DUP3
-MSTORE
-DUP4
-DUP2
-DUP2
-MLOAD
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-DUP1
-MLOAD
-SWAP1
-PUSH1 0x20
-ADD
-SWAP1
-DUP1
-DUP4
-DUP4
-PUSH1 0x00
-JUMPDEST
-DUP4
-DUP2
-LT
-ISZERO
-PUSH2 0x156e
-JUMPI
-DUP1
-DUP3
-ADD
-MLOAD
-DUP2
-DUP5
-ADD
-MSTORE
-PUSH1 0x20
-DUP2
-ADD
-SWAP1
-POP
-PUSH2 0x1553
-JUMP
-JUMPDEST
-POP
-POP
-POP
-POP
-SWAP1
-POP
-SWAP1
-DUP2
-ADD
-SWAP1
-PUSH1 0x1f
-AND
-DUP1
-ISZERO
-PUSH2 0x159b
-JUMPI
-DUP1
-DUP3
-SUB
-DUP1
-MLOAD
-PUSH1 0x01
-DUP4
-PUSH1 0x20
-SUB
-PUSH2 0x0100
-EXP
-SUB
-NOT
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-JUMPDEST
-POP
-SWAP6
-POP
-POP
-POP
-POP
-POP
-POP
-PUSH1 0x00
-PUSH1 0x40
-MLOAD
-DUP1
-DUP4
-SUB
-DUP2
-PUSH1 0x00
-DUP8
-DUP1
-EXTCODESIZE
-ISZERO
-DUP1
-ISZERO
-PUSH2 0x15bd
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-POP
-GAS
-CALL
-ISZERO
-DUP1
-ISZERO
-PUSH2 0x15d1
-JUMPI
-RETURNDATASIZE
-PUSH1 0x00
-DUP1
-RETURNDATACOPY
-RETURNDATASIZE
-PUSH1 0x00
-REVERT
-JUMPDEST
-POP
-POP
-POP
-POP
-PUSH1 0x01
-SWAP1
-POP
-SWAP4
-SWAP3
-POP
-POP
-POP
-JUMP
-JUMPDEST
-PUSH1 0x01
-PUSH1 0x00
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-JUMP
-JUMPDEST
-PUSH1 0x00
-PUSH1 0x08
-PUSH1 0x00
-DUP5
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-PUSH1 0x00
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP1
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-PUSH1 0x00
-SHA3
-SLOAD
-SWAP1
-POP
-SWAP3
-SWAP2
-POP
-POP
-JUMP
-JUMPDEST
-PUSH1 0x00
-DUP1
-SWAP1
-SLOAD
-SWAP1
-PUSH2 0x0100
-EXP
-SWAP1
-DIV
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-CALLER
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-EQ
-PUSH2 0x16e6
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP1
-PUSH1 0x01
-PUSH1 0x00
-PUSH2 0x0100
-EXP
-DUP2
-SLOAD
-DUP2
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-MUL
-NOT
-AND
-SWAP1
-DUP4
-PUSH20 0xffffffffffffffffffffffffffffffffffffffff
-AND
-MUL
-OR
-SWAP1
-SSTORE
-POP
-POP
-JUMP
-JUMPDEST
-PUSH1 0x00
-DUP3
-DUP3
-GT
-ISZERO
-PUSH2 0x1739
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-DUP2
-DUP4
-SUB
-SWAP1
-POP
-SWAP3
-SWAP2
-POP
-POP
-JUMP
-JUMPDEST
-PUSH1 0x00
-DUP2
-DUP4
-ADD
-SWAP1
-POP
-DUP3
-DUP2
-LT
-ISZERO
-PUSH2 0x1758
-JUMPI
-PUSH1 0x00
-DUP1
-REVERT
-JUMPDEST
-SWAP3
-SWAP2
-POP
-POP
-JUMP
-'fe'(Unknown Opcode)
-LOG2
-PUSH6 0x627a7a723158
-SHA3
-'ec'(Unknown Opcode)
-'b0'(Unknown Opcode)
-BLOBHASH
-'2a'(Unknown Opcode)
-'a9'(Unknown Opcode)
-CALLVALUE
-'f8'(Unknown Opcode)
-DUP11
-SWAP4
-SWAP10
-DUP9
-'d9'(Unknown Opcode)
-'23'(Unknown Opcode)
-PUSH14 0x3bb3d8182d36b12facd6cbd6880a
-'af'(Unknown Opcode)
-BLOBBASEFEE
-'29'(Unknown Opcode)
-'c8'(Unknown Opcode)
-PUSH5 0x736f6c6343
-STOP
-SDIV
-GT
-STOP
-ORIGIN
+// number: 62
+// project: Wettok Market (WTO)
+// address: 0xced59c3249f20ca36fba764bfdd9d94f471b3154
+// chainid: 56
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
+
+/**
+ * @dev Wrappers over Solidity's arithmetic operations.
+ *
+ * NOTE: `SafeMath` is generally not needed starting with Solidity 0.8, since the compiler
+ * now has built in overflow checking.
+ */
+library SafeMath {
+    /**
+     * @dev Returns the addition of two unsigned integers, with an overflow flag.
+     *
+     * _Available since v3.4._
+     */
+    function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+        unchecked {
+            uint256 c = a + b;
+            if (c < a) return (false, 0);
+            return (true, c);
+        }
+    }
+
+    /**
+     * @dev Returns the subtraction of two unsigned integers, with an overflow flag.
+     *
+     * _Available since v3.4._
+     */
+    function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+        unchecked {
+            if (b > a) return (false, 0);
+            return (true, a - b);
+        }
+    }
+
+    /**
+     * @dev Returns the multiplication of two unsigned integers, with an overflow flag.
+     *
+     * _Available since v3.4._
+     */
+    function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+        unchecked {
+            // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
+            // benefit is lost if 'b' is also tested.
+            // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
+            if (a == 0) return (true, 0);
+            uint256 c = a * b;
+            if (c / a != b) return (false, 0);
+            return (true, c);
+        }
+    }
+
+    /**
+     * @dev Returns the division of two unsigned integers, with a division by zero flag.
+     *
+     * _Available since v3.4._
+     */
+    function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+        unchecked {
+            if (b == 0) return (false, 0);
+            return (true, a / b);
+        }
+    }
+
+    /**
+     * @dev Returns the remainder of dividing two unsigned integers, with a division by zero flag.
+     *
+     * _Available since v3.4._
+     */
+    function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+        unchecked {
+            if (b == 0) return (false, 0);
+            return (true, a % b);
+        }
+    }
+
+    /**
+     * @dev Returns the addition of two unsigned integers, reverting on
+     * overflow.
+     *
+     * Counterpart to Solidity's `+` operator.
+     *
+     * Requirements:
+     *
+     * - Addition cannot overflow.
+     */
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a + b;
+    }
+
+    /**
+     * @dev Returns the subtraction of two unsigned integers, reverting on
+     * overflow (when the result is negative).
+     *
+     * Counterpart to Solidity's `-` operator.
+     *
+     * Requirements:
+     *
+     * - Subtraction cannot overflow.
+     */
+    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a - b;
+    }
+
+    /**
+     * @dev Returns the multiplication of two unsigned integers, reverting on
+     * overflow.
+     *
+     * Counterpart to Solidity's `*` operator.
+     *
+     * Requirements:
+     *
+     * - Multiplication cannot overflow.
+     */
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a * b;
+    }
+
+    /**
+     * @dev Returns the integer division of two unsigned integers, reverting on
+     * division by zero. The result is rounded towards zero.
+     *
+     * Counterpart to Solidity's `/` operator.
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
+     */
+    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a / b;
+    }
+
+    /**
+     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
+     * reverting when dividing by zero.
+     *
+     * Counterpart to Solidity's `%` operator. This function uses a `revert`
+     * opcode (which leaves remaining gas untouched) while Solidity uses an
+     * invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
+     */
+    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a % b;
+    }
+
+    /**
+     * @dev Returns the subtraction of two unsigned integers, reverting with custom message on
+     * overflow (when the result is negative).
+     *
+     * CAUTION: This function is deprecated because it requires allocating memory for the error
+     * message unnecessarily. For custom revert reasons use {trySub}.
+     *
+     * Counterpart to Solidity's `-` operator.
+     *
+     * Requirements:
+     *
+     * - Subtraction cannot overflow.
+     */
+    function sub(
+        uint256 a,
+        uint256 b,
+        string memory errorMessage
+    ) internal pure returns (uint256) {
+        unchecked {
+            require(b <= a, errorMessage);
+            return a - b;
+        }
+    }
+
+    /**
+     * @dev Returns the integer division of two unsigned integers, reverting with custom message on
+     * division by zero. The result is rounded towards zero.
+     *
+     * Counterpart to Solidity's `/` operator. Note: this function uses a
+     * `revert` opcode (which leaves remaining gas untouched) while Solidity
+     * uses an invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
+     */
+    function div(
+        uint256 a,
+        uint256 b,
+        string memory errorMessage
+    ) internal pure returns (uint256) {
+        unchecked {
+            require(b > 0, errorMessage);
+            return a / b;
+        }
+    }
+
+    /**
+     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
+     * reverting with custom message when dividing by zero.
+     *
+     * CAUTION: This function is deprecated because it requires allocating memory for the error
+     * message unnecessarily. For custom revert reasons use {tryMod}.
+     *
+     * Counterpart to Solidity's `%` operator. This function uses a `revert`
+     * opcode (which leaves remaining gas untouched) while Solidity uses an
+     * invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
+     */
+    function mod(
+        uint256 a,
+        uint256 b,
+        string memory errorMessage
+    ) internal pure returns (uint256) {
+        unchecked {
+            require(b > 0, errorMessage);
+            return a % b;
+        }
+    }
+}
+
+/**
+ * @dev Collection of functions related to the address type
+ */
+library Address {
+    /**
+     * @dev Returns true if `account` is a contract.
+     *
+     * [IMPORTANT]
+     * ====
+     * It is unsafe to assume that an address for which this function returns
+     * false is an externally-owned account (EOA) and not a contract.
+     *
+     * Among others, `isContract` will return false for the following
+     * types of addresses:
+     *
+     *  - an externally-owned account
+     *  - a contract in construction
+     *  - an address where a contract will be created
+     *  - an address where a contract lived, but was destroyed
+     * ====
+     *
+     * [IMPORTANT]
+     * ====
+     * You shouldn't rely on `isContract` to protect against flash loan attacks!
+     *
+     * Preventing calls from contracts is highly discouraged. It breaks composability, breaks support for smart wallets
+     * like Gnosis Safe, and does not provide security since it can be circumvented by calling from a contract
+     * constructor.
+     * ====
+     */
+    function isContract(address account) internal view returns (bool) {
+        // This method relies on extcodesize/address.code.length, which returns 0
+        // for contracts in construction, since the code is only stored at the end
+        // of the constructor execution.
+
+        return account.code.length > 0;
+    }
+
+    /**
+     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to
+     * `recipient`, forwarding all available gas and reverting on errors.
+     *
+     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost
+     * of certain opcodes, possibly making contracts go over the 2300 gas limit
+     * imposed by `transfer`, making them unable to receive funds via
+     * `transfer`. {sendValue} removes this limitation.
+     *
+     * https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/[Learn more].
+     *
+     * IMPORTANT: because control is transferred to `recipient`, care must be
+     * taken to not create reentrancy vulnerabilities. Consider using
+     * {ReentrancyGuard} or the
+     * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
+     */
+    function sendValue(address payable recipient, uint256 amount) internal {
+        require(address(this).balance >= amount, "Address: insufficient balance");
+
+        (bool success, ) = recipient.call{value: amount}("");
+        require(success, "Address: unable to send value, recipient may have reverted");
+    }
+
+    /**
+     * @dev Performs a Solidity function call using a low level `call`. A
+     * plain `call` is an unsafe replacement for a function call: use this
+     * function instead.
+     *
+     * If `target` reverts with a revert reason, it is bubbled up by this
+     * function (like regular Solidity function calls).
+     *
+     * Returns the raw returned data. To convert to the expected return value,
+     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].
+     *
+     * Requirements:
+     *
+     * - `target` must be a contract.
+     * - calling `target` with `data` must not revert.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, 0, "Address: low-level call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`], but with
+     * `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, 0, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but also transferring `value` wei to `target`.
+     *
+     * Requirements:
+     *
+     * - the calling contract must have an ETH balance of at least `value`.
+     * - the called Solidity function must be `payable`.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(
+        address target,
+        bytes memory data,
+        uint256 value
+    ) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but
+     * with `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(
+        address target,
+        bytes memory data,
+        uint256 value,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        require(address(this).balance >= value, "Address: insufficient balance for call");
+        (bool success, bytes memory returndata) = target.call{value: value}(data);
+        return verifyCallResultFromTarget(target, success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but performing a static call.
+     *
+     * _Available since v3.3._
+     */
+    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {
+        return functionStaticCall(target, data, "Address: low-level static call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-string-}[`functionCall`],
+     * but performing a static call.
+     *
+     * _Available since v3.3._
+     */
+    function functionStaticCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal view returns (bytes memory) {
+        (bool success, bytes memory returndata) = target.staticcall(data);
+        return verifyCallResultFromTarget(target, success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but performing a delegate call.
+     *
+     * _Available since v3.4._
+     */
+    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionDelegateCall(target, data, "Address: low-level delegate call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-string-}[`functionCall`],
+     * but performing a delegate call.
+     *
+     * _Available since v3.4._
+     */
+    function functionDelegateCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        (bool success, bytes memory returndata) = target.delegatecall(data);
+        return verifyCallResultFromTarget(target, success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Tool to verify that a low level call to smart-contract was successful, and revert (either by bubbling
+     * the revert reason or using the provided one) in case of unsuccessful call or if target was not a contract.
+     *
+     * _Available since v4.8._
+     */
+    function verifyCallResultFromTarget(
+        address target,
+        bool success,
+        bytes memory returndata,
+        string memory errorMessage
+    ) internal view returns (bytes memory) {
+        if (success) {
+            if (returndata.length == 0) {
+                // only check isContract if the call was successful and the return data is empty
+                // otherwise we already know that it was a contract
+                require(isContract(target), "Address: call to non-contract");
+            }
+            return returndata;
+        } else {
+            _revert(returndata, errorMessage);
+        }
+    }
+
+    /**
+     * @dev Tool to verify that a low level call was successful, and revert if it wasn't, either by bubbling the
+     * revert reason or using the provided one.
+     *
+     * _Available since v4.3._
+     */
+    function verifyCallResult(
+        bool success,
+        bytes memory returndata,
+        string memory errorMessage
+    ) internal pure returns (bytes memory) {
+        if (success) {
+            return returndata;
+        } else {
+            _revert(returndata, errorMessage);
+        }
+    }
+
+    function _revert(bytes memory returndata, string memory errorMessage) private pure {
+        // Look for revert reason and bubble it up if present
+        if (returndata.length > 0) {
+            // The easiest way to bubble the revert reason is using memory via assembly
+            /// @solidity memory-safe-assembly
+            assembly {
+                let returndata_size := mload(returndata)
+                revert(add(32, returndata), returndata_size)
+            }
+        } else {
+            revert(errorMessage);
+        }
+    }
+}
+
+/**
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
+ */
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address) {
+        return msg.sender;
+    }
+
+    function _msgData() internal view virtual returns (bytes calldata) {
+        return msg.data;
+    }
+}
+
+/**
+ * @dev Contract module which provides a basic access control mechanism, where
+ * there is an account (an owner) that can be granted exclusive access to
+ * specific functions.
+ *
+ * By default, the owner account will be the one that deploys the contract. This
+ * can later be changed with {transferOwnership}.
+ *
+ * This module is used through inheritance. It will make available the modifier
+ * `onlyOwner`, which can be applied to your functions to restrict their use to
+ * the owner.
+ */
+abstract contract Ownable is Context {
+    address private _owner;
+
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+    /**
+     * @dev Initializes the contract setting the deployer as the initial owner.
+     */
+    constructor() {
+        _transferOwnership(_msgSender());
+    }
+
+    /**
+     * @dev Throws if called by any account other than the owner.
+     */
+    modifier onlyOwner() {
+        _checkOwner();
+        _;
+    }
+
+    /**
+     * @dev Returns the address of the current owner.
+     */
+    function owner() public view virtual returns (address) {
+        return _owner;
+    }
+
+    /**
+     * @dev Throws if the sender is not the owner.
+     */
+    function _checkOwner() internal view virtual {
+        require(owner() == _msgSender(), "Ownable: caller is not the owner");
+    }
+
+    /**
+     * @dev Leaves the contract without owner. It will not be possible to call
+     * `onlyOwner` functions anymore. Can only be called by the current owner.
+     *
+     * NOTE: Renouncing ownership will leave the contract without an owner,
+     * thereby removing any functionality that is only available to the owner.
+     */
+    function renounceOwnership() public virtual onlyOwner {
+        _transferOwnership(address(0));
+    }
+
+    /**
+     * @dev Transfers ownership of the contract to a new account (`newOwner`).
+     * Can only be called by the current owner.
+     */
+    function transferOwnership(address newOwner) public virtual onlyOwner {
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
+        _transferOwnership(newOwner);
+    }
+
+    /**
+     * @dev Transfers ownership of the contract to a new account (`newOwner`).
+     * Internal function without access restriction.
+     */
+    function _transferOwnership(address newOwner) internal virtual {
+        address oldOwner = _owner;
+        _owner = newOwner;
+        emit OwnershipTransferred(oldOwner, newOwner);
+    }
+}
+
+/**
+ * @dev Interface of the ERC20 standard as defined in the EIP.
+ */
+interface IERC20 {
+    /**
+     * @dev Emitted when `value` tokens are moved from one account (`from`) to
+     * another (`to`).
+     *
+     * Note that `value` may be zero.
+     */
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    /**
+     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
+     * a call to {approve}. `value` is the new allowance.
+     */
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+
+    /**
+     * @dev Returns the amount of tokens in existence.
+     */
+    function totalSupply() external view returns (uint256);
+
+    /**
+     * @dev Returns the amount of tokens owned by `account`.
+     */
+    function balanceOf(address account) external view returns (uint256);
+
+    /**
+     * @dev Moves `amount` tokens from the caller's account to `to`.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transfer(address to, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Returns the remaining number of tokens that `spender` will be
+     * allowed to spend on behalf of `owner` through {transferFrom}. This is
+     * zero by default.
+     *
+     * This value changes when {approve} or {transferFrom} are called.
+     */
+    function allowance(address owner, address spender) external view returns (uint256);
+
+    /**
+     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * IMPORTANT: Beware that changing an allowance with this method brings the risk
+     * that someone may use both the old and the new allowance by unfortunate
+     * transaction ordering. One possible solution to mitigate this race
+     * condition is to first reduce the spender's allowance to 0 and set the
+     * desired value afterwards:
+     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     *
+     * Emits an {Approval} event.
+     */
+    function approve(address spender, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Moves `amount` tokens from `from` to `to` using the
+     * allowance mechanism. `amount` is then deducted from the caller's
+     * allowance.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transferFrom(
+        address from,
+        address to,
+        uint256 amount
+    ) external returns (bool);
+}
+
+/**
+ * @dev Interface for the optional metadata functions from the ERC20 standard.
+ *
+ * _Available since v4.1._
+ */
+interface IERC20Metadata is IERC20 {
+    /**
+     * @dev Returns the name of the token.
+     */
+    function name() external view returns (string memory);
+
+    /**
+     * @dev Returns the symbol of the token.
+     */
+    function symbol() external view returns (string memory);
+
+    /**
+     * @dev Returns the decimals places of the token.
+     */
+    function decimals() external view returns (uint8);
+}
+
+/**
+ * @dev Implementation of the {IERC20} interface.
+ *
+ * This implementation is agnostic to the way tokens are created. This means
+ * that a supply mechanism has to be added in a derived contract using {_mint}.
+ * For a generic mechanism see {ERC20PresetMinterPauser}.
+ *
+ * TIP: For a detailed writeup see our guide
+ * https://forum.openzeppelin.com/t/how-to-implement-erc20-supply-mechanisms/226[How
+ * to implement supply mechanisms].
+ *
+ * We have followed general OpenZeppelin Contracts guidelines: functions revert
+ * instead returning `false` on failure. This behavior is nonetheless
+ * conventional and does not conflict with the expectations of ERC20
+ * applications.
+ *
+ * Additionally, an {Approval} event is emitted on calls to {transferFrom}.
+ * This allows applications to reconstruct the allowance for all accounts just
+ * by listening to said events. Other implementations of the EIP may not emit
+ * these events, as it isn't required by the specification.
+ *
+ * Finally, the non-standard {decreaseAllowance} and {increaseAllowance}
+ * functions have been added to mitigate the well-known issues around setting
+ * allowances. See {IERC20-approve}.
+ */
+contract ERC20 is Context, IERC20, IERC20Metadata {
+    using SafeMath for uint256;
+    mapping(address => uint256) private _balances;
+
+    mapping(address => mapping(address => uint256)) private _allowances;
+
+    uint256 private _totalSupply;
+
+    string private _name;
+    string private _symbol;
+
+    /**
+     * @dev Sets the values for {name} and {symbol}.
+     *
+     * The default value of {decimals} is 18. To select a different value for
+     * {decimals} you should overload it.
+     *
+     * All two of these values are immutable: they can only be set once during
+     * construction.
+     */
+    constructor(string memory name_, string memory symbol_) {
+        _name = name_;
+        _symbol = symbol_;
+    }
+
+    /**
+     * @dev Returns the name of the token.
+     */
+    function name() public view virtual override returns (string memory) {
+        return _name;
+    }
+
+    /**
+     * @dev Returns the symbol of the token, usually a shorter version of the
+     * name.
+     */
+    function symbol() public view virtual override returns (string memory) {
+        return _symbol;
+    }
+
+    /**
+     * @dev Returns the number of decimals used to get its user representation.
+     * For example, if `decimals` equals `2`, a balance of `505` tokens should
+     * be displayed to a user as `5.05` (`505 / 10 ** 2`).
+     *
+     * Tokens usually opt for a value of 18, imitating the relationship between
+     * Ether and Wei. This is the value {ERC20} uses, unless this function is
+     * overridden;
+     *
+     * NOTE: This information is only used for _display_ purposes: it in
+     * no way affects any of the arithmetic of the contract, including
+     * {IERC20-balanceOf} and {IERC20-transfer}.
+     */
+    function decimals() public view virtual override returns (uint8) {
+        return 18;
+    }
+
+    /**
+     * @dev See {IERC20-totalSupply}.
+     */
+    function totalSupply() public view virtual override returns (uint256) {
+        return _totalSupply;
+    }
+
+    /**
+     * @dev See {IERC20-balanceOf}.
+     */
+    function balanceOf(address account) public view virtual override returns (uint256) {
+        return _balances[account];
+    }
+
+    /**
+     * @dev See {IERC20-transfer}.
+     *
+     * Requirements:
+     *
+     * - `to` cannot be the zero address.
+     * - the caller must have a balance of at least `amount`.
+     */
+    function transfer(address to, uint256 amount) public virtual override returns (bool) {
+        address owner = _msgSender();
+        _transfer(owner, to, amount);
+        return true;
+    }
+
+    /**
+     * @dev See {IERC20-allowance}.
+     */
+    function allowance(address owner, address spender) public view virtual override returns (uint256) {
+        return _allowances[owner][spender];
+    }
+
+    /**
+     * @dev See {IERC20-approve}.
+     *
+     * NOTE: If `amount` is the maximum `uint256`, the allowance is not updated on
+     * `transferFrom`. This is semantically equivalent to an infinite approval.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     */
+    function approve(address spender, uint256 amount) public virtual override returns (bool) {
+        address owner = _msgSender();
+        _approve(owner, spender, amount);
+        return true;
+    }
+
+    /**
+     * @dev See {IERC20-transferFrom}.
+     *
+     * Emits an {Approval} event indicating the updated allowance. This is not
+     * required by the EIP. See the note at the beginning of {ERC20}.
+     *
+     * NOTE: Does not update the allowance if the current allowance
+     * is the maximum `uint256`.
+     *
+     * Requirements:
+     *
+     * - `from` and `to` cannot be the zero address.
+     * - `from` must have a balance of at least `amount`.
+     * - the caller must have allowance for ``from``'s tokens of at least
+     * `amount`.
+     */
+    function transferFrom(
+        address from,
+        address to,
+        uint256 amount
+    ) public virtual override returns (bool) {
+        address spender = _msgSender();
+        _spendAllowance(from, spender, amount);
+        _transfer(from, to, amount);
+        return true;
+    }
+
+    /**
+     * @dev Atomically increases the allowance granted to `spender` by the caller.
+     *
+     * This is an alternative to {approve} that can be used as a mitigation for
+     * problems described in {IERC20-approve}.
+     *
+     * Emits an {Approval} event indicating the updated allowance.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     */
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+        address owner = _msgSender();
+        _approve(owner, spender, allowance(owner, spender) + addedValue);
+        return true;
+    }
+
+    /**
+     * @dev Atomically decreases the allowance granted to `spender` by the caller.
+     *
+     * This is an alternative to {approve} that can be used as a mitigation for
+     * problems described in {IERC20-approve}.
+     *
+     * Emits an {Approval} event indicating the updated allowance.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     * - `spender` must have allowance for the caller of at least
+     * `subtractedValue`.
+     */
+    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
+        address owner = _msgSender();
+        uint256 currentAllowance = allowance(owner, spender);
+        require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
+        unchecked {
+            _approve(owner, spender, currentAllowance - subtractedValue);
+        }
+
+        return true;
+    }
+
+    /**
+     * @dev Moves `amount` of tokens from `from` to `to`.
+     *
+     * This internal function is equivalent to {transfer}, and can be used to
+     * e.g. implement automatic token fees, slashing mechanisms, etc.
+     *
+     * Emits a {Transfer} event.
+     *
+     * Requirements:
+     *
+     * - `from` cannot be the zero address.
+     * - `to` cannot be the zero address.
+     * - `from` must have a balance of at least `amount`.
+     */
+    function _transfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual {
+        require(from != address(0), "ERC20: transfer from the zero address");
+        require(to != address(0), "ERC20: transfer to the zero address");
+
+        _beforeTokenTransfer(from, to, amount);
+
+        uint256 fromBalance = _balances[from];
+        require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
+        unchecked {
+            _balances[from] = fromBalance - amount;
+            // Overflow not possible: the sum of all balances is capped by totalSupply, and the sum is preserved by
+            // decrementing then incrementing.
+            _balances[to] += amount;
+        }
+
+        emit Transfer(from, to, amount);
+
+        _afterTokenTransfer(from, to, amount);
+    }
+
+    /** @dev Creates `amount` tokens and assigns them to `account`, increasing
+     * the total supply.
+     *
+     * Emits a {Transfer} event with `from` set to the zero address.
+     *
+     * Requirements:
+     *
+     * - `account` cannot be the zero address.
+     */
+    function _mint(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: mint to the zero address");
+
+        _beforeTokenTransfer(address(0), account, amount);
+
+        _totalSupply += amount;
+        unchecked {
+            // Overflow not possible: balance + amount is at most totalSupply + amount, which is checked above.
+            _balances[account] += amount;
+        }
+        emit Transfer(address(0), account, amount);
+
+        _afterTokenTransfer(address(0), account, amount);
+    }
+
+    /**
+     * @dev Destroys `amount` tokens from `account`, reducing the
+     * total supply.
+     *
+     * Emits a {Transfer} event with `to` set to the zero address.
+     *
+     * Requirements:
+     *
+     * - `account` cannot be the zero address.
+     * - `account` must have at least `amount` tokens.
+     */
+    function _burn(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: burn from the zero address");
+
+        _beforeTokenTransfer(account, address(0), amount);
+
+        uint256 accountBalance = _balances[account];
+        require(accountBalance >= amount, "ERC20: burn amount exceeds balance");
+        unchecked {
+            _balances[account] = accountBalance - amount;
+            // Overflow not possible: amount <= accountBalance <= totalSupply.
+            _totalSupply -= amount;
+        }
+
+        emit Transfer(account, address(0), amount);
+
+        _afterTokenTransfer(account, address(0), amount);
+    }
+
+    /**
+     * @dev Sets `amount` as the allowance of `spender` over the `owner` s tokens.
+     *
+     * This internal function is equivalent to `approve`, and can be used to
+     * e.g. set automatic allowances for certain subsystems, etc.
+     *
+     * Emits an {Approval} event.
+     *
+     * Requirements:
+     *
+     * - `owner` cannot be the zero address.
+     * - `spender` cannot be the zero address.
+     */
+    function _approve(
+        address owner,
+        address spender,
+        uint256 amount
+    ) internal virtual {
+        require(owner != address(0), "ERC20: approve from the zero address");
+        require(spender != address(0), "ERC20: approve to the zero address");
+
+        _allowances[owner][spender] = amount;
+        emit Approval(owner, spender, amount);
+    }
+
+    /**
+     * @dev Updates `owner` s allowance for `spender` based on spent `amount`.
+     *
+     * Does not update the allowance amount in case of infinite allowance.
+     * Revert if not enough allowance is available.
+     *
+     * Might emit an {Approval} event.
+     */
+    function _spendAllowance(
+        address owner,
+        address spender,
+        uint256 amount
+    ) internal virtual {
+        uint256 currentAllowance = allowance(owner, spender);
+        if (currentAllowance != type(uint256).max) {
+            require(currentAllowance >= amount, "ERC20: insufficient allowance");
+            unchecked {
+                _approve(owner, spender, currentAllowance - amount);
+            }
+        }
+    }
+
+    /**
+     * @dev Hook that is called before any transfer of tokens. This includes
+     * minting and burning.
+     *
+     * Calling conditions:
+     *
+     * - when `from` and `to` are both non-zero, `amount` of ``from``'s tokens
+     * will be transferred to `to`.
+     * - when `from` is zero, `amount` tokens will be minted for `to`.
+     * - when `to` is zero, `amount` of ``from``'s tokens will be burned.
+     * - `from` and `to` are never both zero.
+     *
+     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
+     */
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual {}
+
+    /**
+     * @dev Hook that is called after any transfer of tokens. This includes
+     * minting and burning.
+     *
+     * Calling conditions:
+     *
+     * - when `from` and `to` are both non-zero, `amount` of ``from``'s tokens
+     * has been transferred to `to`.
+     * - when `from` is zero, `amount` tokens have been minted for `to`.
+     * - when `to` is zero, `amount` of ``from``'s tokens have been burned.
+     * - `from` and `to` are never both zero.
+     *
+     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
+     */
+    function _afterTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual {}
+}
+
+/**
+ * @title Standard ERC20 token
+ */
+contract WettokMarket is ERC20, Ownable {
+    using Address for address;
+    using SafeMath for uint256;
+
+
+    uint256 public initialSupply;
+
+    /// The address of Treasury wallet
+    address public treasuryWalletAddr;
+
+    /// @notice We need mint some Token in advance
+    constructor() ERC20("Wettok Market", "WTO") {
+        treasuryWalletAddr = _msgSender();
+        initialSupply = 3000 * 10**6 * 10**18;
+        mint(treasuryWalletAddr, initialSupply);
+    }
+
+    /// @notice Creates `_amount` token to `_to`. Must only be called by the owner
+    function mint(address _to, uint256 _amount) public onlyOwner {
+        _mint(_to, _amount);
+    }
+
+    /// @notice Burn `_amount` token from `_from`. Must only be called by the owner
+    function burn(address _from, uint256 _amount) public onlyOwner {
+        _burn(_from, _amount);
+    }
+
+    /// @notice Override ERC20.transfer
+    function transfer(address recipient, uint256 amount) public override returns (bool) {
+        super.transfer(recipient, amount);
+        return true;
+    }
+
+    /// @notice Override ERC20.transferFrom
+    function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+        super.transferFrom(sender, recipient, amount);
+        return true;
+    }
+
+    /// Must only be called by the owner
+    function withdraw(address token, address addr, uint256 amount) external onlyOwner {
+        IERC20(token).transfer(addr, amount);
+    }
+
+}

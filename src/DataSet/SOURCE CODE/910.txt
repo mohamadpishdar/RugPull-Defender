@@ -1,891 +1,812 @@
-/**
- *Submitted for verification at Etherscan.io on 2018-07-03
-*/
+// number: 910
+// project: MANTRA DAO (OM)
+// address: 0x3593d125a4f7849a1b059e64f4517a86dd60c95d
+// chainid: 1
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.12;
 
-/**
- * EURS Token Smart Contract: EIP-20 compatible token smart contract that
- * manages EURS tokens.
- */
-
-/*
- * Safe Math Smart Contract.
- * Copyright (c) 2018 by STSS (Malta) Limited.
- * Contact: <tech@stasis.net>
- */
-pragma solidity ^0.4.20;
-
-/**
- * Provides methods to safely add, subtract and multiply uint256 numbers.
- */
-contract SafeMath {
-  uint256 constant private MAX_UINT256 =
-    0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-
-  /**
-   * Add two uint256 values, throw in case of overflow.
-   *
-   * @param x first value to add
-   * @param y second value to add
-   * @return x + y
-   */
-  function safeAdd (uint256 x, uint256 y)
-  pure internal
-  returns (uint256 z) {
-    assert (x <= MAX_UINT256 - y);
-    return x + y;
-  }
-
-  /**
-   * Subtract one uint256 value from another, throw in case of underflow.
-   *
-   * @param x value to subtract from
-   * @param y value to subtract
-   * @return x - y
-   */
-  function safeSub (uint256 x, uint256 y)
-  pure internal
-  returns (uint256 z) {
-    assert (x >= y);
-    return x - y;
-  }
-
-  /**
-   * Multiply two uint256 values, throw in case of overflow.
-   *
-   * @param x first value to multiply
-   * @param y second value to multiply
-   * @return x * y
-   */
-  function safeMul (uint256 x, uint256 y)
-  pure internal
-  returns (uint256 z) {
-    if (y == 0) return 0; // Prevent division by zero at the next line
-    assert (x <= MAX_UINT256 / y);
-    return x * y;
-  }
-}
-/*
- * EIP-20 Standard Token Smart Contract Interface.
- * Copyright (c) 2018 by STSS (Malta) Limited.
- * Contact: <tech@stasis.net>
-
- * ERC-20 standard token interface, as defined
- * <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md">here</a>.
- */
-contract Token {
-  /**
-   * Get total number of tokens in circulation.
-   *
-   * @return total number of tokens in circulation
-   */
-  function totalSupply () public view returns (uint256 supply);
-
-  /**
-   * Get number of tokens currently belonging to given owner.
-   *
-   * @param _owner address to get number of tokens currently belonging to the
-   *        owner of
-   * @return number of tokens currently belonging to the owner of given address
-   */
-  function balanceOf (address _owner) public view returns (uint256 balance);
-
-  /**
-   * Transfer given number of tokens from message sender to given recipient.
-   *
-   * @param _to address to transfer tokens to the owner of
-   * @param _value number of tokens to transfer to the owner of given address
-   * @return true if tokens were transferred successfully, false otherwise
-   */
-  function transfer (address _to, uint256 _value)
-  public payable returns (bool success);
-
-  /**
-   * Transfer given number of tokens from given owner to given recipient.
-   *
-   * @param _from address to transfer tokens from the owner of
-   * @param _to address to transfer tokens to the owner of
-   * @param _value number of tokens to transfer from given owner to given
-   *        recipient
-   * @return true if tokens were transferred successfully, false otherwise
-   */
-  function transferFrom (address _from, address _to, uint256 _value)
-  public payable returns (bool success);
-
-  /**
-   * Allow given spender to transfer given number of tokens from message sender.
-   *
-   * @param _spender address to allow the owner of to transfer tokens from
-   *        message sender
-   * @param _value number of tokens to allow to transfer
-   * @return true if token transfer was successfully approved, false otherwise
-   */
-  function approve (address _spender, uint256 _value)
-  public payable returns (bool success);
-
-  /**
-   * Tell how many tokens given spender is currently allowed to transfer from
-   * given owner.
-   *
-   * @param _owner address to get number of tokens allowed to be transferred
-   *        from the owner of
-   * @param _spender address to get number of tokens allowed to be transferred
-   *        by the owner of
-   * @return number of tokens given spender is currently allowed to transfer
-   *         from given owner
-   */
-  function allowance (address _owner, address _spender)
-  public view returns (uint256 remaining);
-
-  /**
-   * Logged when tokens were transferred from one owner to another.
-   *
-   * @param _from address of the owner, tokens were transferred from
-   * @param _to address of the owner, tokens were transferred to
-   * @param _value number of tokens transferred
-   */
-  event Transfer (address indexed _from, address indexed _to, uint256 _value);
-
-  /**
-   * Logged when owner approved his tokens to be transferred by some spender.
-   *
-   * @param _owner owner who approved his tokens to be transferred
-   * @param _spender spender who were allowed to transfer the tokens belonging
-   *        to the owner
-   * @param _value number of tokens belonging to the owner, approved to be
-   *        transferred by the spender
-   */
-  event Approval (
-    address indexed _owner, address indexed _spender, uint256 _value);
-}
-/*
- * Abstract Token Smart Contract.
- * Copyright (c) 2018 by STSS (Malta) Limited.
- * Contact: <tech@stasis.net>
-
- * Abstract Token Smart Contract that could be used as a base contract for
- * ERC-20 token contracts.
- */
-contract AbstractToken is Token, SafeMath {
-  /**
-   * Create new Abstract Token contract.
-   */
-  function AbstractToken () public {
-    // Do nothing
-  }
-
-  /**
-   * Get number of tokens currently belonging to given owner.
-   *
-   * @param _owner address to get number of tokens currently belonging to the
-   *        owner of
-   * @return number of tokens currently belonging to the owner of given address
-   */
-  function balanceOf (address _owner) public view returns (uint256 balance) {
-    return accounts [_owner];
-  }
-
-  /**
-   * Transfer given number of tokens from message sender to given recipient.
-   *
-   * @param _to address to transfer tokens to the owner of
-   * @param _value number of tokens to transfer to the owner of given address
-   * @return true if tokens were transferred successfully, false otherwise
-   */
-  function transfer (address _to, uint256 _value)
-  public payable returns (bool success) {
-    uint256 fromBalance = accounts [msg.sender];
-    if (fromBalance < _value) return false;
-    if (_value > 0 && msg.sender != _to) {
-      accounts [msg.sender] = safeSub (fromBalance, _value);
-      accounts [_to] = safeAdd (accounts [_to], _value);
+contract OMTokenV2 is ERC20Capped, Ownable {
+    constructor(address owner_) public ERC20("MANTRA DAO", "OM") ERC20Capped(888888888 * 10**18) {
+        transferOwnership(owner_);
     }
-    Transfer (msg.sender, _to, _value);
-    return true;
-  }
 
-  /**
-   * Transfer given number of tokens from given owner to given recipient.
-   *
-   * @param _from address to transfer tokens from the owner of
-   * @param _to address to transfer tokens to the owner of
-   * @param _value number of tokens to transfer from given owner to given
-   *        recipient
-   * @return true if tokens were transferred successfully, false otherwise
-   */
-  function transferFrom (address _from, address _to, uint256 _value)
-  public payable returns (bool success) {
-    uint256 spenderAllowance = allowances [_from][msg.sender];
-    if (spenderAllowance < _value) return false;
-    uint256 fromBalance = accounts [_from];
-    if (fromBalance < _value) return false;
-
-    allowances [_from][msg.sender] =
-      safeSub (spenderAllowance, _value);
-
-    if (_value > 0 && _from != _to) {
-      accounts [_from] = safeSub (fromBalance, _value);
-      accounts [_to] = safeAdd (accounts [_to], _value);
+    function mint(address account, uint256 amount) external onlyOwner returns (bool success) {
+        _mint(account, amount);
+        return true;
     }
-    Transfer (_from, _to, _value);
-    return true;
-  }
 
-  /**
-   * Allow given spender to transfer given number of tokens from message sender.
-   *
-   * @param _spender address to allow the owner of to transfer tokens from
-   *        message sender
-   * @param _value number of tokens to allow to transfer
-   * @return true if token transfer was successfully approved, false otherwise
-   */
-  function approve (address _spender, uint256 _value)
-  public payable returns (bool success) {
-    allowances [msg.sender][_spender] = _value;
-    Approval (msg.sender, _spender, _value);
-
-    return true;
-  }
-
-  /**
-   * Tell how many tokens given spender is currently allowed to transfer from
-   * given owner.
-   *
-   * @param _owner address to get number of tokens allowed to be transferred
-   *        from the owner of
-   * @param _spender address to get number of tokens allowed to be transferred
-   *        by the owner of
-   * @return number of tokens given spender is currently allowed to transfer
-   *         from given owner
-   */
-  function allowance (address _owner, address _spender)
-  public view returns (uint256 remaining) {
-    return allowances [_owner][_spender];
-  }
-
-  /**
-   * Mapping from addresses of token holders to the numbers of tokens belonging
-   * to these token holders.
-   */
-  mapping (address => uint256) internal accounts;
-
-  /**
-   * Mapping from addresses of token holders to the mapping of addresses of
-   * spenders to the allowances set by these token holders to these spenders.
-   */
-  mapping (address => mapping (address => uint256)) internal allowances;
+    function renounceOwnership() public override {
+        require(totalSupply() == cap(), "Total supply not equals to cap");
+        super.renounceOwnership();
+    }
 }
 
 /*
- * EURS Token Smart Contract.
- * Copyright (c) 2018 by STSS (Malta) Limited.
- * Contact: <tech@stasis.net>
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with GSN meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
  */
-
-contract EURSToken is AbstractToken {
-  /**
-   * Fee denominator (0.001%).
-   */
-  uint256 constant internal FEE_DENOMINATOR = 100000;
-
-  /**
-   * Maximum fee numerator (100%).
-   */
-  uint256 constant internal MAX_FEE_NUMERATOR = FEE_DENOMINATOR;
-
-  /**
-   * Minimum fee numerator (0%).
-   */
-  uint256 constant internal MIN_FEE_NUMERATIOR = 0;
-
-  /**
-   * Maximum allowed number of tokens in circulation.
-   */
-  uint256 constant internal MAX_TOKENS_COUNT =
-    0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff /
-    MAX_FEE_NUMERATOR;
-
-  /**
-   * Default transfer fee.
-   */
-  uint256 constant internal DEFAULT_FEE = 5e2;
-
-  /**
-   * Address flag that marks black listed addresses.
-   */
-  uint256 constant internal BLACK_LIST_FLAG = 0x01;
-
-  /**
-   * Address flag that marks zero fee addresses.
-   */
-  uint256 constant internal ZERO_FEE_FLAG = 0x02;
-
-  modifier delegatable {
-    if (delegate == address (0)) {
-      require (msg.value == 0); // Non payable if not delegated
-      _;
-    } else {
-      assembly {
-        // Save owner
-        let oldOwner := sload (owner_slot)
-
-        // Save delegate
-        let oldDelegate := sload (delegate_slot)
-
-        // Solidity stores address of the beginning of free memory at 0x40
-        let buffer := mload (0x40)
-
-        // Copy message call data into buffer
-        calldatacopy (buffer, 0, calldatasize)
-
-        // Lets call our delegate
-        let result := delegatecall (gas, oldDelegate, buffer, calldatasize, buffer, 0)
-
-        // Check, whether owner was changed
-        switch eq (oldOwner, sload (owner_slot))
-        case 1 {} // Owner was not changed, fine
-        default {revert (0, 0) } // Owner was changed, revert!
-
-        // Check, whether delegate was changed
-        switch eq (oldDelegate, sload (delegate_slot))
-        case 1 {} // Delegate was not changed, fine
-        default {revert (0, 0) } // Delegate was changed, revert!
-
-        // Copy returned value into buffer
-        returndatacopy (buffer, 0, returndatasize)
-
-        // Check call status
-        switch result
-        case 0 { revert (buffer, returndatasize) } // Call failed, revert!
-        default { return (buffer, returndatasize) } // Call succeeded, return
-      }
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address payable) {
+        return msg.sender;
     }
-  }
 
-  /**
-   * Create EURS Token smart contract with message sender as an owner.
-   *
-   * @param _feeCollector address fees are sent to
-   */
-  function EURSToken (address _feeCollector) public {
-    fixedFee = DEFAULT_FEE;
-    minVariableFee = 0;
-    maxVariableFee = 0;
-    variableFeeNumerator = 0;
+    function _msgData() internal view virtual returns (bytes memory) {
+        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
+        return msg.data;
+    }
+}
 
-    owner = msg.sender;
-    feeCollector = _feeCollector;
-  }
+/**
+ * @dev Contract module which provides a basic access control mechanism, where
+ * there is an account (an owner) that can be granted exclusive access to
+ * specific functions.
+ *
+ * By default, the owner account will be the one that deploys the contract. This
+ * can later be changed with {transferOwnership}.
+ *
+ * This module is used through inheritance. It will make available the modifier
+ * `onlyOwner`, which can be applied to your functions to restrict their use to
+ * the owner.
+ */
+contract Ownable is Context {
+    address private _owner;
 
-  /**
-   * Delegate unrecognized functions.
-   */
-  function () public delegatable payable {
-    revert (); // Revert if not delegated
-  }
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
-  /**
-   * Get name of the token.
-   *
-   * @return name of the token
-   */
-  function name () public delegatable view returns (string) {
-    return "STASIS EURS Token";
-  }
+    /**
+     * @dev Initializes the contract setting the deployer as the initial owner.
+     */
+    constructor () internal {
+        address msgSender = _msgSender();
+        _owner = msgSender;
+        emit OwnershipTransferred(address(0), msgSender);
+    }
 
-  /**
-   * Get symbol of the token.
-   *
-   * @return symbol of the token
-   */
-  function symbol () public delegatable view returns (string) {
-    return "EURS";
-  }
+    /**
+     * @dev Returns the address of the current owner.
+     */
+    function owner() public view returns (address) {
+        return _owner;
+    }
 
-  /**
-   * Get number of decimals for the token.
-   *
-   * @return number of decimals for the token
-   */
-  function decimals () public delegatable view returns (uint8) {
-    return 2;
-  }
+    /**
+     * @dev Throws if called by any account other than the owner.
+     */
+    modifier onlyOwner() {
+        require(_owner == _msgSender(), "Ownable: caller is not the owner");
+        _;
+    }
 
-  /**
-   * Get total number of tokens in circulation.
-   *
-   * @return total number of tokens in circulation
-   */
-  function totalSupply () public delegatable view returns (uint256) {
-    return tokensCount;
-  }
+    /**
+     * @dev Leaves the contract without owner. It will not be possible to call
+     * `onlyOwner` functions anymore. Can only be called by the current owner.
+     *
+     * NOTE: Renouncing ownership will leave the contract without an owner,
+     * thereby removing any functionality that is only available to the owner.
+     */
+    function renounceOwnership() public virtual onlyOwner {
+        emit OwnershipTransferred(_owner, address(0));
+        _owner = address(0);
+    }
 
-  /**
-   * Get number of tokens currently belonging to given owner.
-   *
-   * @param _owner address to get number of tokens currently belonging to the
-   *        owner of
-   * @return number of tokens currently belonging to the owner of given address
-   */
-  function balanceOf (address _owner)
-    public delegatable view returns (uint256 balance) {
-    return AbstractToken.balanceOf (_owner);
-  }
+    /**
+     * @dev Transfers ownership of the contract to a new account (`newOwner`).
+     * Can only be called by the current owner.
+     */
+    function transferOwnership(address newOwner) public virtual onlyOwner {
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
+        emit OwnershipTransferred(_owner, newOwner);
+        _owner = newOwner;
+    }
+}
 
-  /**
-   * Transfer given number of tokens from message sender to given recipient.
-   *
-   * @param _to address to transfer tokens to the owner of
-   * @param _value number of tokens to transfer to the owner of given address
-   * @return true if tokens were transferred successfully, false otherwise
-   */
-  function transfer (address _to, uint256 _value)
-  public delegatable payable returns (bool) {
-    if (frozen) return false;
-    else if (
-      (addressFlags [msg.sender] | addressFlags [_to]) & BLACK_LIST_FLAG ==
-      BLACK_LIST_FLAG)
-      return false;
-    else {
-      uint256 fee =
-        (addressFlags [msg.sender] | addressFlags [_to]) & ZERO_FEE_FLAG == ZERO_FEE_FLAG ?
-          0 :
-          calculateFee (_value);
+/**
+ * @dev Wrappers over Solidity's arithmetic operations with added overflow
+ * checks.
+ *
+ * Arithmetic operations in Solidity wrap on overflow. This can easily result
+ * in bugs, because programmers usually assume that an overflow raises an
+ * error, which is the standard behavior in high level programming languages.
+ * `SafeMath` restores this intuition by reverting the transaction when an
+ * operation overflows.
+ *
+ * Using this library instead of the unchecked operations eliminates an entire
+ * class of bugs, so it's recommended to use it always.
+ */
+library SafeMath {
+    /**
+     * @dev Returns the addition of two unsigned integers, reverting on
+     * overflow.
+     *
+     * Counterpart to Solidity's `+` operator.
+     *
+     * Requirements:
+     *
+     * - Addition cannot overflow.
+     */
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        require(c >= a, "SafeMath: addition overflow");
 
-      if (_value <= accounts [msg.sender] &&
-          fee <= safeSub (accounts [msg.sender], _value)) {
-        require (AbstractToken.transfer (_to, _value));
-        require (AbstractToken.transfer (feeCollector, fee));
+        return c;
+    }
+
+    /**
+     * @dev Returns the subtraction of two unsigned integers, reverting on
+     * overflow (when the result is negative).
+     *
+     * Counterpart to Solidity's `-` operator.
+     *
+     * Requirements:
+     *
+     * - Subtraction cannot overflow.
+     */
+    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        return sub(a, b, "SafeMath: subtraction overflow");
+    }
+
+    /**
+     * @dev Returns the subtraction of two unsigned integers, reverting with custom message on
+     * overflow (when the result is negative).
+     *
+     * Counterpart to Solidity's `-` operator.
+     *
+     * Requirements:
+     *
+     * - Subtraction cannot overflow.
+     */
+    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b <= a, errorMessage);
+        uint256 c = a - b;
+
+        return c;
+    }
+
+    /**
+     * @dev Returns the multiplication of two unsigned integers, reverting on
+     * overflow.
+     *
+     * Counterpart to Solidity's `*` operator.
+     *
+     * Requirements:
+     *
+     * - Multiplication cannot overflow.
+     */
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
+        // benefit is lost if 'b' is also tested.
+        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
+        if (a == 0) {
+            return 0;
+        }
+
+        uint256 c = a * b;
+        require(c / a == b, "SafeMath: multiplication overflow");
+
+        return c;
+    }
+
+    /**
+     * @dev Returns the integer division of two unsigned integers. Reverts on
+     * division by zero. The result is rounded towards zero.
+     *
+     * Counterpart to Solidity's `/` operator. Note: this function uses a
+     * `revert` opcode (which leaves remaining gas untouched) while Solidity
+     * uses an invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
+     */
+    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        return div(a, b, "SafeMath: division by zero");
+    }
+
+    /**
+     * @dev Returns the integer division of two unsigned integers. Reverts with custom message on
+     * division by zero. The result is rounded towards zero.
+     *
+     * Counterpart to Solidity's `/` operator. Note: this function uses a
+     * `revert` opcode (which leaves remaining gas untouched) while Solidity
+     * uses an invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
+     */
+    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b > 0, errorMessage);
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+
+        return c;
+    }
+
+    /**
+     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
+     * Reverts when dividing by zero.
+     *
+     * Counterpart to Solidity's `%` operator. This function uses a `revert`
+     * opcode (which leaves remaining gas untouched) while Solidity uses an
+     * invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
+     */
+    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
+        return mod(a, b, "SafeMath: modulo by zero");
+    }
+
+    /**
+     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
+     * Reverts with custom message when dividing by zero.
+     *
+     * Counterpart to Solidity's `%` operator. This function uses a `revert`
+     * opcode (which leaves remaining gas untouched) while Solidity uses an
+     * invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
+     */
+    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b != 0, errorMessage);
+        return a % b;
+    }
+}
+
+/**
+ * @dev Implementation of the {IERC20} interface.
+ *
+ * This implementation is agnostic to the way tokens are created. This means
+ * that a supply mechanism has to be added in a derived contract using {_mint}.
+ * For a generic mechanism see {ERC20PresetMinterPauser}.
+ *
+ * TIP: For a detailed writeup see our guide
+ * https://forum.zeppelin.solutions/t/how-to-implement-erc20-supply-mechanisms/226[How
+ * to implement supply mechanisms].
+ *
+ * We have followed general OpenZeppelin guidelines: functions revert instead
+ * of returning `false` on failure. This behavior is nonetheless conventional
+ * and does not conflict with the expectations of ERC20 applications.
+ *
+ * Additionally, an {Approval} event is emitted on calls to {transferFrom}.
+ * This allows applications to reconstruct the allowance for all accounts just
+ * by listening to said events. Other implementations of the EIP may not emit
+ * these events, as it isn't required by the specification.
+ *
+ * Finally, the non-standard {decreaseAllowance} and {increaseAllowance}
+ * functions have been added to mitigate the well-known issues around setting
+ * allowances. See {IERC20-approve}.
+ */
+contract ERC20 is Context, IERC20 {
+    using SafeMath for uint256;
+    using Address for address;
+
+    mapping (address => uint256) private _balances;
+
+    mapping (address => mapping (address => uint256)) private _allowances;
+
+    uint256 private _totalSupply;
+
+    string private _name;
+    string private _symbol;
+    uint8 private _decimals;
+
+    /**
+     * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
+     * a default value of 18.
+     *
+     * To select a different value for {decimals}, use {_setupDecimals}.
+     *
+     * All three of these values are immutable: they can only be set once during
+     * construction.
+     */
+    constructor (string memory name, string memory symbol) public {
+        _name = name;
+        _symbol = symbol;
+        _decimals = 18;
+    }
+
+    /**
+     * @dev Returns the name of the token.
+     */
+    function name() public view returns (string memory) {
+        return _name;
+    }
+
+    /**
+     * @dev Returns the symbol of the token, usually a shorter version of the
+     * name.
+     */
+    function symbol() public view returns (string memory) {
+        return _symbol;
+    }
+
+    /**
+     * @dev Returns the number of decimals used to get its user representation.
+     * For example, if `decimals` equals `2`, a balance of `505` tokens should
+     * be displayed to a user as `5,05` (`505 / 10 ** 2`).
+     *
+     * Tokens usually opt for a value of 18, imitating the relationship between
+     * Ether and Wei. This is the value {ERC20} uses, unless {_setupDecimals} is
+     * called.
+     *
+     * NOTE: This information is only used for _display_ purposes: it in
+     * no way affects any of the arithmetic of the contract, including
+     * {IERC20-balanceOf} and {IERC20-transfer}.
+     */
+    function decimals() public view returns (uint8) {
+        return _decimals;
+    }
+
+    /**
+     * @dev See {IERC20-totalSupply}.
+     */
+    function totalSupply() public view override returns (uint256) {
+        return _totalSupply;
+    }
+
+    /**
+     * @dev See {IERC20-balanceOf}.
+     */
+    function balanceOf(address account) public view override returns (uint256) {
+        return _balances[account];
+    }
+
+    /**
+     * @dev See {IERC20-transfer}.
+     *
+     * Requirements:
+     *
+     * - `recipient` cannot be the zero address.
+     * - the caller must have a balance of at least `amount`.
+     */
+    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
+        _transfer(_msgSender(), recipient, amount);
         return true;
-      } else return false;
     }
-  }
 
-  /**
-   * Transfer given number of tokens from given owner to given recipient.
-   *
-   * @param _from address to transfer tokens from the owner of
-   * @param _to address to transfer tokens to the owner of
-   * @param _value number of tokens to transfer from given owner to given
-   *        recipient
-   * @return true if tokens were transferred successfully, false otherwise
-   */
-  function transferFrom (address _from, address _to, uint256 _value)
-  public delegatable payable returns (bool) {
-    if (frozen) return false;
-    else if (
-      (addressFlags [_from] | addressFlags [_to]) & BLACK_LIST_FLAG ==
-      BLACK_LIST_FLAG)
-      return false;
-    else {
-      uint256 fee =
-        (addressFlags [_from] | addressFlags [_to]) & ZERO_FEE_FLAG == ZERO_FEE_FLAG ?
-          0 :
-          calculateFee (_value);
+    /**
+     * @dev See {IERC20-allowance}.
+     */
+    function allowance(address owner, address spender) public view virtual override returns (uint256) {
+        return _allowances[owner][spender];
+    }
 
-      if (_value <= allowances [_from][msg.sender] &&
-          fee <= safeSub (allowances [_from][msg.sender], _value) &&
-          _value <= accounts [_from] &&
-          fee <= safeSub (accounts [_from], _value)) {
-        require (AbstractToken.transferFrom (_from, _to, _value));
-        require (AbstractToken.transferFrom (_from, feeCollector, fee));
+    /**
+     * @dev See {IERC20-approve}.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     */
+    function approve(address spender, uint256 amount) public virtual override returns (bool) {
+        _approve(_msgSender(), spender, amount);
         return true;
-      } else return false;
     }
-  }
 
-  /**
-   * Allow given spender to transfer given number of tokens from message sender.
-   *
-   * @param _spender address to allow the owner of to transfer tokens from
-   *        message sender
-   * @param _value number of tokens to allow to transfer
-   * @return true if token transfer was successfully approved, false otherwise
-   */
-  function approve (address _spender, uint256 _value)
-  public delegatable payable returns (bool success) {
-    return AbstractToken.approve (_spender, _value);
-  }
-
-  /**
-   * Tell how many tokens given spender is currently allowed to transfer from
-   * given owner.
-   *
-   * @param _owner address to get number of tokens allowed to be transferred
-   *        from the owner of
-   * @param _spender address to get number of tokens allowed to be transferred
-   *        by the owner of
-   * @return number of tokens given spender is currently allowed to transfer
-   *         from given owner
-   */
-  function allowance (address _owner, address _spender)
-  public delegatable view returns (uint256 remaining) {
-    return AbstractToken.allowance (_owner, _spender);
-  }
-
-  /**
-   * Transfer given number of token from the signed defined by digital signature
-   * to given recipient.
-   *
-   * @param _to address to transfer token to the owner of
-   * @param _value number of tokens to transfer
-   * @param _fee number of tokens to give to message sender
-   * @param _nonce nonce of the transfer
-   * @param _v parameter V of digital signature
-   * @param _r parameter R of digital signature
-   * @param _s parameter S of digital signature
-   */
-  function delegatedTransfer (
-    address _to, uint256 _value, uint256 _fee,
-    uint256 _nonce, uint8 _v, bytes32 _r, bytes32 _s)
-  public delegatable payable returns (bool) {
-    if (frozen) return false;
-    else {
-      address _from = ecrecover (
-        keccak256 (
-          thisAddress (), messageSenderAddress (), _to, _value, _fee, _nonce),
-        _v, _r, _s);
-
-      if (_nonce != nonces [_from]) return false;
-
-      if (
-        (addressFlags [_from] | addressFlags [_to]) & BLACK_LIST_FLAG ==
-        BLACK_LIST_FLAG)
-        return false;
-
-      uint256 fee =
-        (addressFlags [_from] | addressFlags [_to]) & ZERO_FEE_FLAG == ZERO_FEE_FLAG ?
-          0 :
-          calculateFee (_value);
-
-      uint256 balance = accounts [_from];
-      if (_value > balance) return false;
-      balance = safeSub (balance, _value);
-      if (fee > balance) return false;
-      balance = safeSub (balance, fee);
-      if (_fee > balance) return false;
-      balance = safeSub (balance, _fee);
-
-      nonces [_from] = _nonce + 1;
-
-      accounts [_from] = balance;
-      accounts [_to] = safeAdd (accounts [_to], _value);
-      accounts [feeCollector] = safeAdd (accounts [feeCollector], fee);
-      accounts [msg.sender] = safeAdd (accounts [msg.sender], _fee);
-
-      Transfer (_from, _to, _value);
-      Transfer (_from, feeCollector, fee);
-      Transfer (_from, msg.sender, _fee);
-
-      return true;
-    }
-  }
-
-  /**
-   * Create tokens.
-   *
-   * @param _value number of tokens to be created.
-   */
-  function createTokens (uint256 _value)
-  public delegatable payable returns (bool) {
-    require (msg.sender == owner);
-
-    if (_value > 0) {
-      if (_value <= safeSub (MAX_TOKENS_COUNT, tokensCount)) {
-        accounts [msg.sender] = safeAdd (accounts [msg.sender], _value);
-        tokensCount = safeAdd (tokensCount, _value);
-
-        Transfer (address (0), msg.sender, _value);
-
+    /**
+     * @dev See {IERC20-transferFrom}.
+     *
+     * Emits an {Approval} event indicating the updated allowance. This is not
+     * required by the EIP. See the note at the beginning of {ERC20};
+     *
+     * Requirements:
+     * - `sender` and `recipient` cannot be the zero address.
+     * - `sender` must have a balance of at least `amount`.
+     * - the caller must have allowance for ``sender``'s tokens of at least
+     * `amount`.
+     */
+    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
+        _transfer(sender, recipient, amount);
+        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
         return true;
-      } else return false;
-    } else return true;
-  }
+    }
 
-  /**
-   * Burn tokens.
-   *
-   * @param _value number of tokens to burn
-   */
-  function burnTokens (uint256 _value)
-  public delegatable payable returns (bool) {
-    require (msg.sender == owner);
-
-    if (_value > 0) {
-      if (_value <= accounts [msg.sender]) {
-        accounts [msg.sender] = safeSub (accounts [msg.sender], _value);
-        tokensCount = safeSub (tokensCount, _value);
-
-        Transfer (msg.sender, address (0), _value);
-
+    /**
+     * @dev Atomically increases the allowance granted to `spender` by the caller.
+     *
+     * This is an alternative to {approve} that can be used as a mitigation for
+     * problems described in {IERC20-approve}.
+     *
+     * Emits an {Approval} event indicating the updated allowance.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     */
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].add(addedValue));
         return true;
-      } else return false;
-    } else return true;
-  }
-
-  /**
-   * Freeze token transfers.
-   */
-  function freezeTransfers () public delegatable payable {
-    require (msg.sender == owner);
-
-    if (!frozen) {
-      frozen = true;
-
-      Freeze ();
     }
-  }
 
-  /**
-   * Unfreeze token transfers.
-   */
-  function unfreezeTransfers () public delegatable payable {
-    require (msg.sender == owner);
-
-    if (frozen) {
-      frozen = false;
-
-      Unfreeze ();
+    /**
+     * @dev Atomically decreases the allowance granted to `spender` by the caller.
+     *
+     * This is an alternative to {approve} that can be used as a mitigation for
+     * problems described in {IERC20-approve}.
+     *
+     * Emits an {Approval} event indicating the updated allowance.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     * - `spender` must have allowance for the caller of at least
+     * `subtractedValue`.
+     */
+    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "ERC20: decreased allowance below zero"));
+        return true;
     }
-  }
 
-  /**
-   * Set smart contract owner.
-   *
-   * @param _newOwner address of the new owner
-   */
-  function setOwner (address _newOwner) public {
-    require (msg.sender == owner);
+    /**
+     * @dev Moves tokens `amount` from `sender` to `recipient`.
+     *
+     * This is internal function is equivalent to {transfer}, and can be used to
+     * e.g. implement automatic token fees, slashing mechanisms, etc.
+     *
+     * Emits a {Transfer} event.
+     *
+     * Requirements:
+     *
+     * - `sender` cannot be the zero address.
+     * - `recipient` cannot be the zero address.
+     * - `sender` must have a balance of at least `amount`.
+     */
+    function _transfer(address sender, address recipient, uint256 amount) internal virtual {
+        require(sender != address(0), "ERC20: transfer from the zero address");
+        require(recipient != address(0), "ERC20: transfer to the zero address");
 
-    owner = _newOwner;
-  }
+        _beforeTokenTransfer(sender, recipient, amount);
 
-  /**
-   * Set fee collector.
-   *
-   * @param _newFeeCollector address of the new fee collector
-   */
-  function setFeeCollector (address _newFeeCollector)
-  public delegatable payable {
-    require (msg.sender == owner);
-
-    feeCollector = _newFeeCollector;
-  }
-
-  /**
-   * Get current nonce for token holder with given address, i.e. nonce this
-   * token holder should use for next delegated transfer.
-   *
-   * @param _owner address of the token holder to get nonce for
-   * @return current nonce for token holder with give address
-   */
-  function nonce (address _owner) public view delegatable returns (uint256) {
-    return nonces [_owner];
-  }
-
-  /**
-   * Set fee parameters.
-   *
-   * @param _fixedFee fixed fee in token units
-   * @param _minVariableFee minimum variable fee in token units
-   * @param _maxVariableFee maximum variable fee in token units
-   * @param _variableFeeNumerator variable fee numerator
-   */
-  function setFeeParameters (
-    uint256 _fixedFee,
-    uint256 _minVariableFee,
-    uint256 _maxVariableFee,
-    uint256 _variableFeeNumerator) public delegatable payable {
-    require (msg.sender == owner);
-
-    require (_minVariableFee <= _maxVariableFee);
-    require (_variableFeeNumerator <= MAX_FEE_NUMERATOR);
-
-    fixedFee = _fixedFee;
-    minVariableFee = _minVariableFee;
-    maxVariableFee = _maxVariableFee;
-    variableFeeNumerator = _variableFeeNumerator;
-
-    FeeChange (
-      _fixedFee, _minVariableFee, _maxVariableFee, _variableFeeNumerator);
-  }
-
-  /**
-   * Get fee parameters.
-   *
-   * @return fee parameters
-   */
-  function getFeeParameters () public delegatable view returns (
-    uint256 _fixedFee,
-    uint256 _minVariableFee,
-    uint256 _maxVariableFee,
-    uint256 _variableFeeNumnerator) {
-    _fixedFee = fixedFee;
-    _minVariableFee = minVariableFee;
-    _maxVariableFee = maxVariableFee;
-    _variableFeeNumnerator = variableFeeNumerator;
-  }
-
-  /**
-   * Calculate fee for transfer of given number of tokens.
-   *
-   * @param _amount transfer amount to calculate fee for
-   * @return fee for transfer of given amount
-   */
-  function calculateFee (uint256 _amount)
-    public delegatable view returns (uint256 _fee) {
-    require (_amount <= MAX_TOKENS_COUNT);
-
-    _fee = safeMul (_amount, variableFeeNumerator) / FEE_DENOMINATOR;
-    if (_fee < minVariableFee) _fee = minVariableFee;
-    if (_fee > maxVariableFee) _fee = maxVariableFee;
-    _fee = safeAdd (_fee, fixedFee);
-  }
-
-  /**
-   * Set flags for given address.
-   *
-   * @param _address address to set flags for
-   * @param _flags flags to set
-   */
-  function setFlags (address _address, uint256 _flags)
-  public delegatable payable {
-    require (msg.sender == owner);
-
-    addressFlags [_address] = _flags;
-  }
-
-  /**
-   * Get flags for given address.
-   *
-   * @param _address address to get flags for
-   * @return flags for given address
-   */
-  function flags (address _address) public delegatable view returns (uint256) {
-    return addressFlags [_address];
-  }
-
-  /**
-   * Set address of smart contract to delegate execution of delegatable methods
-   * to.
-   *
-   * @param _delegate address of smart contract to delegate execution of
-   * delegatable methods to, or zero to not delegate delegatable methods
-   * execution.
-   */
-  function setDelegate (address _delegate) public {
-    require (msg.sender == owner);
-
-    if (delegate != _delegate) {
-      delegate = _delegate;
-      Delegation (delegate);
+        _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
+        _balances[recipient] = _balances[recipient].add(amount);
+        emit Transfer(sender, recipient, amount);
     }
-  }
 
-  /**
-   * Get address of this smart contract.
-   *
-   * @return address of this smart contract
-   */
-  function thisAddress () internal view returns (address) {
-    return this;
-  }
+    /** @dev Creates `amount` tokens and assigns them to `account`, increasing
+     * the total supply.
+     *
+     * Emits a {Transfer} event with `from` set to the zero address.
+     *
+     * Requirements
+     *
+     * - `to` cannot be the zero address.
+     */
+    function _mint(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: mint to the zero address");
 
-  /**
-   * Get address of message sender.
-   *
-   * @return address of this smart contract
-   */
-  function messageSenderAddress () internal view returns (address) {
-    return msg.sender;
-  }
+        _beforeTokenTransfer(address(0), account, amount);
 
-  /**
-   * Owner of the smart contract.
-   */
-  address internal owner;
+        _totalSupply = _totalSupply.add(amount);
+        _balances[account] = _balances[account].add(amount);
+        emit Transfer(address(0), account, amount);
+    }
 
-  /**
-   * Address where fees are sent to.
-   */
-  address internal feeCollector;
+    /**
+     * @dev Destroys `amount` tokens from `account`, reducing the
+     * total supply.
+     *
+     * Emits a {Transfer} event with `to` set to the zero address.
+     *
+     * Requirements
+     *
+     * - `account` cannot be the zero address.
+     * - `account` must have at least `amount` tokens.
+     */
+    function _burn(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: burn from the zero address");
 
-  /**
-   * Number of tokens in circulation.
-   */
-  uint256 internal tokensCount;
+        _beforeTokenTransfer(account, address(0), amount);
 
-  /**
-   * Whether token transfers are currently frozen.
-   */
-  bool internal frozen;
+        _balances[account] = _balances[account].sub(amount, "ERC20: burn amount exceeds balance");
+        _totalSupply = _totalSupply.sub(amount);
+        emit Transfer(account, address(0), amount);
+    }
 
-  /**
-   * Mapping from sender's address to the next delegated transfer nonce.
-   */
-  mapping (address => uint256) internal nonces;
+    /**
+     * @dev Sets `amount` as the allowance of `spender` over the `owner` s tokens.
+     *
+     * This internal function is equivalent to `approve`, and can be used to
+     * e.g. set automatic allowances for certain subsystems, etc.
+     *
+     * Emits an {Approval} event.
+     *
+     * Requirements:
+     *
+     * - `owner` cannot be the zero address.
+     * - `spender` cannot be the zero address.
+     */
+    function _approve(address owner, address spender, uint256 amount) internal virtual {
+        require(owner != address(0), "ERC20: approve from the zero address");
+        require(spender != address(0), "ERC20: approve to the zero address");
 
-  /**
-   * Fixed fee amount in token units.
-   */
-  uint256 internal fixedFee;
+        _allowances[owner][spender] = amount;
+        emit Approval(owner, spender, amount);
+    }
 
-  /**
-   * Minimum variable fee in token units.
-   */
-  uint256 internal minVariableFee;
+    /**
+     * @dev Sets {decimals} to a value other than the default one of 18.
+     *
+     * WARNING: This function should only be called from the constructor. Most
+     * applications that interact with token contracts will not expect
+     * {decimals} to ever change, and may work incorrectly if it does.
+     */
+    function _setupDecimals(uint8 decimals_) internal {
+        _decimals = decimals_;
+    }
 
-  /**
-   * Maximum variable fee in token units.
-   */
-  uint256 internal maxVariableFee;
+    /**
+     * @dev Hook that is called before any transfer of tokens. This includes
+     * minting and burning.
+     *
+     * Calling conditions:
+     *
+     * - when `from` and `to` are both non-zero, `amount` of ``from``'s tokens
+     * will be to transferred to `to`.
+     * - when `from` is zero, `amount` tokens will be minted for `to`.
+     * - when `to` is zero, `amount` of ``from``'s tokens will be burned.
+     * - `from` and `to` are never both zero.
+     *
+     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
+     */
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual { }
+}
 
-  /**
-   * Variable fee numerator.
-   */
-  uint256 internal variableFeeNumerator;
+/**
+ * @dev Extension of {ERC20} that adds a cap to the supply of tokens.
+ */
+abstract contract ERC20Capped is ERC20 {
+    uint256 private _cap;
 
-  /**
-   * Maps address to its flags.
-   */
-  mapping (address => uint256) internal addressFlags;
+    /**
+     * @dev Sets the value of the `cap`. This value is immutable, it can only be
+     * set once during construction.
+     */
+    constructor (uint256 cap) public {
+        require(cap > 0, "ERC20Capped: cap is 0");
+        _cap = cap;
+    }
 
-  /**
-   * Address of smart contract to delegate execution of delegatable methods to,
-   * or zero to not delegate delegatable methods execution.
-   */
-  address internal delegate;
+    /**
+     * @dev Returns the cap on the token's total supply.
+     */
+    function cap() public view returns (uint256) {
+        return _cap;
+    }
 
-  /**
-   * Logged when token transfers were frozen.
-   */
-  event Freeze ();
+    /**
+     * @dev See {ERC20-_beforeTokenTransfer}.
+     *
+     * Requirements:
+     *
+     * - minted tokens must not cause the total supply to go over the cap.
+     */
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual override {
+        super._beforeTokenTransfer(from, to, amount);
 
-  /**
-   * Logged when token transfers were unfrozen.
-   */
-  event Unfreeze ();
+        if (from == address(0)) { // When minting tokens
+            require(totalSupply().add(amount) <= _cap, "ERC20Capped: cap exceeded");
+        }
+    }
+}
 
-  /**
-   * Logged when fee parameters were changed.
-   *
-   * @param fixedFee fixed fee in token units
-   * @param minVariableFee minimum variable fee in token units
-   * @param maxVariableFee maximum variable fee in token units
-   * @param variableFeeNumerator variable fee numerator
-   */
-  event FeeChange (
-    uint256 fixedFee,
-    uint256 minVariableFee,
-    uint256 maxVariableFee,
-    uint256 variableFeeNumerator);
+/**
+ * @dev Interface of the ERC20 standard as defined in the EIP.
+ */
+interface IERC20 {
+    /**
+     * @dev Returns the amount of tokens in existence.
+     */
+    function totalSupply() external view returns (uint256);
 
-  /**
-   * Logged when address of smart contract execution of delegatable methods is
-   * delegated to was changed.
-   *
-   * @param delegate new address of smart contract execution of delegatable
-   * methods is delegated to or zero if execution of delegatable methods is
-   * oot delegated.
-   */
-  event Delegation (address delegate);
+    /**
+     * @dev Returns the amount of tokens owned by `account`.
+     */
+    function balanceOf(address account) external view returns (uint256);
+
+    /**
+     * @dev Moves `amount` tokens from the caller's account to `recipient`.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transfer(address recipient, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Returns the remaining number of tokens that `spender` will be
+     * allowed to spend on behalf of `owner` through {transferFrom}. This is
+     * zero by default.
+     *
+     * This value changes when {approve} or {transferFrom} are called.
+     */
+    function allowance(address owner, address spender) external view returns (uint256);
+
+    /**
+     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * IMPORTANT: Beware that changing an allowance with this method brings the risk
+     * that someone may use both the old and the new allowance by unfortunate
+     * transaction ordering. One possible solution to mitigate this race
+     * condition is to first reduce the spender's allowance to 0 and set the
+     * desired value afterwards:
+     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     *
+     * Emits an {Approval} event.
+     */
+    function approve(address spender, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Moves `amount` tokens from `sender` to `recipient` using the
+     * allowance mechanism. `amount` is then deducted from the caller's
+     * allowance.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Emitted when `value` tokens are moved from one account (`from`) to
+     * another (`to`).
+     *
+     * Note that `value` may be zero.
+     */
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    /**
+     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
+     * a call to {approve}. `value` is the new allowance.
+     */
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
+/**
+ * @dev Collection of functions related to the address type
+ */
+library Address {
+    /**
+     * @dev Returns true if `account` is a contract.
+     *
+     * [IMPORTANT]
+     * ====
+     * It is unsafe to assume that an address for which this function returns
+     * false is an externally-owned account (EOA) and not a contract.
+     *
+     * Among others, `isContract` will return false for the following
+     * types of addresses:
+     *
+     *  - an externally-owned account
+     *  - a contract in construction
+     *  - an address where a contract will be created
+     *  - an address where a contract lived, but was destroyed
+     * ====
+     */
+    function isContract(address account) internal view returns (bool) {
+        // This method relies in extcodesize, which returns 0 for contracts in
+        // construction, since the code is only stored at the end of the
+        // constructor execution.
+
+        uint256 size;
+        // solhint-disable-next-line no-inline-assembly
+        assembly { size := extcodesize(account) }
+        return size > 0;
+    }
+
+    /**
+     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to
+     * `recipient`, forwarding all available gas and reverting on errors.
+     *
+     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost
+     * of certain opcodes, possibly making contracts go over the 2300 gas limit
+     * imposed by `transfer`, making them unable to receive funds via
+     * `transfer`. {sendValue} removes this limitation.
+     *
+     * https://diligence.consensys.net/posts/2019/09/stop-using-soliditys-transfer-now/[Learn more].
+     *
+     * IMPORTANT: because control is transferred to `recipient`, care must be
+     * taken to not create reentrancy vulnerabilities. Consider using
+     * {ReentrancyGuard} or the
+     * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
+     */
+    function sendValue(address payable recipient, uint256 amount) internal {
+        require(address(this).balance >= amount, "Address: insufficient balance");
+
+        // solhint-disable-next-line avoid-low-level-calls, avoid-call-value
+        (bool success, ) = recipient.call{ value: amount }("");
+        require(success, "Address: unable to send value, recipient may have reverted");
+    }
+
+    /**
+     * @dev Performs a Solidity function call using a low level `call`. A
+     * plain`call` is an unsafe replacement for a function call: use this
+     * function instead.
+     *
+     * If `target` reverts with a revert reason, it is bubbled up by this
+     * function (like regular Solidity function calls).
+     *
+     * Returns the raw returned data. To convert to the expected return value,
+     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].
+     *
+     * Requirements:
+     *
+     * - `target` must be a contract.
+     * - calling `target` with `data` must not revert.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
+      return functionCall(target, data, "Address: low-level call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`], but with
+     * `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(address target, bytes memory data, string memory errorMessage) internal returns (bytes memory) {
+        return _functionCallWithValue(target, data, 0, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but also transferring `value` wei to `target`.
+     *
+     * Requirements:
+     *
+     * - the calling contract must have an ETH balance of at least `value`.
+     * - the called Solidity function must be `payable`.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(address target, bytes memory data, uint256 value) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but
+     * with `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(address target, bytes memory data, uint256 value, string memory errorMessage) internal returns (bytes memory) {
+        require(address(this).balance >= value, "Address: insufficient balance for call");
+        return _functionCallWithValue(target, data, value, errorMessage);
+    }
+
+    function _functionCallWithValue(address target, bytes memory data, uint256 weiValue, string memory errorMessage) private returns (bytes memory) {
+        require(isContract(target), "Address: call to non-contract");
+
+        // solhint-disable-next-line avoid-low-level-calls
+        (bool success, bytes memory returndata) = target.call{ value: weiValue }(data);
+        if (success) {
+            return returndata;
+        } else {
+            // Look for revert reason and bubble it up if present
+            if (returndata.length > 0) {
+                // The easiest way to bubble the revert reason is using memory via assembly
+
+                // solhint-disable-next-line no-inline-assembly
+                assembly {
+                    let returndata_size := mload(returndata)
+                    revert(add(32, returndata), returndata_size)
+                }
+            } else {
+                revert(errorMessage);
+            }
+        }
+    }
 }

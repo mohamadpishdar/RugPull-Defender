@@ -1,299 +1,307 @@
-/**
- *Submitted for verification at Etherscan.io on 2017-09-23
-*/
+// number: 612
+// project: Compound (COMP)
+// address: 0xc00e94cb662c3520282e6f5717214004a7f26888
+// chainid: 1
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.5.16;
 
-pragma solidity ^0.4.16;
+pragma experimental ABIEncoderV2;
 
+contract Comp {
+    /// @notice EIP-20 token name for this token
+    string public constant name = "Compound";
 
-/**
- * @title SafeMath
- * @dev Math operations with safety checks that throw on error
- */
-library SafeMath {
-  function mul(uint256 a, uint256 b) internal constant returns (uint256) {
-    uint256 c = a * b;
-    assert(a == 0 || c / a == b);
-    return c;
-  }
+    /// @notice EIP-20 token symbol for this token
+    string public constant symbol = "COMP";
 
-  function div(uint256 a, uint256 b) internal constant returns (uint256) {
-    // assert(b > 0); // Solidity automatically throws when dividing by 0
-    uint256 c = a / b;
-    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-    return c;
-  }
+    /// @notice EIP-20 token decimals for this token
+    uint8 public constant decimals = 18;
 
-  function sub(uint256 a, uint256 b) internal constant returns (uint256) {
-    assert(b <= a);
-    return a - b;
-  }
+    /// @notice Total number of tokens in circulation
+    uint public constant totalSupply = 10000000e18; // 10 million Comp
 
-  function add(uint256 a, uint256 b) internal constant returns (uint256) {
-    uint256 c = a + b;
-    assert(c >= a);
-    return c;
-  }
-}
+    /// @notice Allowance amounts on behalf of others
+    mapping (address => mapping (address => uint96)) internal allowances;
 
+    /// @notice Official record of token balances for each account
+    mapping (address => uint96) internal balances;
 
-/**
- * @title ERC20Basic
- * @dev Simpler version of ERC20 interface
- * @dev see https://github.com/ethereum/EIPs/issues/179
- */
-contract ERC20Basic {
-  uint256 public totalSupply;
-  function balanceOf(address who) constant returns (uint256);
-  function transfer(address to, uint256 value) returns (bool);
-  event Transfer(address indexed from, address indexed to, uint256 value);
-}
-/**
- * @title ERC20 interface
- * @dev see https://github.com/ethereum/EIPs/issues/20
- */
-contract ERC20 is ERC20Basic {
-  function allowance(address owner, address spender) constant returns (uint256);
-  function transferFrom(address from, address to, uint256 value) returns (bool);
-  function approve(address spender, uint256 value) returns (bool);
-  event Approval(address indexed owner, address indexed spender, uint256 value);
-}
+    /// @notice A record of each accounts delegate
+    mapping (address => address) public delegates;
 
-contract ERC677 is ERC20 {
-  function transferAndCall(address to, uint value, bytes data) returns (bool success);
-
-  event Transfer(address indexed from, address indexed to, uint value, bytes data);
-}
-
-contract ERC677Receiver {
-  function onTokenTransfer(address _sender, uint _value, bytes _data);
-}
-
-/**
- * @title Basic token
- * @dev Basic version of StandardToken, with no allowances. 
- */
-contract BasicToken is ERC20Basic {
-  using SafeMath for uint256;
-
-  mapping(address => uint256) balances;
-
-  /**
-  * @dev transfer token for a specified address
-  * @param _to The address to transfer to.
-  * @param _value The amount to be transferred.
-  */
-  function transfer(address _to, uint256 _value) returns (bool) {
-    balances[msg.sender] = balances[msg.sender].sub(_value);
-    balances[_to] = balances[_to].add(_value);
-    Transfer(msg.sender, _to, _value);
-    return true;
-  }
-
-  /**
-  * @dev Gets the balance of the specified address.
-  * @param _owner The address to query the the balance of. 
-  * @return An uint256 representing the amount owned by the passed address.
-  */
-  function balanceOf(address _owner) constant returns (uint256 balance) {
-    return balances[_owner];
-  }
-
-}
-
-
-/**
- * @title Standard ERC20 token
- *
- * @dev Implementation of the basic standard token.
- * @dev https://github.com/ethereum/EIPs/issues/20
- * @dev Based on code by FirstBlood: https://github.com/Firstbloodio/token/blob/master/smart_contract/FirstBloodToken.sol
- */
-contract StandardToken is ERC20, BasicToken {
-
-  mapping (address => mapping (address => uint256)) allowed;
-
-
-  /**
-   * @dev Transfer tokens from one address to another
-   * @param _from address The address which you want to send tokens from
-   * @param _to address The address which you want to transfer to
-   * @param _value uint256 the amount of tokens to be transferred
-   */
-  function transferFrom(address _from, address _to, uint256 _value) returns (bool) {
-    var _allowance = allowed[_from][msg.sender];
-
-    // Check is not needed because sub(_allowance, _value) will already throw if this condition is not met
-    // require (_value <= _allowance);
-
-    balances[_from] = balances[_from].sub(_value);
-    balances[_to] = balances[_to].add(_value);
-    allowed[_from][msg.sender] = _allowance.sub(_value);
-    Transfer(_from, _to, _value);
-    return true;
-  }
-
-  /**
-   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
-   * @param _spender The address which will spend the funds.
-   * @param _value The amount of tokens to be spent.
-   */
-  function approve(address _spender, uint256 _value) returns (bool) {
-    allowed[msg.sender][_spender] = _value;
-    Approval(msg.sender, _spender, _value);
-    return true;
-  }
-
-  /**
-   * @dev Function to check the amount of tokens that an owner allowed to a spender.
-   * @param _owner address The address which owns the funds.
-   * @param _spender address The address which will spend the funds.
-   * @return A uint256 specifying the amount of tokens still available for the spender.
-   */
-  function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
-    return allowed[_owner][_spender];
-  }
-  
-    /*
-   * approve should be called when allowed[_spender] == 0. To increment
-   * allowed value is better to use this function to avoid 2 calls (and wait until 
-   * the first transaction is mined)
-   * From MonolithDAO Token.sol
-   */
-  function increaseApproval (address _spender, uint _addedValue) 
-    returns (bool success) {
-    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
-    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
-    return true;
-  }
-
-  function decreaseApproval (address _spender, uint _subtractedValue) 
-    returns (bool success) {
-    uint oldValue = allowed[msg.sender][_spender];
-    if (_subtractedValue > oldValue) {
-      allowed[msg.sender][_spender] = 0;
-    } else {
-      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    /// @notice A checkpoint for marking number of votes from a given block
+    struct Checkpoint {
+        uint32 fromBlock;
+        uint96 votes;
     }
-    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
-    return true;
-  }
 
-}
+    /// @notice A record of votes checkpoints for each account, by index
+    mapping (address => mapping (uint32 => Checkpoint)) public checkpoints;
 
-contract ERC677Token is ERC677 {
+    /// @notice The number of checkpoints for each account
+    mapping (address => uint32) public numCheckpoints;
 
-  /**
-  * @dev transfer token to a contract address with additional data if the recipient is a contact.
-  * @param _to The address to transfer to.
-  * @param _value The amount to be transferred.
-  * @param _data The extra data to be passed to the receiving contract.
-  */
-  function transferAndCall(address _to, uint _value, bytes _data)
-    public
-    returns (bool success)
-  {
-    super.transfer(_to, _value);
-    Transfer(msg.sender, _to, _value, _data);
-    if (isContract(_to)) {
-      contractFallback(_to, _value, _data);
+    /// @notice The EIP-712 typehash for the contract's domain
+    bytes32 public constant DOMAIN_TYPEHASH = keccak256("EIP712Domain(string name,uint256 chainId,address verifyingContract)");
+
+    /// @notice The EIP-712 typehash for the delegation struct used by the contract
+    bytes32 public constant DELEGATION_TYPEHASH = keccak256("Delegation(address delegatee,uint256 nonce,uint256 expiry)");
+
+    /// @notice A record of states for signing / validating signatures
+    mapping (address => uint) public nonces;
+
+    /// @notice An event thats emitted when an account changes its delegate
+    event DelegateChanged(address indexed delegator, address indexed fromDelegate, address indexed toDelegate);
+
+    /// @notice An event thats emitted when a delegate account's vote balance changes
+    event DelegateVotesChanged(address indexed delegate, uint previousBalance, uint newBalance);
+
+    /// @notice The standard EIP-20 transfer event
+    event Transfer(address indexed from, address indexed to, uint256 amount);
+
+    /// @notice The standard EIP-20 approval event
+    event Approval(address indexed owner, address indexed spender, uint256 amount);
+
+    /**
+     * @notice Construct a new Comp token
+     * @param account The initial account to grant all the tokens
+     */
+    constructor(address account) public {
+        balances[account] = uint96(totalSupply);
+        emit Transfer(address(0), account, totalSupply);
     }
-    return true;
-  }
 
+    /**
+     * @notice Get the number of tokens `spender` is approved to spend on behalf of `account`
+     * @param account The address of the account holding the funds
+     * @param spender The address of the account spending the funds
+     * @return The number of tokens approved
+     */
+    function allowance(address account, address spender) external view returns (uint) {
+        return allowances[account][spender];
+    }
 
-  // PRIVATE
+    /**
+     * @notice Approve `spender` to transfer up to `amount` from `src`
+     * @dev This will overwrite the approval amount for `spender`
+     *  and is subject to issues noted [here](https://eips.ethereum.org/EIPS/eip-20#approve)
+     * @param spender The address of the account which may transfer tokens
+     * @param rawAmount The number of tokens that are approved (2^256-1 means infinite)
+     * @return Whether or not the approval succeeded
+     */
+    function approve(address spender, uint rawAmount) external returns (bool) {
+        uint96 amount;
+        if (rawAmount == uint(-1)) {
+            amount = uint96(-1);
+        } else {
+            amount = safe96(rawAmount, "Comp::approve: amount exceeds 96 bits");
+        }
 
-  function contractFallback(address _to, uint _value, bytes _data)
-    private
-  {
-    ERC677Receiver receiver = ERC677Receiver(_to);
-    receiver.onTokenTransfer(msg.sender, _value, _data);
-  }
+        allowances[msg.sender][spender] = amount;
 
-  function isContract(address _addr)
-    private
-    returns (bool hasCode)
-  {
-    uint length;
-    assembly { length := extcodesize(_addr) }
-    return length > 0;
-  }
+        emit Approval(msg.sender, spender, amount);
+        return true;
+    }
 
-}
+    /**
+     * @notice Get the number of tokens held by the `account`
+     * @param account The address of the account to get the balance of
+     * @return The number of tokens held
+     */
+    function balanceOf(address account) external view returns (uint) {
+        return balances[account];
+    }
 
-contract LinkToken is StandardToken, ERC677Token {
+    /**
+     * @notice Transfer `amount` tokens from `msg.sender` to `dst`
+     * @param dst The address of the destination account
+     * @param rawAmount The number of tokens to transfer
+     * @return Whether or not the transfer succeeded
+     */
+    function transfer(address dst, uint rawAmount) external returns (bool) {
+        uint96 amount = safe96(rawAmount, "Comp::transfer: amount exceeds 96 bits");
+        _transferTokens(msg.sender, dst, amount);
+        return true;
+    }
 
-  uint public constant totalSupply = 10**27;
-  string public constant name = 'ChainLink Token';
-  uint8 public constant decimals = 18;
-  string public constant symbol = 'LINK';
+    /**
+     * @notice Transfer `amount` tokens from `src` to `dst`
+     * @param src The address of the source account
+     * @param dst The address of the destination account
+     * @param rawAmount The number of tokens to transfer
+     * @return Whether or not the transfer succeeded
+     */
+    function transferFrom(address src, address dst, uint rawAmount) external returns (bool) {
+        address spender = msg.sender;
+        uint96 spenderAllowance = allowances[src][spender];
+        uint96 amount = safe96(rawAmount, "Comp::approve: amount exceeds 96 bits");
 
-  function LinkToken()
-    public
-  {
-    balances[msg.sender] = totalSupply;
-  }
+        if (spender != src && spenderAllowance != uint96(-1)) {
+            uint96 newAllowance = sub96(spenderAllowance, amount, "Comp::transferFrom: transfer amount exceeds spender allowance");
+            allowances[src][spender] = newAllowance;
 
-  /**
-  * @dev transfer token to a specified address with additional data if the recipient is a contract.
-  * @param _to The address to transfer to.
-  * @param _value The amount to be transferred.
-  * @param _data The extra data to be passed to the receiving contract.
-  */
-  function transferAndCall(address _to, uint _value, bytes _data)
-    public
-    validRecipient(_to)
-    returns (bool success)
-  {
-    return super.transferAndCall(_to, _value, _data);
-  }
+            emit Approval(src, spender, newAllowance);
+        }
 
-  /**
-  * @dev transfer token to a specified address.
-  * @param _to The address to transfer to.
-  * @param _value The amount to be transferred.
-  */
-  function transfer(address _to, uint _value)
-    public
-    validRecipient(_to)
-    returns (bool success)
-  {
-    return super.transfer(_to, _value);
-  }
+        _transferTokens(src, dst, amount);
+        return true;
+    }
 
-  /**
-   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
-   * @param _spender The address which will spend the funds.
-   * @param _value The amount of tokens to be spent.
-   */
-  function approve(address _spender, uint256 _value)
-    public
-    validRecipient(_spender)
-    returns (bool)
-  {
-    return super.approve(_spender,  _value);
-  }
+    /**
+     * @notice Delegate votes from `msg.sender` to `delegatee`
+     * @param delegatee The address to delegate votes to
+     */
+    function delegate(address delegatee) public {
+        return _delegate(msg.sender, delegatee);
+    }
 
-  /**
-   * @dev Transfer tokens from one address to another
-   * @param _from address The address which you want to send tokens from
-   * @param _to address The address which you want to transfer to
-   * @param _value uint256 the amount of tokens to be transferred
-   */
-  function transferFrom(address _from, address _to, uint256 _value)
-    public
-    validRecipient(_to)
-    returns (bool)
-  {
-    return super.transferFrom(_from, _to, _value);
-  }
+    /**
+     * @notice Delegates votes from signatory to `delegatee`
+     * @param delegatee The address to delegate votes to
+     * @param nonce The contract state required to match the signature
+     * @param expiry The time at which to expire the signature
+     * @param v The recovery byte of the signature
+     * @param r Half of the ECDSA signature pair
+     * @param s Half of the ECDSA signature pair
+     */
+    function delegateBySig(address delegatee, uint nonce, uint expiry, uint8 v, bytes32 r, bytes32 s) public {
+        bytes32 domainSeparator = keccak256(abi.encode(DOMAIN_TYPEHASH, keccak256(bytes(name)), getChainId(), address(this)));
+        bytes32 structHash = keccak256(abi.encode(DELEGATION_TYPEHASH, delegatee, nonce, expiry));
+        bytes32 digest = keccak256(abi.encodePacked("\x19\x01", domainSeparator, structHash));
+        address signatory = ecrecover(digest, v, r, s);
+        require(signatory != address(0), "Comp::delegateBySig: invalid signature");
+        require(nonce == nonces[signatory]++, "Comp::delegateBySig: invalid nonce");
+        require(now <= expiry, "Comp::delegateBySig: signature expired");
+        return _delegate(signatory, delegatee);
+    }
 
+    /**
+     * @notice Gets the current votes balance for `account`
+     * @param account The address to get votes balance
+     * @return The number of current votes for `account`
+     */
+    function getCurrentVotes(address account) external view returns (uint96) {
+        uint32 nCheckpoints = numCheckpoints[account];
+        return nCheckpoints > 0 ? checkpoints[account][nCheckpoints - 1].votes : 0;
+    }
 
-  // MODIFIERS
+    /**
+     * @notice Determine the prior number of votes for an account as of a block number
+     * @dev Block number must be a finalized block or else this function will revert to prevent misinformation.
+     * @param account The address of the account to check
+     * @param blockNumber The block number to get the vote balance at
+     * @return The number of votes the account had as of the given block
+     */
+    function getPriorVotes(address account, uint blockNumber) public view returns (uint96) {
+        require(blockNumber < block.number, "Comp::getPriorVotes: not yet determined");
 
-  modifier validRecipient(address _recipient) {
-    require(_recipient != address(0) && _recipient != address(this));
-    _;
-  }
+        uint32 nCheckpoints = numCheckpoints[account];
+        if (nCheckpoints == 0) {
+            return 0;
+        }
 
+        // First check most recent balance
+        if (checkpoints[account][nCheckpoints - 1].fromBlock <= blockNumber) {
+            return checkpoints[account][nCheckpoints - 1].votes;
+        }
+
+        // Next check implicit zero balance
+        if (checkpoints[account][0].fromBlock > blockNumber) {
+            return 0;
+        }
+
+        uint32 lower = 0;
+        uint32 upper = nCheckpoints - 1;
+        while (upper > lower) {
+            uint32 center = upper - (upper - lower) / 2; // ceil, avoiding overflow
+            Checkpoint memory cp = checkpoints[account][center];
+            if (cp.fromBlock == blockNumber) {
+                return cp.votes;
+            } else if (cp.fromBlock < blockNumber) {
+                lower = center;
+            } else {
+                upper = center - 1;
+            }
+        }
+        return checkpoints[account][lower].votes;
+    }
+
+    function _delegate(address delegator, address delegatee) internal {
+        address currentDelegate = delegates[delegator];
+        uint96 delegatorBalance = balances[delegator];
+        delegates[delegator] = delegatee;
+
+        emit DelegateChanged(delegator, currentDelegate, delegatee);
+
+        _moveDelegates(currentDelegate, delegatee, delegatorBalance);
+    }
+
+    function _transferTokens(address src, address dst, uint96 amount) internal {
+        require(src != address(0), "Comp::_transferTokens: cannot transfer from the zero address");
+        require(dst != address(0), "Comp::_transferTokens: cannot transfer to the zero address");
+
+        balances[src] = sub96(balances[src], amount, "Comp::_transferTokens: transfer amount exceeds balance");
+        balances[dst] = add96(balances[dst], amount, "Comp::_transferTokens: transfer amount overflows");
+        emit Transfer(src, dst, amount);
+
+        _moveDelegates(delegates[src], delegates[dst], amount);
+    }
+
+    function _moveDelegates(address srcRep, address dstRep, uint96 amount) internal {
+        if (srcRep != dstRep && amount > 0) {
+            if (srcRep != address(0)) {
+                uint32 srcRepNum = numCheckpoints[srcRep];
+                uint96 srcRepOld = srcRepNum > 0 ? checkpoints[srcRep][srcRepNum - 1].votes : 0;
+                uint96 srcRepNew = sub96(srcRepOld, amount, "Comp::_moveVotes: vote amount underflows");
+                _writeCheckpoint(srcRep, srcRepNum, srcRepOld, srcRepNew);
+            }
+
+            if (dstRep != address(0)) {
+                uint32 dstRepNum = numCheckpoints[dstRep];
+                uint96 dstRepOld = dstRepNum > 0 ? checkpoints[dstRep][dstRepNum - 1].votes : 0;
+                uint96 dstRepNew = add96(dstRepOld, amount, "Comp::_moveVotes: vote amount overflows");
+                _writeCheckpoint(dstRep, dstRepNum, dstRepOld, dstRepNew);
+            }
+        }
+    }
+
+    function _writeCheckpoint(address delegatee, uint32 nCheckpoints, uint96 oldVotes, uint96 newVotes) internal {
+      uint32 blockNumber = safe32(block.number, "Comp::_writeCheckpoint: block number exceeds 32 bits");
+
+      if (nCheckpoints > 0 && checkpoints[delegatee][nCheckpoints - 1].fromBlock == blockNumber) {
+          checkpoints[delegatee][nCheckpoints - 1].votes = newVotes;
+      } else {
+          checkpoints[delegatee][nCheckpoints] = Checkpoint(blockNumber, newVotes);
+          numCheckpoints[delegatee] = nCheckpoints + 1;
+      }
+
+      emit DelegateVotesChanged(delegatee, oldVotes, newVotes);
+    }
+
+    function safe32(uint n, string memory errorMessage) internal pure returns (uint32) {
+        require(n < 2**32, errorMessage);
+        return uint32(n);
+    }
+
+    function safe96(uint n, string memory errorMessage) internal pure returns (uint96) {
+        require(n < 2**96, errorMessage);
+        return uint96(n);
+    }
+
+    function add96(uint96 a, uint96 b, string memory errorMessage) internal pure returns (uint96) {
+        uint96 c = a + b;
+        require(c >= a, errorMessage);
+        return c;
+    }
+
+    function sub96(uint96 a, uint96 b, string memory errorMessage) internal pure returns (uint96) {
+        require(b <= a, errorMessage);
+        return a - b;
+    }
+
+    function getChainId() internal pure returns (uint) {
+        uint256 chainId;
+        assembly { chainId := chainid() }
+        return chainId;
+    }
 }

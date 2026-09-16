@@ -1,342 +1,804 @@
-// SPDX-License-Identifier: MIT
-pragma solidity 0.7.4;
+// number: 793
+// project: Perpetual (PERP)
+// address: 0xbc396689893d065f41bc2c6ecbee5e0085233447
+// chainid: 1
+// SPDX-License-Identifier: BSD-3-Clause
+pragma solidity 0.6.7;
 
-import "./TellorStorage.sol";
-import "./TellorVariables.sol";
-
-/**
- * @title Tellor Master
- * @dev This is the Master contract with all tellor getter functions and delegate call to Tellor.
- * The logic for the functions on this contract is saved on the TellorGettersLibrary, TellorTransfer,
- * TellorGettersLibrary, and TellorStake
+// 
+/*
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with GSN meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
  */
-contract TellorMaster is TellorStorage, TellorVariables {
-    event NewTellorAddress(address _newTellor);
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address payable) {
+        return msg.sender;
+    }
 
-    constructor(address _tContract, address _oTellor) {
-        addresses[_OWNER] = msg.sender;
-        addresses[_DEITY] = msg.sender;
-        addresses[_TELLOR_CONTRACT] = _tContract;
-        addresses[_OLD_TELLOR] = _oTellor;
-        bytesVars[_CURRENT_CHALLENGE] = bytes32("1");
-        uints[_DIFFICULTY] = 100;
-        uints[_TIME_TARGET] = 240;
-        uints[_TARGET_MINERS] = 200;
-        uints[_CURRENT_REWARD] = 1e18;
-        uints[_DISPUTE_FEE] = 500e18;
-        uints[_STAKE_AMOUNT] = 500e18;
-        uints[_TIME_OF_LAST_NEW_VALUE] = block.timestamp - 240;
+    function _msgData() internal view virtual returns (bytes memory) {
+        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
+        return msg.data;
+    }
+}
 
-        currentMiners[0].value = 1;
-        currentMiners[1].value = 2;
-        currentMiners[2].value = 3;
-        currentMiners[3].value = 4;
-        currentMiners[4].value = 5;
+// 
+/**
+ * @dev Interface of the ERC20 standard as defined in the EIP.
+ */
+interface IERC20 {
+    /**
+     * @dev Returns the amount of tokens in existence.
+     */
+    function totalSupply() external view returns (uint256);
 
-        // Bootstraping Request Queue
-        for (uint256 index = 1; index < 51; index++) {
-            Request storage req = requestDetails[index];
-            req.apiUintVars[_REQUEST_Q_POSITION] = index;
-            requestIdByRequestQIndex[index] = index;
+    /**
+     * @dev Returns the amount of tokens owned by `account`.
+     */
+    function balanceOf(address account) external view returns (uint256);
+
+    /**
+     * @dev Moves `amount` tokens from the caller's account to `recipient`.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transfer(address recipient, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Returns the remaining number of tokens that `spender` will be
+     * allowed to spend on behalf of `owner` through {transferFrom}. This is
+     * zero by default.
+     *
+     * This value changes when {approve} or {transferFrom} are called.
+     */
+    function allowance(address owner, address spender) external view returns (uint256);
+
+    /**
+     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * IMPORTANT: Beware that changing an allowance with this method brings the risk
+     * that someone may use both the old and the new allowance by unfortunate
+     * transaction ordering. One possible solution to mitigate this race
+     * condition is to first reduce the spender's allowance to 0 and set the
+     * desired value afterwards:
+     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     *
+     * Emits an {Approval} event.
+     */
+    function approve(address spender, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Moves `amount` tokens from `sender` to `recipient` using the
+     * allowance mechanism. `amount` is then deducted from the caller's
+     * allowance.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Emitted when `value` tokens are moved from one account (`from`) to
+     * another (`to`).
+     *
+     * Note that `value` may be zero.
+     */
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    /**
+     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
+     * a call to {approve}. `value` is the new allowance.
+     */
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
+// 
+/**
+ * @dev Wrappers over Solidity's arithmetic operations with added overflow
+ * checks.
+ *
+ * Arithmetic operations in Solidity wrap on overflow. This can easily result
+ * in bugs, because programmers usually assume that an overflow raises an
+ * error, which is the standard behavior in high level programming languages.
+ * `SafeMath` restores this intuition by reverting the transaction when an
+ * operation overflows.
+ *
+ * Using this library instead of the unchecked operations eliminates an entire
+ * class of bugs, so it's recommended to use it always.
+ */
+library SafeMath {
+    /**
+     * @dev Returns the addition of two unsigned integers, reverting on
+     * overflow.
+     *
+     * Counterpart to Solidity's `+` operator.
+     *
+     * Requirements:
+     *
+     * - Addition cannot overflow.
+     */
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        require(c >= a, "SafeMath: addition overflow");
+
+        return c;
+    }
+
+    /**
+     * @dev Returns the subtraction of two unsigned integers, reverting on
+     * overflow (when the result is negative).
+     *
+     * Counterpart to Solidity's `-` operator.
+     *
+     * Requirements:
+     *
+     * - Subtraction cannot overflow.
+     */
+    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        return sub(a, b, "SafeMath: subtraction overflow");
+    }
+
+    /**
+     * @dev Returns the subtraction of two unsigned integers, reverting with custom message on
+     * overflow (when the result is negative).
+     *
+     * Counterpart to Solidity's `-` operator.
+     *
+     * Requirements:
+     *
+     * - Subtraction cannot overflow.
+     */
+    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b <= a, errorMessage);
+        uint256 c = a - b;
+
+        return c;
+    }
+
+    /**
+     * @dev Returns the multiplication of two unsigned integers, reverting on
+     * overflow.
+     *
+     * Counterpart to Solidity's `*` operator.
+     *
+     * Requirements:
+     *
+     * - Multiplication cannot overflow.
+     */
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
+        // benefit is lost if 'b' is also tested.
+        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
+        if (a == 0) {
+            return 0;
         }
 
-        assembly {
-            sstore(_EIP_SLOT, _tContract)
-        }
+        uint256 c = a * b;
+        require(c / a == b, "SafeMath: multiplication overflow");
 
-        emit NewTellorAddress(_tContract);
+        return c;
     }
 
     /**
-     * @dev This function allows the Deity to set a new deity
-     * @param _newDeity the new Deity in the contract
+     * @dev Returns the integer division of two unsigned integers. Reverts on
+     * division by zero. The result is rounded towards zero.
+     *
+     * Counterpart to Solidity's `/` operator. Note: this function uses a
+     * `revert` opcode (which leaves remaining gas untouched) while Solidity
+     * uses an invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
      */
-    function changeDeity(address _newDeity) external {
-        require(msg.sender == addresses[_DEITY]);
-        addresses[_DEITY] = _newDeity;
+    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        return div(a, b, "SafeMath: division by zero");
     }
 
     /**
-     * @dev This function allows the owner to set a new _owner
-     * @param _newOwner the new Owner in the contract
+     * @dev Returns the integer division of two unsigned integers. Reverts with custom message on
+     * division by zero. The result is rounded towards zero.
+     *
+     * Counterpart to Solidity's `/` operator. Note: this function uses a
+     * `revert` opcode (which leaves remaining gas untouched) while Solidity
+     * uses an invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
      */
-    function changeOwner(address _newOwner) external {
-        require(msg.sender == addresses[_OWNER]);
-        addresses[_OWNER] = _newOwner;
+    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b > 0, errorMessage);
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+
+        return c;
     }
 
     /**
-     * @dev  allows for the deity to make fast upgrades.  Deity should be 0 address if decentralized
-     * @param _tContract the address of the new Tellor Contract
+     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
+     * Reverts when dividing by zero.
+     *
+     * Counterpart to Solidity's `%` operator. This function uses a `revert`
+     * opcode (which leaves remaining gas untouched) while Solidity uses an
+     * invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
      */
-    function changeTellorContract(address _tContract) external {
-        require(msg.sender == addresses[_DEITY]);
-        addresses[_TELLOR_CONTRACT] = _tContract;
-
-        assembly {
-            sstore(_EIP_SLOT, _tContract)
-        }
+    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
+        return mod(a, b, "SafeMath: modulo by zero");
     }
 
     /**
-     * @dev This is the internal function that allows for delegate calls to the Tellor logic
-     * contract address
+     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
+     * Reverts with custom message when dividing by zero.
+     *
+     * Counterpart to Solidity's `%` operator. This function uses a `revert`
+     * opcode (which leaves remaining gas untouched) while Solidity uses an
+     * invalid opcode to revert (consuming all remaining gas).
+     *
+     * Requirements:
+     *
+     * - The divisor cannot be zero.
      */
-    function _delegate(address implementation) internal virtual {
+    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b != 0, errorMessage);
+        return a % b;
+    }
+}
+
+// 
+/**
+ * @dev Collection of functions related to the address type
+ */
+library Address {
+    /**
+     * @dev Returns true if `account` is a contract.
+     *
+     * [IMPORTANT]
+     * ====
+     * It is unsafe to assume that an address for which this function returns
+     * false is an externally-owned account (EOA) and not a contract.
+     *
+     * Among others, `isContract` will return false for the following
+     * types of addresses:
+     *
+     *  - an externally-owned account
+     *  - a contract in construction
+     *  - an address where a contract will be created
+     *  - an address where a contract lived, but was destroyed
+     * ====
+     */
+    function isContract(address account) internal view returns (bool) {
+        // According to EIP-1052, 0x0 is the value returned for not-yet created accounts
+        // and 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470 is returned
+        // for accounts without code, i.e. `keccak256('')`
+        bytes32 codehash;
+        bytes32 accountHash = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;
         // solhint-disable-next-line no-inline-assembly
-        assembly {
-            // Copy msg.data. We take full control of memory in this inline assembly
-            // block because it will not return to Solidity code. We overwrite the
-            // Solidity scratch pad at memory position 0.
-            calldatacopy(0, 0, calldatasize())
-
-            // Call the implementation.
-            // out and outsize are 0 because we don't know the size yet.
-            let result := delegatecall(
-                gas(),
-                implementation,
-                0,
-                calldatasize(),
-                0,
-                0
-            )
-
-            // Copy the returned data.
-            returndatacopy(0, 0, returndatasize())
-
-            switch result
-                // delegatecall returns 0 on error.
-                case 0 {
-                    revert(0, returndatasize())
-                }
-                default {
-                    return(0, returndatasize())
-                }
-        }
+        assembly { codehash := extcodehash(account) }
+        return (codehash != accountHash && codehash != 0x0);
     }
 
     /**
-     * @dev This is the fallback function that allows contracts to call the tellor
-     * contract at the address stored
+     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to
+     * `recipient`, forwarding all available gas and reverting on errors.
+     *
+     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost
+     * of certain opcodes, possibly making contracts go over the 2300 gas limit
+     * imposed by `transfer`, making them unable to receive funds via
+     * `transfer`. {sendValue} removes this limitation.
+     *
+     * https://diligence.consensys.net/posts/2019/09/stop-using-soliditys-transfer-now/[Learn more].
+     *
+     * IMPORTANT: because control is transferred to `recipient`, care must be
+     * taken to not create reentrancy vulnerabilities. Consider using
+     * {ReentrancyGuard} or the
+     * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
      */
-    fallback() external payable {
-        address addr = addresses[_TELLOR_CONTRACT];
-        _delegate(addr);
+    function sendValue(address payable recipient, uint256 amount) internal {
+        require(address(this).balance >= amount, "Address: insufficient balance");
+
+        // solhint-disable-next-line avoid-low-level-calls, avoid-call-value
+        (bool success, ) = recipient.call{ value: amount }("");
+        require(success, "Address: unable to send value, recipient may have reverted");
+    }
+
+    /**
+     * @dev Performs a Solidity function call using a low level `call`. A
+     * plain`call` is an unsafe replacement for a function call: use this
+     * function instead.
+     *
+     * If `target` reverts with a revert reason, it is bubbled up by this
+     * function (like regular Solidity function calls).
+     *
+     * Returns the raw returned data. To convert to the expected return value,
+     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].
+     *
+     * Requirements:
+     *
+     * - `target` must be a contract.
+     * - calling `target` with `data` must not revert.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
+      return functionCall(target, data, "Address: low-level call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`], but with
+     * `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(address target, bytes memory data, string memory errorMessage) internal returns (bytes memory) {
+        return _functionCallWithValue(target, data, 0, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but also transferring `value` wei to `target`.
+     *
+     * Requirements:
+     *
+     * - the calling contract must have an ETH balance of at least `value`.
+     * - the called Solidity function must be `payable`.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(address target, bytes memory data, uint256 value) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but
+     * with `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(address target, bytes memory data, uint256 value, string memory errorMessage) internal returns (bytes memory) {
+        require(address(this).balance >= value, "Address: insufficient balance for call");
+        return _functionCallWithValue(target, data, value, errorMessage);
+    }
+
+    function _functionCallWithValue(address target, bytes memory data, uint256 weiValue, string memory errorMessage) private returns (bytes memory) {
+        require(isContract(target), "Address: call to non-contract");
+
+        // solhint-disable-next-line avoid-low-level-calls
+        (bool success, bytes memory returndata) = target.call{ value: weiValue }(data);
+        if (success) {
+            return returndata;
+        } else {
+            // Look for revert reason and bubble it up if present
+            if (returndata.length > 0) {
+                // The easiest way to bubble the revert reason is using memory via assembly
+
+                // solhint-disable-next-line no-inline-assembly
+                assembly {
+                    let returndata_size := mload(returndata)
+                    revert(add(32, returndata), returndata_size)
+                }
+            } else {
+                revert(errorMessage);
+            }
+        }
     }
 }
-// SPDX-License-Identifier: MIT
-pragma solidity 0.7.4;
 
+// 
 /**
- * @title Tellor Oracle Storage Library
- * @dev Contains all the variables/structs used by Tellor
+ * @dev Implementation of the {IERC20} interface.
+ *
+ * This implementation is agnostic to the way tokens are created. This means
+ * that a supply mechanism has to be added in a derived contract using {_mint}.
+ * For a generic mechanism see {ERC20PresetMinterPauser}.
+ *
+ * TIP: For a detailed writeup see our guide
+ * https://forum.zeppelin.solutions/t/how-to-implement-erc20-supply-mechanisms/226[How
+ * to implement supply mechanisms].
+ *
+ * We have followed general OpenZeppelin guidelines: functions revert instead
+ * of returning `false` on failure. This behavior is nonetheless conventional
+ * and does not conflict with the expectations of ERC20 applications.
+ *
+ * Additionally, an {Approval} event is emitted on calls to {transferFrom}.
+ * This allows applications to reconstruct the allowance for all accounts just
+ * by listening to said events. Other implementations of the EIP may not emit
+ * these events, as it isn't required by the specification.
+ *
+ * Finally, the non-standard {decreaseAllowance} and {increaseAllowance}
+ * functions have been added to mitigate the well-known issues around setting
+ * allowances. See {IERC20-approve}.
  */
+contract ERC20 is Context, IERC20 {
+    using SafeMath for uint256;
+    using Address for address;
 
-contract TellorStorage {
-    //Internal struct for use in proof-of-work submission
-    struct Details {
-        uint256 value;
-        address miner;
+    mapping (address => uint256) private _balances;
+
+    mapping (address => mapping (address => uint256)) private _allowances;
+
+    uint256 private _totalSupply;
+
+    string private _name;
+    string private _symbol;
+    uint8 private _decimals;
+
+    /**
+     * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
+     * a default value of 18.
+     *
+     * To select a different value for {decimals}, use {_setupDecimals}.
+     *
+     * All three of these values are immutable: they can only be set once during
+     * construction.
+     */
+    constructor (string memory name, string memory symbol) public {
+        _name = name;
+        _symbol = symbol;
+        _decimals = 18;
     }
 
-    struct Dispute {
-        bytes32 hash; //unique hash of dispute: keccak256(_miner,_requestId,_timestamp)
-        int256 tally; //current tally of votes for - against measure
-        bool executed; //is the dispute settled
-        bool disputeVotePassed; //did the vote pass?
-        bool isPropFork; //true for fork proposal NEW
-        address reportedMiner; //miner who submitted the 'bad value' will get disputeFee if dispute vote fails
-        address reportingParty; //miner reporting the 'bad value'-pay disputeFee will get reportedMiner's stake if dispute vote passes
-        address proposedForkAddress; //new fork address (if fork proposal)
-        mapping(bytes32 => uint256) disputeUintVars;
-        //Each of the variables below is saved in the mapping disputeUintVars for each disputeID
-        //e.g. TellorStorageStruct.DisputeById[disputeID].disputeUintVars[keccak256("requestId")]
-        //These are the variables saved in this mapping:
-        // uint keccak256("requestId");//apiID of disputed value
-        // uint keccak256("timestamp");//timestamp of disputed value
-        // uint keccak256("value"); //the value being disputed
-        // uint keccak256("minExecutionDate");//7 days from when dispute initialized
-        // uint keccak256("numberOfVotes");//the number of parties who have voted on the measure
-        // uint keccak256("blockNumber");// the blocknumber for which votes will be calculated from
-        // uint keccak256("minerSlot"); //index in dispute array
-        // uint keccak256("fee"); //fee paid corresponding to dispute
-        mapping(address => bool) voted; //mapping of address to whether or not they voted
+    /**
+     * @dev Returns the name of the token.
+     */
+    function name() public view returns (string memory) {
+        return _name;
     }
 
-    struct StakeInfo {
-        uint256 currentStatus; //0-not Staked, 1=Staked, 2=LockedForWithdraw 3= OnDispute 4=ReadyForUnlocking 5=Unlocked
-        uint256 startDate; //stake start date
+    /**
+     * @dev Returns the symbol of the token, usually a shorter version of the
+     * name.
+     */
+    function symbol() public view returns (string memory) {
+        return _symbol;
     }
 
-    //Internal struct to allow balances to be queried by blocknumber for voting purposes
-    struct Checkpoint {
-        uint128 fromBlock; // fromBlock is the block number that the value was generated from
-        uint128 value; // value is the amount of tokens at a specific block number
+    /**
+     * @dev Returns the number of decimals used to get its user representation.
+     * For example, if `decimals` equals `2`, a balance of `505` tokens should
+     * be displayed to a user as `5,05` (`505 / 10 ** 2`).
+     *
+     * Tokens usually opt for a value of 18, imitating the relationship between
+     * Ether and Wei. This is the value {ERC20} uses, unless {_setupDecimals} is
+     * called.
+     *
+     * NOTE: This information is only used for _display_ purposes: it in
+     * no way affects any of the arithmetic of the contract, including
+     * {IERC20-balanceOf} and {IERC20-transfer}.
+     */
+    function decimals() public view returns (uint8) {
+        return _decimals;
     }
 
-    struct Request {
-        uint256[] requestTimestamps; //array of all newValueTimestamps requested
-        mapping(bytes32 => uint256) apiUintVars;
-        //Each of the variables below is saved in the mapping apiUintVars for each api request
-        //e.g. requestDetails[_requestId].apiUintVars[keccak256("totalTip")]
-        //These are the variables saved in this mapping:
-        // uint keccak256("requestQPosition"); //index in requestQ
-        // uint keccak256("totalTip");//bonus portion of payout
-        mapping(uint256 => uint256) minedBlockNum; //[apiId][minedTimestamp]=>block.number
-        //This the time series of finalValues stored by the contract where uint UNIX timestamp is mapped to value
-        mapping(uint256 => uint256) finalValues;
-        mapping(uint256 => bool) inDispute; //checks if API id is in dispute or finalized.
-        mapping(uint256 => address[5]) minersByValue;
-        mapping(uint256 => uint256[5]) valuesByTimestamp;
+    /**
+     * @dev See {IERC20-totalSupply}.
+     */
+    function totalSupply() public view override returns (uint256) {
+        return _totalSupply;
     }
 
-    uint256[51] requestQ; //uint50 array of the top50 requests by payment amount
-    uint256[] public newValueTimestamps; //array of all timestamps requested
-    //Address fields in the Tellor contract are saved the addressVars mapping
-    //e.g. addressVars[keccak256("tellorContract")] = address
-    //These are the variables saved in this mapping:
-    // address keccak256("tellorContract");//Tellor address
-    // address  keccak256("_owner");//Tellor Owner address
-    // address  keccak256("_deity");//Tellor Owner that can do things at will
-    // address  keccak256("pending_owner"); // The proposed new owner
-    //uint fields in the Tellor contract are saved the uintVars mapping
-    //e.g. uintVars[keccak256("decimals")] = uint
-    //These are the variables saved in this mapping:
-    // keccak256("decimals");    //18 decimal standard ERC20
-    // keccak256("disputeFee");//cost to dispute a mined value
-    // keccak256("disputeCount");//totalHistoricalDisputes
-    // keccak256("total_supply"); //total_supply of the token in circulation
-    // keccak256("stakeAmount");//stakeAmount for miners (we can cut gas if we just hardcoded it in...or should it be variable?)
-    // keccak256("stakerCount"); //number of parties currently staked
-    // keccak256("timeOfLastNewValue"); // time of last challenge solved
-    // keccak256("difficulty"); // Difficulty of current block
-    // keccak256("currentTotalTips"); //value of highest api/timestamp PayoutPool
-    // keccak256("currentRequestId"); //API being mined--updates with the ApiOnQ Id
-    // keccak256("requestCount"); // total number of requests through the system
-    // keccak256("slotProgress");//Number of miners who have mined this value so far
-    // keccak256("miningReward");//Mining Reward in PoWo tokens given to all miners per value
-    // keccak256("timeTarget"); //The time between blocks (mined Oracle values)
-    // keccak256("_tblock"); //
-    // keccak256("runningTips"); // VAriable to track running tips
-    // keccak256("currentReward"); // The current reward
-    // keccak256("devShare"); // The amount directed towards th devShare
-    // keccak256("currentTotalTips"); //
+    /**
+     * @dev See {IERC20-balanceOf}.
+     */
+    function balanceOf(address account) public view override returns (uint256) {
+        return _balances[account];
+    }
 
-    //This is a boolean that tells you if a given challenge has been completed by a given miner
-    mapping(uint256 => uint256) requestIdByTimestamp; //minedTimestamp to apiId
-    mapping(uint256 => uint256) requestIdByRequestQIndex; //link from payoutPoolIndex (position in payout pool array) to apiId
-    mapping(uint256 => Dispute) public disputesById; //disputeId=> Dispute details
-    mapping(bytes32 => uint256) public requestIdByQueryHash; // api bytes32 gets an id = to count of requests array
-    mapping(bytes32 => uint256) public disputeIdByDisputeHash; //maps a hash to an ID for each dispute
-    mapping(bytes32 => mapping(address => bool)) public minersByChallenge;
-    Details[5] public currentMiners; //This struct is for organizing the five mined values to find the median
-    mapping(address => StakeInfo) stakerDetails; //mapping from a persons address to their staking info
-    mapping(uint256 => Request) requestDetails;
+    /**
+     * @dev See {IERC20-transfer}.
+     *
+     * Requirements:
+     *
+     * - `recipient` cannot be the zero address.
+     * - the caller must have a balance of at least `amount`.
+     */
+    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
+        _transfer(_msgSender(), recipient, amount);
+        return true;
+    }
 
-    mapping(bytes32 => uint256) public uints;
-    mapping(bytes32 => address) public addresses;
-    mapping(bytes32 => bytes32) public bytesVars;
+    /**
+     * @dev See {IERC20-allowance}.
+     */
+    function allowance(address owner, address spender) public view virtual override returns (uint256) {
+        return _allowances[owner][spender];
+    }
 
-    //ERC20 storage
-    mapping(address => Checkpoint[]) public balances;
-    mapping(address => mapping(address => uint256)) public _allowances;
+    /**
+     * @dev See {IERC20-approve}.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     */
+    function approve(address spender, uint256 amount) public virtual override returns (bool) {
+        _approve(_msgSender(), spender, amount);
+        return true;
+    }
 
-    //Migration storage
-    mapping(address => bool) public migrated;
+    /**
+     * @dev See {IERC20-transferFrom}.
+     *
+     * Emits an {Approval} event indicating the updated allowance. This is not
+     * required by the EIP. See the note at the beginning of {ERC20};
+     *
+     * Requirements:
+     * - `sender` and `recipient` cannot be the zero address.
+     * - `sender` must have a balance of at least `amount`.
+     * - the caller must have allowance for ``sender``'s tokens of at least
+     * `amount`.
+     */
+    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
+        _transfer(sender, recipient, amount);
+        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
+        return true;
+    }
+
+    /**
+     * @dev Atomically increases the allowance granted to `spender` by the caller.
+     *
+     * This is an alternative to {approve} that can be used as a mitigation for
+     * problems described in {IERC20-approve}.
+     *
+     * Emits an {Approval} event indicating the updated allowance.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     */
+    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].add(addedValue));
+        return true;
+    }
+
+    /**
+     * @dev Atomically decreases the allowance granted to `spender` by the caller.
+     *
+     * This is an alternative to {approve} that can be used as a mitigation for
+     * problems described in {IERC20-approve}.
+     *
+     * Emits an {Approval} event indicating the updated allowance.
+     *
+     * Requirements:
+     *
+     * - `spender` cannot be the zero address.
+     * - `spender` must have allowance for the caller of at least
+     * `subtractedValue`.
+     */
+    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "ERC20: decreased allowance below zero"));
+        return true;
+    }
+
+    /**
+     * @dev Moves tokens `amount` from `sender` to `recipient`.
+     *
+     * This is internal function is equivalent to {transfer}, and can be used to
+     * e.g. implement automatic token fees, slashing mechanisms, etc.
+     *
+     * Emits a {Transfer} event.
+     *
+     * Requirements:
+     *
+     * - `sender` cannot be the zero address.
+     * - `recipient` cannot be the zero address.
+     * - `sender` must have a balance of at least `amount`.
+     */
+    function _transfer(address sender, address recipient, uint256 amount) internal virtual {
+        require(sender != address(0), "ERC20: transfer from the zero address");
+        require(recipient != address(0), "ERC20: transfer to the zero address");
+
+        _beforeTokenTransfer(sender, recipient, amount);
+
+        _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
+        _balances[recipient] = _balances[recipient].add(amount);
+        emit Transfer(sender, recipient, amount);
+    }
+
+    /** @dev Creates `amount` tokens and assigns them to `account`, increasing
+     * the total supply.
+     *
+     * Emits a {Transfer} event with `from` set to the zero address.
+     *
+     * Requirements
+     *
+     * - `to` cannot be the zero address.
+     */
+    function _mint(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: mint to the zero address");
+
+        _beforeTokenTransfer(address(0), account, amount);
+
+        _totalSupply = _totalSupply.add(amount);
+        _balances[account] = _balances[account].add(amount);
+        emit Transfer(address(0), account, amount);
+    }
+
+    /**
+     * @dev Destroys `amount` tokens from `account`, reducing the
+     * total supply.
+     *
+     * Emits a {Transfer} event with `to` set to the zero address.
+     *
+     * Requirements
+     *
+     * - `account` cannot be the zero address.
+     * - `account` must have at least `amount` tokens.
+     */
+    function _burn(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: burn from the zero address");
+
+        _beforeTokenTransfer(account, address(0), amount);
+
+        _balances[account] = _balances[account].sub(amount, "ERC20: burn amount exceeds balance");
+        _totalSupply = _totalSupply.sub(amount);
+        emit Transfer(account, address(0), amount);
+    }
+
+    /**
+     * @dev Sets `amount` as the allowance of `spender` over the `owner`s tokens.
+     *
+     * This is internal function is equivalent to `approve`, and can be used to
+     * e.g. set automatic allowances for certain subsystems, etc.
+     *
+     * Emits an {Approval} event.
+     *
+     * Requirements:
+     *
+     * - `owner` cannot be the zero address.
+     * - `spender` cannot be the zero address.
+     */
+    function _approve(address owner, address spender, uint256 amount) internal virtual {
+        require(owner != address(0), "ERC20: approve from the zero address");
+        require(spender != address(0), "ERC20: approve to the zero address");
+
+        _allowances[owner][spender] = amount;
+        emit Approval(owner, spender, amount);
+    }
+
+    /**
+     * @dev Sets {decimals} to a value other than the default one of 18.
+     *
+     * WARNING: This function should only be called from the constructor. Most
+     * applications that interact with token contracts will not expect
+     * {decimals} to ever change, and may work incorrectly if it does.
+     */
+    function _setupDecimals(uint8 decimals_) internal {
+        _decimals = decimals_;
+    }
+
+    /**
+     * @dev Hook that is called before any transfer of tokens. This includes
+     * minting and burning.
+     *
+     * Calling conditions:
+     *
+     * - when `from` and `to` are both non-zero, `amount` of ``from``'s tokens
+     * will be to transferred to `to`.
+     * - when `from` is zero, `amount` tokens will be minted for `to`.
+     * - when `to` is zero, `amount` of ``from``'s tokens will be burned.
+     * - `from` and `to` are never both zero.
+     *
+     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
+     */
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual { }
 }
-// SPDX-License-Identifier: MIT
-pragma solidity 0.7.4;
 
-// Helper contract to store hashes of variables
-contract TellorVariables {
-    bytes32 constant _BLOCK_NUMBER =
-        0x4b4cefd5ced7569ef0d091282b4bca9c52a034c56471a6061afd1bf307a2de7c; //keccak256("_BLOCK_NUMBER");
-    bytes32 constant _CURRENT_CHALLENGE =
-        0xd54702836c9d21d0727ffacc3e39f57c92b5ae0f50177e593bfb5ec66e3de280; //keccak256("_CURRENT_CHALLENGE");
-    bytes32 constant _CURRENT_REQUESTID =
-        0xf5126bb0ac211fbeeac2c0e89d4c02ac8cadb2da1cfb27b53c6c1f4587b48020; //keccak256("_CURRENT_REQUESTID");
-    bytes32 constant _CURRENT_REWARD =
-        0xd415862fd27fb74541e0f6f725b0c0d5b5fa1f22367d9b78ec6f61d97d05d5f8; //keccak256("_CURRENT_REWARD");
-    bytes32 constant _CURRENT_TOTAL_TIPS =
-        0x09659d32f99e50ac728058418d38174fe83a137c455ff1847e6fb8e15f78f77a; //keccak256("_CURRENT_TOTAL_TIPS");
-    bytes32 constant _DEITY =
-        0x5fc094d10c65bc33cc842217b2eccca0191ff24148319da094e540a559898961; //keccak256("_DEITY");
-    bytes32 constant _DIFFICULTY =
-        0xf758978fc1647996a3d9992f611883adc442931dc49488312360acc90601759b; //keccak256("_DIFFICULTY");
-    bytes32 constant _DISPUTE_COUNT =
-        0x310199159a20c50879ffb440b45802138b5b162ec9426720e9dd3ee8bbcdb9d7; //keccak256("_DISPUTE_COUNT");
-    bytes32 constant _DISPUTE_FEE =
-        0x675d2171f68d6f5545d54fb9b1fb61a0e6897e6188ca1cd664e7c9530d91ecfc; //keccak256("_DISPUTE_FEE");
-    bytes32 constant _DISPUTE_ROUNDS =
-        0x6ab2b18aafe78fd59c6a4092015bddd9fcacb8170f72b299074f74d76a91a923; //keccak256("_DISPUTE_ROUNDS");
-    bytes32 constant _FEE =
-        0x1da95f11543c9b03927178e07951795dfc95c7501a9d1cf00e13414ca33bc409; //keccak256("FEE");
-    bytes32 constant _MIN_EXECUTION_DATE =
-        0x46f7d53798d31923f6952572c6a19ad2d1a8238d26649c2f3493a6d69e425d28; //keccak256("_MIN_EXECUTION_DATE");
-    bytes32 constant _MINER_SLOT =
-        0x6de96ee4d33a0617f40a846309c8759048857f51b9d59a12d3c3786d4778883d; //keccak256("_MINER_SLOT");
-    bytes32 constant _NUM_OF_VOTES =
-        0x1da378694063870452ce03b189f48e04c1aa026348e74e6c86e10738514ad2c4; //keccak256("_NUM_OF_VOTES");
-    bytes32 constant _OLD_TELLOR =
-        0x56e0987db9eaec01ed9e0af003a0fd5c062371f9d23722eb4a3ebc74f16ea371; //keccak256("_OLD_TELLOR");
-    bytes32 constant _ORIGINAL_ID =
-        0xed92b4c1e0a9e559a31171d487ecbec963526662038ecfa3a71160bd62fb8733; //keccak256("_ORIGINAL_ID");
-    bytes32 constant _OWNER =
-        0x7a39905194de50bde334d18b76bbb36dddd11641d4d50b470cb837cf3bae5def; //keccak256("_OWNER");
-    bytes32 constant _PAID =
-        0x29169706298d2b6df50a532e958b56426de1465348b93650fca42d456eaec5fc; //keccak256("_PAID");
-    bytes32 constant _PENDING_OWNER =
-        0x7ec081f029b8ac7e2321f6ae8c6a6a517fda8fcbf63cabd63dfffaeaafa56cc0; //keccak256("_PENDING_OWNER");
-    bytes32 constant _REQUEST_COUNT =
-        0x3f8b5616fa9e7f2ce4a868fde15c58b92e77bc1acd6769bf1567629a3dc4c865; //keccak256("_REQUEST_COUNT");
-    bytes32 constant _REQUEST_ID =
-        0x9f47a2659c3d32b749ae717d975e7962959890862423c4318cf86e4ec220291f; //keccak256("_REQUEST_ID");
-    bytes32 constant _REQUEST_Q_POSITION =
-        0xf68d680ab3160f1aa5d9c3a1383c49e3e60bf3c0c031245cbb036f5ce99afaa1; //keccak256("_REQUEST_Q_POSITION");
-    bytes32 constant _SLOT_PROGRESS =
-        0xdfbec46864bc123768f0d134913175d9577a55bb71b9b2595fda21e21f36b082; //keccak256("_SLOT_PROGRESS");
-    bytes32 constant _STAKE_AMOUNT =
-        0x5d9fadfc729fd027e395e5157ef1b53ef9fa4a8f053043c5f159307543e7cc97; //keccak256("_STAKE_AMOUNT");
-    bytes32 constant _STAKE_COUNT =
-        0x10c168823622203e4057b65015ff4d95b4c650b308918e8c92dc32ab5a0a034b; //keccak256("_STAKE_COUNT");
-    bytes32 constant _T_BLOCK =
-        0xf3b93531fa65b3a18680d9ea49df06d96fbd883c4889dc7db866f8b131602dfb; //keccak256("_T_BLOCK");
-    bytes32 constant _TALLY_DATE =
-        0xf9e1ae10923bfc79f52e309baf8c7699edb821f91ef5b5bd07be29545917b3a6; //keccak256("_TALLY_DATE");
-    bytes32 constant _TARGET_MINERS =
-        0x0b8561044b4253c8df1d9ad9f9ce2e0f78e4bd42b2ed8dd2e909e85f750f3bc1; //keccak256("_TARGET_MINERS");
-    bytes32 constant _TELLOR_CONTRACT =
-        0x0f1293c916694ac6af4daa2f866f0448d0c2ce8847074a7896d397c961914a08; //keccak256("_TELLOR_CONTRACT");
-    bytes32 constant _TELLOR_GETTERS =
-        0xabd9bea65759494fe86471c8386762f989e1f2e778949e94efa4a9d1c4b3545a; //keccak256("_TELLOR_GETTERS");
-    bytes32 constant _TIME_OF_LAST_NEW_VALUE =
-        0x2c8b528fbaf48aaf13162a5a0519a7ad5a612da8ff8783465c17e076660a59f1; //keccak256("_TIME_OF_LAST_NEW_VALUE");
-    bytes32 constant _TIME_TARGET =
-        0xd4f87b8d0f3d3b7e665df74631f6100b2695daa0e30e40eeac02172e15a999e1; //keccak256("_TIME_TARGET");
-    bytes32 constant _TIMESTAMP =
-        0x2f9328a9c75282bec25bb04befad06926366736e0030c985108445fa728335e5; //keccak256("_TIMESTAMP");
-    bytes32 constant _TOTAL_SUPPLY =
-        0xe6148e7230ca038d456350e69a91b66968b222bfac9ebfbea6ff0a1fb7380160; //keccak256("_TOTAL_SUPPLY");
-    bytes32 constant _TOTAL_TIP =
-        0x1590276b7f31dd8e2a06f9a92867333eeb3eddbc91e73b9833e3e55d8e34f77d; //keccak256("_TOTAL_TIP");
-    bytes32 constant _VALUE =
-        0x9147231ab14efb72c38117f68521ddef8de64f092c18c69dbfb602ffc4de7f47; //keccak256("_VALUE");
-    bytes32 constant _EIP_SLOT =
-        0x7050c9e0f4ca769c69bd3a8ef740bc37934f8e2c036e5a723fd8ee048ed3f8c3;
-}
-{
-  "optimizer": {
-    "enabled": true,
-    "runs": 999999
-  },
-  "outputSelection": {
-    "*": {
-      "*": [
-        "evm.bytecode",
-        "evm.deployedBytecode",
-        "abi"
-      ]
+// copy from openzeppelin Ownable, only modify how the owner transfer
+/**
+ * @dev Contract module which provides a basic access control mechanism, where
+ * there is an account (an owner) that can be granted exclusive access to
+ * specific functions.
+ *
+ * By default, the owner account will be the one that deploys the contract. This
+ * can later be changed with {transferOwnership}.
+ *
+ * This module is used through inheritance. It will make available the modifier
+ * `onlyOwner`, which can be applied to your functions to restrict their use to
+ * the owner.
+ */
+contract PerpFiOwnable is Context {
+    address private _owner;
+    address private _candidate;
+
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+    /**
+     * @dev Initializes the contract setting the deployer as the initial owner.
+     */
+    constructor() internal {
+        address msgSender = _msgSender();
+        _owner = msgSender;
+        emit OwnershipTransferred(address(0), msgSender);
     }
-  },
-  "libraries": {}
+
+    /**
+     * @dev Returns the address of the current owner.
+     */
+    function owner() public view returns (address) {
+        return _owner;
+    }
+
+    function candidate() public view returns (address) {
+        return _candidate;
+    }
+
+    /**
+     * @dev Throws if called by any account other than the owner.
+     */
+    modifier onlyOwner() {
+        require(_owner == _msgSender(), "PerpFiOwnable: caller is not the owner");
+        _;
+    }
+
+    /**
+     * @dev Leaves the contract without owner. It will not be possible to call
+     * `onlyOwner` functions anymore. Can only be called by the current owner.
+     *
+     * NOTE: Renouncing ownership will leave the contract without an owner,
+     * thereby removing any functionality that is only available to the owner.
+     */
+    function renounceOwnership() public virtual onlyOwner {
+        emit OwnershipTransferred(_owner, address(0));
+        _owner = address(0);
+    }
+
+    /**
+     * @dev Set ownership of the contract to a new account (`newOwner`).
+     * Can only be called by the current owner.
+     */
+    function setOwner(address newOwner) public onlyOwner {
+        require(newOwner != address(0), "PerpFiOwnable: zero address");
+        require(newOwner != _owner, "PerpFiOwnable: same as original");
+        require(newOwner != _candidate, "PerpFiOwnable: same as candidate");
+        _candidate = newOwner;
+    }
+
+    /**
+     * @dev Transfers ownership of the contract to a new account (`_candidate`).
+     * Can only be called by the new owner.
+     */
+    function updateOwner() public {
+        require(_candidate != address(0), "PerpFiOwnable: candidate is zero address");
+        require(_candidate == _msgSender(), "PerpFiOwnable: not the new owner");
+
+        emit OwnershipTransferred(_owner, _candidate);
+        _owner = _candidate;
+        _candidate = address(0);
+    }
+}
+
+contract PerpToken is ERC20, PerpFiOwnable {
+    mapping(address => bool) public minters;
+
+    constructor(uint256 _initialSupply) public ERC20("Perpetual", "PERP") {
+        _mint(msg.sender, _initialSupply);
+    }
+
+    function mint(address account, uint256 amount) external {
+        require(minters[msg.sender], "!minter");
+        _mint(account, amount);
+    }
+
+    function addMinter(address _minter) external onlyOwner {
+        minters[_minter] = true;
+    }
+
+    function removeMinter(address _minter) external onlyOwner {
+        minters[_minter] = false;
+    }
 }

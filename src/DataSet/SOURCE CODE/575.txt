@@ -1,257 +1,167 @@
-/**
- *Submitted for verification at Etherscan.io on 2018-03-12
-*/
+// number: 575
+// project: ATMChain (ATM)
+// address: 0x9b11efcaaa1890f6ee52c6bb7cf8153ac5d74139
+// chainid: 1
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.0;
 
-pragma solidity ^0.4.11;
-/**
-    ERC20 Interface
-    @author DongOk Peter Ryu - <odin@yggdrash.io>
-*/
-contract ERC20 {
-    function totalSupply() public constant returns (uint supply);
-    function balanceOf( address who ) public constant returns (uint value);
-    function allowance( address owner, address spender ) public constant returns (uint _allowance);
-
-    function transfer( address to, uint value) public returns (bool ok);
-    function transferFrom( address from, address to, uint value) public returns (bool ok);
-    function approve( address spender, uint value ) public returns (bool ok);
-
-    event Transfer( address indexed from, address indexed to, uint value);
-    event Approval( address indexed owner, address indexed spender, uint value);
-}
-/**
-    LOCKABLE TOKEN
-    @author DongOk Peter Ryu - <odin@yggdrash.io>
-*/
-contract Lockable {
-    uint public creationTime;
-    bool public lock;
-    bool public tokenTransfer;
-    address public owner;
-    mapping( address => bool ) public unlockaddress;
-    // lockaddress List
-    mapping( address => bool ) public lockaddress;
-
-    // LOCK EVENT
-    event Locked(address lockaddress,bool status);
-    // UNLOCK EVENT
-    event Unlocked(address unlockedaddress, bool status);
-
-
-    // if Token transfer
-    modifier isTokenTransfer {
-        // if token transfer is not allow
-        if(!tokenTransfer) {
-            require(unlockaddress[msg.sender]);
-        }
-        _;
-    }
-
-    // This modifier check whether the contract should be in a locked
-    // or unlocked state, then acts and updates accordingly if
-    // necessary
-    modifier checkLock {
-        assert(!lockaddress[msg.sender]);
-        _;
-    }
-
-    modifier isOwner
-    {
-        require(owner == msg.sender);
-        _;
-    }
-
-    function Lockable()
-    public
-    {
-        creationTime = now;
-        tokenTransfer = false;
-        owner = msg.sender;
-    }
-
-    // Lock Address
-    function lockAddress(address target, bool status)
-    external
-    isOwner
-    {
-        require(owner != target);
-        lockaddress[target] = status;
-        Locked(target, status);
-    }
-
-    // UnLock Address
-    function unlockAddress(address target, bool status)
-    external
-    isOwner
-    {
-        unlockaddress[target] = status;
-        Unlocked(target, status);
-    }
-}
-
-library SafeMath {
-  function mul(uint a, uint b) internal returns (uint) {
-    uint c = a * b;
-    assert(a == 0 || c / a == b);
-    return c;
-  }
-
-  function div(uint a, uint b) internal returns (uint) {
-    // assert(b > 0); // Solidity automatically throws when dividing by 0
-    uint c = a / b;
-    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-    return c;
-  }
-
-  function sub(uint a, uint b) internal returns (uint) {
-    assert(b <= a);
-    return a - b;
-  }
-
-  function add(uint a, uint b) internal returns (uint) {
-    uint c = a + b;
-    assert(c >= a);
-    return c;
-  }
-
-  function max64(uint64 a, uint64 b) internal constant returns (uint64) {
-    return a >= b ? a : b;
-  }
-
-  function min64(uint64 a, uint64 b) internal constant returns (uint64) {
-    return a < b ? a : b;
-  }
-
-  function max256(uint256 a, uint256 b) internal constant returns (uint256) {
-    return a >= b ? a : b;
-  }
-
-  function min256(uint256 a, uint256 b) internal constant returns (uint256) {
-    return a < b ? a : b;
-  }
-
-}
-/**
-    YGGDRASH Token
-    @author DongOk Peter Ryu - <odin@yggdrash.io>
-*/
-contract YeedToken is ERC20, Lockable {
-
-    // ADD INFORMATION
-    string public constant name = "YGGDRASH";
-    string public constant symbol = "YEED";
-    uint8 public constant decimals = 18;  // 18 is the most common number of decimal places
-
-    using SafeMath for uint;
-
-    mapping( address => uint ) _balances;
-    mapping( address => mapping( address => uint ) ) _approvals;
-    uint _supply;
-    address public walletAddress;
-
-    event TokenBurned(address burnAddress, uint amountOfTokens);
-    event TokenTransfer();
-
-    modifier onlyFromWallet {
-        require(msg.sender != walletAddress);
-        _;
-    }
-
-    function YeedToken( uint initial_balance, address wallet)
-    public
-    {
-        require(wallet != 0);
-        require(initial_balance != 0);
-        _balances[msg.sender] = initial_balance;
-        _supply = initial_balance;
-        walletAddress = wallet;
-    }
-
-    function totalSupply() public constant returns (uint supply) {
-        return _supply;
-    }
-
-    function balanceOf( address who ) public constant returns (uint value) {
-        return _balances[who];
-    }
-
-    function allowance(address owner, address spender) public constant returns (uint _allowance) {
-        return _approvals[owner][spender];
-    }
-
-    function transfer( address to, uint value)
-    public
-    isTokenTransfer
-    checkLock
-    returns (bool success) {
-
-        require( _balances[msg.sender] >= value );
-
-        _balances[msg.sender] = _balances[msg.sender].sub(value);
-        _balances[to] = _balances[to].add(value);
-        Transfer( msg.sender, to, value );
-        return true;
-    }
-
-    function transferFrom( address from, address to, uint value)
-    public
-    isTokenTransfer
-    checkLock
-    returns (bool success) {
-        // if you don't have enough balance, throw
-        require( _balances[from] >= value );
-        // if you don't have approval, throw
-        require( _approvals[from][msg.sender] >= value );
-        // transfer and return true
-        _approvals[from][msg.sender] = _approvals[from][msg.sender].sub(value);
-        _balances[from] = _balances[from].sub(value);
-        _balances[to] = _balances[to].add(value);
-        Transfer( from, to, value );
-        return true;
-    }
-
-    function approve(address spender, uint value)
-    public
-    checkLock
-    returns (bool success) {
-        _approvals[msg.sender][spender] = value;
-        Approval( msg.sender, spender, value );
-        return true;
-    }
-
-    // burnToken burn tokensAmount for sender balance
-    function burnTokens(uint tokensAmount)
-    public
-    isTokenTransfer
-    {
-        require( _balances[msg.sender] >= tokensAmount );
-
-        _balances[msg.sender] = _balances[msg.sender].sub(tokensAmount);
-        _supply = _supply.sub(tokensAmount);
-        TokenBurned(msg.sender, tokensAmount);
-
-    }
-
-
-    function enableTokenTransfer()
-    external
-    onlyFromWallet
-    {
-        tokenTransfer = true;
-        TokenTransfer();
-    }
-
-    function disableTokenTransfer()
-    external
-    onlyFromWallet
-    {
-        tokenTransfer = false;
-        TokenTransfer();
-    }
-
-    /* This unnamed function is called whenever someone tries to send ether to it */
-    function () public payable {
-        revert();
-    }
-
+contract ERC20Token {
+    /* This is a slight change to the ERC20 base standard.
+    function totalSupply() constant returns (uint256 supply);
+    is replaced with:
+    uint256 public totalSupply;
+    This automatically creates a getter function for the totalSupply.
+    This is moved to the base contract since public getter functions are not
+    currently recognised as an implementation of the matching abstract
+    function by the compiler.
+    */
+    /// total amount of tokens
+    uint256 public totalSupply;
+
+    /// @param _owner The address from which the balance will be retrieved
+    /// @return The balance
+    function balanceOf(address _owner) constant returns (uint256 balance);
+
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+    function transfer(address _to, uint256 _value) returns (bool success);
+
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+
+    /// @notice `msg.sender` approves `_spender` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of tokens to be approved for transfer
+    /// @return Whether the approval was successful or not
+    function approve(address _spender, uint256 _value) returns (bool success);
+
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+    function allowance(address _owner, address _spender) constant returns (uint256 remaining);
+
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+}
+
+contract Owned {
+    /// @dev `owner` is the only address that can call a function with this
+    /// modifier
+    modifier onlyOwner() {
+        require(msg.sender == owner) ;
+        _;
+    }
+
+    address public owner;
+
+    /// @notice The Constructor assigns the message sender to be `owner`
+    function Owned() {
+        owner = msg.sender;
+    }
+
+    address public newOwner;
+
+    /// @notice `owner` can step down and assign some other address to this role
+    /// @param _newOwner The address of the new owner. 0x0 can be used to create
+    ///  an unowned neutral vault, however that cannot be undone
+    function changeOwner(address _newOwner) onlyOwner {
+        newOwner = _newOwner;
+    }
+
+    function acceptOwnership() {
+        if (msg.sender == newOwner) {
+            owner = newOwner;
+        }
+    }
+}
+contract StandardToken is ERC20Token {
+    function transfer(address _to, uint256 _value) returns (bool success) {
+        if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+
+    function approve(address _spender, uint256 _value) returns (bool success) {
+        // To change the approve amount you first have to reduce the addresses`
+        //  allowance to zero by calling `approve(_spender,0)` if it is not
+        //  already 0 to mitigate the race condition described here:
+        //  https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+        require ((_value==0) || (allowed[msg.sender][_spender] ==0));
+
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+        return allowed[_owner][_spender];
+    }
+
+    mapping (address => uint256) public balances;
+    mapping (address => mapping (address => uint256)) allowed;
+}
+contract ATMToken is StandardToken, Owned {
+    // metadata
+    string public constant name = "Attention Token of Media";
+    string public constant symbol = "ATM";
+    string public version = "1.0";
+    uint256 public constant decimals = 8;
+    bool public disabled = false;
+    uint256 public constant MILLION = (10**6 * 10**decimals);
+    // constructor
+    function ATMToken() {
+        totalSupply = 10000 * MILLION; //设置当前ATM发行总量
+
+        balances[0x7b6a1147417f7dff06c77c4026fdc25c227c26c2] = 9200 * MILLION;
+        balances[0xe2aa115842743a189fc01610203d2ff04c59d74a] = 800 * MILLION;
+    }
+
+    function getATMTotalSupply() external constant returns(uint256) {
+        return totalSupply;
+    }
+
+    //在数据迁移时,需要先停止ATM交易
+    function setDisabled(bool flag) external onlyOwner {
+        disabled = flag;
+    }
+
+    function transfer(address _to, uint256 _value) returns (bool success) {
+        require(!disabled);
+        return super.transfer(_to, _value);
+    }
+
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        require(!disabled);
+        return super.transferFrom(_from, _to, _value);
+    }
+    function kill() external onlyOwner {
+        selfdestruct(owner);
+    }
 }

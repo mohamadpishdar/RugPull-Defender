@@ -1,127 +1,2587 @@
+// number: 652
+// project: Origin Dollar (OUSD)
+// address: 0x2a8e1e676ec238d8a992307b495b45b3feaa5e86
+// chainid: 1
+// proxy: true, implementation: 0xa7b7c59a1705e4a624ea8a4ad8a06f9de22dcc33 (OUSD)
+// SPDX-License-Identifier: MIT
+pragma solidity 0.5.11;
+
+/**
+ *Submitted for verification at Etherscan.io on 2020-09-23
+*/
+
+
+/**
+ * @title Proxy
+ * @dev Implements delegation of calls to other contracts, with proper
+ * forwarding of return values and bubbling of failures.
+ * It defines a fallback function that delegates all calls to the address
+ * returned by the abstract _implementation() internal function.
+ */
+contract Proxy {
+  /**
+   * @dev Fallback function.
+   * Implemented entirely in `_fallback`.
+   */
+  function () payable external {
+    _fallback();
+  }
+
+  /**
+   * @return The Address of the implementation.
+   */
+  function _implementation() internal view returns (address);
+
+  /**
+   * @dev Delegates execution to an implementation contract.
+   * This is a low level function that doesn't return to its internal call site.
+   * It will return to the external caller whatever the implementation returns.
+   * @param implementation Address to delegate.
+   */
+  function _delegate(address implementation) internal {
+    assembly {
+      // Copy msg.data. We take full control of memory in this inline assembly
+      // block because it will not return to Solidity code. We overwrite the
+      // Solidity scratch pad at memory position 0.
+      calldatacopy(0, 0, calldatasize)
+
+      // Call the implementation.
+      // out and outsize are 0 because we don't know the size yet.
+      let result := delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+      // Copy the returned data.
+      returndatacopy(0, 0, returndatasize)
+
+      switch result
+      // delegatecall returns 0 on error.
+      case 0 { revert(0, returndatasize) }
+      default { return(0, returndatasize) }
+    }
+  }
+
+  /**
+   * @dev Function that is run as the first thing in the fallback function.
+   * Can be redefined in derived contracts to add functionality.
+   * Redefinitions must call super._willFallback().
+   */
+  function _willFallback() internal {
+  }
+
+  /**
+   * @dev fallback implementation.
+   * Extracted to enable manual triggering.
+   */
+  function _fallback() internal {
+    _willFallback();
+    _delegate(_implementation());
+  }
+}
+
+
+/**
+ * Utility library of inline functions on addresses
+ *
+ * Source https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-solidity/v2.1.3/contracts/utils/Address.sol
+ * This contract is copied here and renamed from the original to avoid clashes in the compiled artifacts
+ * when the user imports a zos-lib contract (that transitively causes this contract to be compiled and added to the
+ * build/artifacts folder) as well as the vanilla Address implementation from an openzeppelin version.
+ */
+library OpenZeppelinUpgradesAddress {
+    /**
+     * Returns whether the target address is a contract
+     * @dev This function will return false if invoked during the constructor of a contract,
+     * as the code is not actually created until after the constructor finishes.
+     * @param account address of the account to check
+     * @return whether the target address is a contract
+     */
+    function isContract(address account) internal view returns (bool) {
+        uint256 size;
+        // XXX Currently there is no better way to check if there is a contract in an address
+        // than to check the size of the code at that address.
+        // See https://ethereum.stackexchange.com/a/14016/36603
+        // for more details about how this works.
+        // TODO Check this again before the Serenity release, because all addresses will be
+        // contracts then.
+        // solhint-disable-next-line no-inline-assembly
+        assembly { size := extcodesize(account) }
+        return size > 0;
+    }
+}
+
+/**
+ * @title BaseUpgradeabilityProxy
+ * @dev This contract implements a proxy that allows to change the
+ * implementation address to which it will delegate.
+ * Such a change is called an implementation upgrade.
+ */
+contract BaseUpgradeabilityProxy is Proxy {
+  /**
+   * @dev Emitted when the implementation is upgraded.
+   * @param implementation Address of the new implementation.
+   */
+  event Upgraded(address indexed implementation);
+
+  /**
+   * @dev Storage slot with the address of the current implementation.
+   * This is the keccak-256 hash of "eip1967.proxy.implementation" subtracted by 1, and is
+   * validated in the constructor.
+   */
+  bytes32 internal constant IMPLEMENTATION_SLOT = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
+
+  /**
+   * @dev Returns the current implementation.
+   * @return Address of the current implementation
+   */
+  function _implementation() internal view returns (address impl) {
+    bytes32 slot = IMPLEMENTATION_SLOT;
+    assembly {
+      impl := sload(slot)
+    }
+  }
+
+  /**
+   * @dev Upgrades the proxy to a new implementation.
+   * @param newImplementation Address of the new implementation.
+   */
+  function _upgradeTo(address newImplementation) internal {
+    _setImplementation(newImplementation);
+    emit Upgraded(newImplementation);
+  }
+
+  /**
+   * @dev Sets the implementation address of the proxy.
+   * @param newImplementation Address of the new implementation.
+   */
+  function _setImplementation(address newImplementation) internal {
+    require(OpenZeppelinUpgradesAddress.isContract(newImplementation), "Cannot set a proxy implementation to a non-contract address");
+
+    bytes32 slot = IMPLEMENTATION_SLOT;
+
+    assembly {
+      sstore(slot, newImplementation)
+    }
+  }
+}
+
+
+/**
+ * @title OUSD Governable Contract
+ * @dev Copy of the openzeppelin Ownable.sol contract with nomenclature change
+ *      from owner to governor and renounce methods removed. Does not use
+ *      Context.sol like Ownable.sol does for simplification.
+ * @author Origin Protocol Inc
+ */
+contract Governable {
+    // Storage position of the owner and pendingOwner of the contract
+    bytes32
+        private constant governorPosition = 0x7bea13895fa79d2831e0a9e28edede30099005a50d652d8957cf8a607ee6ca4a;
+    //keccak256("OUSD.governor");
+
+    bytes32
+        private constant pendingGovernorPosition = 0x44c4d30b2eaad5130ad70c3ba6972730566f3e6359ab83e800d905c61b1c51db;
+    //keccak256("OUSD.pending.governor");
+
+    event PendingGovernorshipTransfer(
+        address indexed previousGovernor,
+        address indexed newGovernor
+    );
+
+    event GovernorshipTransferred(
+        address indexed previousGovernor,
+        address indexed newGovernor
+    );
+
+    /**
+     * @dev Initializes the contract setting the deployer as the initial Governor.
+     */
+    constructor() internal {
+        _setGovernor(msg.sender);
+        emit GovernorshipTransferred(address(0), _governor());
+    }
+
+    /**
+     * @dev Returns the address of the current Governor.
+     */
+    function governor() public view returns (address) {
+        return _governor();
+    }
+
+    function _governor() internal view returns (address governorOut) {
+        bytes32 position = governorPosition;
+        assembly {
+            governorOut := sload(position)
+        }
+    }
+
+    function _pendingGovernor()
+        internal
+        view
+        returns (address pendingGovernor)
+    {
+        bytes32 position = pendingGovernorPosition;
+        assembly {
+            pendingGovernor := sload(position)
+        }
+    }
+
+    /**
+     * @dev Throws if called by any account other than the Governor.
+     */
+    modifier onlyGovernor() {
+        require(isGovernor(), "Caller is not the Governor");
+        _;
+    }
+
+    /**
+     * @dev Returns true if the caller is the current Governor.
+     */
+    function isGovernor() public view returns (bool) {
+        return msg.sender == _governor();
+    }
+
+    function _setGovernor(address newGovernor) internal {
+        bytes32 position = governorPosition;
+        assembly {
+            sstore(position, newGovernor)
+        }
+    }
+
+    function _setPendingGovernor(address newGovernor) internal {
+        bytes32 position = pendingGovernorPosition;
+        assembly {
+            sstore(position, newGovernor)
+        }
+    }
+
+    /**
+     * @dev Transfers Governance of the contract to a new account (`newGovernor`).
+     * Can only be called by the current Governor. Must be claimed for this to complete
+     * @param _newGovernor Address of the new Governor
+     */
+    function transferGovernance(address _newGovernor) external onlyGovernor {
+        _setPendingGovernor(_newGovernor);
+        emit PendingGovernorshipTransfer(_governor(), _newGovernor);
+    }
+
+    /**
+     * @dev Claim Governance of the contract to a new account (`newGovernor`).
+     * Can only be called by the new Governor.
+     */
+    function claimGovernance() external {
+        require(
+            msg.sender == _pendingGovernor(),
+            "Only the pending Governor can complete the claim"
+        );
+        _changeGovernor(msg.sender);
+    }
+
+    /**
+     * @dev Change Governance of the contract to a new account (`newGovernor`).
+     * @param _newGovernor Address of the new Governor
+     */
+    function _changeGovernor(address _newGovernor) internal {
+        require(_newGovernor != address(0), "New Governor is address(0)");
+        emit GovernorshipTransferred(_governor(), _newGovernor);
+        _setGovernor(_newGovernor);
+    }
+}
+
+/**
+ * @title BaseGovernedUpgradeabilityProxy
+ * @dev This contract combines an upgradeability proxy with our governor system
+ * @author Origin Protocol Inc
+ */
+contract InitializeGovernedUpgradeabilityProxy is
+    Governable,
+    BaseUpgradeabilityProxy
+{
+    /**
+     * @dev Contract initializer with Governor enforcement
+     * @param _logic Address of the initial implementation.
+     * @param _initGovernor Address of the initial Governor.
+     * @param _data Data to send as msg.data to the implementation to initialize the proxied contract.
+     * It should include the signature and the parameters of the function to be called, as described in
+     * https://solidity.readthedocs.io/en/v0.4.24/abi-spec.html#function-selector-and-argument-encoding.
+     * This parameter is optional, if no data is given the initialization call to proxied contract will be skipped.
+     */
+    function initialize(
+        address _logic,
+        address _initGovernor,
+        bytes memory _data
+    ) public payable onlyGovernor {
+        require(_implementation() == address(0));
+        assert(
+            IMPLEMENTATION_SLOT ==
+                bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1)
+        );
+        _setImplementation(_logic);
+        if (_data.length > 0) {
+            (bool success, ) = _logic.delegatecall(_data);
+            require(success);
+        }
+        _changeGovernor(_initGovernor);
+    }
+
+    /**
+     * @return The address of the proxy admin/it's also the governor.
+     */
+    function admin() external view returns (address) {
+        return _governor();
+    }
+
+    /**
+     * @return The address of the implementation.
+     */
+    function implementation() external view returns (address) {
+        return _implementation();
+    }
+
+    /**
+     * @dev Upgrade the backing implementation of the proxy.
+     * Only the admin can call this function.
+     * @param newImplementation Address of the new implementation.
+     */
+    function upgradeTo(address newImplementation) external onlyGovernor {
+        _upgradeTo(newImplementation);
+    }
+
+    /**
+     * @dev Upgrade the backing implementation of the proxy and call a function
+     * on the new implementation.
+     * This is useful to initialize the proxied contract.
+     * @param newImplementation Address of the new implementation.
+     * @param data Data to send as msg.data in the low level call.
+     * It should include the signature and the parameters of the function to be called, as described in
+     * https://solidity.readthedocs.io/en/v0.4.24/abi-spec.html#function-selector-and-argument-encoding.
+     */
+    function upgradeToAndCall(address newImplementation, bytes calldata data)
+        external
+        payable
+        onlyGovernor
+    {
+        _upgradeTo(newImplementation);
+        (bool success, ) = newImplementation.delegatecall(data);
+        require(success);
+    }
+}
+
+/**
+ * @notice OUSDProxy delegates calls to a OUSD implementation
+ */
+contract OUSDProxy is InitializeGovernedUpgradeabilityProxy {
+
+}
+
+// OpenZeppelin Contracts v4.4.1 (token/ERC20/IERC20.sol)
+
+
 /**
- *Submitted for verification at Etherscan.io on 2018-02-27
-*/
+ * @dev Interface of the ERC20 standard as defined in the EIP.
+ */
+interface IERC20 {
+    /**
+     * @dev Returns the amount of tokens in existence.
+     */
+    function totalSupply() external view returns (uint256);
 
-pragma solidity 0.4.19;
+    /**
+     * @dev Returns the amount of tokens owned by `account`.
+     */
+    function balanceOf(address account) external view returns (uint256);
 
-contract Token {
+    /**
+     * @dev Moves `amount` tokens from the caller's account to `recipient`.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transfer(address recipient, uint256 amount) external returns (bool);
 
-    /// @return total amount of tokens
-    function totalSupply() constant returns (uint supply) {}
+    /**
+     * @dev Returns the remaining number of tokens that `spender` will be
+     * allowed to spend on behalf of `owner` through {transferFrom}. This is
+     * zero by default.
+     *
+     * This value changes when {approve} or {transferFrom} are called.
+     */
+    function allowance(address owner, address spender) external view returns (uint256);
 
-    /// @param _owner The address from which the balance will be retrieved
-    /// @return The balance
-    function balanceOf(address _owner) constant returns (uint balance) {}
+    /**
+     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * IMPORTANT: Beware that changing an allowance with this method brings the risk
+     * that someone may use both the old and the new allowance by unfortunate
+     * transaction ordering. One possible solution to mitigate this race
+     * condition is to first reduce the spender's allowance to 0 and set the
+     * desired value afterwards:
+     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     *
+     * Emits an {Approval} event.
+     */
+    function approve(address spender, uint256 amount) external returns (bool);
 
-    /// @notice send `_value` token to `_to` from `msg.sender`
-    /// @param _to The address of the recipient
-    /// @param _value The amount of token to be transferred
-    /// @return Whether the transfer was successful or not
-    function transfer(address _to, uint _value) returns (bool success) {}
+    /**
+     * @dev Moves `amount` tokens from `sender` to `recipient` using the
+     * allowance mechanism. `amount` is then deducted from the caller's
+     * allowance.
+     *
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
+     */
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) external returns (bool);
 
-    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
-    /// @param _from The address of the sender
-    /// @param _to The address of the recipient
-    /// @param _value The amount of token to be transferred
-    /// @return Whether the transfer was successful or not
-    function transferFrom(address _from, address _to, uint _value) returns (bool success) {}
+    /**
+     * @dev Emitted when `value` tokens are moved from one account (`from`) to
+     * another (`to`).
+     *
+     * Note that `value` may be zero.
+     */
+    event Transfer(address indexed from, address indexed to, uint256 value);
 
-    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
-    /// @param _spender The address of the account able to transfer the tokens
-    /// @param _value The amount of wei to be approved for transfer
-    /// @return Whether the approval was successful or not
-    function approve(address _spender, uint _value) returns (bool success) {}
-
-    /// @param _owner The address of the account owning tokens
-    /// @param _spender The address of the account able to transfer the tokens
-    /// @return Amount of remaining tokens allowed to spent
-    function allowance(address _owner, address _spender) constant returns (uint remaining) {}
-
-    event Transfer(address indexed _from, address indexed _to, uint _value);
-    event Approval(address indexed _owner, address indexed _spender, uint _value);
+    /**
+     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
+     * a call to {approve}. `value` is the new allowance.
+     */
+    event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-contract RegularToken is Token {
+// OpenZeppelin Contracts v4.4.1 (token/ERC20/utils/SafeERC20.sol)
 
-    function transfer(address _to, uint _value) returns (bool) {
-        //Default assumes totalSupply can't be over max (2^256 - 1).
-        if (balances[msg.sender] >= _value && balances[_to] + _value >= balances[_to]) {
-            balances[msg.sender] -= _value;
-            balances[_to] += _value;
-            Transfer(msg.sender, _to, _value);
-            return true;
-        } else { return false; }
+
+
+
+/**
+ * @title SafeERC20
+ * @dev Wrappers around ERC20 operations that throw on failure (when the token
+ * contract returns false). Tokens that return no value (and instead revert or
+ * throw on failure) are also supported, non-reverting calls are assumed to be
+ * successful.
+ * To use this library you can add a `using SafeERC20 for IERC20;` statement to your contract,
+ * which allows you to call the safe operations as `token.safeTransfer(...)`, etc.
+ */
+library SafeERC20 {
+    using Address for address;
+
+    function safeTransfer(
+        IERC20 token,
+        address to,
+        uint256 value
+    ) internal {
+        _callOptionalReturn(token, abi.encodeWithSelector(token.transfer.selector, to, value));
     }
 
-    function transferFrom(address _from, address _to, uint _value) returns (bool) {
-        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value >= balances[_to]) {
-            balances[_to] += _value;
-            balances[_from] -= _value;
-            allowed[_from][msg.sender] -= _value;
-            Transfer(_from, _to, _value);
-            return true;
-        } else { return false; }
+    function safeTransferFrom(
+        IERC20 token,
+        address from,
+        address to,
+        uint256 value
+    ) internal {
+        _callOptionalReturn(token, abi.encodeWithSelector(token.transferFrom.selector, from, to, value));
     }
 
-    function balanceOf(address _owner) constant returns (uint) {
-        return balances[_owner];
+    /**
+     * @dev Deprecated. This function has issues similar to the ones found in
+     * {IERC20-approve}, and its usage is discouraged.
+     *
+     * Whenever possible, use {safeIncreaseAllowance} and
+     * {safeDecreaseAllowance} instead.
+     */
+    function safeApprove(
+        IERC20 token,
+        address spender,
+        uint256 value
+    ) internal {
+        // safeApprove should only be called when setting an initial allowance,
+        // or when resetting it to zero. To increase and decrease it, use
+        // 'safeIncreaseAllowance' and 'safeDecreaseAllowance'
+        require(
+            (value == 0) || (token.allowance(address(this), spender) == 0),
+            "SafeERC20: approve from non-zero to non-zero allowance"
+        );
+        _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, value));
     }
 
-    function approve(address _spender, uint _value) returns (bool) {
-        allowed[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
-        return true;
+    function safeIncreaseAllowance(
+        IERC20 token,
+        address spender,
+        uint256 value
+    ) internal {
+        uint256 newAllowance = token.allowance(address(this), spender) + value;
+        _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, newAllowance));
     }
 
-    function allowance(address _owner, address _spender) constant returns (uint) {
-        return allowed[_owner][_spender];
+    function safeDecreaseAllowance(
+        IERC20 token,
+        address spender,
+        uint256 value
+    ) internal {
+        unchecked {
+            uint256 oldAllowance = token.allowance(address(this), spender);
+            require(oldAllowance >= value, "SafeERC20: decreased allowance below zero");
+            uint256 newAllowance = oldAllowance - value;
+            _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, newAllowance));
+        }
     }
 
-    mapping (address => uint) balances;
-    mapping (address => mapping (address => uint)) allowed;
-    uint public totalSupply;
-}
+    /**
+     * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement
+     * on the return value: the return value is optional (but if data is returned, it must not be false).
+     * @param token The token targeted by the call.
+     * @param data The call data (encoded using abi.encode or one of its variants).
+     */
+    function _callOptionalReturn(IERC20 token, bytes memory data) private {
+        // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since
+        // we're implementing it ourselves. We use {Address.functionCall} to perform this call, which verifies that
+        // the target address contains contract code and also asserts for success in the low-level call.
 
-contract UnboundedRegularToken is RegularToken {
-
-    uint constant MAX_UINT = 2**256 - 1;
-    
-    /// @dev ERC20 transferFrom, modified such that an allowance of MAX_UINT represents an unlimited amount.
-    /// @param _from Address to transfer from.
-    /// @param _to Address to transfer to.
-    /// @param _value Amount to transfer.
-    /// @return Success of transfer.
-    function transferFrom(address _from, address _to, uint _value)
-        public
-        returns (bool)
-    {
-        uint allowance = allowed[_from][msg.sender];
-        if (balances[_from] >= _value
-            && allowance >= _value
-            && balances[_to] + _value >= balances[_to]
-        ) {
-            balances[_to] += _value;
-            balances[_from] -= _value;
-            if (allowance < MAX_UINT) {
-                allowed[_from][msg.sender] -= _value;
-            }
-            Transfer(_from, _to, _value);
-            return true;
-        } else {
-            return false;
+        bytes memory returndata = address(token).functionCall(data, "SafeERC20: low-level call failed");
+        if (returndata.length > 0) {
+            // Return data is optional
+            require(abi.decode(returndata, (bool)), "SafeERC20: ERC20 operation did not succeed");
         }
     }
 }
 
-contract HBToken is UnboundedRegularToken {
+// OpenZeppelin Contracts v4.4.1 (utils/Address.sol)
 
-    uint public totalSupply = 5*10**26;
-    uint8 constant public decimals = 18;
-    string constant public name = "HuobiToken";
-    string constant public symbol = "HT";
 
-    function HBToken() {
-        balances[msg.sender] = totalSupply;
-        Transfer(address(0), msg.sender, totalSupply);
+/**
+ * @dev Collection of functions related to the address type
+ */
+library Address {
+    /**
+     * @dev Returns true if `account` is a contract.
+     *
+     * [IMPORTANT]
+     * ====
+     * It is unsafe to assume that an address for which this function returns
+     * false is an externally-owned account (EOA) and not a contract.
+     *
+     * Among others, `isContract` will return false for the following
+     * types of addresses:
+     *
+     *  - an externally-owned account
+     *  - a contract in construction
+     *  - an address where a contract will be created
+     *  - an address where a contract lived, but was destroyed
+     * ====
+     */
+    function isContract(address account) internal view returns (bool) {
+        // This method relies on extcodesize, which returns 0 for contracts in
+        // construction, since the code is only stored at the end of the
+        // constructor execution.
+
+        uint256 size;
+        assembly {
+            size := extcodesize(account)
+        }
+        return size > 0;
+    }
+
+    /**
+     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to
+     * `recipient`, forwarding all available gas and reverting on errors.
+     *
+     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost
+     * of certain opcodes, possibly making contracts go over the 2300 gas limit
+     * imposed by `transfer`, making them unable to receive funds via
+     * `transfer`. {sendValue} removes this limitation.
+     *
+     * https://diligence.consensys.net/posts/2019/09/stop-using-soliditys-transfer-now/[Learn more].
+     *
+     * IMPORTANT: because control is transferred to `recipient`, care must be
+     * taken to not create reentrancy vulnerabilities. Consider using
+     * {ReentrancyGuard} or the
+     * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
+     */
+    function sendValue(address payable recipient, uint256 amount) internal {
+        require(address(this).balance >= amount, "Address: insufficient balance");
+
+        (bool success, ) = recipient.call{value: amount}("");
+        require(success, "Address: unable to send value, recipient may have reverted");
+    }
+
+    /**
+     * @dev Performs a Solidity function call using a low level `call`. A
+     * plain `call` is an unsafe replacement for a function call: use this
+     * function instead.
+     *
+     * If `target` reverts with a revert reason, it is bubbled up by this
+     * function (like regular Solidity function calls).
+     *
+     * Returns the raw returned data. To convert to the expected return value,
+     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].
+     *
+     * Requirements:
+     *
+     * - `target` must be a contract.
+     * - calling `target` with `data` must not revert.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionCall(target, data, "Address: low-level call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`], but with
+     * `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, 0, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but also transferring `value` wei to `target`.
+     *
+     * Requirements:
+     *
+     * - the calling contract must have an ETH balance of at least `value`.
+     * - the called Solidity function must be `payable`.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(
+        address target,
+        bytes memory data,
+        uint256 value
+    ) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCallWithValue-address-bytes-uint256-}[`functionCallWithValue`], but
+     * with `errorMessage` as a fallback revert reason when `target` reverts.
+     *
+     * _Available since v3.1._
+     */
+    function functionCallWithValue(
+        address target,
+        bytes memory data,
+        uint256 value,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        require(address(this).balance >= value, "Address: insufficient balance for call");
+        require(isContract(target), "Address: call to non-contract");
+
+        (bool success, bytes memory returndata) = target.call{value: value}(data);
+        return verifyCallResult(success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but performing a static call.
+     *
+     * _Available since v3.3._
+     */
+    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {
+        return functionStaticCall(target, data, "Address: low-level static call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-string-}[`functionCall`],
+     * but performing a static call.
+     *
+     * _Available since v3.3._
+     */
+    function functionStaticCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal view returns (bytes memory) {
+        require(isContract(target), "Address: static call to non-contract");
+
+        (bool success, bytes memory returndata) = target.staticcall(data);
+        return verifyCallResult(success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],
+     * but performing a delegate call.
+     *
+     * _Available since v3.4._
+     */
+    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionDelegateCall(target, data, "Address: low-level delegate call failed");
+    }
+
+    /**
+     * @dev Same as {xref-Address-functionCall-address-bytes-string-}[`functionCall`],
+     * but performing a delegate call.
+     *
+     * _Available since v3.4._
+     */
+    function functionDelegateCall(
+        address target,
+        bytes memory data,
+        string memory errorMessage
+    ) internal returns (bytes memory) {
+        require(isContract(target), "Address: delegate call to non-contract");
+
+        (bool success, bytes memory returndata) = target.delegatecall(data);
+        return verifyCallResult(success, returndata, errorMessage);
+    }
+
+    /**
+     * @dev Tool to verifies that a low level call was successful, and revert if it wasn't, either by bubbling the
+     * revert reason using the provided one.
+     *
+     * _Available since v4.3._
+     */
+    function verifyCallResult(
+        bool success,
+        bytes memory returndata,
+        string memory errorMessage
+    ) internal pure returns (bytes memory) {
+        if (success) {
+            return returndata;
+        } else {
+            // Look for revert reason and bubble it up if present
+            if (returndata.length > 0) {
+                // The easiest way to bubble the revert reason is using memory via assembly
+
+                assembly {
+                    let returndata_size := mload(returndata)
+                    revert(add(32, returndata), returndata_size)
+                }
+            } else {
+                revert(errorMessage);
+            }
+        }
+    }
+}
+
+// OpenZeppelin Contracts v4.4.1 (utils/math/SafeCast.sol)
+
+
+/**
+ * @dev Wrappers over Solidity's uintXX/intXX casting operators with added overflow
+ * checks.
+ *
+ * Downcasting from uint256/int256 in Solidity does not revert on overflow. This can
+ * easily result in undesired exploitation or bugs, since developers usually
+ * assume that overflows raise errors. `SafeCast` restores this intuition by
+ * reverting the transaction when such an operation overflows.
+ *
+ * Using this library instead of the unchecked operations eliminates an entire
+ * class of bugs, so it's recommended to use it always.
+ *
+ * Can be combined with {SafeMath} and {SignedSafeMath} to extend it to smaller types, by performing
+ * all math on `uint256` and `int256` and then downcasting.
+ */
+library SafeCast {
+    /**
+     * @dev Returns the downcasted uint224 from uint256, reverting on
+     * overflow (when the input is greater than largest uint224).
+     *
+     * Counterpart to Solidity's `uint224` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 224 bits
+     */
+    function toUint224(uint256 value) internal pure returns (uint224) {
+        require(value <= type(uint224).max, "SafeCast: value doesn't fit in 224 bits");
+        return uint224(value);
+    }
+
+    /**
+     * @dev Returns the downcasted uint128 from uint256, reverting on
+     * overflow (when the input is greater than largest uint128).
+     *
+     * Counterpart to Solidity's `uint128` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 128 bits
+     */
+    function toUint128(uint256 value) internal pure returns (uint128) {
+        require(value <= type(uint128).max, "SafeCast: value doesn't fit in 128 bits");
+        return uint128(value);
+    }
+
+    /**
+     * @dev Returns the downcasted uint96 from uint256, reverting on
+     * overflow (when the input is greater than largest uint96).
+     *
+     * Counterpart to Solidity's `uint96` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 96 bits
+     */
+    function toUint96(uint256 value) internal pure returns (uint96) {
+        require(value <= type(uint96).max, "SafeCast: value doesn't fit in 96 bits");
+        return uint96(value);
+    }
+
+    /**
+     * @dev Returns the downcasted uint64 from uint256, reverting on
+     * overflow (when the input is greater than largest uint64).
+     *
+     * Counterpart to Solidity's `uint64` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 64 bits
+     */
+    function toUint64(uint256 value) internal pure returns (uint64) {
+        require(value <= type(uint64).max, "SafeCast: value doesn't fit in 64 bits");
+        return uint64(value);
+    }
+
+    /**
+     * @dev Returns the downcasted uint32 from uint256, reverting on
+     * overflow (when the input is greater than largest uint32).
+     *
+     * Counterpart to Solidity's `uint32` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 32 bits
+     */
+    function toUint32(uint256 value) internal pure returns (uint32) {
+        require(value <= type(uint32).max, "SafeCast: value doesn't fit in 32 bits");
+        return uint32(value);
+    }
+
+    /**
+     * @dev Returns the downcasted uint16 from uint256, reverting on
+     * overflow (when the input is greater than largest uint16).
+     *
+     * Counterpart to Solidity's `uint16` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 16 bits
+     */
+    function toUint16(uint256 value) internal pure returns (uint16) {
+        require(value <= type(uint16).max, "SafeCast: value doesn't fit in 16 bits");
+        return uint16(value);
+    }
+
+    /**
+     * @dev Returns the downcasted uint8 from uint256, reverting on
+     * overflow (when the input is greater than largest uint8).
+     *
+     * Counterpart to Solidity's `uint8` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 8 bits.
+     */
+    function toUint8(uint256 value) internal pure returns (uint8) {
+        require(value <= type(uint8).max, "SafeCast: value doesn't fit in 8 bits");
+        return uint8(value);
+    }
+
+    /**
+     * @dev Converts a signed int256 into an unsigned uint256.
+     *
+     * Requirements:
+     *
+     * - input must be greater than or equal to 0.
+     */
+    function toUint256(int256 value) internal pure returns (uint256) {
+        require(value >= 0, "SafeCast: value must be positive");
+        return uint256(value);
+    }
+
+    /**
+     * @dev Returns the downcasted int128 from int256, reverting on
+     * overflow (when the input is less than smallest int128 or
+     * greater than largest int128).
+     *
+     * Counterpart to Solidity's `int128` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 128 bits
+     *
+     * _Available since v3.1._
+     */
+    function toInt128(int256 value) internal pure returns (int128) {
+        require(value >= type(int128).min && value <= type(int128).max, "SafeCast: value doesn't fit in 128 bits");
+        return int128(value);
+    }
+
+    /**
+     * @dev Returns the downcasted int64 from int256, reverting on
+     * overflow (when the input is less than smallest int64 or
+     * greater than largest int64).
+     *
+     * Counterpart to Solidity's `int64` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 64 bits
+     *
+     * _Available since v3.1._
+     */
+    function toInt64(int256 value) internal pure returns (int64) {
+        require(value >= type(int64).min && value <= type(int64).max, "SafeCast: value doesn't fit in 64 bits");
+        return int64(value);
+    }
+
+    /**
+     * @dev Returns the downcasted int32 from int256, reverting on
+     * overflow (when the input is less than smallest int32 or
+     * greater than largest int32).
+     *
+     * Counterpart to Solidity's `int32` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 32 bits
+     *
+     * _Available since v3.1._
+     */
+    function toInt32(int256 value) internal pure returns (int32) {
+        require(value >= type(int32).min && value <= type(int32).max, "SafeCast: value doesn't fit in 32 bits");
+        return int32(value);
+    }
+
+    /**
+     * @dev Returns the downcasted int16 from int256, reverting on
+     * overflow (when the input is less than smallest int16 or
+     * greater than largest int16).
+     *
+     * Counterpart to Solidity's `int16` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 16 bits
+     *
+     * _Available since v3.1._
+     */
+    function toInt16(int256 value) internal pure returns (int16) {
+        require(value >= type(int16).min && value <= type(int16).max, "SafeCast: value doesn't fit in 16 bits");
+        return int16(value);
+    }
+
+    /**
+     * @dev Returns the downcasted int8 from int256, reverting on
+     * overflow (when the input is less than smallest int8 or
+     * greater than largest int8).
+     *
+     * Counterpart to Solidity's `int8` operator.
+     *
+     * Requirements:
+     *
+     * - input must fit into 8 bits.
+     *
+     * _Available since v3.1._
+     */
+    function toInt8(int256 value) internal pure returns (int8) {
+        require(value >= type(int8).min && value <= type(int8).max, "SafeCast: value doesn't fit in 8 bits");
+        return int8(value);
+    }
+
+    /**
+     * @dev Converts an unsigned uint256 into a signed int256.
+     *
+     * Requirements:
+     *
+     * - input must be less than or equal to maxInt256.
+     */
+    function toInt256(uint256 value) internal pure returns (int256) {
+        // Note: Unsafe cast below is okay because `type(int256).max` is guaranteed to be positive
+        require(value <= uint256(type(int256).max), "SafeCast: value doesn't fit in an int256");
+        return int256(value);
+    }
+}
+
+/**
+ * @title Base for contracts that are managed by the Origin Protocol's Governor.
+ * @dev Copy of the openzeppelin Ownable.sol contract with nomenclature change
+ *      from owner to governor and renounce methods removed. Does not use
+ *      Context.sol like Ownable.sol does for simplification.
+ * @author Origin Protocol Inc
+ */
+abstract contract Governable {
+    // Storage position of the owner and pendingOwner of the contract
+    // keccak256("OUSD.governor");
+    bytes32 private constant governorPosition =
+        0x7bea13895fa79d2831e0a9e28edede30099005a50d652d8957cf8a607ee6ca4a;
+
+    // keccak256("OUSD.pending.governor");
+    bytes32 private constant pendingGovernorPosition =
+        0x44c4d30b2eaad5130ad70c3ba6972730566f3e6359ab83e800d905c61b1c51db;
+
+    // keccak256("OUSD.reentry.status");
+    bytes32 private constant reentryStatusPosition =
+        0x53bf423e48ed90e97d02ab0ebab13b2a235a6bfbe9c321847d5c175333ac4535;
+
+    // See OpenZeppelin ReentrancyGuard implementation
+    uint256 constant _NOT_ENTERED = 1;
+    uint256 constant _ENTERED = 2;
+
+    event PendingGovernorshipTransfer(
+        address indexed previousGovernor,
+        address indexed newGovernor
+    );
+
+    event GovernorshipTransferred(
+        address indexed previousGovernor,
+        address indexed newGovernor
+    );
+
+    /**
+     * @notice Returns the address of the current Governor.
+     */
+    function governor() public view returns (address) {
+        return _governor();
+    }
+
+    /**
+     * @dev Returns the address of the current Governor.
+     */
+    function _governor() internal view returns (address governorOut) {
+        bytes32 position = governorPosition;
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            governorOut := sload(position)
+        }
+    }
+
+    /**
+     * @dev Returns the address of the pending Governor.
+     */
+    function _pendingGovernor()
+        internal
+        view
+        returns (address pendingGovernor)
+    {
+        bytes32 position = pendingGovernorPosition;
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            pendingGovernor := sload(position)
+        }
+    }
+
+    /**
+     * @dev Throws if called by any account other than the Governor.
+     */
+    modifier onlyGovernor() {
+        require(isGovernor(), "Caller is not the Governor");
+        _;
+    }
+
+    /**
+     * @notice Returns true if the caller is the current Governor.
+     */
+    function isGovernor() public view returns (bool) {
+        return msg.sender == _governor();
+    }
+
+    function _setGovernor(address newGovernor) internal {
+        emit GovernorshipTransferred(_governor(), newGovernor);
+
+        bytes32 position = governorPosition;
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            sstore(position, newGovernor)
+        }
+    }
+
+    /**
+     * @dev Prevents a contract from calling itself, directly or indirectly.
+     * Calling a `nonReentrant` function from another `nonReentrant`
+     * function is not supported. It is possible to prevent this from happening
+     * by making the `nonReentrant` function external, and make it call a
+     * `private` function that does the actual work.
+     */
+    modifier nonReentrant() {
+        bytes32 position = reentryStatusPosition;
+        uint256 _reentry_status;
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            _reentry_status := sload(position)
+        }
+
+        // On the first call to nonReentrant, _notEntered will be true
+        require(_reentry_status != _ENTERED, "Reentrant call");
+
+        // Any calls to nonReentrant after this point will fail
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            sstore(position, _ENTERED)
+        }
+
+        _;
+
+        // By storing the original value once again, a refund is triggered (see
+        // https://eips.ethereum.org/EIPS/eip-2200)
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            sstore(position, _NOT_ENTERED)
+        }
+    }
+
+    function _setPendingGovernor(address newGovernor) internal {
+        bytes32 position = pendingGovernorPosition;
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            sstore(position, newGovernor)
+        }
+    }
+
+    /**
+     * @notice Transfers Governance of the contract to a new account (`newGovernor`).
+     * Can only be called by the current Governor. Must be claimed for this to complete
+     * @param _newGovernor Address of the new Governor
+     */
+    function transferGovernance(address _newGovernor) external onlyGovernor {
+        _setPendingGovernor(_newGovernor);
+        emit PendingGovernorshipTransfer(_governor(), _newGovernor);
+    }
+
+    /**
+     * @notice Claim Governance of the contract to a new account (`newGovernor`).
+     * Can only be called by the new Governor.
+     */
+    function claimGovernance() external {
+        require(
+            msg.sender == _pendingGovernor(),
+            "Only the pending Governor can complete the claim"
+        );
+        _changeGovernor(msg.sender);
+    }
+
+    /**
+     * @dev Change Governance of the contract to a new account (`newGovernor`).
+     * @param _newGovernor Address of the new Governor
+     */
+    function _changeGovernor(address _newGovernor) internal {
+        require(_newGovernor != address(0), "New Governor is address(0)");
+        _setGovernor(_newGovernor);
+    }
+}
+
+interface IBasicToken {
+    function symbol() external view returns (string memory);
+
+    function decimals() external view returns (uint8);
+}
+
+/**
+ * @title Platform interface to integrate with lending platform like Compound, AAVE etc.
+ */
+interface IStrategy {
+    /**
+     * @dev Deposit the given asset to platform
+     * @param _asset asset address
+     * @param _amount Amount to deposit
+     */
+    function deposit(address _asset, uint256 _amount) external;
+
+    /**
+     * @dev Deposit the entire balance of all supported assets in the Strategy
+     *      to the platform
+     */
+    function depositAll() external;
+
+    /**
+     * @dev Withdraw given asset from Lending platform
+     */
+    function withdraw(
+        address _recipient,
+        address _asset,
+        uint256 _amount
+    ) external;
+
+    /**
+     * @dev Liquidate all assets in strategy and return them to Vault.
+     */
+    function withdrawAll() external;
+
+    /**
+     * @dev Returns the current balance of the given asset.
+     */
+    function checkBalance(address _asset)
+        external
+        view
+        returns (uint256 balance);
+
+    /**
+     * @dev Returns bool indicating whether strategy supports asset.
+     */
+    function supportsAsset(address _asset) external view returns (bool);
+
+    /**
+     * @dev Collect reward tokens from the Strategy.
+     */
+    function collectRewardTokens() external;
+
+    /**
+     * @dev The address array of the reward tokens for the Strategy.
+     */
+    function getRewardTokenAddresses() external view returns (address[] memory);
+
+    function harvesterAddress() external view returns (address);
+}
+
+interface IVault {
+    // slither-disable-start constable-states
+
+    event AssetSupported(address _asset);
+    event AssetDefaultStrategyUpdated(address _asset, address _strategy);
+    event AssetAllocated(address _asset, address _strategy, uint256 _amount);
+    event StrategyApproved(address _addr);
+    event StrategyRemoved(address _addr);
+    event Mint(address _addr, uint256 _value);
+    event Redeem(address _addr, uint256 _value);
+    event CapitalPaused();
+    event CapitalUnpaused();
+    event RebasePaused();
+    event RebaseUnpaused();
+    event VaultBufferUpdated(uint256 _vaultBuffer);
+    event RedeemFeeUpdated(uint256 _redeemFeeBps);
+    event PriceProviderUpdated(address _priceProvider);
+    event AllocateThresholdUpdated(uint256 _threshold);
+    event RebaseThresholdUpdated(uint256 _threshold);
+    event StrategistUpdated(address _address);
+    event MaxSupplyDiffChanged(uint256 maxSupplyDiff);
+    event YieldDistribution(address _to, uint256 _yield, uint256 _fee);
+    event TrusteeFeeBpsChanged(uint256 _basis);
+    event TrusteeAddressChanged(address _address);
+    event SwapperChanged(address _address);
+    event SwapAllowedUndervalueChanged(uint256 _basis);
+    event SwapSlippageChanged(address _asset, uint256 _basis);
+    event Swapped(
+        address indexed _fromAsset,
+        address indexed _toAsset,
+        uint256 _fromAssetAmount,
+        uint256 _toAssetAmount
+    );
+    event StrategyAddedToMintWhitelist(address indexed strategy);
+    event StrategyRemovedFromMintWhitelist(address indexed strategy);
+    event DripperChanged(address indexed _dripper);
+    event WithdrawalRequested(
+        address indexed _withdrawer,
+        uint256 indexed _requestId,
+        uint256 _amount,
+        uint256 _queued
+    );
+    event WithdrawalClaimed(
+        address indexed _withdrawer,
+        uint256 indexed _requestId,
+        uint256 _amount
+    );
+    event WithdrawalClaimable(uint256 _claimable, uint256 _newClaimable);
+
+    // Governable.sol
+    function transferGovernance(address _newGovernor) external;
+
+    function claimGovernance() external;
+
+    function governor() external view returns (address);
+
+    function ADMIN_IMPLEMENTATION() external view returns (address);
+
+    // VaultAdmin.sol
+    function setPriceProvider(address _priceProvider) external;
+
+    function priceProvider() external view returns (address);
+
+    function setRedeemFeeBps(uint256 _redeemFeeBps) external;
+
+    function redeemFeeBps() external view returns (uint256);
+
+    function setVaultBuffer(uint256 _vaultBuffer) external;
+
+    function vaultBuffer() external view returns (uint256);
+
+    function setAutoAllocateThreshold(uint256 _threshold) external;
+
+    function autoAllocateThreshold() external view returns (uint256);
+
+    function setRebaseThreshold(uint256 _threshold) external;
+
+    function rebaseThreshold() external view returns (uint256);
+
+    function setStrategistAddr(address _address) external;
+
+    function strategistAddr() external view returns (address);
+
+    function setMaxSupplyDiff(uint256 _maxSupplyDiff) external;
+
+    function maxSupplyDiff() external view returns (uint256);
+
+    function setTrusteeAddress(address _address) external;
+
+    function trusteeAddress() external view returns (address);
+
+    function setTrusteeFeeBps(uint256 _basis) external;
+
+    function trusteeFeeBps() external view returns (uint256);
+
+    function ousdMetaStrategy() external view returns (address);
+
+    function setSwapper(address _swapperAddr) external;
+
+    function setSwapAllowedUndervalue(uint16 _percentageBps) external;
+
+    function setOracleSlippage(address _asset, uint16 _allowedOracleSlippageBps)
+        external;
+
+    function supportAsset(address _asset, uint8 _unitConversion) external;
+
+    function approveStrategy(address _addr) external;
+
+    function removeStrategy(address _addr) external;
+
+    function setAssetDefaultStrategy(address _asset, address _strategy)
+        external;
+
+    function assetDefaultStrategies(address _asset)
+        external
+        view
+        returns (address);
+
+    function pauseRebase() external;
+
+    function unpauseRebase() external;
+
+    function rebasePaused() external view returns (bool);
+
+    function pauseCapital() external;
+
+    function unpauseCapital() external;
+
+    function capitalPaused() external view returns (bool);
+
+    function transferToken(address _asset, uint256 _amount) external;
+
+    function priceUnitMint(address asset) external view returns (uint256);
+
+    function priceUnitRedeem(address asset) external view returns (uint256);
+
+    function withdrawAllFromStrategy(address _strategyAddr) external;
+
+    function withdrawAllFromStrategies() external;
+
+    function withdrawFromStrategy(
+        address _strategyFromAddress,
+        address[] calldata _assets,
+        uint256[] calldata _amounts
+    ) external;
+
+    function depositToStrategy(
+        address _strategyToAddress,
+        address[] calldata _assets,
+        uint256[] calldata _amounts
+    ) external;
+
+    // VaultCore.sol
+    function mint(
+        address _asset,
+        uint256 _amount,
+        uint256 _minimumOusdAmount
+    ) external;
+
+    function mintForStrategy(uint256 _amount) external;
+
+    function redeem(uint256 _amount, uint256 _minimumUnitAmount) external;
+
+    function burnForStrategy(uint256 _amount) external;
+
+    function allocate() external;
+
+    function rebase() external;
+
+    function swapCollateral(
+        address fromAsset,
+        address toAsset,
+        uint256 fromAssetAmount,
+        uint256 minToAssetAmount,
+        bytes calldata data
+    ) external returns (uint256 toAssetAmount);
+
+    function totalValue() external view returns (uint256 value);
+
+    function checkBalance(address _asset) external view returns (uint256);
+
+    function calculateRedeemOutputs(uint256 _amount)
+        external
+        view
+        returns (uint256[] memory);
+
+    function getAssetCount() external view returns (uint256);
+
+    function getAssetConfig(address _asset)
+        external
+        view
+        returns (VaultStorage.Asset memory config);
+
+    function getAllAssets() external view returns (address[] memory);
+
+    function getStrategyCount() external view returns (uint256);
+
+    function swapper() external view returns (address);
+
+    function allowedSwapUndervalue() external view returns (uint256);
+
+    function getAllStrategies() external view returns (address[] memory);
+
+    function isSupportedAsset(address _asset) external view returns (bool);
+
+    function netOusdMintForStrategyThreshold() external view returns (uint256);
+
+    function setOusdMetaStrategy(address _ousdMetaStrategy) external;
+
+    function setNetOusdMintForStrategyThreshold(uint256 _threshold) external;
+
+    function netOusdMintedForStrategy() external view returns (int256);
+
+    function setDripper(address _dripper) external;
+
+    function dripper() external view returns (address);
+
+    function weth() external view returns (address);
+
+    function cacheWETHAssetIndex() external;
+
+    function wethAssetIndex() external view returns (uint256);
+
+    function initialize(address, address) external;
+
+    function setAdminImpl(address) external;
+
+    function removeAsset(address _asset) external;
+
+    // These are OETH specific functions
+    function addWithdrawalQueueLiquidity() external;
+
+    function requestWithdrawal(uint256 _amount)
+        external
+        returns (uint256 requestId, uint256 queued);
+
+    function claimWithdrawal(uint256 requestId)
+        external
+        returns (uint256 amount);
+
+    function claimWithdrawals(uint256[] memory requestIds)
+        external
+        returns (uint256[] memory amounts, uint256 totalAmount);
+
+    function withdrawalQueueMetadata()
+        external
+        view
+        returns (VaultStorage.WithdrawalQueueMetadata memory);
+
+    function withdrawalRequests(uint256 requestId)
+        external
+        view
+        returns (VaultStorage.WithdrawalRequest memory);
+
+    // OETHb specific functions
+    function addStrategyToMintWhitelist(address strategyAddr) external;
+
+    function removeStrategyFromMintWhitelist(address strategyAddr) external;
+
+    function isMintWhitelistedStrategy(address strategyAddr)
+        external
+        view
+        returns (bool);
+
+    function withdrawalClaimDelay() external view returns (uint256);
+
+    function setWithdrawalClaimDelay(uint256 newDelay) external;
+
+    function lastRebase() external view returns (uint64);
+
+    function dripDuration() external view returns (uint64);
+
+    function setDripDuration(uint256 _dripDuration) external;
+
+    function rebasePerSecondMax() external view returns (uint64);
+
+    function setRebaseRateMax(uint256 yearlyApr) external;
+
+    function rebasePerSecondTarget() external view returns (uint64);
+
+    function previewYield() external view returns (uint256 yield);
+
+    // slither-disable-end constable-states
+}
+
+/**
+ * @title OUSD Token Contract
+ * @dev ERC20 compatible contract for OUSD
+ * @dev Implements an elastic supply
+ * @author Origin Protocol Inc
+ */
+
+
+
+
+contract OUSD is Governable {
+    using SafeCast for int256;
+    using SafeCast for uint256;
+
+    /// @dev Event triggered when the supply changes
+    /// @param totalSupply Updated token total supply
+    /// @param rebasingCredits Updated token rebasing credits
+    /// @param rebasingCreditsPerToken Updated token rebasing credits per token
+    event TotalSupplyUpdatedHighres(
+        uint256 totalSupply,
+        uint256 rebasingCredits,
+        uint256 rebasingCreditsPerToken
+    );
+    /// @dev Event triggered when an account opts in for rebasing
+    /// @param account Address of the account
+    event AccountRebasingEnabled(address account);
+    /// @dev Event triggered when an account opts out of rebasing
+    /// @param account Address of the account
+    event AccountRebasingDisabled(address account);
+    /// @dev Emitted when `value` tokens are moved from one account `from` to
+    ///      another `to`.
+    /// @param from Address of the account tokens are moved from
+    /// @param to Address of the account tokens are moved to
+    /// @param value Amount of tokens transferred
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    /// @dev Emitted when the allowance of a `spender` for an `owner` is set by
+    ///      a call to {approve}. `value` is the new allowance.
+    /// @param owner Address of the owner approving allowance
+    /// @param spender Address of the spender allowance is granted to
+    /// @param value Amount of tokens spender can transfer
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
+    /// @dev Yield resulting from {changeSupply} that a `source` account would
+    ///      receive is directed to `target` account.
+    /// @param source Address of the source forwarding the yield
+    /// @param target Address of the target receiving the yield
+    event YieldDelegated(address source, address target);
+    /// @dev Yield delegation from `source` account to the `target` account is
+    ///      suspended.
+    /// @param source Address of the source suspending yield forwarding
+    /// @param target Address of the target no longer receiving yield from `source`
+    ///        account
+    event YieldUndelegated(address source, address target);
+
+    enum RebaseOptions {
+        NotSet,
+        StdNonRebasing,
+        StdRebasing,
+        YieldDelegationSource,
+        YieldDelegationTarget
+    }
+
+    uint256[154] private _gap; // Slots to align with deployed contract
+    uint256 private constant MAX_SUPPLY = type(uint128).max;
+    /// @dev The amount of tokens in existence
+    uint256 public totalSupply;
+    mapping(address => mapping(address => uint256)) private allowances;
+    /// @dev The vault with privileges to execute {mint}, {burn}
+    ///     and {changeSupply}
+    address public vaultAddress;
+    mapping(address => uint256) internal creditBalances;
+    // the 2 storage variables below need trailing underscores to not name collide with public functions
+    uint256 private rebasingCredits_; // Sum of all rebasing credits (creditBalances for rebasing accounts)
+    uint256 private rebasingCreditsPerToken_;
+    /// @dev The amount of tokens that are not rebasing - receiving yield
+    uint256 public nonRebasingSupply;
+    mapping(address => uint256) internal alternativeCreditsPerToken;
+    /// @dev A map of all addresses and their respective RebaseOptions
+    mapping(address => RebaseOptions) public rebaseState;
+    mapping(address => uint256) private __deprecated_isUpgraded;
+    /// @dev A map of addresses that have yields forwarded to. This is an
+    ///      inverse mapping of {yieldFrom}
+    /// Key Account forwarding yield
+    /// Value Account receiving yield
+    mapping(address => address) public yieldTo;
+    /// @dev A map of addresses that are receiving the yield. This is an
+    ///      inverse mapping of {yieldTo}
+    /// Key Account receiving yield
+    /// Value Account forwarding yield
+    mapping(address => address) public yieldFrom;
+
+    uint256 private constant RESOLUTION_INCREASE = 1e9;
+    uint256[34] private __gap; // including below gap totals up to 200
+
+    /// @dev Verifies that the caller is the Governor or Strategist.
+    modifier onlyGovernorOrStrategist() {
+        require(
+            isGovernor() || msg.sender == IVault(vaultAddress).strategistAddr(),
+            "Caller is not the Strategist or Governor"
+        );
+        _;
+    }
+
+    /// @dev Initializes the contract and sets necessary variables.
+    /// @param _vaultAddress Address of the vault contract
+    /// @param _initialCreditsPerToken The starting rebasing credits per token.
+    function initialize(address _vaultAddress, uint256 _initialCreditsPerToken)
+        external
+        onlyGovernor
+    {
+        require(_vaultAddress != address(0), "Zero vault address");
+        require(vaultAddress == address(0), "Already initialized");
+
+        rebasingCreditsPerToken_ = _initialCreditsPerToken;
+        vaultAddress = _vaultAddress;
+    }
+
+    /// @dev Returns the symbol of the token, a shorter version
+    ///      of the name.
+    function symbol() external pure virtual returns (string memory) {
+        return "OUSD";
+    }
+
+    /// @dev Returns the name of the token.
+    function name() external pure virtual returns (string memory) {
+        return "Origin Dollar";
+    }
+
+    /// @dev Returns the number of decimals used to get its user representation.
+    function decimals() external pure virtual returns (uint8) {
+        return 18;
+    }
+
+    /**
+     * @dev Verifies that the caller is the Vault contract
+     */
+    modifier onlyVault() {
+        require(vaultAddress == msg.sender, "Caller is not the Vault");
+        _;
+    }
+
+    /**
+     * @return High resolution rebasingCreditsPerToken
+     */
+    function rebasingCreditsPerTokenHighres() external view returns (uint256) {
+        return rebasingCreditsPerToken_;
+    }
+
+    /**
+     * @return Low resolution rebasingCreditsPerToken
+     */
+    function rebasingCreditsPerToken() external view returns (uint256) {
+        return rebasingCreditsPerToken_ / RESOLUTION_INCREASE;
+    }
+
+    /**
+     * @return High resolution total number of rebasing credits
+     */
+    function rebasingCreditsHighres() external view returns (uint256) {
+        return rebasingCredits_;
+    }
+
+    /**
+     * @return Low resolution total number of rebasing credits
+     */
+    function rebasingCredits() external view returns (uint256) {
+        return rebasingCredits_ / RESOLUTION_INCREASE;
+    }
+
+    /**
+     * @notice Gets the balance of the specified address.
+     * @param _account Address to query the balance of.
+     * @return A uint256 representing the amount of base units owned by the
+     *         specified address.
+     */
+    function balanceOf(address _account) public view returns (uint256) {
+        RebaseOptions state = rebaseState[_account];
+        if (state == RebaseOptions.YieldDelegationSource) {
+            // Saves a slot read when transferring to or from a yield delegating source
+            // since we know creditBalances equals the balance.
+            return creditBalances[_account];
+        }
+        uint256 baseBalance = (creditBalances[_account] * 1e18) /
+            _creditsPerToken(_account);
+        if (state == RebaseOptions.YieldDelegationTarget) {
+            // creditBalances of yieldFrom accounts equals token balances
+            return baseBalance - creditBalances[yieldFrom[_account]];
+        }
+        return baseBalance;
+    }
+
+    /**
+     * @notice Gets the credits balance of the specified address.
+     * @dev Backwards compatible with old low res credits per token.
+     * @param _account The address to query the balance of.
+     * @return (uint256, uint256) Credit balance and credits per token of the
+     *         address
+     */
+    function creditsBalanceOf(address _account)
+        external
+        view
+        returns (uint256, uint256)
+    {
+        uint256 cpt = _creditsPerToken(_account);
+        if (cpt == 1e27) {
+            // For a period before the resolution upgrade, we created all new
+            // contract accounts at high resolution. Since they are not changing
+            // as a result of this upgrade, we will return their true values
+            return (creditBalances[_account], cpt);
+        } else {
+            return (
+                creditBalances[_account] / RESOLUTION_INCREASE,
+                cpt / RESOLUTION_INCREASE
+            );
+        }
+    }
+
+    /**
+     * @notice Gets the credits balance of the specified address.
+     * @param _account The address to query the balance of.
+     * @return (uint256, uint256, bool) Credit balance, credits per token of the
+     *         address, and isUpgraded
+     */
+    function creditsBalanceOfHighres(address _account)
+        external
+        view
+        returns (
+            uint256,
+            uint256,
+            bool
+        )
+    {
+        return (
+            creditBalances[_account],
+            _creditsPerToken(_account),
+            true // all accounts have their resolution "upgraded"
+        );
+    }
+
+    // Backwards compatible view
+    function nonRebasingCreditsPerToken(address _account)
+        external
+        view
+        returns (uint256)
+    {
+        return alternativeCreditsPerToken[_account];
+    }
+
+    /**
+     * @notice Transfer tokens to a specified address.
+     * @param _to the address to transfer to.
+     * @param _value the amount to be transferred.
+     * @return true on success.
+     */
+    function transfer(address _to, uint256 _value) external returns (bool) {
+        require(_to != address(0), "Transfer to zero address");
+
+        _executeTransfer(msg.sender, _to, _value);
+
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+    }
+
+    /**
+     * @notice Transfer tokens from one address to another.
+     * @param _from The address you want to send tokens from.
+     * @param _to The address you want to transfer to.
+     * @param _value The amount of tokens to be transferred.
+     * @return true on success.
+     */
+    function transferFrom(
+        address _from,
+        address _to,
+        uint256 _value
+    ) external returns (bool) {
+        require(_to != address(0), "Transfer to zero address");
+        uint256 userAllowance = allowances[_from][msg.sender];
+        require(_value <= userAllowance, "Allowance exceeded");
+
+        unchecked {
+            allowances[_from][msg.sender] = userAllowance - _value;
+        }
+
+        _executeTransfer(_from, _to, _value);
+
+        emit Transfer(_from, _to, _value);
+        return true;
+    }
+
+    function _executeTransfer(
+        address _from,
+        address _to,
+        uint256 _value
+    ) internal {
+        (
+            int256 fromRebasingCreditsDiff,
+            int256 fromNonRebasingSupplyDiff
+        ) = _adjustAccount(_from, -_value.toInt256());
+        (
+            int256 toRebasingCreditsDiff,
+            int256 toNonRebasingSupplyDiff
+        ) = _adjustAccount(_to, _value.toInt256());
+
+        _adjustGlobals(
+            fromRebasingCreditsDiff + toRebasingCreditsDiff,
+            fromNonRebasingSupplyDiff + toNonRebasingSupplyDiff
+        );
+    }
+
+    function _adjustAccount(address _account, int256 _balanceChange)
+        internal
+        returns (int256 rebasingCreditsDiff, int256 nonRebasingSupplyDiff)
+    {
+        RebaseOptions state = rebaseState[_account];
+        int256 currentBalance = balanceOf(_account).toInt256();
+        if (currentBalance + _balanceChange < 0) {
+            revert("Transfer amount exceeds balance");
+        }
+        uint256 newBalance = (currentBalance + _balanceChange).toUint256();
+
+        if (state == RebaseOptions.YieldDelegationSource) {
+            address target = yieldTo[_account];
+            uint256 targetOldBalance = balanceOf(target);
+            uint256 targetNewCredits = _balanceToRebasingCredits(
+                targetOldBalance + newBalance
+            );
+            rebasingCreditsDiff =
+                targetNewCredits.toInt256() -
+                creditBalances[target].toInt256();
+
+            creditBalances[_account] = newBalance;
+            creditBalances[target] = targetNewCredits;
+        } else if (state == RebaseOptions.YieldDelegationTarget) {
+            uint256 newCredits = _balanceToRebasingCredits(
+                newBalance + creditBalances[yieldFrom[_account]]
+            );
+            rebasingCreditsDiff =
+                newCredits.toInt256() -
+                creditBalances[_account].toInt256();
+            creditBalances[_account] = newCredits;
+        } else {
+            _autoMigrate(_account);
+            uint256 alternativeCreditsPerTokenMem = alternativeCreditsPerToken[
+                _account
+            ];
+            if (alternativeCreditsPerTokenMem > 0) {
+                nonRebasingSupplyDiff = _balanceChange;
+                if (alternativeCreditsPerTokenMem != 1e18) {
+                    alternativeCreditsPerToken[_account] = 1e18;
+                }
+                creditBalances[_account] = newBalance;
+            } else {
+                uint256 newCredits = _balanceToRebasingCredits(newBalance);
+                rebasingCreditsDiff =
+                    newCredits.toInt256() -
+                    creditBalances[_account].toInt256();
+                creditBalances[_account] = newCredits;
+            }
+        }
+    }
+
+    function _adjustGlobals(
+        int256 _rebasingCreditsDiff,
+        int256 _nonRebasingSupplyDiff
+    ) internal {
+        if (_rebasingCreditsDiff != 0) {
+            rebasingCredits_ = (rebasingCredits_.toInt256() +
+                _rebasingCreditsDiff).toUint256();
+        }
+        if (_nonRebasingSupplyDiff != 0) {
+            nonRebasingSupply = (nonRebasingSupply.toInt256() +
+                _nonRebasingSupplyDiff).toUint256();
+        }
+    }
+
+    /**
+     * @notice Function to check the amount of tokens that _owner has allowed
+     *      to `_spender`.
+     * @param _owner The address which owns the funds.
+     * @param _spender The address which will spend the funds.
+     * @return The number of tokens still available for the _spender.
+     */
+    function allowance(address _owner, address _spender)
+        external
+        view
+        returns (uint256)
+    {
+        return allowances[_owner][_spender];
+    }
+
+    /**
+     * @notice Approve the passed address to spend the specified amount of
+     *      tokens on behalf of msg.sender.
+     * @param _spender The address which will spend the funds.
+     * @param _value The amount of tokens to be spent.
+     * @return true on success.
+     */
+    function approve(address _spender, uint256 _value) external returns (bool) {
+        allowances[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    /**
+     * @notice Creates `_amount` tokens and assigns them to `_account`,
+     *     increasing the total supply.
+     */
+    function mint(address _account, uint256 _amount) external onlyVault {
+        require(_account != address(0), "Mint to the zero address");
+
+        // Account
+        (
+            int256 toRebasingCreditsDiff,
+            int256 toNonRebasingSupplyDiff
+        ) = _adjustAccount(_account, _amount.toInt256());
+        // Globals
+        _adjustGlobals(toRebasingCreditsDiff, toNonRebasingSupplyDiff);
+        totalSupply = totalSupply + _amount;
+
+        require(totalSupply < MAX_SUPPLY, "Max supply");
+        emit Transfer(address(0), _account, _amount);
+    }
+
+    /**
+     * @notice Destroys `_amount` tokens from `_account`,
+     *     reducing the total supply.
+     */
+    function burn(address _account, uint256 _amount) external onlyVault {
+        require(_account != address(0), "Burn from the zero address");
+        if (_amount == 0) {
+            return;
+        }
+
+        // Account
+        (
+            int256 toRebasingCreditsDiff,
+            int256 toNonRebasingSupplyDiff
+        ) = _adjustAccount(_account, -_amount.toInt256());
+        // Globals
+        _adjustGlobals(toRebasingCreditsDiff, toNonRebasingSupplyDiff);
+        totalSupply = totalSupply - _amount;
+
+        emit Transfer(_account, address(0), _amount);
+    }
+
+    /**
+     * @dev Get the credits per token for an account. Returns a fixed amount
+     *      if the account is non-rebasing.
+     * @param _account Address of the account.
+     */
+    function _creditsPerToken(address _account)
+        internal
+        view
+        returns (uint256)
+    {
+        uint256 alternativeCreditsPerTokenMem = alternativeCreditsPerToken[
+            _account
+        ];
+        if (alternativeCreditsPerTokenMem != 0) {
+            return alternativeCreditsPerTokenMem;
+        } else {
+            return rebasingCreditsPerToken_;
+        }
+    }
+
+    /**
+     * @dev Auto migrate contracts to be non rebasing,
+     *     unless they have opted into yield.
+     * @param _account Address of the account.
+     */
+    function _autoMigrate(address _account) internal {
+        uint256 codeLen = _account.code.length;
+        bool isEOA = (codeLen == 0) ||
+            (codeLen == 23 && bytes3(_account.code) == 0xef0100);
+        // In previous code versions, contracts would not have had their
+        // rebaseState[_account] set to RebaseOptions.NonRebasing when migrated
+        // therefore we check the actual accounting used on the account as well.
+        if (
+            (!isEOA) &&
+            rebaseState[_account] == RebaseOptions.NotSet &&
+            alternativeCreditsPerToken[_account] == 0
+        ) {
+            _rebaseOptOut(_account);
+        }
+    }
+
+    /**
+     * @dev Calculates credits from contract's global rebasingCreditsPerToken_, and
+     *      also balance that corresponds to those credits. The latter is important
+     *      when adjusting the contract's global nonRebasingSupply to circumvent any
+     *      possible rounding errors.
+     *
+     * @param _balance Balance of the account.
+     */
+    function _balanceToRebasingCredits(uint256 _balance)
+        internal
+        view
+        returns (uint256 rebasingCredits)
+    {
+        // Rounds up, because we need to ensure that accounts always have
+        // at least the balance that they should have.
+        // Note this should always be used on an absolute account value,
+        // not on a possibly negative diff, because then the rounding would be wrong.
+        return ((_balance) * rebasingCreditsPerToken_ + 1e18 - 1) / 1e18;
+    }
+
+    /**
+     * @notice The calling account will start receiving yield after a successful call.
+     * @param _account Address of the account.
+     */
+    function governanceRebaseOptIn(address _account) external onlyGovernor {
+        require(_account != address(0), "Zero address not allowed");
+        _rebaseOptIn(_account);
+    }
+
+    /**
+     * @notice The calling account will start receiving yield after a successful call.
+     */
+    function rebaseOptIn() external {
+        _rebaseOptIn(msg.sender);
+    }
+
+    function _rebaseOptIn(address _account) internal {
+        uint256 balance = balanceOf(_account);
+
+        // prettier-ignore
+        require(
+            alternativeCreditsPerToken[_account] > 0 ||
+                // Accounts may explicitly `rebaseOptIn` regardless of
+                // accounting if they have a 0 balance.
+                creditBalances[_account] == 0
+            ,
+            "Account must be non-rebasing"
+        );
+        RebaseOptions state = rebaseState[_account];
+        // prettier-ignore
+        require(
+            state == RebaseOptions.StdNonRebasing ||
+                state == RebaseOptions.NotSet,
+            "Only standard non-rebasing accounts can opt in"
+        );
+
+        uint256 newCredits = _balanceToRebasingCredits(balance);
+
+        // Account
+        rebaseState[_account] = RebaseOptions.StdRebasing;
+        alternativeCreditsPerToken[_account] = 0;
+        creditBalances[_account] = newCredits;
+        // Globals
+        _adjustGlobals(newCredits.toInt256(), -balance.toInt256());
+
+        emit AccountRebasingEnabled(_account);
+    }
+
+    /**
+     * @notice The calling account will no longer receive yield
+     */
+    function rebaseOptOut() external {
+        _rebaseOptOut(msg.sender);
+    }
+
+    function _rebaseOptOut(address _account) internal {
+        require(
+            alternativeCreditsPerToken[_account] == 0,
+            "Account must be rebasing"
+        );
+        RebaseOptions state = rebaseState[_account];
+        require(
+            state == RebaseOptions.StdRebasing || state == RebaseOptions.NotSet,
+            "Only standard rebasing accounts can opt out"
+        );
+
+        uint256 oldCredits = creditBalances[_account];
+        uint256 balance = balanceOf(_account);
+
+        // Account
+        rebaseState[_account] = RebaseOptions.StdNonRebasing;
+        alternativeCreditsPerToken[_account] = 1e18;
+        creditBalances[_account] = balance;
+        // Globals
+        _adjustGlobals(-oldCredits.toInt256(), balance.toInt256());
+
+        emit AccountRebasingDisabled(_account);
+    }
+
+    /**
+     * @notice Distribute yield to users. This changes the exchange rate
+     *  between "credits" and OUSD tokens to change rebasing user's balances.
+     * @param _newTotalSupply New total supply of OUSD.
+     */
+    function changeSupply(uint256 _newTotalSupply) external onlyVault {
+        require(totalSupply > 0, "Cannot increase 0 supply");
+
+        if (totalSupply == _newTotalSupply) {
+            emit TotalSupplyUpdatedHighres(
+                totalSupply,
+                rebasingCredits_,
+                rebasingCreditsPerToken_
+            );
+            return;
+        }
+
+        totalSupply = _newTotalSupply > MAX_SUPPLY
+            ? MAX_SUPPLY
+            : _newTotalSupply;
+
+        uint256 rebasingSupply = totalSupply - nonRebasingSupply;
+        // round up in the favour of the protocol
+        rebasingCreditsPerToken_ =
+            (rebasingCredits_ * 1e18 + rebasingSupply - 1) /
+            rebasingSupply;
+
+        require(rebasingCreditsPerToken_ > 0, "Invalid change in supply");
+
+        emit TotalSupplyUpdatedHighres(
+            totalSupply,
+            rebasingCredits_,
+            rebasingCreditsPerToken_
+        );
+    }
+
+    /*
+     * @notice Send the yield from one account to another account.
+     *         Each account keeps its own balances.
+     */
+    function delegateYield(address _from, address _to)
+        external
+        onlyGovernorOrStrategist
+    {
+        require(_from != address(0), "Zero from address not allowed");
+        require(_to != address(0), "Zero to address not allowed");
+
+        require(_from != _to, "Cannot delegate to self");
+        require(
+            yieldFrom[_to] == address(0) &&
+                yieldTo[_to] == address(0) &&
+                yieldFrom[_from] == address(0) &&
+                yieldTo[_from] == address(0),
+            "Blocked by existing yield delegation"
+        );
+        RebaseOptions stateFrom = rebaseState[_from];
+        RebaseOptions stateTo = rebaseState[_to];
+
+        require(
+            stateFrom == RebaseOptions.NotSet ||
+                stateFrom == RebaseOptions.StdNonRebasing ||
+                stateFrom == RebaseOptions.StdRebasing,
+            "Invalid rebaseState from"
+        );
+
+        require(
+            stateTo == RebaseOptions.NotSet ||
+                stateTo == RebaseOptions.StdNonRebasing ||
+                stateTo == RebaseOptions.StdRebasing,
+            "Invalid rebaseState to"
+        );
+
+        if (alternativeCreditsPerToken[_from] == 0) {
+            _rebaseOptOut(_from);
+        }
+        if (alternativeCreditsPerToken[_to] > 0) {
+            _rebaseOptIn(_to);
+        }
+
+        uint256 fromBalance = balanceOf(_from);
+        uint256 toBalance = balanceOf(_to);
+        uint256 oldToCredits = creditBalances[_to];
+        uint256 newToCredits = _balanceToRebasingCredits(
+            fromBalance + toBalance
+        );
+
+        // Set up the bidirectional links
+        yieldTo[_from] = _to;
+        yieldFrom[_to] = _from;
+
+        // Local
+        rebaseState[_from] = RebaseOptions.YieldDelegationSource;
+        alternativeCreditsPerToken[_from] = 1e18;
+        creditBalances[_from] = fromBalance;
+        rebaseState[_to] = RebaseOptions.YieldDelegationTarget;
+        creditBalances[_to] = newToCredits;
+
+        // Global
+        int256 creditsChange = newToCredits.toInt256() -
+            oldToCredits.toInt256();
+        _adjustGlobals(creditsChange, -(fromBalance).toInt256());
+        emit YieldDelegated(_from, _to);
+    }
+
+    /*
+     * @notice Stop sending the yield from one account to another account.
+     */
+    function undelegateYield(address _from) external onlyGovernorOrStrategist {
+        // Require a delegation, which will also ensure a valid delegation
+        require(yieldTo[_from] != address(0), "Zero address not allowed");
+
+        address to = yieldTo[_from];
+        uint256 fromBalance = balanceOf(_from);
+        uint256 toBalance = balanceOf(to);
+        uint256 oldToCredits = creditBalances[to];
+        uint256 newToCredits = _balanceToRebasingCredits(toBalance);
+
+        // Remove the bidirectional links
+        yieldFrom[to] = address(0);
+        yieldTo[_from] = address(0);
+
+        // Local
+        rebaseState[_from] = RebaseOptions.StdNonRebasing;
+        // alternativeCreditsPerToken[from] already 1e18 from `delegateYield()`
+        creditBalances[_from] = fromBalance;
+        rebaseState[to] = RebaseOptions.StdRebasing;
+        // alternativeCreditsPerToken[to] already 0 from `delegateYield()`
+        creditBalances[to] = newToCredits;
+
+        // Global
+        int256 creditsChange = newToCredits.toInt256() -
+            oldToCredits.toInt256();
+        _adjustGlobals(creditsChange, fromBalance.toInt256());
+        emit YieldUndelegated(_from, to);
+    }
+}
+
+library Helpers {
+    /**
+     * @notice Fetch the `symbol()` from an ERC20 token
+     * @dev Grabs the `symbol()` from a contract
+     * @param _token Address of the ERC20 token
+     * @return string Symbol of the ERC20 token
+     */
+    function getSymbol(address _token) internal view returns (string memory) {
+        string memory symbol = IBasicToken(_token).symbol();
+        return symbol;
+    }
+
+    /**
+     * @notice Fetch the `decimals()` from an ERC20 token
+     * @dev Grabs the `decimals()` from a contract and fails if
+     *      the decimal value does not live within a certain range
+     * @param _token Address of the ERC20 token
+     * @return uint256 Decimals of the ERC20 token
+     */
+    function getDecimals(address _token) internal view returns (uint256) {
+        uint256 decimals = IBasicToken(_token).decimals();
+        require(
+            decimals >= 4 && decimals <= 18,
+            "Token must have sufficient decimal places"
+        );
+
+        return decimals;
+    }
+}
+
+/**
+ * @title Base contract any contracts that need to initialize state after deployment.
+ * @author Origin Protocol Inc
+ */
+abstract contract Initializable {
+    /**
+     * @dev Indicates that the contract has been initialized.
+     */
+    bool private initialized;
+
+    /**
+     * @dev Indicates that the contract is in the process of being initialized.
+     */
+    bool private initializing;
+
+    /**
+     * @dev Modifier to protect an initializer function from being invoked twice.
+     */
+    modifier initializer() {
+        require(
+            initializing || !initialized,
+            "Initializable: contract is already initialized"
+        );
+
+        bool isTopLevelCall = !initializing;
+        if (isTopLevelCall) {
+            initializing = true;
+            initialized = true;
+        }
+
+        _;
+
+        if (isTopLevelCall) {
+            initializing = false;
+        }
+    }
+
+    uint256[50] private ______gap;
+}
+
+/**
+ * @title OToken VaultStorage contract
+ * @notice The VaultStorage contract defines the storage for the Vault contracts
+ * @author Origin Protocol Inc
+ */
+
+
+
+
+
+
+
+
+
+contract VaultStorage is Initializable, Governable {
+    using SafeERC20 for IERC20;
+
+    event AssetSupported(address _asset);
+    event AssetRemoved(address _asset);
+    event AssetDefaultStrategyUpdated(address _asset, address _strategy);
+    event AssetAllocated(address _asset, address _strategy, uint256 _amount);
+    event StrategyApproved(address _addr);
+    event StrategyRemoved(address _addr);
+    event Mint(address _addr, uint256 _value);
+    event Redeem(address _addr, uint256 _value);
+    event CapitalPaused();
+    event CapitalUnpaused();
+    event RebasePaused();
+    event RebaseUnpaused();
+    event VaultBufferUpdated(uint256 _vaultBuffer);
+    event OusdMetaStrategyUpdated(address _ousdMetaStrategy);
+    event RedeemFeeUpdated(uint256 _redeemFeeBps);
+    event PriceProviderUpdated(address _priceProvider);
+    event AllocateThresholdUpdated(uint256 _threshold);
+    event RebaseThresholdUpdated(uint256 _threshold);
+    event StrategistUpdated(address _address);
+    event MaxSupplyDiffChanged(uint256 maxSupplyDiff);
+    event YieldDistribution(address _to, uint256 _yield, uint256 _fee);
+    event TrusteeFeeBpsChanged(uint256 _basis);
+    event TrusteeAddressChanged(address _address);
+    event NetOusdMintForStrategyThresholdChanged(uint256 _threshold);
+    event SwapperChanged(address _address);
+    event SwapAllowedUndervalueChanged(uint256 _basis);
+    event SwapSlippageChanged(address _asset, uint256 _basis);
+    event Swapped(
+        address indexed _fromAsset,
+        address indexed _toAsset,
+        uint256 _fromAssetAmount,
+        uint256 _toAssetAmount
+    );
+    event StrategyAddedToMintWhitelist(address indexed strategy);
+    event StrategyRemovedFromMintWhitelist(address indexed strategy);
+    event DripperChanged(address indexed _dripper);
+    event RebasePerSecondMaxChanged(uint256 rebaseRatePerSecond);
+    event DripDurationChanged(uint256 dripDuration);
+    event WithdrawalRequested(
+        address indexed _withdrawer,
+        uint256 indexed _requestId,
+        uint256 _amount,
+        uint256 _queued
+    );
+    event WithdrawalClaimed(
+        address indexed _withdrawer,
+        uint256 indexed _requestId,
+        uint256 _amount
+    );
+    event WithdrawalClaimable(uint256 _claimable, uint256 _newClaimable);
+    event WithdrawalClaimDelayUpdated(uint256 _newDelay);
+
+    // Since we are proxy, all state should be uninitalized.
+    // Since this storage contract does not have logic directly on it
+    // we should not be checking for to see if these variables can be constant.
+    // slither-disable-start uninitialized-state
+    // slither-disable-start constable-states
+
+    // Assets supported by the Vault, i.e. Stablecoins
+    enum UnitConversion {
+        DECIMALS,
+        GETEXCHANGERATE
+    }
+    // Changed to fit into a single storage slot so the decimals needs to be recached
+    struct Asset {
+        // Note: OETHVaultCore doesn't use `isSupported` when minting,
+        // redeeming or checking balance of assets.
+        bool isSupported;
+        UnitConversion unitConversion;
+        uint8 decimals;
+        // Max allowed slippage from the Oracle price when swapping collateral assets in basis points.
+        // For example 40 == 0.4% slippage
+        uint16 allowedOracleSlippageBps;
+    }
+
+    /// @dev mapping of supported vault assets to their configuration
+    mapping(address => Asset) internal assets;
+    /// @dev list of all assets supported by the vault.
+    address[] internal allAssets;
+
+    // Strategies approved for use by the Vault
+    struct Strategy {
+        bool isSupported;
+        uint256 _deprecated; // Deprecated storage slot
+    }
+    /// @dev mapping of strategy contracts to their configuration
+    mapping(address => Strategy) public strategies;
+    /// @dev list of all vault strategies
+    address[] internal allStrategies;
+
+    /// @notice Address of the Oracle price provider contract
+    address public priceProvider;
+    /// @notice pause rebasing if true
+    bool public rebasePaused;
+    /// @notice pause operations that change the OToken supply.
+    /// eg mint, redeem, allocate, mint/burn for strategy
+    bool public capitalPaused;
+    /// @notice Redemption fee in basis points. eg 50 = 0.5%
+    uint256 public redeemFeeBps;
+    /// @notice Percentage of assets to keep in Vault to handle (most) withdrawals. 100% = 1e18.
+    uint256 public vaultBuffer;
+    /// @notice OToken mints over this amount automatically allocate funds. 18 decimals.
+    uint256 public autoAllocateThreshold;
+    /// @notice OToken mints over this amount automatically rebase. 18 decimals.
+    uint256 public rebaseThreshold;
+
+    /// @dev Address of the OToken token. eg OUSD or OETH.
+    OUSD public oUSD;
+
+    /// @dev Storage slot for the address of the VaultAdmin contract that is delegated to
+    // keccak256("OUSD.vault.governor.admin.impl");
+    bytes32 public constant adminImplPosition =
+        0xa2bd3d3cf188a41358c8b401076eb59066b09dec5775650c0de4c55187d17bd9;
+
+    /// @dev Address of the contract responsible for post rebase syncs with AMMs
+    address private _deprecated_rebaseHooksAddr = address(0);
+
+    /// @dev Deprecated: Address of Uniswap
+    address private _deprecated_uniswapAddr = address(0);
+
+    /// @notice Address of the Strategist
+    address public strategistAddr = address(0);
+
+    /// @notice Mapping of asset address to the Strategy that they should automatically
+    // be allocated to
+    mapping(address => address) public assetDefaultStrategies;
+
+    /// @notice Max difference between total supply and total value of assets. 18 decimals.
+    uint256 public maxSupplyDiff;
+
+    /// @notice Trustee contract that can collect a percentage of yield
+    address public trusteeAddress;
+
+    /// @notice Amount of yield collected in basis points. eg 2000 = 20%
+    uint256 public trusteeFeeBps;
+
+    /// @dev Deprecated: Tokens that should be swapped for stablecoins
+    address[] private _deprecated_swapTokens;
+
+    uint256 constant MINT_MINIMUM_UNIT_PRICE = 0.998e18;
+
+    /// @notice Metapool strategy that is allowed to mint/burn OTokens without changing collateral
+
+    address public ousdMetaStrategy;
+
+    /// @notice How much OTokens are currently minted by the strategy
+    int256 public netOusdMintedForStrategy;
+
+    /// @notice How much net total OTokens are allowed to be minted by all strategies
+    uint256 public netOusdMintForStrategyThreshold;
+
+    uint256 constant MIN_UNIT_PRICE_DRIFT = 0.7e18;
+    uint256 constant MAX_UNIT_PRICE_DRIFT = 1.3e18;
+
+    /// @notice Collateral swap configuration.
+    /// @dev is packed into a single storage slot to save gas.
+    struct SwapConfig {
+        // Contract that swaps the vault's collateral assets
+        address swapper;
+        // Max allowed percentage the total value can drop below the total supply in basis points.
+        // For example 100 == 1%
+        uint16 allowedUndervalueBps;
+    }
+    SwapConfig internal swapConfig = SwapConfig(address(0), 0);
+
+    // List of strategies that can mint oTokens directly
+    // Used in OETHBaseVaultCore
+    mapping(address => bool) public isMintWhitelistedStrategy;
+
+    /// @notice Address of the Dripper contract that streams harvested rewards to the Vault
+    /// @dev The vault is proxied so needs to be set with setDripper against the proxy contract.
+    address public dripper;
+
+    /// Withdrawal Queue Storage /////
+
+    struct WithdrawalQueueMetadata {
+        // cumulative total of all withdrawal requests included the ones that have already been claimed
+        uint128 queued;
+        // cumulative total of all the requests that can be claimed including the ones that have already been claimed
+        uint128 claimable;
+        // total of all the requests that have been claimed
+        uint128 claimed;
+        // index of the next withdrawal request starting at 0
+        uint128 nextWithdrawalIndex;
+    }
+
+    /// @notice Global metadata for the withdrawal queue including:
+    /// queued - cumulative total of all withdrawal requests included the ones that have already been claimed
+    /// claimable - cumulative total of all the requests that can be claimed including the ones already claimed
+    /// claimed - total of all the requests that have been claimed
+    /// nextWithdrawalIndex - index of the next withdrawal request starting at 0
+    WithdrawalQueueMetadata public withdrawalQueueMetadata;
+
+    struct WithdrawalRequest {
+        address withdrawer;
+        bool claimed;
+        uint40 timestamp; // timestamp of the withdrawal request
+        // Amount of oTokens to redeem. eg OETH
+        uint128 amount;
+        // cumulative total of all withdrawal requests including this one.
+        // this request can be claimed when this queued amount is less than or equal to the queue's claimable amount.
+        uint128 queued;
+    }
+
+    /// @notice Mapping of withdrawal request indices to the user withdrawal request data
+    mapping(uint256 => WithdrawalRequest) public withdrawalRequests;
+
+    /// @notice Sets a minimum delay that is required to elapse between
+    ///     requesting async withdrawals and claiming the request.
+    ///     When set to 0 async withdrawals are disabled.
+    uint256 public withdrawalClaimDelay;
+
+    /// @notice Time in seconds that the vault last rebased yield.
+    uint64 public lastRebase;
+
+    /// @notice Automatic rebase yield calculations. In seconds. Set to 0 or 1 to disable.
+    uint64 public dripDuration;
+
+    /// @notice max rebase percentage per second
+    ///   Can be used to set maximum yield of the protocol,
+    ///   spreading out yield over time
+    uint64 public rebasePerSecondMax;
+
+    /// @notice target rebase rate limit, based on past rates and funds available.
+    uint64 public rebasePerSecondTarget;
+
+    uint256 internal constant MAX_REBASE = 0.02 ether;
+    uint256 internal constant MAX_REBASE_PER_SECOND =
+        uint256(0.05 ether) / 1 days;
+
+    // For future use
+    uint256[43] private __gap;
+
+    // slither-disable-end constable-states
+    // slither-disable-end uninitialized-state
+
+    /**
+     * @notice set the implementation for the admin, this needs to be in a base class else we cannot set it
+     * @param newImpl address of the implementation
+     */
+    function setAdminImpl(address newImpl) external onlyGovernor {
+        require(
+            Address.isContract(newImpl),
+            "new implementation is not a contract"
+        );
+        bytes32 position = adminImplPosition;
+        // solhint-disable-next-line no-inline-assembly
+        assembly {
+            sstore(position, newImpl)
+        }
     }
 }

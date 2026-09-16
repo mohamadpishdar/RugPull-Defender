@@ -1,1135 +1,1287 @@
-/// SPDX-License-Identifier: MIT
+// number: 776
+// project: Masa Token (MASA)
+// address: 0x8ab7404063ec4dbcfd4598215992dc3f8ec853d7
+// chainid: 1
+// proxy: true, implementation: 0x95801ba4892afb7c8df0c240d30880b442c1d61a (AkropolisToken)
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.4.24;
 
-pragma solidity 0.8.0;
+/*
+  Akropolis Token, https://akropolis.io
+*/
+
+
+// File: openzeppelin-solidity/contracts/math/SafeMath.sol
+
+/**
+ * @title SafeMath
+ * @dev Math operations with safety checks that throw on error
+ */
+library SafeMath {
+
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+  function mul(uint256 _a, uint256 _b) internal pure returns (uint256 c) {
+    // Gas optimization: this is cheaper than asserting 'a' not being zero, but the
+    // benefit is lost if 'b' is also tested.
+    // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522
+    if (_a == 0) {
+      return 0;
+    }
+
+    c = _a * _b;
+    assert(c / _a == _b);
+    return c;
+  }
+
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+  function div(uint256 _a, uint256 _b) internal pure returns (uint256) {
+    // assert(_b > 0); // Solidity automatically throws when dividing by 0
+    // uint256 c = _a / _b;
+    // assert(_a == _b * c + _a % _b); // There is no case in which this doesn't hold
+    return _a / _b;
+  }
+
+  /**
+  * @dev Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+  function sub(uint256 _a, uint256 _b) internal pure returns (uint256) {
+    assert(_b <= _a);
+    return _a - _b;
+  }
+
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+  function add(uint256 _a, uint256 _b) internal pure returns (uint256 c) {
+    c = _a + _b;
+    assert(c >= _a);
+    return c;
+  }
+}
+
+// File: contracts/helpers/Ownable.sol
+
+/**
+ * @title Ownable
+ * @dev The Ownable contract has an owner address, and provides basic authorization control
+ * functions, this simplifies the implementation of "user permissions". This adds two-phase
+ * ownership control to OpenZeppelin's Ownable class. In this model, the original owner 
+ * designates a new owner but does not actually transfer ownership. The new owner then accepts 
+ * ownership and completes the transfer.
+ */
+contract Ownable {
+    address public owner;
+    address public pendingOwner;
+
+
+    event OwnershipTransferred(
+      address indexed previousOwner,
+      address indexed newOwner
+    );
+
+
+    /**
+    * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+    * account.
+    */
+    constructor() public {
+        owner = msg.sender;
+        pendingOwner = address(0);
+    }
+
+    /**
+    * @dev Throws if called by any account other than the owner.
+    */
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Account is not owner");
+        _;
+    }
+
+    /**
+    * @dev Throws if called by any account other than the owner.
+    */
+    modifier onlyPendingOwner() {
+        require(msg.sender == pendingOwner, "Account is not pending owner");
+        _;
+    }
+
+    /**
+    * @dev Allows the current owner to transfer control of the contract to a newOwner.
+    * @param _newOwner The address to transfer ownership to.
+    */
+    function transferOwnership(address _newOwner) public onlyOwner {
+        require(_newOwner != address(0), "Empty address");
+        pendingOwner = _newOwner;
+    }
+
+    /**
+    * @dev Allows the pendingOwner address to finalize the transfer.
+    */
+    function claimOwnership() onlyPendingOwner public {
+        emit OwnershipTransferred(owner, pendingOwner);
+        owner = pendingOwner;
+        pendingOwner = address(0);
+    }
+}
+
+// File: contracts/token/dataStorage/AllowanceSheet.sol
+
+/**
+* @title AllowanceSheet
+* @notice A wrapper around an allowance mapping. 
+*/
+contract AllowanceSheet is Ownable {
+    using SafeMath for uint256;
+
+    mapping (address => mapping (address => uint256)) public allowanceOf;
+
+    function addAllowance(address _tokenHolder, address _spender, uint256 _value) public onlyOwner {
+        allowanceOf[_tokenHolder][_spender] = allowanceOf[_tokenHolder][_spender].add(_value);
+    }
+
+    function subAllowance(address _tokenHolder, address _spender, uint256 _value) public onlyOwner {
+        allowanceOf[_tokenHolder][_spender] = allowanceOf[_tokenHolder][_spender].sub(_value);
+    }
+
+    function setAllowance(address _tokenHolder, address _spender, uint256 _value) public onlyOwner {
+        allowanceOf[_tokenHolder][_spender] = _value;
+    }
+}
+
+// File: contracts/token/dataStorage/BalanceSheet.sol
+
+/**
+* @title BalanceSheet
+* @notice A wrapper around the balanceOf mapping. 
+*/
+contract BalanceSheet is Ownable {
+    using SafeMath for uint256;
+
+    mapping (address => uint256) public balanceOf;
+    uint256 public totalSupply;
+
+    function addBalance(address _addr, uint256 _value) public onlyOwner {
+        balanceOf[_addr] = balanceOf[_addr].add(_value);
+    }
+
+    function subBalance(address _addr, uint256 _value) public onlyOwner {
+        balanceOf[_addr] = balanceOf[_addr].sub(_value);
+    }
+
+    function setBalance(address _addr, uint256 _value) public onlyOwner {
+        balanceOf[_addr] = _value;
+    }
+
+    function addTotalSupply(uint256 _value) public onlyOwner {
+        totalSupply = totalSupply.add(_value);
+    }
+
+    function subTotalSupply(uint256 _value) public onlyOwner {
+        totalSupply = totalSupply.sub(_value);
+    }
+
+    function setTotalSupply(uint256 _value) public onlyOwner {
+        totalSupply = _value;
+    }
+}
+
+// File: contracts/token/dataStorage/TokenStorage.sol
+
+/**
+* @title TokenStorage
+*/
+contract TokenStorage {
+    /**
+        Storage
+    */
+    BalanceSheet public balances;
+    AllowanceSheet public allowances;
+
+
+    string public name;   //name of Token                
+    uint8  public decimals;        //decimals of Token        
+    string public symbol;   //Symbol of Token
+
+    /**
+    * @dev a TokenStorage consumer can set its storages only once, on construction
+    *
+    **/
+    constructor (address _balances, address _allowances, string _name, uint8 _decimals, string _symbol) public {
+        balances = BalanceSheet(_balances);
+        allowances = AllowanceSheet(_allowances);
+
+        name = _name;
+        decimals = _decimals;
+        symbol = _symbol;
+    }
+
+    /**
+    * @dev claim ownership of balance sheet passed into constructor.
+    **/
+    function claimBalanceOwnership() public {
+        balances.claimOwnership();
+    }
+
+    /**
+    * @dev claim ownership of allowance sheet passed into constructor.
+    **/
+    function claimAllowanceOwnership() public {
+        allowances.claimOwnership();
+    }
+}
+
+// File: zos-lib/contracts/upgradeability/Proxy.sol
+
+/**
+ * @title Proxy
+ * @dev Implements delegation of calls to other contracts, with proper
+ * forwarding of return values and bubbling of failures.
+ * It defines a fallback function that delegates all calls to the address
+ * returned by the abstract _implementation() internal function.
+ */
+contract Proxy {
+  /**
+   * @dev Fallback function.
+   * Implemented entirely in `_fallback`.
+   */
+  function () payable external {
+    _fallback();
+  }
+
+  /**
+   * @return The Address of the implementation.
+   */
+  function _implementation() internal view returns (address);
+
+  /**
+   * @dev Delegates execution to an implementation contract.
+   * This is a low level function that doesn't return to its internal call site.
+   * It will return to the external caller whatever the implementation returns.
+   * @param implementation Address to delegate.
+   */
+  function _delegate(address implementation) internal {
+    assembly {
+      // Copy msg.data. We take full control of memory in this inline assembly
+      // block because it will not return to Solidity code. We overwrite the
+      // Solidity scratch pad at memory position 0.
+      calldatacopy(0, 0, calldatasize)
+
+      // Call the implementation.
+      // out and outsize are 0 because we don't know the size yet.
+      let result := delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+      // Copy the returned data.
+      returndatacopy(0, 0, returndatasize)
+
+      switch result
+      // delegatecall returns 0 on error.
+      case 0 { revert(0, returndatasize) }
+      default { return(0, returndatasize) }
+    }
+  }
+
+  /**
+   * @dev Function that is run as the first thing in the fallback function.
+   * Can be redefined in derived contracts to add functionality.
+   * Redefinitions must call super._willFallback().
+   */
+  function _willFallback() internal {
+  }
+
+  /**
+   * @dev fallback implementation.
+   * Extracted to enable manual triggering.
+   */
+  function _fallback() internal {
+    _willFallback();
+    _delegate(_implementation());
+  }
+}
+
+// File: openzeppelin-solidity/contracts/AddressUtils.sol
+
+/**
+ * Utility library of inline functions on addresses
+ */
+library AddressUtils {
+
+  /**
+   * Returns whether the target address is a contract
+   * @dev This function will return false if invoked during the constructor of a contract,
+   * as the code is not actually created until after the constructor finishes.
+   * @param _addr address to check
+   * @return whether the target address is a contract
+   */
+  function isContract(address _addr) internal view returns (bool) {
+    uint256 size;
+    // XXX Currently there is no better way to check if there is a contract in an address
+    // than to check the size of the code at that address.
+    // See https://ethereum.stackexchange.com/a/14016/36603
+    // for more details about how this works.
+    // TODO Check this again before the Serenity release, because all addresses will be
+    // contracts then.
+    // solium-disable-next-line security/no-inline-assembly
+    assembly { size := extcodesize(_addr) }
+    return size > 0;
+  }
+
+}
+
+// File: zos-lib/contracts/upgradeability/UpgradeabilityProxy.sol
+
+/**
+ * @title UpgradeabilityProxy
+ * @dev This contract implements a proxy that allows to change the
+ * implementation address to which it will delegate.
+ * Such a change is called an implementation upgrade.
+ */
+contract UpgradeabilityProxy is Proxy {
+  /**
+   * @dev Emitted when the implementation is upgraded.
+   * @param implementation Address of the new implementation.
+   */
+  event Upgraded(address implementation);
+
+  /**
+   * @dev Storage slot with the address of the current implementation.
+   * This is the keccak-256 hash of "org.zeppelinos.proxy.implementation", and is
+   * validated in the constructor.
+   */
+  bytes32 private constant IMPLEMENTATION_SLOT = 0x7050c9e0f4ca769c69bd3a8ef740bc37934f8e2c036e5a723fd8ee048ed3f8c3;
+
+  /**
+   * @dev Contract constructor.
+   * @param _implementation Address of the initial implementation.
+   */
+  constructor(address _implementation) public {
+    assert(IMPLEMENTATION_SLOT == keccak256("org.zeppelinos.proxy.implementation"));
+
+    _setImplementation(_implementation);
+  }
+
+  /**
+   * @dev Returns the current implementation.
+   * @return Address of the current implementation
+   */
+  function _implementation() internal view returns (address impl) {
+    bytes32 slot = IMPLEMENTATION_SLOT;
+    assembly {
+      impl := sload(slot)
+    }
+  }
+
+  /**
+   * @dev Upgrades the proxy to a new implementation.
+   * @param newImplementation Address of the new implementation.
+   */
+  function _upgradeTo(address newImplementation) internal {
+    _setImplementation(newImplementation);
+    emit Upgraded(newImplementation);
+  }
+
+  /**
+   * @dev Sets the implementation address of the proxy.
+   * @param newImplementation Address of the new implementation.
+   */
+  function _setImplementation(address newImplementation) private {
+    require(AddressUtils.isContract(newImplementation), "Cannot set a proxy implementation to a non-contract address");
+
+    bytes32 slot = IMPLEMENTATION_SLOT;
+
+    assembly {
+      sstore(slot, newImplementation)
+    }
+  }
+}
+
+// File: contracts/token/TokenProxy.sol
+
+/**
+* @title TokenProxy
+* @notice A proxy contract that serves the latest implementation of TokenProxy.
+*/
+contract TokenProxy is UpgradeabilityProxy, TokenStorage, Ownable {
+    constructor(address _implementation, address _balances, address _allowances, string _name, uint8 _decimals, string _symbol) 
+    UpgradeabilityProxy(_implementation) 
+    TokenStorage(_balances, _allowances, _name, _decimals, _symbol) public {
+    }
+
+    /**
+    * @dev Upgrade the backing implementation of the proxy.
+    * Only the admin can call this function.
+    * @param newImplementation Address of the new implementation.
+    */
+    function upgradeTo(address newImplementation) public onlyOwner {
+        _upgradeTo(newImplementation);
+    }
+
+    /**
+    * @return The address of the implementation.
+    */
+    function implementation() public view returns (address) {
+        return _implementation();
+    }
+}
 
-import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
-import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
+/**
+ * @title SafeMath
+ * @dev Math operations with safety checks that throw on error
+ */
+library SafeMath {
 
-contract MLTToken is ERC20 {
-	/********
-	* INDEX *
-	*********/
-	// 1. Type declarations.
-	// 2. Constants and variables.
-	// 3. Mappings.
-	// 4. Modifiers.
-	// 5. Events.
-	// 6. Functions.
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+  function mul(uint256 _a, uint256 _b) internal pure returns (uint256 c) {
+    // Gas optimization: this is cheaper than asserting 'a' not being zero, but the
+    // benefit is lost if 'b' is also tested.
+    // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522
+    if (_a == 0) {
+      return 0;
+    }
 
-	/***********************
-	* 1. TYPE DECLARATIONS *
-	************************/
-	struct VestingData {
-		address beneficiary;
-		uint256 amount;
-		uint256 cliff;
-		bytes32[] proof;
-	}
+    c = _a * _b;
+    assert(c / _a == _b);
+    return c;
+  }
 
-	struct Allocation {
-		uint256 unlocking;
-		uint256[] monthly;
-		uint256[] months;
-		uint256 cliff;
-	}
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+  function div(uint256 _a, uint256 _b) internal pure returns (uint256) {
+    // assert(_b > 0); // Solidity automatically throws when dividing by 0
+    // uint256 c = _a / _b;
+    // assert(_a == _b * c + _a % _b); // There is no case in which this doesn't hold
+    return _a / _b;
+  }
 
-	/*****************************
-	* 2. CONSTANTS AND VARIABLES *
-	******************************/
-	uint256 public VESTING_START_TIMESTAMP;
+  /**
+  * @dev Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+  function sub(uint256 _a, uint256 _b) internal pure returns (uint256) {
+    assert(_b <= _a);
+    return _a - _b;
+  }
 
-	/// @dev of URIs for all the Merkle trees added to the contract.
-	string[] public rootURIs;
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+  function add(uint256 _a, uint256 _b) internal pure returns (uint256 c) {
+    c = _a + _b;
+    assert(c >= _a);
+    return c;
+  }
+}
 
-	/**************
-	* 3. MAPPINGS *
-	***************/
+/**
+ * @title Ownable
+ * @dev The Ownable contract has an owner address, and provides basic authorization control
+ * functions, this simplifies the implementation of "user permissions". This adds two-phase
+ * ownership control to OpenZeppelin's Ownable class. In this model, the original owner 
+ * designates a new owner but does not actually transfer ownership. The new owner then accepts 
+ * ownership and completes the transfer.
+ */
+contract Ownable {
+    address public owner;
+    address public pendingOwner;
+
+
+    event OwnershipTransferred(
+      address indexed previousOwner,
+      address indexed newOwner
+    );
+
+
+    /**
+    * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+    * account.
+    */
+    constructor() public {
+        owner = msg.sender;
+        pendingOwner = address(0);
+    }
+
+    /**
+    * @dev Throws if called by any account other than the owner.
+    */
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Account is not owner");
+        _;
+    }
+
+    /**
+    * @dev Throws if called by any account other than the owner.
+    */
+    modifier onlyPendingOwner() {
+        require(msg.sender == pendingOwner, "Account is not pending owner");
+        _;
+    }
+
+    /**
+    * @dev Allows the current owner to transfer control of the contract to a newOwner.
+    * @param _newOwner The address to transfer ownership to.
+    */
+    function transferOwnership(address _newOwner) public onlyOwner {
+        require(_newOwner != address(0), "Empty address");
+        pendingOwner = _newOwner;
+    }
+
+    /**
+    * @dev Allows the pendingOwner address to finalize the transfer.
+    */
+    function claimOwnership() onlyPendingOwner public {
+        emit OwnershipTransferred(owner, pendingOwner);
+        owner = pendingOwner;
+        pendingOwner = address(0);
+    }
+}
+
+/**
+* @title AllowanceSheet
+* @notice A wrapper around an allowance mapping. 
+*/
+contract AllowanceSheet is Ownable {
+    using SafeMath for uint256;
+
+    mapping (address => mapping (address => uint256)) public allowanceOf;
+
+    function addAllowance(address _tokenHolder, address _spender, uint256 _value) public onlyOwner {
+        allowanceOf[_tokenHolder][_spender] = allowanceOf[_tokenHolder][_spender].add(_value);
+    }
+
+    function subAllowance(address _tokenHolder, address _spender, uint256 _value) public onlyOwner {
+        allowanceOf[_tokenHolder][_spender] = allowanceOf[_tokenHolder][_spender].sub(_value);
+    }
+
+    function setAllowance(address _tokenHolder, address _spender, uint256 _value) public onlyOwner {
+        allowanceOf[_tokenHolder][_spender] = _value;
+    }
+}
+
+/**
+* @title BalanceSheet
+* @notice A wrapper around the balanceOf mapping. 
+*/
+contract BalanceSheet is Ownable {
+    using SafeMath for uint256;
+
+    mapping (address => uint256) public balanceOf;
+    uint256 public totalSupply;
+
+    function addBalance(address _addr, uint256 _value) public onlyOwner {
+        balanceOf[_addr] = balanceOf[_addr].add(_value);
+    }
+
+    function subBalance(address _addr, uint256 _value) public onlyOwner {
+        balanceOf[_addr] = balanceOf[_addr].sub(_value);
+    }
+
+    function setBalance(address _addr, uint256 _value) public onlyOwner {
+        balanceOf[_addr] = _value;
+    }
+
+    function addTotalSupply(uint256 _value) public onlyOwner {
+        totalSupply = totalSupply.add(_value);
+    }
+
+    function subTotalSupply(uint256 _value) public onlyOwner {
+        totalSupply = totalSupply.sub(_value);
+    }
+
+    function setTotalSupply(uint256 _value) public onlyOwner {
+        totalSupply = _value;
+    }
+}
+
+/**
+* @title TokenStorage
+*/
+contract TokenStorage {
+    /**
+        Storage
+    */
+    BalanceSheet public balances;
+    AllowanceSheet public allowances;
+
+
+    string public name;   //name of Token                
+    uint8  public decimals;        //decimals of Token        
+    string public symbol;   //Symbol of Token
+
+    /**
+    * @dev a TokenStorage consumer can set its storages only once, on construction
+    *
+    **/
+    constructor (address _balances, address _allowances, string _name, uint8 _decimals, string _symbol) public {
+        balances = BalanceSheet(_balances);
+        allowances = AllowanceSheet(_allowances);
+
+        name = _name;
+        decimals = _decimals;
+        symbol = _symbol;
+    }
+
+    /**
+    * @dev claim ownership of balance sheet passed into constructor.
+    **/
+    function claimBalanceOwnership() public {
+        balances.claimOwnership();
+    }
+
+    /**
+    * @dev claim ownership of allowance sheet passed into constructor.
+    **/
+    function claimAllowanceOwnership() public {
+        allowances.claimOwnership();
+    }
+}
+
+/**
+ * Utility library of inline functions on addresses
+ */
+library AddressUtils {
+
+  /**
+   * Returns whether the target address is a contract
+   * @dev This function will return false if invoked during the constructor of a contract,
+   * as the code is not actually created until after the constructor finishes.
+   * @param _addr address to check
+   * @return whether the target address is a contract
+   */
+  function isContract(address _addr) internal view returns (bool) {
+    uint256 size;
+    // XXX Currently there is no better way to check if there is a contract in an address
+    // than to check the size of the code at that address.
+    // See https://ethereum.stackexchange.com/a/14016/36603
+    // for more details about how this works.
+    // TODO Check this again before the Serenity release, because all addresses will be
+    // contracts then.
+    // solium-disable-next-line security/no-inline-assembly
+    assembly { size := extcodesize(_addr) }
+    return size > 0;
+  }
+
+}
+
+/**
+ * @title ERC20Basic
+ * @dev Simpler version of ERC20 interface
+ * See https://github.com/ethereum/EIPs/issues/179
+ */
+contract ERC20Basic {
+  function totalSupply() public view returns (uint256);
+  function balanceOf(address _who) public view returns (uint256);
+  function transfer(address _to, uint256 _value) public returns (bool);
+  event Transfer(address indexed from, address indexed to, uint256 value);
+}
+
+/**
+ * @title ERC20 interface
+ * @dev see https://github.com/ethereum/EIPs/issues/20
+ */
+contract ERC20 is ERC20Basic {
+  function allowance(address _owner, address _spender)
+    public view returns (uint256);
+
+  function transferFrom(address _from, address _to, uint256 _value)
+    public returns (bool);
+
+  function approve(address _spender, uint256 _value) public returns (bool);
+  event Approval(
+    address indexed owner,
+    address indexed spender,
+    uint256 value
+  );
+}
+
+/**
+ * @title AkropolisBaseToken
+ * @notice A basic ERC20 token with modular data storage
+ */
+contract AkropolisBaseToken is ERC20, TokenStorage, Ownable {
+    using SafeMath for uint256;
+
+    /** Events */
+    event Mint(address indexed to, uint256 value);
+    event MintFinished();
+    event MintStarted();
+    event Burn(address indexed burner, uint256 value);
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
+    event NameSymbolChanged(string newName, string newSymbol);
+
+    constructor(
+        address _balances,
+        address _allowances,
+        string _name,
+        uint8 _decimals,
+        string _symbol
+    ) public TokenStorage(_balances, _allowances, _name, _decimals, _symbol) {}
+
+    /** Modifiers **/
+
+    modifier canMint() {
+        require(!isMintingFinished());
+        _;
+    }
+
+    /** Functions **/
+
+    function mint(address _to, uint256 _amount) public onlyOwner canMint {
+        _mint(_to, _amount);
+    }
+
+    function burn(uint256 _amount) public onlyOwner {
+        _burn(msg.sender, _amount);
+    }
+
+    function isMintingFinished() public view returns (bool) {
+        bytes32 slot = keccak256(abi.encode("Minting", "mint"));
+        uint256 v;
+        assembly {
+            v := sload(slot)
+        }
+        return v != 0;
+    }
+
+    function setMintingFinished(bool value) internal {
+        bytes32 slot = keccak256(abi.encode("Minting", "mint"));
+        uint256 v = value ? 1 : 0;
+        assembly {
+            sstore(slot, v)
+        }
+    }
+
+    function mintFinished() public onlyOwner {
+        setMintingFinished(true);
+        emit MintFinished();
+    }
+
+    function mintStarted() public onlyOwner {
+        setMintingFinished(false);
+        emit MintStarted();
+    }
+
+    function setNameSymbol(string _newName, string _newSymbol) public onlyOwner {
+        require(bytes(_newName).length > 0, "Name cannot be empty");
+        require(bytes(_newSymbol).length > 0, "Symbol cannot be empty");
+
+        name = _newName;
+        symbol = _newSymbol;
+
+        emit NameSymbolChanged(_newName, _newSymbol);
+    }
+
+
+    function approve(address _spender, uint256 _value) public returns (bool) {
+        allowances.setAllowance(msg.sender, _spender, _value);
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    function transfer(address _to, uint256 _amount) public returns (bool) {
+        require(_to != address(0), "to address cannot be 0x0");
+        require(
+            _amount <= balanceOf(msg.sender),
+            "not enough balance to transfer"
+        );
+
+        balances.subBalance(msg.sender, _amount);
+        balances.addBalance(_to, _amount);
+        emit Transfer(msg.sender, _to, _amount);
+        return true;
+    }
+
+    function transferFrom(
+        address _from,
+        address _to,
+        uint256 _amount
+    ) public returns (bool) {
+        require(
+            _amount <= allowance(_from, msg.sender),
+            "not enough allowance to transfer"
+        );
+        require(_to != address(0), "to address cannot be 0x0");
+        require(_amount <= balanceOf(_from), "not enough balance to transfer");
+
+        allowances.subAllowance(_from, msg.sender, _amount);
+        balances.addBalance(_to, _amount);
+        balances.subBalance(_from, _amount);
+        emit Transfer(_from, _to, _amount);
+        return true;
+    }
+
+    /**
+     * @notice Implements balanceOf() as specified in the ERC20 standard.
+     */
+    function balanceOf(address who) public view returns (uint256) {
+        return balances.balanceOf(who);
+    }
+
+    /**
+     * @notice Implements allowance() as specified in the ERC20 standard.
+     */
+    function allowance(address owner, address spender)
+        public
+        view
+        returns (uint256)
+    {
+        return allowances.allowanceOf(owner, spender);
+    }
+
+    /**
+     * @notice Implements totalSupply() as specified in the ERC20 standard.
+     */
+    function totalSupply() public view returns (uint256) {
+        return balances.totalSupply();
+    }
+
+    /** Internal functions **/
+
+    function _burn(address _tokensOf, uint256 _amount) internal {
+        require(_amount <= balanceOf(_tokensOf), "not enough balance to burn");
+        // no need to require value <= totalSupply, since that would imply the
+        // sender's balance is greater than the totalSupply, which *should* be an assertion failure
+        balances.subBalance(_tokensOf, _amount);
+        balances.subTotalSupply(_amount);
+        emit Burn(_tokensOf, _amount);
+        emit Transfer(_tokensOf, address(0), _amount);
+    }
+
+    function _mint(address _to, uint256 _amount) internal {
+        balances.addTotalSupply(_amount);
+        balances.addBalance(_to, _amount);
+        emit Mint(_to, _amount);
+        emit Transfer(address(0), _to, _amount);
+    }
+}
+
+/**
+* @title Lockable
+* @dev Base contract which allows children to lock certain methods from being called by clients.
+* Locked methods are deemed unsafe by default, but must be implemented in children functionality to adhere by
+* some inherited standard, for example. 
+*/
+contract Lockable is Ownable {
+	// Events
+	event Unlocked();
+	event Locked();
+
+	// Modifiers
 	/**
-	 * Mapping of URIs to IPFS storing the data of a vestingTree.
-	 * root => URI (IPFS)
-	**/
-	mapping(bytes32 => string) public mapRootURIs;
-
-	/**
-	 * @dev Record of user withdrawals by cliff.
-	 * leaf = keccak256(abi.encodePacked(beneficiary, amount, cliff))
-	 * leaf => claimed
-	**/
-	mapping(bytes32 => bool) public vestingClaimed;
-
-	/**
-	 * @dev Total balance of vesting tree by root hash
-	 * Root hash => balance
-	**/
-	mapping(bytes32 => uint256) public balanceByRootHash;
-
-	/**
-	 * @dev Root hash record of valid vesting trees
-	 * Root hash => valid
-	**/
-	mapping(bytes32 => bool) public rootWhitelist;
-
-	/**
-	 * @dev Treasurer mapping. A treasurer is an address which has the possibility of generating
-	 * new TGE with the tokens that are assigned to it at the time of contract deployment.
-	 * address => isTreasurer
-	**/
-	mapping(address => bool) private _treasurers;
-
-	/***************
-	* 4. MODIFIERS *
-	****************/
-	/**
-	 * @dev Throws if root no valid
-	**/
-	modifier validRoot(bytes32 _root) {
-		require(rootWhitelist[_root], "Root no valid");
+	* @dev Modifier that disables functions by default unless they are explicitly enabled
+	*/
+	modifier whenUnlocked() {
+		require(!isLocked(), "Contact is locked");
 		_;
 	}
 
-	/************
-	* 5. EVENTS *
-	*************/
-	event AddedRoot(bytes32 indexed root);
-	event VestedTokenGrant(bytes32 indexed leafHash);
-
-	/***************
-	* 6. FUNCTIONS *
-	****************/
 	/**
-	 * @param name_ Name of ERC20 token
-	 * @param symbol_ Symbol of ERC20 token
-	 * @param supply_ Supply of ERC20 token
-	 * @param uriIPFS_ IPFS URI for the initial vesting tree data.
-	 * @param vestingTreeRoot_ Vesting tree root hash
-	 * @param vestingStartTimestamp_ Timestamp of vesting start as seconds since the Unix epoch
-	 * @param proofBalance_ Proof of total balance
-	 * @param treasurers_ Addresses of authorized treasurers
-	 **/
-	constructor(
-		string memory name_,
-		string memory symbol_,
-		uint256 supply_,
-		string memory uriIPFS_,
-		bytes32 vestingTreeRoot_,
-		uint256 vestingStartTimestamp_,
-		bytes32[] memory proofBalance_,
-		address[] memory treasurers_
-	) ERC20(name_, symbol_) {
-		uint256 supply = supply_ * uint256(10)**decimals();
-
-		/**
-		 * @dev
-		 * A validation of the supply registered in the merkle tree is made to verify that it
-		 * matches the supply that the contract will have and to ensure that sufficient funds
-		 * are available to comply with all the TGE assignments.
-		**/
-		require(
-			MerkleProof.verify(proofBalance_, vestingTreeRoot_, keccak256(abi.encodePacked(supply))),
-			'The total supply of the contract does not match that of the merketree'
-		);
-
-		for(uint256 i = 0; i < treasurers_.length; i++) _treasurers[treasurers_[i]] = true;
-
-		rootWhitelist[vestingTreeRoot_] = true;
-		balanceByRootHash[vestingTreeRoot_] = supply;
-		VESTING_START_TIMESTAMP = vestingStartTimestamp_;
-
-		emit AddedRoot(vestingTreeRoot_);
-
-		rootURIs.push(uriIPFS_);
-		mapRootURIs[vestingTreeRoot_] = uriIPFS_;
-
-		_mint(address(this), supply);
+	* @dev called by the owner to disable method, back to normal state
+	*/
+	function lock() public  onlyOwner {
+		setLock(true);
+		emit Locked();
 	}
 
+	// Methods
 	/**
-	 * @dev Verify if an address is a treasury address.
-	 * @param t_ Address of treasurer.
-	**/
-	function isTreasurer(address t_) view public returns(bool) {
-		return _treasurers[t_];
+	* @dev called by the owner to enable method
+	*/
+	function unlock() public onlyOwner  {
+		setLock(false);
+		emit Unlocked();
 	}
 
-	/**
-	 * @dev Verify the validity of merkle proof associated with an address.
-	 * @param beneficiary_ Address of beneficiary.
-	 * @param amount_ Amount vested tokens to be released.
-	 * @param cliff_ Lock delay for release.
-	 * @param root_ Merkle tree root.
-	 * @param proof_ Merkle proof.
-	**/
-	function verifyProof(
-		address beneficiary_,
-		uint256 amount_,
-		uint256 cliff_,
-		bytes32 root_,
-		bytes32[] calldata proof_
-	) external view returns(bool) {
-		if(!rootWhitelist[root_]) return false;
-		bytes32 _leaf = keccak256(abi.encodePacked(beneficiary_, amount_, cliff_));
-		return MerkleProof.verify(proof_, root_, _leaf);
-	}
-
-	/**
-	 * @dev Add a new merkle tree hash. Only addresses registered in the initial Merkle tree as
-	 * treasurers have the possibility of adding new Merkle trees, and they are only allowed to
-	 * add batches of users that belong to the same group (pool) and with the same allocation date.
-	 * @param root_ Merkle tree root of treasurer.
-	 * @param newRoot_ New merkle tree root.
-	 * @param amount_ Balance that is assigned to new merkle tree.
-	 * @param uriIPFS_ IPFS URI for the initial vesting tree data.
-	 * @param allocation_ treasurer allocation
-	 * @param balanceProof_ Merkle proof of balance.
-	 * @param initialAllocationProof_ Merkle proof initial allocation.
-	 * @param newAllocationProof_ Merkle proof new allocation.
-	 * @param allocationQuantityProof_ Merkle proof allocation quantity.
-	 * @param vestingSchedules_ Array of vestingData.
-	**/
-	function addRoot(
-		bytes32 root_,
-		bytes32 newRoot_,
-		uint256 amount_,
-		string memory uriIPFS_,
-		Allocation memory allocation_,
-		bytes32[] memory balanceProof_,
-		bytes32[] memory initialAllocationProof_,
-		bytes32[] memory newAllocationProof_,
-		bytes32[] memory allocationQuantityProof_,
-		VestingData[] calldata vestingSchedules_
-	) external validRoot(root_) {
-		require(isTreasurer(msg.sender), 'Caller is not a treasurer');
-
-		require(MerkleProof.verify(
-			allocationQuantityProof_,
-			newRoot_,
-			keccak256(abi.encodePacked('ALLOCATION_QUANTITY', uint256(1)))
-		), 'The quantity of the allocation of the new Merkle tree is invalid');
-
-		/// @dev the allocation dates of the treasurer who is adding a new merkle tree must match
-		// the one assigned in the original merkle tree
-		require(
-			MerkleProof.verify(
-				initialAllocationProof_,
-				root_,
-				keccak256(abi.encodePacked(
-					msg.sender,
-					allocation_.unlocking,
-					allocation_.monthly,
-					allocation_.months,
-					allocation_.cliff
-				))
-			)
-			&&
-			MerkleProof.verify(
-				newAllocationProof_,
-				newRoot_,
-				keccak256(abi.encodePacked(
-					msg.sender,
-					allocation_.unlocking,
-					allocation_.monthly,
-					allocation_.months,
-					allocation_.cliff
-				))
-			),
-			'Allocation type of the new Merkle tree is invalid'
-		);
-
-		require(
-			MerkleProof.verify(balanceProof_, newRoot_, keccak256(abi.encodePacked(amount_))),
-			'The supply sent does not match that of the merketree'
-		);
-
-		bytes32 r = root_;
-		uint256 balance = 0;
-
-		for(uint256 i = 0; i < vestingSchedules_.length; i++) {
-			(
-				address beneficiary,
-				uint256 amount,
-				uint256 cliff,
-				bytes32[] calldata proof
-			) = _splitVestingSchedule(vestingSchedules_[i]);
-
-			require(beneficiary == msg.sender, 'You cannot claim tokens from another user');
-
-			bytes32 leaf = keccak256(abi.encodePacked(beneficiary, amount, cliff));
-
-			if(!vestingClaimed[leaf]) {
-				require(
-					MerkleProof.verify(proof, r, leaf), 'Invalid merkle proof'
-				);
-
-				require(balanceByRootHash[r] >= amount, 'Supply is not enough to claim allocation');
-
-				vestingClaimed[leaf] = true;
-				balanceByRootHash[r] -= amount;
-				balance += amount;
-
-				emit VestedTokenGrant(leaf);
-			}
-		}
-
-		require(!rootWhitelist[newRoot_], 'Root hash already exists');
-		require(amount_ == balance, 'Amount is different from balance');
-
-		rootWhitelist[newRoot_] = true;
-		balanceByRootHash[newRoot_] = amount_;
-
-		rootURIs.push(uriIPFS_);
-		mapRootURIs[newRoot_] = uriIPFS_;
-
-		emit AddedRoot(newRoot_);
-	}
-
-	/**
-	 * @dev Release vesting in batches
-	 * @param vestingSchedules_ Array of vesting schedule
-	 * @param root_ Merkle tree root
-	**/
-	function batchReleaseVested(VestingData[] calldata vestingSchedules_, bytes32 root_) external {
-		for(uint256 i = 0; i < vestingSchedules_.length; i++) {
-			(
-				address beneficiary,
-				uint256 amount,
-				uint256 cliff,
-				bytes32[] calldata proof
-			) = _splitVestingSchedule(vestingSchedules_[i]);
-
-			bytes32 _leaf = keccak256(abi.encodePacked(beneficiary, amount, cliff));
-			if(!vestingClaimed[_leaf]) _releaseVested(beneficiary, amount, cliff, root_, proof);
-		}
-	}
-
-	/**
-	 * @dev Release vesting associated with an address
-	 * @param _beneficiary Address of beneficiary
-	 * @param _amount Amount vested tokens to be released
-	 * @param _cliff Lock delay for release
-	 * @param _root Merkle tree root
-	 * @param _proof Merkle proof
-	**/
-	function releaseVested(
-		address _beneficiary,
-		uint256 _amount,
-		uint256 _cliff,
-		bytes32 _root,
-		bytes32[] calldata _proof
-	) external {
-		_releaseVested(_beneficiary, _amount, _cliff, _root, _proof);
-	}
-
-	/**
-	 * @dev Release vesting associated with an address
-	 * @param beneficiary_ Address of beneficiary
-	 * @param amount_ Amount vested tokens to be released
-	 * @param cliff_ Lock delay for release
-	 * @param root_ Merkle tree root
-	 * @param proof_ Merkle proof
-	**/
-	function _releaseVested(
-		address beneficiary_,
-		uint256 amount_,
-		uint256 cliff_,
-		bytes32 root_,
-		bytes32[] calldata proof_
-	) internal validRoot(root_) {
-		bytes32 leaf = keccak256(abi.encodePacked(beneficiary_, amount_, cliff_));
-
-		require(
-			MerkleProof.verify(proof_, root_, leaf), 'Invalid merkle proof'
-		);
-
-		require(!vestingClaimed[leaf], 'Tokens already claimed');
-		require(balanceByRootHash[root_] >= amount_, 'Supply is not enough to claim allocation');
-		require(
-			block.timestamp >= VESTING_START_TIMESTAMP + cliff_,
-			"The release date has not yet arrived"
-		);
-
-		require(!isTreasurer(beneficiary_), "Treasury addresses cannot claim tokens");
-
-		vestingClaimed[leaf] = true;
-		balanceByRootHash[root_] -= amount_;
-		_transfer(address(this), beneficiary_, amount_);
-
-		emit VestedTokenGrant(leaf);
-	}
-
-	function _splitVestingSchedule(VestingData calldata _user) internal pure returns(
-		address beneficiary,
-		uint256 amount,
-		uint256 cliff,
-		bytes32[] calldata proof
-	) {
-		return (_user.beneficiary, _user.amount, _user.cliff, _user.proof);
-	}
-}
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v4.8.0) (token/ERC20/ERC20.sol)
-
-pragma solidity ^0.8.0;
-
-import "./IERC20.sol";
-import "./extensions/IERC20Metadata.sol";
-import "../../utils/Context.sol";
-
-/**
- * @dev Implementation of the {IERC20} interface.
- *
- * This implementation is agnostic to the way tokens are created. This means
- * that a supply mechanism has to be added in a derived contract using {_mint}.
- * For a generic mechanism see {ERC20PresetMinterPauser}.
- *
- * TIP: For a detailed writeup see our guide
- * https://forum.openzeppelin.com/t/how-to-implement-erc20-supply-mechanisms/226[How
- * to implement supply mechanisms].
- *
- * We have followed general OpenZeppelin Contracts guidelines: functions revert
- * instead returning `false` on failure. This behavior is nonetheless
- * conventional and does not conflict with the expectations of ERC20
- * applications.
- *
- * Additionally, an {Approval} event is emitted on calls to {transferFrom}.
- * This allows applications to reconstruct the allowance for all accounts just
- * by listening to said events. Other implementations of the EIP may not emit
- * these events, as it isn't required by the specification.
- *
- * Finally, the non-standard {decreaseAllowance} and {increaseAllowance}
- * functions have been added to mitigate the well-known issues around setting
- * allowances. See {IERC20-approve}.
- */
-contract ERC20 is Context, IERC20, IERC20Metadata {
-    mapping(address => uint256) private _balances;
-
-    mapping(address => mapping(address => uint256)) private _allowances;
-
-    uint256 private _totalSupply;
-
-    string private _name;
-    string private _symbol;
-
-    /**
-     * @dev Sets the values for {name} and {symbol}.
-     *
-     * The default value of {decimals} is 18. To select a different value for
-     * {decimals} you should overload it.
-     *
-     * All two of these values are immutable: they can only be set once during
-     * construction.
-     */
-    constructor(string memory name_, string memory symbol_) {
-        _name = name_;
-        _symbol = symbol_;
-    }
-
-    /**
-     * @dev Returns the name of the token.
-     */
-    function name() public view virtual override returns (string memory) {
-        return _name;
-    }
-
-    /**
-     * @dev Returns the symbol of the token, usually a shorter version of the
-     * name.
-     */
-    function symbol() public view virtual override returns (string memory) {
-        return _symbol;
-    }
-
-    /**
-     * @dev Returns the number of decimals used to get its user representation.
-     * For example, if `decimals` equals `2`, a balance of `505` tokens should
-     * be displayed to a user as `5.05` (`505 / 10 ** 2`).
-     *
-     * Tokens usually opt for a value of 18, imitating the relationship between
-     * Ether and Wei. This is the value {ERC20} uses, unless this function is
-     * overridden;
-     *
-     * NOTE: This information is only used for _display_ purposes: it in
-     * no way affects any of the arithmetic of the contract, including
-     * {IERC20-balanceOf} and {IERC20-transfer}.
-     */
-    function decimals() public view virtual override returns (uint8) {
-        return 18;
-    }
-
-    /**
-     * @dev See {IERC20-totalSupply}.
-     */
-    function totalSupply() public view virtual override returns (uint256) {
-        return _totalSupply;
-    }
-
-    /**
-     * @dev See {IERC20-balanceOf}.
-     */
-    function balanceOf(address account) public view virtual override returns (uint256) {
-        return _balances[account];
-    }
-
-    /**
-     * @dev See {IERC20-transfer}.
-     *
-     * Requirements:
-     *
-     * - `to` cannot be the zero address.
-     * - the caller must have a balance of at least `amount`.
-     */
-    function transfer(address to, uint256 amount) public virtual override returns (bool) {
-        address owner = _msgSender();
-        _transfer(owner, to, amount);
-        return true;
-    }
-
-    /**
-     * @dev See {IERC20-allowance}.
-     */
-    function allowance(address owner, address spender) public view virtual override returns (uint256) {
-        return _allowances[owner][spender];
-    }
-
-    /**
-     * @dev See {IERC20-approve}.
-     *
-     * NOTE: If `amount` is the maximum `uint256`, the allowance is not updated on
-     * `transferFrom`. This is semantically equivalent to an infinite approval.
-     *
-     * Requirements:
-     *
-     * - `spender` cannot be the zero address.
-     */
-    function approve(address spender, uint256 amount) public virtual override returns (bool) {
-        address owner = _msgSender();
-        _approve(owner, spender, amount);
-        return true;
-    }
-
-    /**
-     * @dev See {IERC20-transferFrom}.
-     *
-     * Emits an {Approval} event indicating the updated allowance. This is not
-     * required by the EIP. See the note at the beginning of {ERC20}.
-     *
-     * NOTE: Does not update the allowance if the current allowance
-     * is the maximum `uint256`.
-     *
-     * Requirements:
-     *
-     * - `from` and `to` cannot be the zero address.
-     * - `from` must have a balance of at least `amount`.
-     * - the caller must have allowance for ``from``'s tokens of at least
-     * `amount`.
-     */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) public virtual override returns (bool) {
-        address spender = _msgSender();
-        _spendAllowance(from, spender, amount);
-        _transfer(from, to, amount);
-        return true;
-    }
-
-    /**
-     * @dev Atomically increases the allowance granted to `spender` by the caller.
-     *
-     * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {IERC20-approve}.
-     *
-     * Emits an {Approval} event indicating the updated allowance.
-     *
-     * Requirements:
-     *
-     * - `spender` cannot be the zero address.
-     */
-    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
-        address owner = _msgSender();
-        _approve(owner, spender, allowance(owner, spender) + addedValue);
-        return true;
-    }
-
-    /**
-     * @dev Atomically decreases the allowance granted to `spender` by the caller.
-     *
-     * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {IERC20-approve}.
-     *
-     * Emits an {Approval} event indicating the updated allowance.
-     *
-     * Requirements:
-     *
-     * - `spender` cannot be the zero address.
-     * - `spender` must have allowance for the caller of at least
-     * `subtractedValue`.
-     */
-    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
-        address owner = _msgSender();
-        uint256 currentAllowance = allowance(owner, spender);
-        require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
-        unchecked {
-            _approve(owner, spender, currentAllowance - subtractedValue);
-        }
-
-        return true;
-    }
-
-    /**
-     * @dev Moves `amount` of tokens from `from` to `to`.
-     *
-     * This internal function is equivalent to {transfer}, and can be used to
-     * e.g. implement automatic token fees, slashing mechanisms, etc.
-     *
-     * Emits a {Transfer} event.
-     *
-     * Requirements:
-     *
-     * - `from` cannot be the zero address.
-     * - `to` cannot be the zero address.
-     * - `from` must have a balance of at least `amount`.
-     */
-    function _transfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {
-        require(from != address(0), "ERC20: transfer from the zero address");
-        require(to != address(0), "ERC20: transfer to the zero address");
-
-        _beforeTokenTransfer(from, to, amount);
-
-        uint256 fromBalance = _balances[from];
-        require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
-        unchecked {
-            _balances[from] = fromBalance - amount;
-            // Overflow not possible: the sum of all balances is capped by totalSupply, and the sum is preserved by
-            // decrementing then incrementing.
-            _balances[to] += amount;
-        }
-
-        emit Transfer(from, to, amount);
-
-        _afterTokenTransfer(from, to, amount);
-    }
-
-    /** @dev Creates `amount` tokens and assigns them to `account`, increasing
-     * the total supply.
-     *
-     * Emits a {Transfer} event with `from` set to the zero address.
-     *
-     * Requirements:
-     *
-     * - `account` cannot be the zero address.
-     */
-    function _mint(address account, uint256 amount) internal virtual {
-        require(account != address(0), "ERC20: mint to the zero address");
-
-        _beforeTokenTransfer(address(0), account, amount);
-
-        _totalSupply += amount;
-        unchecked {
-            // Overflow not possible: balance + amount is at most totalSupply + amount, which is checked above.
-            _balances[account] += amount;
-        }
-        emit Transfer(address(0), account, amount);
-
-        _afterTokenTransfer(address(0), account, amount);
-    }
-
-    /**
-     * @dev Destroys `amount` tokens from `account`, reducing the
-     * total supply.
-     *
-     * Emits a {Transfer} event with `to` set to the zero address.
-     *
-     * Requirements:
-     *
-     * - `account` cannot be the zero address.
-     * - `account` must have at least `amount` tokens.
-     */
-    function _burn(address account, uint256 amount) internal virtual {
-        require(account != address(0), "ERC20: burn from the zero address");
-
-        _beforeTokenTransfer(account, address(0), amount);
-
-        uint256 accountBalance = _balances[account];
-        require(accountBalance >= amount, "ERC20: burn amount exceeds balance");
-        unchecked {
-            _balances[account] = accountBalance - amount;
-            // Overflow not possible: amount <= accountBalance <= totalSupply.
-            _totalSupply -= amount;
-        }
-
-        emit Transfer(account, address(0), amount);
-
-        _afterTokenTransfer(account, address(0), amount);
-    }
-
-    /**
-     * @dev Sets `amount` as the allowance of `spender` over the `owner` s tokens.
-     *
-     * This internal function is equivalent to `approve`, and can be used to
-     * e.g. set automatic allowances for certain subsystems, etc.
-     *
-     * Emits an {Approval} event.
-     *
-     * Requirements:
-     *
-     * - `owner` cannot be the zero address.
-     * - `spender` cannot be the zero address.
-     */
-    function _approve(
-        address owner,
-        address spender,
-        uint256 amount
-    ) internal virtual {
-        require(owner != address(0), "ERC20: approve from the zero address");
-        require(spender != address(0), "ERC20: approve to the zero address");
-
-        _allowances[owner][spender] = amount;
-        emit Approval(owner, spender, amount);
-    }
-
-    /**
-     * @dev Updates `owner` s allowance for `spender` based on spent `amount`.
-     *
-     * Does not update the allowance amount in case of infinite allowance.
-     * Revert if not enough allowance is available.
-     *
-     * Might emit an {Approval} event.
-     */
-    function _spendAllowance(
-        address owner,
-        address spender,
-        uint256 amount
-    ) internal virtual {
-        uint256 currentAllowance = allowance(owner, spender);
-        if (currentAllowance != type(uint256).max) {
-            require(currentAllowance >= amount, "ERC20: insufficient allowance");
-            unchecked {
-                _approve(owner, spender, currentAllowance - amount);
-            }
-        }
-    }
-
-    /**
-     * @dev Hook that is called before any transfer of tokens. This includes
-     * minting and burning.
-     *
-     * Calling conditions:
-     *
-     * - when `from` and `to` are both non-zero, `amount` of ``from``'s tokens
-     * will be transferred to `to`.
-     * - when `from` is zero, `amount` tokens will be minted for `to`.
-     * - when `to` is zero, `amount` of ``from``'s tokens will be burned.
-     * - `from` and `to` are never both zero.
-     *
-     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
-     */
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {}
-
-    /**
-     * @dev Hook that is called after any transfer of tokens. This includes
-     * minting and burning.
-     *
-     * Calling conditions:
-     *
-     * - when `from` and `to` are both non-zero, `amount` of ``from``'s tokens
-     * has been transferred to `to`.
-     * - when `from` is zero, `amount` tokens have been minted for `to`.
-     * - when `to` is zero, `amount` of ``from``'s tokens have been burned.
-     * - `from` and `to` are never both zero.
-     *
-     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
-     */
-    function _afterTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {}
-}
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts v4.4.1 (token/ERC20/extensions/IERC20Metadata.sol)
-
-pragma solidity ^0.8.0;
-
-import "../IERC20.sol";
-
-/**
- * @dev Interface for the optional metadata functions from the ERC20 standard.
- *
- * _Available since v4.1._
- */
-interface IERC20Metadata is IERC20 {
-    /**
-     * @dev Returns the name of the token.
-     */
-    function name() external view returns (string memory);
-
-    /**
-     * @dev Returns the symbol of the token.
-     */
-    function symbol() external view returns (string memory);
-
-    /**
-     * @dev Returns the decimals places of the token.
-     */
-    function decimals() external view returns (uint8);
-}
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v4.6.0) (token/ERC20/IERC20.sol)
-
-pragma solidity ^0.8.0;
-
-/**
- * @dev Interface of the ERC20 standard as defined in the EIP.
- */
-interface IERC20 {
-    /**
-     * @dev Emitted when `value` tokens are moved from one account (`from`) to
-     * another (`to`).
-     *
-     * Note that `value` may be zero.
-     */
-    event Transfer(address indexed from, address indexed to, uint256 value);
-
-    /**
-     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
-     * a call to {approve}. `value` is the new allowance.
-     */
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-
-    /**
-     * @dev Returns the amount of tokens in existence.
-     */
-    function totalSupply() external view returns (uint256);
-
-    /**
-     * @dev Returns the amount of tokens owned by `account`.
-     */
-    function balanceOf(address account) external view returns (uint256);
-
-    /**
-     * @dev Moves `amount` tokens from the caller's account to `to`.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * Emits a {Transfer} event.
-     */
-    function transfer(address to, uint256 amount) external returns (bool);
-
-    /**
-     * @dev Returns the remaining number of tokens that `spender` will be
-     * allowed to spend on behalf of `owner` through {transferFrom}. This is
-     * zero by default.
-     *
-     * This value changes when {approve} or {transferFrom} are called.
-     */
-    function allowance(address owner, address spender) external view returns (uint256);
-
-    /**
-     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * IMPORTANT: Beware that changing an allowance with this method brings the risk
-     * that someone may use both the old and the new allowance by unfortunate
-     * transaction ordering. One possible solution to mitigate this race
-     * condition is to first reduce the spender's allowance to 0 and set the
-     * desired value afterwards:
-     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-     *
-     * Emits an {Approval} event.
-     */
-    function approve(address spender, uint256 amount) external returns (bool);
-
-    /**
-     * @dev Moves `amount` tokens from `from` to `to` using the
-     * allowance mechanism. `amount` is then deducted from the caller's
-     * allowance.
-     *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * Emits a {Transfer} event.
-     */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) external returns (bool);
-}
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
-
-pragma solidity ^0.8.0;
-
-/**
- * @dev Provides information about the current execution context, including the
- * sender of the transaction and its data. While these are generally available
- * via msg.sender and msg.data, they should not be accessed in such a direct
- * manner, since when dealing with meta-transactions the account sending and
- * paying for execution may not be the actual sender (as far as an application
- * is concerned).
- *
- * This contract is only required for intermediate, library-like contracts.
- */
-abstract contract Context {
-    function _msgSender() internal view virtual returns (address) {
-        return msg.sender;
-    }
-
-    function _msgData() internal view virtual returns (bytes calldata) {
-        return msg.data;
-    }
-}
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v4.8.0) (utils/cryptography/MerkleProof.sol)
-
-pragma solidity ^0.8.0;
-
-/**
- * @dev These functions deal with verification of Merkle Tree proofs.
- *
- * The tree and the proofs can be generated using our
- * https://github.com/OpenZeppelin/merkle-tree[JavaScript library].
- * You will find a quickstart guide in the readme.
- *
- * WARNING: You should avoid using leaf values that are 64 bytes long prior to
- * hashing, or use a hash function other than keccak256 for hashing leaves.
- * This is because the concatenation of a sorted pair of internal nodes in
- * the merkle tree could be reinterpreted as a leaf value.
- * OpenZeppelin's JavaScript library generates merkle trees that are safe
- * against this attack out of the box.
- */
-library MerkleProof {
-    /**
-     * @dev Returns true if a `leaf` can be proved to be a part of a Merkle tree
-     * defined by `root`. For this, a `proof` must be provided, containing
-     * sibling hashes on the branch from the leaf to the root of the tree. Each
-     * pair of leaves and each pair of pre-images are assumed to be sorted.
-     */
-    function verify(
-        bytes32[] memory proof,
-        bytes32 root,
-        bytes32 leaf
-    ) internal pure returns (bool) {
-        return processProof(proof, leaf) == root;
-    }
-
-    /**
-     * @dev Calldata version of {verify}
-     *
-     * _Available since v4.7._
-     */
-    function verifyCalldata(
-        bytes32[] calldata proof,
-        bytes32 root,
-        bytes32 leaf
-    ) internal pure returns (bool) {
-        return processProofCalldata(proof, leaf) == root;
-    }
-
-    /**
-     * @dev Returns the rebuilt hash obtained by traversing a Merkle tree up
-     * from `leaf` using `proof`. A `proof` is valid if and only if the rebuilt
-     * hash matches the root of the tree. When processing the proof, the pairs
-     * of leafs & pre-images are assumed to be sorted.
-     *
-     * _Available since v4.4._
-     */
-    function processProof(bytes32[] memory proof, bytes32 leaf) internal pure returns (bytes32) {
-        bytes32 computedHash = leaf;
-        for (uint256 i = 0; i < proof.length; i++) {
-            computedHash = _hashPair(computedHash, proof[i]);
-        }
-        return computedHash;
-    }
-
-    /**
-     * @dev Calldata version of {processProof}
-     *
-     * _Available since v4.7._
-     */
-    function processProofCalldata(bytes32[] calldata proof, bytes32 leaf) internal pure returns (bytes32) {
-        bytes32 computedHash = leaf;
-        for (uint256 i = 0; i < proof.length; i++) {
-            computedHash = _hashPair(computedHash, proof[i]);
-        }
-        return computedHash;
-    }
-
-    /**
-     * @dev Returns true if the `leaves` can be simultaneously proven to be a part of a merkle tree defined by
-     * `root`, according to `proof` and `proofFlags` as described in {processMultiProof}.
-     *
-     * CAUTION: Not all merkle trees admit multiproofs. See {processMultiProof} for details.
-     *
-     * _Available since v4.7._
-     */
-    function multiProofVerify(
-        bytes32[] memory proof,
-        bool[] memory proofFlags,
-        bytes32 root,
-        bytes32[] memory leaves
-    ) internal pure returns (bool) {
-        return processMultiProof(proof, proofFlags, leaves) == root;
-    }
-
-    /**
-     * @dev Calldata version of {multiProofVerify}
-     *
-     * CAUTION: Not all merkle trees admit multiproofs. See {processMultiProof} for details.
-     *
-     * _Available since v4.7._
-     */
-    function multiProofVerifyCalldata(
-        bytes32[] calldata proof,
-        bool[] calldata proofFlags,
-        bytes32 root,
-        bytes32[] memory leaves
-    ) internal pure returns (bool) {
-        return processMultiProofCalldata(proof, proofFlags, leaves) == root;
-    }
-
-    /**
-     * @dev Returns the root of a tree reconstructed from `leaves` and sibling nodes in `proof`. The reconstruction
-     * proceeds by incrementally reconstructing all inner nodes by combining a leaf/inner node with either another
-     * leaf/inner node or a proof sibling node, depending on whether each `proofFlags` item is true or false
-     * respectively.
-     *
-     * CAUTION: Not all merkle trees admit multiproofs. To use multiproofs, it is sufficient to ensure that: 1) the tree
-     * is complete (but not necessarily perfect), 2) the leaves to be proven are in the opposite order they are in the
-     * tree (i.e., as seen from right to left starting at the deepest layer and continuing at the next layer).
-     *
-     * _Available since v4.7._
-     */
-    function processMultiProof(
-        bytes32[] memory proof,
-        bool[] memory proofFlags,
-        bytes32[] memory leaves
-    ) internal pure returns (bytes32 merkleRoot) {
-        // This function rebuild the root hash by traversing the tree up from the leaves. The root is rebuilt by
-        // consuming and producing values on a queue. The queue starts with the `leaves` array, then goes onto the
-        // `hashes` array. At the end of the process, the last hash in the `hashes` array should contain the root of
-        // the merkle tree.
-        uint256 leavesLen = leaves.length;
-        uint256 totalHashes = proofFlags.length;
-
-        // Check proof validity.
-        require(leavesLen + proof.length - 1 == totalHashes, "MerkleProof: invalid multiproof");
-
-        // The xxxPos values are "pointers" to the next value to consume in each array. All accesses are done using
-        // `xxx[xxxPos++]`, which return the current value and increment the pointer, thus mimicking a queue's "pop".
-        bytes32[] memory hashes = new bytes32[](totalHashes);
-        uint256 leafPos = 0;
-        uint256 hashPos = 0;
-        uint256 proofPos = 0;
-        // At each step, we compute the next hash using two values:
-        // - a value from the "main queue". If not all leaves have been consumed, we get the next leaf, otherwise we
-        //   get the next hash.
-        // - depending on the flag, either another value for the "main queue" (merging branches) or an element from the
-        //   `proof` array.
-        for (uint256 i = 0; i < totalHashes; i++) {
-            bytes32 a = leafPos < leavesLen ? leaves[leafPos++] : hashes[hashPos++];
-            bytes32 b = proofFlags[i] ? leafPos < leavesLen ? leaves[leafPos++] : hashes[hashPos++] : proof[proofPos++];
-            hashes[i] = _hashPair(a, b);
-        }
-
-        if (totalHashes > 0) {
-            return hashes[totalHashes - 1];
-        } else if (leavesLen > 0) {
-            return leaves[0];
-        } else {
-            return proof[0];
-        }
-    }
-
-    /**
-     * @dev Calldata version of {processMultiProof}.
-     *
-     * CAUTION: Not all merkle trees admit multiproofs. See {processMultiProof} for details.
-     *
-     * _Available since v4.7._
-     */
-    function processMultiProofCalldata(
-        bytes32[] calldata proof,
-        bool[] calldata proofFlags,
-        bytes32[] memory leaves
-    ) internal pure returns (bytes32 merkleRoot) {
-        // This function rebuild the root hash by traversing the tree up from the leaves. The root is rebuilt by
-        // consuming and producing values on a queue. The queue starts with the `leaves` array, then goes onto the
-        // `hashes` array. At the end of the process, the last hash in the `hashes` array should contain the root of
-        // the merkle tree.
-        uint256 leavesLen = leaves.length;
-        uint256 totalHashes = proofFlags.length;
-
-        // Check proof validity.
-        require(leavesLen + proof.length - 1 == totalHashes, "MerkleProof: invalid multiproof");
-
-        // The xxxPos values are "pointers" to the next value to consume in each array. All accesses are done using
-        // `xxx[xxxPos++]`, which return the current value and increment the pointer, thus mimicking a queue's "pop".
-        bytes32[] memory hashes = new bytes32[](totalHashes);
-        uint256 leafPos = 0;
-        uint256 hashPos = 0;
-        uint256 proofPos = 0;
-        // At each step, we compute the next hash using two values:
-        // - a value from the "main queue". If not all leaves have been consumed, we get the next leaf, otherwise we
-        //   get the next hash.
-        // - depending on the flag, either another value for the "main queue" (merging branches) or an element from the
-        //   `proof` array.
-        for (uint256 i = 0; i < totalHashes; i++) {
-            bytes32 a = leafPos < leavesLen ? leaves[leafPos++] : hashes[hashPos++];
-            bytes32 b = proofFlags[i] ? leafPos < leavesLen ? leaves[leafPos++] : hashes[hashPos++] : proof[proofPos++];
-            hashes[i] = _hashPair(a, b);
-        }
-
-        if (totalHashes > 0) {
-            return hashes[totalHashes - 1];
-        } else if (leavesLen > 0) {
-            return leaves[0];
-        } else {
-            return proof[0];
-        }
-    }
-
-    function _hashPair(bytes32 a, bytes32 b) private pure returns (bytes32) {
-        return a < b ? _efficientHash(a, b) : _efficientHash(b, a);
-    }
-
-    function _efficientHash(bytes32 a, bytes32 b) private pure returns (bytes32 value) {
-        /// @solidity memory-safe-assembly
+	function setLock(bool value) internal {
+        bytes32 slot = keccak256(abi.encode("Lockable", "lock"));
+        uint256 v = value ? 1 : 0;
         assembly {
-            mstore(0x00, a)
-            mstore(0x20, b)
-            value := keccak256(0x00, 0x40)
+            sstore(slot, v)
         }
     }
-}
-{
-  "optimizer": {
-    "enabled": true,
-    "runs": 10000
-  },
-  "outputSelection": {
-    "*": {
-      "*": [
-        "evm.bytecode",
-        "evm.deployedBytecode",
-        "devdoc",
-        "userdoc",
-        "metadata",
-        "abi"
-      ]
+
+    function isLocked() public view returns (bool) {
+        bytes32 slot = keccak256(abi.encode("Lockable", "lock"));
+        uint256 v;
+        assembly {
+            v := sload(slot)
+        }
+        return v != 0;
     }
-  },
-  "metadata": {
-    "useLiteralContent": true
-  },
-  "libraries": {}
+
+}
+
+/**
+ * @title Pausable
+ * @dev Base contract which allows children to implement an emergency stop mechanism. Identical to OpenZeppelin version
+ * except that it uses local Ownable contract
+ */
+contract Pausable is Ownable {
+    event Pause();
+    event Unpause();
+
+    /**
+    * @dev Modifier to make a function callable only when the contract is not paused.
+    */
+    modifier whenNotPaused() {
+        require(!isPaused(), "Contract is paused");
+        _;
+    }
+
+    /**
+    * @dev Modifier to make a function callable only when the contract is paused.
+    */
+    modifier whenPaused() {
+        require(isPaused(), "Contract is not paused");
+        _;
+    }
+
+    /**
+    * @dev called by the owner to pause, triggers stopped state
+    */
+    function pause() public onlyOwner  whenNotPaused  {
+        setPause(true);
+        emit Pause();
+    }
+
+    /**
+    * @dev called by the owner to unpause, returns to normal state
+    */
+    function unpause() public onlyOwner  whenPaused {
+        setPause(false);
+        emit Unpause();
+    }
+
+    function setPause(bool value) internal {
+        bytes32 slot = keccak256(abi.encode("Pausable", "pause"));
+        uint256 v = value ? 1 : 0;
+        assembly {
+            sstore(slot, v)
+        }
+    }
+
+    function isPaused() public view returns (bool) {
+        bytes32 slot = keccak256(abi.encode("Pausable", "pause"));
+        uint256 v;
+        assembly {
+            v := sload(slot)
+        }
+        return v != 0;
+    }
+}
+
+/**
+ * @title Whitelist
+ * @dev Base contract which allows children to implement an emergency whitelist mechanism. Identical to OpenZeppelin version
+ * except that it uses local Ownable contract
+ */
+contract Whitelist is Ownable {
+    event AddToWhitelist(address indexed to);
+    event RemoveFromWhitelist(address indexed to);
+    event EnableWhitelist();
+    event DisableWhitelist();
+    event AddPermBalanceToWhitelist(address indexed to, uint256 balance);
+    event RemovePermBalanceToWhitelist(address indexed to);
+
+    mapping(address => bool) internal whitelist;
+    mapping (address => uint256) internal permBalancesForWhitelist;
+
+    /**
+    * @dev Modifier to make a function callable only when msg.sender is in whitelist.
+    */
+    modifier onlyWhitelist() {
+        if (isWhitelisted() == true) {
+            require(whitelist[msg.sender] == true, "Address is not in whitelist");
+        }
+        _;
+    }
+
+    /**
+    * @dev Modifier to make a function callable only when msg.sender is in permitted balance
+    */
+    modifier checkPermBalanceForWhitelist(uint256 value) {
+        if (isWhitelisted() == true) {
+            require(permBalancesForWhitelist[msg.sender]==0 || permBalancesForWhitelist[msg.sender]>=value, "Not permitted balance for transfer");
+        }
+        
+        _;
+    }
+
+    /**
+    * @dev called by the owner to set permitted balance for transfer
+    */
+
+    function addPermBalanceToWhitelist(address _owner, uint256 _balance) public onlyOwner {
+        permBalancesForWhitelist[_owner] = _balance;
+        emit AddPermBalanceToWhitelist(_owner, _balance);
+    }
+
+    /**
+    * @dev called by the owner to remove permitted balance for transfer
+    */
+    function removePermBalanceToWhitelist(address _owner) public onlyOwner {
+        permBalancesForWhitelist[_owner] = 0;
+        emit RemovePermBalanceToWhitelist(_owner);
+    }
+   
+    /**
+    * @dev called by the owner to enable whitelist
+    */
+
+    function enableWhitelist() public onlyOwner {
+        setWhitelisted(true);
+        emit EnableWhitelist();
+    }
+
+
+    /**
+    * @dev called by the owner to disable whitelist
+    */
+    function disableWhitelist() public onlyOwner {
+        setWhitelisted(false);
+        emit DisableWhitelist();
+    }
+
+    /**
+    * @dev called by the owner to enable some address for whitelist
+    */
+    function addToWhitelist(address _address) public onlyOwner  {
+        whitelist[_address] = true;
+        emit AddToWhitelist(_address);
+    }
+
+    /**
+    * @dev called by the owner to disable address for whitelist
+    */
+    function removeFromWhitelist(address _address) public onlyOwner {
+        whitelist[_address] = false;
+        emit RemoveFromWhitelist(_address);
+    }
+
+
+    // bool public whitelisted = false;
+
+    function setWhitelisted(bool value) internal {
+        bytes32 slot = keccak256(abi.encode("Whitelist", "whitelisted"));
+        uint256 v = value ? 1 : 0;
+        assembly {
+            sstore(slot, v)
+        }
+    }
+
+    function isWhitelisted() public view returns (bool) {
+        bytes32 slot = keccak256(abi.encode("Whitelist", "whitelisted"));
+        uint256 v;
+        assembly {
+            v := sload(slot)
+        }
+        return v != 0;
+    }
+}
+
+/**
+ * @title blacklist
+ * @dev Base contract which allows children to implement an emergency blacklist mechanism. Identical to OpenZeppelin version
+ * except that it uses local Ownable contract
+ */
+contract Blacklist is Ownable {
+    event AddToBlacklist(address indexed to);
+    event RemoveFromBlacklist(address indexed to);
+    event EnableBlacklist();
+    event DisableBlacklist();
+   
+    event RemovePermBalanceToblacklist(address indexed to);
+
+    mapping(address => bool) internal blacklist;
+  
+
+    /**
+    * @dev Modifier to make a function callable only when msg.sender is in not blacklist.
+    */
+    modifier notForBlacklist(address account) {
+        if (isBlacklisted() == true) {
+            require(blacklist[account] == false, "Address is in blacklist");
+        }
+        _;
+    }
+
+    /**
+    * @dev Modifier to make a function callable only when msg.sender is in not blacklist.
+    */
+    modifier forBlacklist(address account) {
+        if (isBlacklisted() == true) {
+            require(blacklist[account] == true, "Address is not in blacklist");
+        }
+        _;
+    }
+
+
+   
+    /**
+    * @dev called by the owner to enable blacklist
+    */
+
+    function enableBlacklist() public onlyOwner {
+        setBlacklisted(true);
+        emit EnableBlacklist();
+    }
+
+
+    /**
+    * @dev called by the owner to disable blacklist
+    */
+    function disableBlacklist() public onlyOwner {
+        setBlacklisted(false);
+        emit DisableBlacklist();
+    }
+
+    /**
+    * @dev called by the owner to enable some address for blacklist
+    */
+    function addToBlacklist(address _address) public onlyOwner  {
+        blacklist[_address] = true;
+        emit AddToBlacklist(_address);
+    }
+
+    /**
+    * @dev called by the owner to disable address for blacklist
+    */
+    function removeFromblacklist(address _address) public onlyOwner {
+        blacklist[_address] = false;
+        emit RemoveFromBlacklist(_address);
+    }
+
+
+    // bool public blacklisted = false;
+
+    function setBlacklisted(bool value) internal {
+        bytes32 slot = keccak256(abi.encode("Blacklist", "blacklisted"));
+        uint256 v = value ? 1 : 0;
+        assembly {
+            sstore(slot, v)
+        }
+    }
+
+    function isBlacklisted() public view returns (bool) {
+        bytes32 slot = keccak256(abi.encode("Blacklist", "blacklisted"));
+        uint256 v;
+        assembly {
+            v := sload(slot)
+        }
+        return v != 0;
+    }
+}
+
+/**
+* @title AkropolisToken
+* @notice Adds pausability and disables approve() to defend against double-spend attacks in addition
+* to inherited AkropolisBaseToken behavior
+*/
+contract AkropolisToken is AkropolisBaseToken, Pausable, Lockable, Whitelist, Blacklist {
+    using SafeMath for uint256;
+
+    /** Events */
+
+    constructor (address _balances, address _allowances, string _name, uint8 _decimals, string _symbol) public 
+    AkropolisBaseToken(_balances, _allowances, _name, _decimals, _symbol) {}
+
+    /** Modifiers **/
+
+    /** Functions **/
+
+    function mint(address _to, uint256 _amount) public {
+        super.mint(_to, _amount);
+    }
+
+    function burn(uint256 _amount) public whenUnlocked  {
+        super.burn(_amount);
+    }
+
+    /**
+    * @notice Implements ERC-20 standard approve function.
+    * double spend attacks. To modify allowances, clients should call safer increase/decreaseApproval methods.
+    * Upon construction, all calls to approve() will revert unless this contract owner explicitly unlocks approve()
+    */
+    function approve(address _spender, uint256 _value) 
+    public whenNotPaused  whenUnlocked returns (bool) {
+        return super.approve(_spender, _value);
+    }
+
+    /**
+     * @dev Increase the amount of tokens that an owner allowed to a spender.
+     * @notice increaseApproval should be used instead of approve when the user's allowance
+     * is greater than 0. Using increaseApproval protects against potential double-spend attacks
+     * by moving the check of whether the user has spent their allowance to the time that the transaction 
+     * is mined, removing the user's ability to double-spend
+     * @param _spender The address which will spend the funds.
+     * @param _addedValue The amount of tokens to increase the allowance by.
+     */
+    function increaseApproval(address _spender, uint256 _addedValue) 
+    public whenNotPaused returns (bool) {
+        increaseApprovalAllArgs(_spender, _addedValue, msg.sender);
+        return true;
+    }
+
+    /**
+     * @dev Decrease the amount of tokens that an owner allowed to a spender.
+     * @notice decreaseApproval should be used instead of approve when the user's allowance
+     * is greater than 0. Using decreaseApproval protects against potential double-spend attacks
+     * by moving the check of whether the user has spent their allowance to the time that the transaction 
+     * is mined, removing the user's ability to double-spend
+     * @param _spender The address which will spend the funds.
+     * @param _subtractedValue The amount of tokens to decrease the allowance by.
+     */
+    function decreaseApproval(address _spender, uint256 _subtractedValue) 
+    public whenNotPaused returns (bool) {
+        decreaseApprovalAllArgs(_spender, _subtractedValue, msg.sender);
+        return true;
+    }
+
+    function transfer(address _to, uint256 _amount) public whenNotPaused onlyWhitelist notForBlacklist(msg.sender) returns (bool) {
+        return super.transfer(_to, _amount);
+    }
+
+    /**
+    * @notice Initiates a transfer operation between address `_from` and `_to`. Requires that the
+    * message sender is an approved spender on the _from account.
+    * @dev When implemented, it should use the transferFromConditionsRequired() modifier.
+    * @param _to The address of the recipient. This address must not be blacklisted.
+    * @param _from The address of the origin of funds. This address _could_ be blacklisted, because
+    * a regulator may want to transfer tokens out of a blacklisted account, for example.
+    * In order to do so, the regulator would have to add themselves as an approved spender
+    * on the account via `addBlacklistAddressSpender()`, and would then be able to transfer tokens out of it.
+    * @param _amount The number of tokens to transfer
+    * @return `true` if successful 
+    */
+    function transferFrom(address _from, address _to, uint256 _amount) 
+    public whenNotPaused onlyWhitelist notForBlacklist(_from) returns (bool) {
+        return super.transferFrom(_from, _to, _amount);
+    }
+
+
+    /** Internal functions **/
+    
+    function decreaseApprovalAllArgs(address _spender, uint256 _subtractedValue, address _tokenHolder) internal {
+        uint256 oldValue = allowances.allowanceOf(_tokenHolder, _spender);
+        if (_subtractedValue > oldValue) {
+            allowances.setAllowance(_tokenHolder, _spender, 0);
+        } else {
+            allowances.subAllowance(_tokenHolder, _spender, _subtractedValue);
+        }
+        emit Approval(_tokenHolder, _spender, allowances.allowanceOf(_tokenHolder, _spender));
+    }
+
+    function increaseApprovalAllArgs(address _spender, uint256 _addedValue, address _tokenHolder) internal {
+        allowances.addAllowance(_tokenHolder, _spender, _addedValue);
+        emit Approval(_tokenHolder, _spender, allowances.allowanceOf(_tokenHolder, _spender));
+    }
 }

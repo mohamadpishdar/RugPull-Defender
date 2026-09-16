@@ -1,304 +1,330 @@
-/**
- *Submitted for verification at Etherscan.io on 2017-10-10
-*/
+// number: 581
+// project: Contentos (COS)
+// address: 0x589891a198195061cb8ad1a75357a3b7dbadd7bc
+// chainid: 1
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.4.18;
 
-pragma solidity ^0.4.11;
-
-// See the Github at github.com/airswap/contracts
-
-/**
- * @title Ownable
- * @dev The Ownable contract has an owner address, and provides basic authorization control
- * functions, this simplifies the implementation of "user permissions".
- */
-contract Ownable {
-  address public owner;
-
-
-  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-
-
-  /**
-   * @dev The Ownable constructor sets the original `owner` of the contract to the sender
-   * account.
-   */
-  function Ownable() {
-    owner = msg.sender;
-  }
-
-
-  /**
-   * @dev Throws if called by any account other than the owner.
-   */
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-  }
-
-
-  /**
-   * @dev Allows the current owner to transfer control of the contract to a newOwner.
-   * @param newOwner The address to transfer ownership to.
-   */
-  function transferOwnership(address newOwner) onlyOwner public {
-    require(newOwner != address(0));
-    OwnershipTransferred(owner, newOwner);
-    owner = newOwner;
-  }
-
-}
-
-
-/**
- * @title Pausable
- * @dev Base contract which allows children to implement an emergency stop mechanism.
- */
-contract Pausable is Ownable {
-  event Pause();
-  event Unpause();
-
-  bool public paused = false;
-
-
-  /**
-   * @dev Modifier to make a function callable only when the contract is not paused.
-   */
-  modifier whenNotPaused() {
-    require(!paused);
-    _;
-  }
-
-  /**
-   * @dev Modifier to make a function callable only when the contract is paused.
-   */
-  modifier whenPaused() {
-    require(paused);
-    _;
-  }
-
-  /**
-   * @dev called by the owner to pause, triggers stopped state
-   */
-  function pause() onlyOwner whenNotPaused public {
-    paused = true;
-    Pause();
-  }
-
-  /**
-   * @dev called by the owner to unpause, returns to normal state
-   */
-  function unpause() onlyOwner whenPaused public {
-    paused = false;
-    Unpause();
-  }
-}
-
-
-contract Token {
-    /* This is a slight change to the ERC20 base standard.
-    function totalSupply() constant returns (uint256 supply);
-    is replaced with:
-    uint256 public totalSupply;
-    This automatically creates a getter function for the totalSupply.
-    This is moved to the base contract since public getter functions are not
-    currently recognised as an implementation of the matching abstract
-    function by the compiler.
-    */
-    /// total amount of tokens
-    uint256 public totalSupply;
-
-    /// @param _owner The address from which the balance will be retrieved
-    /// @return The balance
-    function balanceOf(address _owner) constant returns (uint256 balance);
-
-    /// @notice send `_value` token to `_to` from `msg.sender`
-    /// @param _to The address of the recipient
-    /// @param _value The amount of token to be transferred
-    /// @return Whether the transfer was successful or not
-    function transfer(address _to, uint256 _value) returns (bool success);
-
-    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
-    /// @param _from The address of the sender
-    /// @param _to The address of the recipient
-    /// @param _value The amount of token to be transferred
-    /// @return Whether the transfer was successful or not
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
-
-    /// @notice `msg.sender` approves `_spender` to spend `_value` tokens
-    /// @param _spender The address of the account able to transfer the tokens
-    /// @param _value The amount of tokens to be approved for transfer
-    /// @return Whether the approval was successful or not
-    function approve(address _spender, uint256 _value) returns (bool success);
-
-    /// @param _owner The address of the account owning tokens
-    /// @param _spender The address of the account able to transfer the tokens
-    /// @return Amount of remaining tokens allowed to spent
-    function allowance(address _owner, address _spender) constant returns (uint256 remaining);
-
-    event Transfer(address indexed _from, address indexed _to, uint256 _value);
-    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
-}
-
-
-contract StandardToken is Token {
-
-    function transfer(address _to, uint256 _value) returns (bool success) {
-        require(balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]);
-        balances[msg.sender] -= _value;
-        balances[_to] += _value;
-        Transfer(msg.sender, _to, _value);
-        return true;
-    }
-
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-        require(balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]);
-        balances[_to] += _value;
-        balances[_from] -= _value;
-        allowed[_from][msg.sender] -= _value;
-        Transfer(_from, _to, _value);
-        return true;
-    }
-
-    function balanceOf(address _owner) constant returns (uint256 balance) {
-        return balances[_owner];
-    }
-
-    function approve(address _spender, uint256 _value) returns (bool success) {
-        allowed[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
-        return true;
-    }
-
-    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
-      return allowed[_owner][_spender];
-    }
-
-    mapping (address => uint256) public balances; // *added public
-    mapping (address => mapping (address => uint256)) public allowed; // *added public
-}
-
-
-
-
-/** @title The AirSwap Token
-  * An ERC20-compliant token that is only transferable after a
-  * specified time. Holders also have the ability to lock an amount of tokens
-  * for a period of time for applications that reference this locked amount
-  * for example for licensing features.
-  */
-contract AirSwapToken is StandardToken, Pausable {
-
-    string public constant name = "AirSwap Token";
-    string public constant symbol = "AST";
-    uint8 public constant decimals = 4;
-    uint256 public constant totalSupply = 5000000000000;
-
-    // The time after which AirSwap tokens become transferable.
-    // Current value is October 17, 2017 10:10:10 Eastern Time.
-    uint256 becomesTransferable = 1508249410;
-
-    // The time that tokens are to be locked before becoming unlockable.
-    // Current value is 7 days.
-    uint256 lockingPeriod = 604800;
-
-    // Prevents premature execution.
-    modifier onlyAfter(uint256 _time) {
-        require(now >= _time);
-        _;
-    }
-
-    // Prevent premature execution for anyone but the owner.
-    modifier onlyAfterOrOwner(uint256 _time, address _from) {
-        if (_from != owner) {
-            require(now >= _time);
-        }
-        _;
-    }
-
-    // Holds the amount and date of a given balance lock.
-    struct BalanceLock {
-        uint256 amount;
-        uint256 unlockDate;
-    }
-
-    // A mapping of balance lock to a given address.
-    mapping (address => BalanceLock) public balanceLocks;
-
-    // An event to notify that _owner has locked a balance.
-    event BalanceLocked(address indexed _owner, uint256 _oldLockedAmount,
-    uint256 _newLockedAmount, uint256 _expiry);
-
-    /** @dev Constructor for the contract.
-      * @param _deployer The address that will initially hold all tokens.
-      * @param _owner The address that will be able to transfer early.
-      * @param _balance The initial balance for the owner.
-      */
-    function AirSwapToken(address _deployer, address _owner, uint256 _balance)
-        Pausable() {
-        transferOwnership(_owner);
-        balances[_deployer] = totalSupply - _balance;
-        balances[_owner] = _balance;
-        Transfer(0x0, _deployer, totalSupply);
-        Transfer(_deployer, _owner, _balance);
-    }
-
-    /** @dev Sets a token balance to be locked by the sender, on the condition
-      * that the amount is equal or greater than the previous amount, or if the
-      * previous lock time has expired.
-      * @param _value The amount be locked.
-      */
-    function lockBalance(uint256 _value) {
-
-        // Check if the lock on previously locked tokens is still active.
-        if (balanceLocks[msg.sender].unlockDate > now) {
-            // Only allow confirming the lock or adding to it.
-            require(_value >= balanceLocks[msg.sender].amount);
-        }
-        // Ensure that no more than the balance can be locked.
-        require(balances[msg.sender] >= _value);
-
-        // Lock tokens and notify.
-        uint256 _expiry = now + lockingPeriod;
-        BalanceLocked(msg.sender, balanceLocks[msg.sender].amount, _value, _expiry);
-        balanceLocks[msg.sender] = BalanceLock(_value, _expiry);
-    }
-
-    /** @dev Returns the balance that a given address has available for transfer.
-      * @param _owner The address of the token owner.
-      */
-    function availableBalance(address _owner) constant returns(uint256) {
-        if (balanceLocks[_owner].unlockDate < now) {
-            return balances[_owner];
-        } else {
-            assert(balances[_owner] >= balanceLocks[_owner].amount);
-            return balances[_owner] - balanceLocks[_owner].amount;
-        }
-    }
-
-    /** @dev Send `_value` token to `_to` from `msg.sender`, on the condition
-      * that there are enough unlocked tokens in the `msg.sender` account.
-      * @param _to The address of the recipient.
-      * @param _value The amount of token to be transferred.
-      * @return Whether the transfer was successful or not.
-      */
-    function transfer(address _to, uint256 _value)
-        onlyAfter(becomesTransferable) whenNotPaused
-        returns (bool success) {
-        require(availableBalance(msg.sender) >= _value);
-        return super.transfer(_to, _value);
-    }
-
-    /** @dev Send `_value` token to `_to` from `_from` on the condition
-      * that there are enough unlocked tokens in the `_from` account.
-      * @param _from The address of the sender.
-      * @param _to The address of the recipient.
-      * @param _value The amount of token to be transferred.
-      * @return Whether the transfer was successful or not.
-      */
-    function transferFrom(address _from, address _to, uint256 _value)
-        onlyAfterOrOwner(becomesTransferable, _from) whenNotPaused
-        returns (bool success) {
-        require(availableBalance(_from) >= _value);
-        return super.transferFrom(_from, _to, _value);
-    }
+// -----------------------------------------------------------------------
+// COS Token by Contentos.
+// As ERC20 standard
+// Release tokens as a temporary measure
+// Creator: Asa17
+contract ERC20 {
+    // the total token supply
+    uint256 public totalSupply;
+ 
+    // Get the account balance of another account with address _owner
+    function balanceOf(address _owner) public constant returns (uint256 balance);
+ 
+    // Send _value amount of tokens to address _to
+    function transfer(address _to, uint256 _value) public returns (bool success);
+    
+    // transfer _value amount of token approved by address _from
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
+    // approve an address with _value amount of tokens
+    function approve(address _spender, uint256 _value) public returns (bool success);
+    // get remaining token approved by _owner to _spender
+    function allowance(address _owner, address _spender) public constant returns (uint256 remaining);
+  
+    // Triggered when tokens are transferred.
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+ 
+    // Triggered whenever approve(address _spender, uint256 _value) is called.
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+    // Trigger when the owner resign and transfer his balance to successor.
+    event TransferOfPower(address indexed _from, address indexed _to);
+}
+interface TokenRecipient {
+    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) external;
+}
+
+contract COSAuth {
+    address      public  owner;
+    constructor () public {
+         owner = msg.sender;
+    }
+    
+    modifier auth {
+        require(isAuthorized(msg.sender) == true);
+        _;
+    }
+    
+    function isAuthorized(address src) internal view returns (bool) {
+        if(src == owner){
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+contract COSStop is COSAuth{
+
+    bool public stopped;
+
+    modifier stoppable {
+        require(stopped == false);
+        _;
+    }
+    function stop() auth internal {
+        stopped = true;
+    }
+    function start() auth internal {
+        stopped = false;
+    }
+}
+
+contract Freezeable is COSAuth{
+
+    // internal variables
+    mapping(address => bool) _freezeList;
+
+    // events
+    event Freezed(address indexed freezedAddr);
+    event UnFreezed(address indexed unfreezedAddr);
+
+    // public functions
+    function freeze(address addr) auth public returns (bool) {
+      require(true != _freezeList[addr]);
+
+      _freezeList[addr] = true;
+
+      emit Freezed(addr);
+      return true;
+    }
+
+    function unfreeze(address addr) auth public returns (bool) {
+      require(true == _freezeList[addr]);
+
+      _freezeList[addr] = false;
+
+      emit UnFreezed(addr);
+      return true;
+    }
+
+    modifier whenNotFreezed(address addr) {
+        require(true != _freezeList[addr]);
+        _;
+    }
+
+    function isFreezing(address addr) public view returns (bool) {
+        if (true == _freezeList[addr]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+contract COSTokenBase is ERC20, COSStop, Freezeable{
+    // Public variables of the token
+    string public name;
+    string public symbol;
+    uint8  public decimals = 18;
+    //address public administrator;
+    // 18 decimals is the strongly suggested default, avoid changing it
+    // Balances
+    mapping (address => uint256) balances;
+    // Allowances
+    mapping (address => mapping (address => uint256)) allowances;
+    //register map
+    mapping (address => string)                  public  register_map;
+    // ----- Events -----
+    event Burn(address indexed from, uint256 value);
+    event LogRegister (address indexed user, string key);
+    event LogStop   ();
+    /**
+     * Constructor function
+     */
+    constructor(uint256 _initialSupply, string _tokenName, string _tokenSymbol, uint8 _decimals) public {
+        name = _tokenName;                                   // Set the name for display purposes
+        symbol = _tokenSymbol;                               // Set the symbol for display purposes
+        decimals = _decimals;
+        //owner = msg.sender;
+        totalSupply = _initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
+        balances[owner] = totalSupply;                // Give the creator all initial tokens
+    }
+    function balanceOf(address _owner) public view returns(uint256) {
+        return balances[_owner];
+    }
+    function allowance(address _owner, address _spender) public view returns (uint256) {
+        return allowances[_owner][_spender];
+    }
+    /**
+     * Internal transfer, only can be called by this contract
+     */
+    function _transfer(address _from, address _to, uint _value) whenNotFreezed(_from) internal returns(bool) {
+        // Prevent transfer to 0x0 address. Use burn() instead
+        require(_to != 0x0);
+        // Check if the sender has enough
+        require(balances[_from] >= _value);
+        // Check for overflows
+        require(balances[_to] + _value > balances[_to]);
+        // Save this for an assertion in the future
+        uint previousBalances = balances[_from] + balances[_to];
+        // Subtract from the sender
+        balances[_from] -= _value;
+        // Add the same to the recipient
+        balances[_to] += _value;
+        emit Transfer(_from, _to, _value);
+        // Asserts are used to use static analysis to find bugs in your code. They should never fail
+        assert(balances[_from] + balances[_to] == previousBalances);
+        return true;
+    }
+    /**
+     * Transfer tokens
+     *
+     * Send `_value` tokens to `_to` from your account
+     *
+     * @param _to The address of the recipient
+     * @param _value the amount to send
+     */
+    function transfer(address _to, uint256 _value) stoppable public returns(bool) {
+        return _transfer(msg.sender, _to, _value);
+    }
+    /**
+     * Transfer tokens from other address
+     *
+     * Send `_value` tokens to `_to` in behalf of `_from`
+     *
+     * @param _from The address of the sender
+     * @param _to The address of the recipient
+     * @param _value the amount to send
+     */
+    function transferFrom(address _from, address _to, uint256 _value) stoppable public returns(bool) {
+        require(_value <= allowances[_from][msg.sender]);     // Check allowance
+        allowances[_from][msg.sender] -= _value;
+        return _transfer(_from, _to, _value);
+    }
+    /**
+     * Set allowance for other address
+     *
+     * Allows `_spender` to spend no more than `_value` tokens in your behalf
+     *
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     */
+    function approve(address _spender, uint256 _value) stoppable public returns(bool) {
+        allowances[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+    /**
+     * Set allowance for other address and notify
+     *
+     * Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+     *
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     * @param _extraData some extra information to send to the approved contract
+     */
+    function approveAndCall(address _spender, uint256 _value, bytes _extraData) stoppable public returns(bool) {
+        if (approve(_spender, _value)) {
+            TokenRecipient spender = TokenRecipient(_spender);
+            spender.receiveApproval(msg.sender, _value, this, _extraData);
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Destroy tokens
+     *
+     * Remove `_value` tokens from the system irreversibly
+     *
+     * @param _value the amount of money to burn
+     */
+    function burn(uint256 _value) stoppable public returns(bool)  {
+        require(balances[msg.sender] >= _value);   // Check if the sender has enough
+        balances[msg.sender] -= _value;            // Subtract from the sender
+        totalSupply -= _value;                      // Updates totalSupply
+        emit Burn(msg.sender, _value);
+        return true;
+    }
+    
+    /**
+     * Mint tokens
+     *
+     * generate more tokens
+     *
+     * @param _value amount of money to mint
+     */
+    function mint(uint256 _value) auth stoppable public returns(bool){
+        require(balances[msg.sender] + _value > balances[msg.sender]);
+        require(totalSupply + _value > totalSupply);
+        balances[msg.sender] += _value;
+        totalSupply += _value;
+        return true;
+    }
+    
+    /**
+     * Destroy tokens from other account
+     *
+     * Remove `_value` tokens from the system irreversibly on behalf of `_from`.
+     *
+     * @param _from the address of the sender
+     * @param _value the amount of money to burn
+     */
+    function burnFrom(address _from, uint256 _value) stoppable public returns(bool) {
+        require(balances[_from] >= _value);                // Check if the targeted balance is enough
+        require(_value <= allowances[_from][msg.sender]);    // Check allowance
+        balances[_from] -= _value;                         // Subtract from the targeted balance
+        allowances[_from][msg.sender] -= _value;             // Subtract from the sender's allowance
+        totalSupply -= _value;                              // Update totalSupply
+        emit Burn(_from, _value);
+        return true;
+    }
+    /**
+     * Transfer owner's power to others
+     *
+     * @param _to the address of the successor
+     */
+    function transferOfPower(address _to) auth stoppable public returns (bool) {
+        require(msg.sender == owner);
+        uint value = balances[msg.sender];
+        _transfer(msg.sender, _to, value);
+        owner = _to;
+        emit TransferOfPower(msg.sender, _to);
+        return true;
+    }
+    /**
+     * approve should be called when allowances[_spender] == 0. To increment
+     * allowances value is better to use this function to avoid 2 calls (and wait until
+     * the first transaction is mined)
+     * From MonolithDAO Token.sol
+     */
+    function increaseApproval(address _spender, uint _addedValue) stoppable public returns (bool) {
+        // Check for overflows
+        require(allowances[msg.sender][_spender] + _addedValue > allowances[msg.sender][_spender]);
+        allowances[msg.sender][_spender] += _addedValue;
+        emit Approval(msg.sender, _spender, allowances[msg.sender][_spender]);
+        return true;
+    }
+    function decreaseApproval(address _spender, uint _subtractedValue) stoppable public returns (bool) {
+        uint oldValue = allowances[msg.sender][_spender];
+        if (_subtractedValue > oldValue) {
+            allowances[msg.sender][_spender] = 0;
+        } else {
+            allowances[msg.sender][_spender] = oldValue - _subtractedValue;
+        }
+        emit Approval(msg.sender, _spender, allowances[msg.sender][_spender]);
+        return true;
+    }
+}
+contract COSToken is COSTokenBase {
+    
+    constructor() COSTokenBase(10000000000, "Contentos", "COS", 18) public {
+    }
+    
+    function finish() public{
+        stop();
+        emit LogStop();
+    }
+    
+    function register(string key) public {
+        require(bytes(key).length <= 64);
+        require(balances[msg.sender] > 0);
+        register_map[msg.sender] = key;
+        emit LogRegister(msg.sender, key);
+    }
 }

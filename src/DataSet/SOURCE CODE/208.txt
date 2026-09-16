@@ -1,181 +1,13 @@
+// number: 208
+// project: Boost Coin (Boost)
+// address: 0x302cae5dcf8f051d0177043c3438020b89b33218
+// chainid: 1
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
-
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
-
-contract WSBCoin is ERC20, ERC20Burnable, Ownable {
-    uint256 public immutable maxSupply;
-
-    uint256 public immutable airdropOpens;
-    uint256 public immutable airdropCloses;
-    uint256 public immutable globalAirdropCap;
-    uint256 public immutable airdropIndividualAllocation;
-    bytes32 public immutable airdropMerkleRoot;
-
-    address public immutable wsbModeratorsWallet;
-    address public immutable wsbCommunityWallet;
-
-    bool public moderatorClaimed;
-    uint256 public airdropTokensClaimed;
-    bool public airdropEnabled;
-    bool public airdropRemainderClaimed;
-
-    mapping(address => bool) public airdropClaimed;
-
-    error NotAllowed();
-    error TradingNotStarted();
-    error ExceedsAllocation();
-    error NotEligibleForAirdrop();
-    error AirdropClosed();
-    error AirdropOpen();
-    error AirdropTimeNotExpired();
-
-    constructor(
-        bytes32 airdropMerkleRoot_,
-        address cexWallet_,
-        address dexWallet_,
-        address wsbModeratorsWallet_,
-        address wsbCommunityWallet_,
-        uint256 maxSupply_,
-        uint256 airdropIndividualAllocation_
-    ) ERC20("WSB Coin", "WSB") {
-        maxSupply = maxSupply_;
-
-        _mint(cexWallet_, (maxSupply * 5) / 100);
-        _mint(dexWallet_, (maxSupply * 60) / 100);
-        _mint(wsbCommunityWallet_, (maxSupply * 10) / 100);
-
-        wsbModeratorsWallet = wsbModeratorsWallet_;
-        wsbCommunityWallet = wsbCommunityWallet_;
-
-        globalAirdropCap = (maxSupply * 20) / 100;
-
-        airdropOpens = block.timestamp;
-        airdropCloses = block.timestamp + 90 days;
-        airdropIndividualAllocation = airdropIndividualAllocation_;
-        airdropMerkleRoot = airdropMerkleRoot_;
-    }
-
-    // The moderator wallet can claim their token allocation directly.
-    function claimWSBModeratorsAllocation() external {
-        if (msg.sender != wsbModeratorsWallet) {
-            revert NotAllowed();
-        }
-        if (moderatorClaimed) {
-            revert ExceedsAllocation();
-        }
-        moderatorClaimed = true;
-        _mint(wsbModeratorsWallet, (maxSupply * 5) / 100);
-    }
-
-    // After the airdrop period, if there are any unclaimed tokens, they can be minted to the wsb community wallet.
-    // Anyone can call this after the airdrop closes.
-    function mintRemainderOfAirdropSupply() external {
-        // Require the airdrop time period to have expired.
-        if (block.timestamp < airdropCloses) {
-            revert AirdropTimeNotExpired();
-        }
-
-        // Can only be done once.
-        if (airdropRemainderClaimed) {
-            revert ExceedsAllocation();
-        }
-        airdropRemainderClaimed = true;
-
-        // Check if there are any tokens left to claim.
-        if (airdropTokensClaimed >= globalAirdropCap) {
-            revert ExceedsAllocation();
-        }
-
-        uint256 remainingAirdropTokens = globalAirdropCap -
-            airdropTokensClaimed;
-        // Update the total claimed count so we know there should be no airdrop tokens left after this.
-        airdropTokensClaimed += remainingAirdropTokens;
-
-        _mint(wsbCommunityWallet, remainingAirdropTokens);
-    }
-
-    function isAirdropOpen() public view returns (bool) {
-        // Require the airdrop to be enabled.
-        if (!airdropEnabled) {
-            return false;
-        }
-
-        // Require the airdrop period to be active.
-        if (block.timestamp < airdropOpens || block.timestamp > airdropCloses) {
-            return false;
-        }
-
-        // Require the airdrop to not be maxed out.
-        // Must be >, not >=, because the airdropTokensClaimed is incremented before this check.
-        if (airdropTokensClaimed > globalAirdropCap) {
-            return false;
-        }
-        return true;
-    }
-
-    function setAirdropEnabled(bool enabled_) external onlyOwner {
-        airdropEnabled = enabled_;
-    }
-
-    function airdropMint(bytes32[] memory proof_) external {
-        // Update the total claimed count.
-        airdropTokensClaimed += airdropIndividualAllocation;
-
-        // Require the airdrop to be open.
-        if (!isAirdropOpen()) {
-            revert AirdropClosed();
-        }
-
-        // Require the address to be on the whitelist.
-        if (!verifyProof(proof_, msg.sender)) {
-            revert NotEligibleForAirdrop();
-        }
-
-        // Check if address has already claimed it.
-        if (airdropClaimed[msg.sender]) {
-            revert ExceedsAllocation();
-        }
-
-        // Mark as claimed.
-        airdropClaimed[msg.sender] = true;
-
-        // Mint tokens.
-        _mint(msg.sender, airdropIndividualAllocation);
-    }
-
-    function verifyProof(
-        bytes32[] memory proof_,
-        address minterAddress_
-    ) public view returns (bool) {
-        bytes32 leaf = keccak256(
-            bytes.concat(keccak256(abi.encode(minterAddress_)))
-        );
-        if (MerkleProof.verify(proof_, airdropMerkleRoot, leaf)) {
-            return true;
-        }
-        return false;
-    }
-
-    // Receive function.
-    receive() external payable {
-        revert();
-    }
-
-    // Fallback function.
-    fallback() external {
-        revert();
-    }
-}
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v4.7.0) (access/Ownable.sol)
-
 pragma solidity ^0.8.0;
 
-import "../utils/Context.sol";
+// OpenZeppelin Contracts (last updated v4.9.0) (access/Ownable.sol)
+
+
 
 /**
  * @dev Contract module which provides a basic access control mechanism, where
@@ -225,10 +57,10 @@ abstract contract Ownable is Context {
 
     /**
      * @dev Leaves the contract without owner. It will not be possible to call
-     * `onlyOwner` functions anymore. Can only be called by the current owner.
+     * `onlyOwner` functions. Can only be called by the current owner.
      *
      * NOTE: Renouncing ownership will leave the contract without an owner,
-     * thereby removing any functionality that is only available to the owner.
+     * thereby disabling any functionality that is only available to the owner.
      */
     function renounceOwnership() public virtual onlyOwner {
         _transferOwnership(address(0));
@@ -253,14 +85,12 @@ abstract contract Ownable is Context {
         emit OwnershipTransferred(oldOwner, newOwner);
     }
 }
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v4.8.0) (token/ERC20/ERC20.sol)
 
-pragma solidity ^0.8.0;
+// OpenZeppelin Contracts (last updated v4.9.0) (token/ERC20/ERC20.sol)
 
-import "./IERC20.sol";
-import "./extensions/IERC20Metadata.sol";
-import "../../utils/Context.sol";
+
+
+
 
 /**
  * @dev Implementation of the {IERC20} interface.
@@ -272,6 +102,9 @@ import "../../utils/Context.sol";
  * TIP: For a detailed writeup see our guide
  * https://forum.openzeppelin.com/t/how-to-implement-erc20-supply-mechanisms/226[How
  * to implement supply mechanisms].
+ *
+ * The default value of {decimals} is 18. To change this, you should override
+ * this function so it returns a different value.
  *
  * We have followed general OpenZeppelin Contracts guidelines: functions revert
  * instead returning `false` on failure. This behavior is nonetheless
@@ -299,9 +132,6 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 
     /**
      * @dev Sets the values for {name} and {symbol}.
-     *
-     * The default value of {decimals} is 18. To select a different value for
-     * {decimals} you should overload it.
      *
      * All two of these values are immutable: they can only be set once during
      * construction.
@@ -332,8 +162,8 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * be displayed to a user as `5.05` (`505 / 10 ** 2`).
      *
      * Tokens usually opt for a value of 18, imitating the relationship between
-     * Ether and Wei. This is the value {ERC20} uses, unless this function is
-     * overridden;
+     * Ether and Wei. This is the default value returned by this function, unless
+     * it's overridden.
      *
      * NOTE: This information is only used for _display_ purposes: it in
      * no way affects any of the arithmetic of the contract, including
@@ -410,11 +240,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - the caller must have allowance for ``from``'s tokens of at least
      * `amount`.
      */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) public virtual override returns (bool) {
+    function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
         address spender = _msgSender();
         _spendAllowance(from, spender, amount);
         _transfer(from, to, amount);
@@ -478,11 +304,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `to` cannot be the zero address.
      * - `from` must have a balance of at least `amount`.
      */
-    function _transfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {
+    function _transfer(address from, address to, uint256 amount) internal virtual {
         require(from != address(0), "ERC20: transfer from the zero address");
         require(to != address(0), "ERC20: transfer to the zero address");
 
@@ -568,11 +390,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `owner` cannot be the zero address.
      * - `spender` cannot be the zero address.
      */
-    function _approve(
-        address owner,
-        address spender,
-        uint256 amount
-    ) internal virtual {
+    function _approve(address owner, address spender, uint256 amount) internal virtual {
         require(owner != address(0), "ERC20: approve from the zero address");
         require(spender != address(0), "ERC20: approve to the zero address");
 
@@ -588,11 +406,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * Might emit an {Approval} event.
      */
-    function _spendAllowance(
-        address owner,
-        address spender,
-        uint256 amount
-    ) internal virtual {
+    function _spendAllowance(address owner, address spender, uint256 amount) internal virtual {
         uint256 currentAllowance = allowance(owner, spender);
         if (currentAllowance != type(uint256).max) {
             require(currentAllowance >= amount, "ERC20: insufficient allowance");
@@ -616,11 +430,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
      */
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {}
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual {}
 
     /**
      * @dev Hook that is called after any transfer of tokens. This includes
@@ -636,57 +446,12 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
      */
-    function _afterTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {}
+    function _afterTokenTransfer(address from, address to, uint256 amount) internal virtual {}
 }
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v4.5.0) (token/ERC20/extensions/ERC20Burnable.sol)
 
-pragma solidity ^0.8.0;
-
-import "../ERC20.sol";
-import "../../../utils/Context.sol";
-
-/**
- * @dev Extension of {ERC20} that allows token holders to destroy both their own
- * tokens and those that they have an allowance for, in a way that can be
- * recognized off-chain (via event analysis).
- */
-abstract contract ERC20Burnable is Context, ERC20 {
-    /**
-     * @dev Destroys `amount` tokens from the caller.
-     *
-     * See {ERC20-_burn}.
-     */
-    function burn(uint256 amount) public virtual {
-        _burn(_msgSender(), amount);
-    }
-
-    /**
-     * @dev Destroys `amount` tokens from `account`, deducting from the caller's
-     * allowance.
-     *
-     * See {ERC20-_burn} and {ERC20-allowance}.
-     *
-     * Requirements:
-     *
-     * - the caller must have allowance for ``accounts``'s tokens of at least
-     * `amount`.
-     */
-    function burnFrom(address account, uint256 amount) public virtual {
-        _spendAllowance(account, _msgSender(), amount);
-        _burn(account, amount);
-    }
-}
-// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (token/ERC20/extensions/IERC20Metadata.sol)
 
-pragma solidity ^0.8.0;
 
-import "../IERC20.sol";
 
 /**
  * @dev Interface for the optional metadata functions from the ERC20 standard.
@@ -709,10 +474,9 @@ interface IERC20Metadata is IERC20 {
      */
     function decimals() external view returns (uint8);
 }
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v4.6.0) (token/ERC20/IERC20.sol)
 
-pragma solidity ^0.8.0;
+// OpenZeppelin Contracts (last updated v4.9.0) (token/ERC20/IERC20.sol)
+
 
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
@@ -785,16 +549,11 @@ interface IERC20 {
      *
      * Emits a {Transfer} event.
      */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) external returns (bool);
+    function transferFrom(address from, address to, uint256 amount) external returns (bool);
 }
-// SPDX-License-Identifier: MIT
+
 // OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
 
-pragma solidity ^0.8.0;
 
 /**
  * @dev Provides information about the current execution context, including the
@@ -815,245 +574,542 @@ abstract contract Context {
         return msg.data;
     }
 }
-// SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v4.8.0) (utils/cryptography/MerkleProof.sol)
 
-pragma solidity ^0.8.0;
+interface IFactory {
+    function createPair(address tokenA, address tokenB) external returns (address pair);
+    function getPair(address tokenA, address tokenB) external view returns (address pair);
+}
+
+interface IPair {
+  event Approval(address indexed owner, address indexed spender, uint value);
+  event Transfer(address indexed from, address indexed to, uint value);
+
+  function name() external pure returns (string memory);
+  function symbol() external pure returns (string memory);
+  function decimals() external pure returns (uint8);
+  function totalSupply() external view returns (uint);
+  function balanceOf(address owner) external view returns (uint);
+  function allowance(address owner, address spender) external view returns (uint);
+
+  function approve(address spender, uint value) external returns (bool);
+  function transfer(address to, uint value) external returns (bool);
+  function transferFrom(address from, address to, uint value) external returns (bool);
+
+  function DOMAIN_SEPARATOR() external view returns (bytes32);
+  function PERMIT_TYPEHASH() external pure returns (bytes32);
+  function nonces(address owner) external view returns (uint);
+
+  function permit(address owner, address spender, uint value, uint deadline, uint8 v, bytes32 r, bytes32 s) external;
+
+  event Mint(address indexed sender, uint amount0, uint amount1);
+  event Burn(address indexed sender, uint amount0, uint amount1, address indexed to);
+  event Swap(
+    address indexed sender,
+    uint amount0In,
+    uint amount1In,
+    uint amount0Out,
+    uint amount1Out,
+    address indexed to
+  );
+
+  event Sync(uint112 reserve0, uint112 reserve1);
+
+  function MINIMUM_LIQUIDITY() external pure returns (uint);
+  function factory() external view returns (address);
+  function token0() external view returns (address);
+  function token1() external view returns (address);
+  function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast);
+  function price0CumulativeLast() external view returns (uint);
+  function price1CumulativeLast() external view returns (uint);
+  function kLast() external view returns (uint);
+
+  function mint(address to) external returns (uint liquidity);
+  function burn(address to) external returns (uint amount0, uint amount1);
+  function swap(uint amount0Out, uint amount1Out, address to, bytes calldata data) external;
+  function skim(address to) external;
+  function sync() external;
+
+  function initialize(address, address) external;
+}
+
+interface IRouter {
+    function factory() external pure returns (address);
+    function WETH() external pure returns (address);
+
+    function addLiquidity(
+        address tokenA,
+        address tokenB,
+        uint amountADesired,
+        uint amountBDesired,
+        uint amountAMin,
+        uint amountBMin,
+        address to,
+        uint deadline
+    ) external returns (uint amountA, uint amountB, uint liquidity);
+    function addLiquidityETH(
+        address token,
+        uint amountTokenDesired,
+        uint amountTokenMin,
+        uint amountETHMin,
+        address to,
+        uint deadline
+    ) external payable returns (uint amountToken, uint amountETH, uint liquidity);
+    function removeLiquidity(
+        address tokenA,
+        address tokenB,
+        uint liquidity,
+        uint amountAMin,
+        uint amountBMin,
+        address to,
+        uint deadline
+    ) external returns (uint amountA, uint amountB);
+    function removeLiquidityETH(
+        address token,
+        uint liquidity,
+        uint amountTokenMin,
+        uint amountETHMin,
+        address to,
+        uint deadline
+    ) external returns (uint amountToken, uint amountETH);
+    function removeLiquidityWithPermit(
+        address tokenA,
+        address tokenB,
+        uint liquidity,
+        uint amountAMin,
+        uint amountBMin,
+        address to,
+        uint deadline,
+        bool approveMax, uint8 v, bytes32 r, bytes32 s
+    ) external returns (uint amountA, uint amountB);
+    function removeLiquidityETHWithPermit(
+        address token,
+        uint liquidity,
+        uint amountTokenMin,
+        uint amountETHMin,
+        address to,
+        uint deadline,
+        bool approveMax, uint8 v, bytes32 r, bytes32 s
+    ) external returns (uint amountToken, uint amountETH);
+    function swapExactTokensForTokens(
+        uint amountIn,
+        uint amountOutMin,
+        address[] calldata path,
+        address to,
+        uint deadline
+    ) external returns (uint[] memory amounts);
+    function swapTokensForExactTokens(
+        uint amountOut,
+        uint amountInMax,
+        address[] calldata path,
+        address to,
+        uint deadline
+    ) external returns (uint[] memory amounts);
+    function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
+        external
+        payable
+        returns (uint[] memory amounts);
+    function swapTokensForExactETH(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
+        external
+        returns (uint[] memory amounts);
+    function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
+        external
+        returns (uint[] memory amounts);
+    function swapETHForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
+        external
+        payable
+        returns (uint[] memory amounts);
+
+    function removeLiquidityETHSupportingFeeOnTransferTokens(
+        address token,
+        uint liquidity,
+        uint amountTokenMin,
+        uint amountETHMin,
+        address to,
+        uint deadline
+    ) external returns (uint amountETH);
+    function removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
+        address token,
+        uint liquidity,
+        uint amountTokenMin,
+        uint amountETHMin,
+        address to,
+        uint deadline,
+        bool approveMax, uint8 v, bytes32 r, bytes32 s
+    ) external returns (uint amountETH);
+
+    function swapExactTokensForTokensSupportingFeeOnTransferTokens(
+        uint amountIn,
+        uint amountOutMin,
+        address[] calldata path,
+        address to,
+        uint deadline
+    ) external;
+    function swapExactETHForTokensSupportingFeeOnTransferTokens(
+        uint amountOutMin,
+        address[] calldata path,
+        address to,
+        uint deadline
+    ) external payable;
+    function swapExactTokensForETHSupportingFeeOnTransferTokens(
+        uint amountIn,
+        uint amountOutMin,
+        address[] calldata path,
+        address to,
+        uint deadline
+    ) external;
+
+    function quote(uint amountA, uint reserveA, uint reserveB) external pure returns (uint amountB);
+    function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external pure returns (uint amountOut);
+    function getAmountIn(uint amountOut, uint reserveIn, uint reserveOut) external pure returns (uint amountIn);
+    function getAmountsOut(uint amountIn, address[] calldata path) external view returns (uint[] memory amounts);
+    function getAmountsIn(uint amountOut, address[] calldata path) external view returns (uint[] memory amounts);
+}
 
 /**
- * @dev These functions deal with verification of Merkle Tree proofs.
- *
- * The tree and the proofs can be generated using our
- * https://github.com/OpenZeppelin/merkle-tree[JavaScript library].
- * You will find a quickstart guide in the readme.
- *
- * WARNING: You should avoid using leaf values that are 64 bytes long prior to
- * hashing, or use a hash function other than keccak256 for hashing leaves.
- * This is because the concatenation of a sorted pair of internal nodes in
- * the merkle tree could be reinterpreted as a leaf value.
- * OpenZeppelin's JavaScript library generates merkle trees that are safe
- * against this attack out of the box.
- */
-library MerkleProof {
+
+=========================================================================================
+=      ======    ======    =====      ===        ====     =====    ====    ==  =======  =
+=  ===  ====  ==  ====  ==  ===  ====  =====  ======  ===  ===  ==  ====  ===   ======  =
+=  ====  ==  ====  ==  ====  ==  ====  =====  =====  ========  ====  ===  ===    =====  =
+=  ===  ===  ====  ==  ====  ===  ==========  =====  ========  ====  ===  ===  ==  ===  =
+=      ====  ====  ==  ====  =====  ========  =====  ========  ====  ===  ===  ===  ==  =
+=  ===  ===  ====  ==  ====  =======  ======  =====  ========  ====  ===  ===  ====  =  =
+=  ====  ==  ====  ==  ====  ==  ====  =====  =====  ========  ====  ===  ===  =====    =
+=  ===  ====  ==  ====  ==  ===  ====  =====  ======  ===  ===  ==  ====  ===  ======   =
+=      ======    ======    =====      ======  =======     =====    ====    ==  =======  =
+
+Website- http://boostco.in
+Telegram- https://t.me/BoostCoinOfficial
+Twitter- https://twitter.com/theboostcoin
+
+**/
+
+
+
+
+
+
+
+
+contract Token is ERC20, Ownable {
+
+    uint256 constant public REWARD_WINDOW = 1 hours;
+    uint256 constant public NO_SELL_WINDOW = 2 days;
+    uint16 constant public MAX_BASIS_POINT  = 10_000;
+    uint16 constant public SOLD_OR_TRANSFER_CLAIM_PERCENTAGE = 7500;
+    uint16 constant public THIRTY_BASIS_POINT = 3_000;
+    uint16 constant public TWENTY_FIVE_BASIS_POINT = 2500;
+    uint16 constant public TWENTY_BASIS_POINT = 2_000;
+    uint16 constant public FIFTEEN_BASIS_POINT = 1500;
+    uint16 constant public TEN_BASIS_POINT = 1_000;
+    uint16 constant public FIVE_BASIS_POINT = 500;
+    uint16 public buyTaxRateBasisPoint;
+    uint16 public sellTaxRateBasisPoint;
+    uint256 public maxSellTaxLimit = 5_000_000 * 10**18;
+
+    bool public limited; // Whether trading is limited
+    bool public isTradingEnabled; // Whether trading is enabled
+    bool public isTaxDisabled; // Whether taxes are disabled
+
+    IRouter immutable public router;
+    uint256 immutable public tokenClaimConstraint;
+    address public pair;
+
+    uint256 public maxTokenHolding; // Maximum token holding limit for each user
+    uint256 public minTokenHolding; // Minimum token holding limit for each user
+    uint256 public firstTradingEnabledTimestamp;
+    uint256 public sellTax; // Tax amount paid by each user
+
+    mapping(address => bool) private blacklistUser; // Blacklisted addresses
+    mapping(address => bool) private userSoldOrTransferToken;
+    mapping(address => bool) public exemptFee;
+    mapping(address => uint256) public userBuyTaxAmount;
+    mapping(address => uint256) public userBuyAmountInRewardWindow;
+
     /**
-     * @dev Returns true if a `leaf` can be proved to be a part of a Merkle tree
-     * defined by `root`. For this, a `proof` must be provided, containing
-     * sibling hashes on the branch from the leaf to the root of the tree. Each
-     * pair of leaves and each pair of pre-images are assumed to be sorted.
+     * @dev Emitted when tokens are claimed by a recipient.
+     * @param recipient The address of the recipient who claimed tokens.
+     * @param amount The amount of tokens claimed by the recipient.
      */
-    function verify(
-        bytes32[] memory proof,
-        bytes32 root,
-        bytes32 leaf
-    ) internal pure returns (bool) {
-        return processProof(proof, leaf) == root;
+    event TokensClaimed(address indexed recipient, uint256 amount);
+
+    event SellTaxBasisPointChanged(uint256 basisPoint);
+    event BuyTaxBasisPointChanged(uint256 basisPoint);
+
+    modifier tradingEnabled(address sender_, address recipient_) {
+        require(isTradingEnabled || exemptFee[sender_] || exemptFee[recipient_], "Trading is currently disabled.");
+        _;
     }
 
-    /**
-     * @dev Calldata version of {verify}
-     *
-     * _Available since v4.7._
-     */
-    function verifyCalldata(
-        bytes32[] calldata proof,
-        bytes32 root,
-        bytes32 leaf
-    ) internal pure returns (bool) {
-        return processProofCalldata(proof, leaf) == root;
+    constructor(
+        string memory name_,
+        string memory symbol_,
+        uint256 totalSupply_,
+        bool isTradingEnabled_
+    ) ERC20(name_, symbol_) {
+        //! Todo Change the router address according to network.
+        // main net 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D
+        // sepolia net 0x86dcd3293C53Cf8EFd7303B57beb2a3F671dDE98
+        IRouter router_ = IRouter(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
+
+        address pair_ = IFactory(router_.factory()).createPair(address(this), router_.WETH());
+
+        router = router_;
+        pair = pair_;
+        isTradingEnabled = isTradingEnabled_;
+        isTaxDisabled = false;
+        // solhint-disable-next-line not-rely-on-time
+        tokenClaimConstraint = block.timestamp + 18 days;
+        exemptFee[msg.sender] = true;
+        exemptFee[address(this)] = true;
+
+        _mint(msg.sender, totalSupply_);
     }
 
-    /**
-     * @dev Returns the rebuilt hash obtained by traversing a Merkle tree up
-     * from `leaf` using `proof`. A `proof` is valid if and only if the rebuilt
-     * hash matches the root of the tree. When processing the proof, the pairs
-     * of leafs & pre-images are assumed to be sorted.
-     *
-     * _Available since v4.4._
-     */
-    function processProof(bytes32[] memory proof, bytes32 leaf) internal pure returns (bytes32) {
-        bytes32 computedHash = leaf;
-        for (uint256 i = 0; i < proof.length; i++) {
-            computedHash = _hashPair(computedHash, proof[i]);
-        }
-        return computedHash;
-    }
-
-    /**
-     * @dev Calldata version of {processProof}
-     *
-     * _Available since v4.7._
-     */
-    function processProofCalldata(bytes32[] calldata proof, bytes32 leaf) internal pure returns (bytes32) {
-        bytes32 computedHash = leaf;
-        for (uint256 i = 0; i < proof.length; i++) {
-            computedHash = _hashPair(computedHash, proof[i]);
-        }
-        return computedHash;
-    }
-
-    /**
-     * @dev Returns true if the `leaves` can be simultaneously proven to be a part of a merkle tree defined by
-     * `root`, according to `proof` and `proofFlags` as described in {processMultiProof}.
-     *
-     * CAUTION: Not all merkle trees admit multiproofs. See {processMultiProof} for details.
-     *
-     * _Available since v4.7._
-     */
-    function multiProofVerify(
-        bytes32[] memory proof,
-        bool[] memory proofFlags,
-        bytes32 root,
-        bytes32[] memory leaves
-    ) internal pure returns (bool) {
-        return processMultiProof(proof, proofFlags, leaves) == root;
-    }
-
-    /**
-     * @dev Calldata version of {multiProofVerify}
-     *
-     * CAUTION: Not all merkle trees admit multiproofs. See {processMultiProof} for details.
-     *
-     * _Available since v4.7._
-     */
-    function multiProofVerifyCalldata(
-        bytes32[] calldata proof,
-        bool[] calldata proofFlags,
-        bytes32 root,
-        bytes32[] memory leaves
-    ) internal pure returns (bool) {
-        return processMultiProofCalldata(proof, proofFlags, leaves) == root;
-    }
-
-    /**
-     * @dev Returns the root of a tree reconstructed from `leaves` and sibling nodes in `proof`. The reconstruction
-     * proceeds by incrementally reconstructing all inner nodes by combining a leaf/inner node with either another
-     * leaf/inner node or a proof sibling node, depending on whether each `proofFlags` item is true or false
-     * respectively.
-     *
-     * CAUTION: Not all merkle trees admit multiproofs. To use multiproofs, it is sufficient to ensure that: 1) the tree
-     * is complete (but not necessarily perfect), 2) the leaves to be proven are in the opposite order they are in the
-     * tree (i.e., as seen from right to left starting at the deepest layer and continuing at the next layer).
-     *
-     * _Available since v4.7._
-     */
-    function processMultiProof(
-        bytes32[] memory proof,
-        bool[] memory proofFlags,
-        bytes32[] memory leaves
-    ) internal pure returns (bytes32 merkleRoot) {
-        // This function rebuild the root hash by traversing the tree up from the leaves. The root is rebuilt by
-        // consuming and producing values on a queue. The queue starts with the `leaves` array, then goes onto the
-        // `hashes` array. At the end of the process, the last hash in the `hashes` array should contain the root of
-        // the merkle tree.
-        uint256 leavesLen = leaves.length;
-        uint256 totalHashes = proofFlags.length;
-
-        // Check proof validity.
-        require(leavesLen + proof.length - 1 == totalHashes, "MerkleProof: invalid multiproof");
-
-        // The xxxPos values are "pointers" to the next value to consume in each array. All accesses are done using
-        // `xxx[xxxPos++]`, which return the current value and increment the pointer, thus mimicking a queue's "pop".
-        bytes32[] memory hashes = new bytes32[](totalHashes);
-        uint256 leafPos = 0;
-        uint256 hashPos = 0;
-        uint256 proofPos = 0;
-        // At each step, we compute the next hash using two values:
-        // - a value from the "main queue". If not all leaves have been consumed, we get the next leaf, otherwise we
-        //   get the next hash.
-        // - depending on the flag, either another value for the "main queue" (merging branches) or an element from the
-        //   `proof` array.
-        for (uint256 i = 0; i < totalHashes; i++) {
-            bytes32 a = leafPos < leavesLen ? leaves[leafPos++] : hashes[hashPos++];
-            bytes32 b = proofFlags[i] ? leafPos < leavesLen ? leaves[leafPos++] : hashes[hashPos++] : proof[proofPos++];
-            hashes[i] = _hashPair(a, b);
-        }
-
-        if (totalHashes > 0) {
-            return hashes[totalHashes - 1];
-        } else if (leavesLen > 0) {
-            return leaves[0];
-        } else {
-            return proof[0];
+    function setIsTradingEnabled(bool status_) external onlyOwner {
+        isTradingEnabled = status_;
+        if((firstTradingEnabledTimestamp == uint256(0)) && (status_ == true)) {
+            firstTradingEnabledTimestamp = block.timestamp;
         }
     }
 
+    function setBuyTaxRateBasisPoint(uint16 newBuyTaxRateBasisPoint_) external onlyOwner {
+        require(newBuyTaxRateBasisPoint_ <= MAX_BASIS_POINT, "Claim percentage exceeds maximum allowed value.");
+        buyTaxRateBasisPoint = newBuyTaxRateBasisPoint_;
+
+        emit BuyTaxBasisPointChanged(newBuyTaxRateBasisPoint_);
+    }    
+    function setSellTaxRateBasisPoint(uint16 newSellTaxRateBasisPoint_) external onlyOwner {
+        require(newSellTaxRateBasisPoint_ <= MAX_BASIS_POINT, "Claim percentage exceeds maximum allowed value.");
+        sellTaxRateBasisPoint = newSellTaxRateBasisPoint_;
+
+        emit SellTaxBasisPointChanged(newSellTaxRateBasisPoint_);
+    }
+
+    function setBlacklist(address address_, bool isBlacklisting_) external onlyOwner {
+        blacklistUser[address_] = isBlacklisting_;
+    }
+
+    function setRule(
+        bool limited_,
+        uint256 maxTokenHolding_,
+        uint256 minTokenHolding_
+    ) external onlyOwner {
+        limited = limited_;
+        maxTokenHolding = maxTokenHolding_;
+        minTokenHolding = minTokenHolding_;
+    }
+
+    function setIsTaxDisabled(bool isTaxDisabled_) external onlyOwner {
+        isTaxDisabled = isTaxDisabled_;
+    }
+
+    function setMaxSellTaxLimit(uint256 limit) external onlyOwner {
+        maxSellTaxLimit = limit;
+    }
+
     /**
-     * @dev Calldata version of {processMultiProof}.
-     *
-     * CAUTION: Not all merkle trees admit multiproofs. See {processMultiProof} for details.
-     *
-     * _Available since v4.7._
+     * @notice address balance should be greater than token total calimable amount always 
      */
-    function processMultiProofCalldata(
-        bytes32[] calldata proof,
-        bool[] calldata proofFlags,
-        bytes32[] memory leaves
-    ) internal pure returns (bytes32 merkleRoot) {
-        // This function rebuild the root hash by traversing the tree up from the leaves. The root is rebuilt by
-        // consuming and producing values on a queue. The queue starts with the `leaves` array, then goes onto the
-        // `hashes` array. At the end of the process, the last hash in the `hashes` array should contain the root of
-        // the merkle tree.
-        uint256 leavesLen = leaves.length;
-        uint256 totalHashes = proofFlags.length;
+    function claimTokens(address reciever_) external {
+        require(block.timestamp > firstTradingEnabledTimestamp + 2 days, "Claiming Tokens has not started yet.");
+        require(block.timestamp < tokenClaimConstraint, "Claim Period has ended.");
+        require(!blacklistUser[reciever_], "Not eligible for tax claim.");
+        require(balanceOf(reciever_) >= userBuyAmountInRewardWindow[reciever_], "Account balance is less then buy amount in reward houre.");
+        
+        uint256 tokensToClaim = claimableTokens(reciever_);
 
-        // Check proof validity.
-        require(leavesLen + proof.length - 1 == totalHashes, "MerkleProof: invalid multiproof");
+        require(tokensToClaim > 0, "No tokens to claim.");
 
-        // The xxxPos values are "pointers" to the next value to consume in each array. All accesses are done using
-        // `xxx[xxxPos++]`, which return the current value and increment the pointer, thus mimicking a queue's "pop".
-        bytes32[] memory hashes = new bytes32[](totalHashes);
-        uint256 leafPos = 0;
-        uint256 hashPos = 0;
-        uint256 proofPos = 0;
-        // At each step, we compute the next hash using two values:
-        // - a value from the "main queue". If not all leaves have been consumed, we get the next leaf, otherwise we
-        //   get the next hash.
-        // - depending on the flag, either another value for the "main queue" (merging branches) or an element from the
-        //   `proof` array.
-        for (uint256 i = 0; i < totalHashes; i++) {
-            bytes32 a = leafPos < leavesLen ? leaves[leafPos++] : hashes[hashPos++];
-            bytes32 b = proofFlags[i] ? leafPos < leavesLen ? leaves[leafPos++] : hashes[hashPos++] : proof[proofPos++];
-            hashes[i] = _hashPair(a, b);
+        userBuyTaxAmount[reciever_] = 0;
+        // Caution won't be able to claim if the msg sender doesn't lie between the max and min holding value.
+        _tokenTransfer(address(this), reciever_, tokensToClaim);
+
+        emit TokensClaimed(reciever_, tokensToClaim);
+    }
+
+    function claimableTokens(address reciever_) public view returns(uint256) {
+        uint256 tokensToClaim = userBuyTaxAmount[reciever_];
+        if(userSoldOrTransferToken[reciever_]) {
+            tokensToClaim = (tokensToClaim * SOLD_OR_TRANSFER_CLAIM_PERCENTAGE) / MAX_BASIS_POINT;
         }
+        return tokensToClaim;
+    }
 
-        if (totalHashes > 0) {
-            return hashes[totalHashes - 1];
-        } else if (leavesLen > 0) {
-            return leaves[0];
-        } else {
-            return proof[0];
+    function isBlacklisted(address address_) public view returns (bool) {
+        return blacklistUser[address_];
+    }
+
+    function userSoldToken(address address_) public view returns (bool) {
+        return userSoldOrTransferToken[address_];
+    }
+
+    function _transfer(
+        address sender_,
+        address recipient_,
+        uint256 amount_
+    ) internal virtual override tradingEnabled(sender_, recipient_) {
+        if (isTaxDisabled) {
+            // Taxes are disabled, no tax calculation needed
+            _tokenTransfer(sender_, recipient_, amount_);
+        } 
+        else {
+            // Apply tax rate
+            uint256 taxAmount = _calculateTax(amount_, recipient_, sender_);
+            if(taxAmount == 0) {
+                _tokenTransfer(sender_, recipient_, amount_);
+            }
+            else {
+                bool isBuyTransfer = sender_ == pair;
+                // solhint-disable-next-line not-rely-on-time
+                if (isBuyTransfer && (block.timestamp <= firstTradingEnabledTimestamp + REWARD_WINDOW)) {
+                    // recipient will get to reclaim as the tax is deducted from their share
+                    userBuyTaxAmount[recipient_] += taxAmount;
+                    userBuyAmountInRewardWindow[recipient_] += amount_ - taxAmount;
+                }
+                // solhint-disable-next-line not-rely-on-time
+                if (!(isBuyTransfer) && (block.timestamp < firstTradingEnabledTimestamp + NO_SELL_WINDOW)) {
+                    userSoldOrTransferToken[sender_] = true;
+                }
+
+                _tokenTransfer(sender_, recipient_, amount_ - taxAmount);
+
+                if(isBuyTransfer) {
+                    _tokenTransfer(sender_, address(this), taxAmount);
+                } else {
+                    _tokenTransfer(sender_, address(this), taxAmount);
+                    sellTax += taxAmount;
+                    if (sellTax > maxSellTaxLimit) {
+                        swapTokensForETH(sellTax);
+                        sellTax = 0;
+                    }
+                }
+            }
         }
     }
 
-    function _hashPair(bytes32 a, bytes32 b) private pure returns (bytes32) {
-        return a < b ? _efficientHash(a, b) : _efficientHash(b, a);
+    function _tokenTransfer(
+        address sender_,
+        address recipient_,
+        uint256 amount_
+    ) internal {
+        super._transfer(sender_, recipient_, amount_);
     }
 
-    function _efficientHash(bytes32 a, bytes32 b) private pure returns (bytes32 value) {
-        /// @solidity memory-safe-assembly
-        assembly {
-            mstore(0x00, a)
-            mstore(0x20, b)
-            value := keccak256(0x00, 0x40)
+    // Calculates tax based on amount and tax rate.
+    function _calculateTax(uint256 amount_, address recipient_, address sender_) internal view returns (uint256) {
+        uint256 taxRate;
+        // solhint-disable-next-line not-rely-on-time
+        if(sender_!=pair && recipient_ !=pair){
+            return 0;
+        }
+        else {
+            if(sender_ == pair) {
+                taxRate = buyTaxRate();
+            } 
+            if (recipient_ == pair ) {
+                taxRate = sellTaxRate();
+            } 
+        }
+        if (exemptFee[recipient_] || exemptFee[sender_]) {
+            return 0;
+        }
+        uint256 taxAmount = (amount_ * taxRate) / MAX_BASIS_POINT;
+        return taxAmount;
+    }
+
+    function _beforeTokenTransfer(
+        address from_,
+        address to_,
+        uint256 amount_
+    ) internal virtual override {
+        require(!blacklistUser[from_], "Sender is blacklisted.");
+        require(!blacklistUser[to_], "Recipient is blacklisted.");
+        
+        if (limited && msg.sender != owner() && to_!=pair && to_ != address(this)) {
+            uint256 recipientBalance = super.balanceOf(to_);
+            uint256 newBalance = recipientBalance + amount_;
+
+            require(newBalance <= maxTokenHolding && newBalance >= minTokenHolding, "Not within max/min holding limits.");
         }
     }
-}
-{
-  "optimizer": {
-    "enabled": true,
-    "runs": 200
-  },
-  "outputSelection": {
-    "*": {
-      "*": [
-        "evm.bytecode",
-        "evm.deployedBytecode",
-        "devdoc",
-        "userdoc",
-        "metadata",
-        "abi"
-      ]
+
+    function swapTokensForETH(uint256 tokenAmount_) internal {
+        // generate the pair path of token -> weth
+        address[] memory path = new address[](2);
+        path[0] = address(this);
+        path[1] = router.WETH();
+
+        _approve(address(this), address(router), tokenAmount_);
+        
+        // make the swap
+        router.swapExactTokensForETHSupportingFeeOnTransferTokens(
+            tokenAmount_,
+            0,
+            path,
+            address(this),
+            block.timestamp
+        );
     }
-  },
-  "libraries": {}
+
+    receive() external payable {}
+
+    function buyTaxRate() view public returns(uint256) {
+        if(block.timestamp < firstTradingEnabledTimestamp + 10 minutes) {
+            return THIRTY_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 20 minutes) {
+            return TWENTY_FIVE_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 30 minutes) {
+            return TWENTY_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 40 minutes) {
+            return FIFTEEN_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 50 minutes) {
+            return TEN_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 60 minutes) {
+            return FIVE_BASIS_POINT;
+        }
+        else {
+            return buyTaxRateBasisPoint;
+        }
+    }
+
+    function sellTaxRate() view public returns(uint256) {
+        if(block.timestamp < firstTradingEnabledTimestamp + 30 minutes) {
+            return THIRTY_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 60 minutes) {
+            return TWENTY_FIVE_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 90 minutes) {
+            return TWENTY_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 120 minutes) {
+            return FIFTEEN_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 150 minutes) {
+            return TEN_BASIS_POINT;
+        }
+        if(block.timestamp < firstTradingEnabledTimestamp + 180 minutes) {
+            return FIVE_BASIS_POINT;
+        }
+        else {
+            return sellTaxRateBasisPoint;
+        }
+    }
+
+    function withdrawETH() external onlyOwner returns(bool){
+        (bool success, bytes memory data) = owner().call{value: address(this).balance}("");
+        return success;
+    }
+
+    function withdrawTokens() external onlyOwner {
+        require(block.timestamp > tokenClaimConstraint, "Claiming Period has not ended.");
+        uint256 amount = balanceOf(address(this));
+        _tokenTransfer(address(this), owner(), amount);
+    }
 }

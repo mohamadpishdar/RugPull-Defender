@@ -1,282 +1,197 @@
-/**
- *Submitted for verification at Etherscan.io on 2017-08-15
-*/
+// number: 892
+// project: Dai Stablecoin (DAI)
+// address: 0x6b175474e89094c44da98b954eedeac495271d0f
+// chainid: 1
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity =0.5.12;
 
-pragma solidity ^0.4.11;
-
-contract ERC20Basic {
-  uint256 public totalSupply;
-  function balanceOf(address who) constant returns (uint256);
-  function transfer(address to, uint256 value) returns (bool);
-  event Transfer(address indexed from, address indexed to, uint256 value);
-}
-
-contract Ownable {
-  address public owner;
-
-
-  /**
-   * @dev The Ownable constructor sets the original `owner` of the contract to the sender
-   * account.
-   */
-  function Ownable() {
-    owner = msg.sender;
-  }
-
-
-  /**
-   * @dev Throws if called by any account other than the owner.
-   */
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-  }
-
-
-  /**
-   * @dev Allows the current owner to transfer control of the contract to a newOwner.
-   * @param newOwner The address to transfer ownership to.
-   */
-  function transferOwnership(address newOwner) onlyOwner {
-    if (newOwner != address(0)) {
-      owner = newOwner;
-    }
-  }
-
-}
-
-contract Pausable is Ownable {
-  event Pause();
-  event Unpause();
-
-  bool public paused = false;
-
-
-  /**
-   * @dev modifier to allow actions only when the contract IS paused
-   */
-  modifier whenNotPaused() {
-    require(!paused);
-    _;
-  }
-
-  /**
-   * @dev modifier to allow actions only when the contract IS NOT paused
-   */
-  modifier whenPaused {
-    require(paused);
-    _;
-  }
-
-  /**
-   * @dev called by the owner to pause, triggers stopped state
-   */
-  function pause() onlyOwner whenNotPaused returns (bool) {
-    paused = true;
-    Pause();
-    return true;
-  }
-
-  /**
-   * @dev called by the owner to unpause, returns to normal state
-   */
-  function unpause() onlyOwner whenPaused returns (bool) {
-    paused = false;
-    Unpause();
-    return true;
-  }
-}
-
-contract ERC20 is ERC20Basic {
-  function allowance(address owner, address spender) constant returns (uint256);
-  function transferFrom(address from, address to, uint256 value) returns (bool);
-  function approve(address spender, uint256 value) returns (bool);
-  event Approval(address indexed owner, address indexed spender, uint256 value);
-}
-
-library SafeMath {
-  function mul(uint256 a, uint256 b) internal constant returns (uint256) {
-    uint256 c = a * b;
-    assert(a == 0 || c / a == b);
-    return c;
-  }
-
-  function div(uint256 a, uint256 b) internal constant returns (uint256) {
-    // assert(b > 0); // Solidity automatically throws when dividing by 0
-    uint256 c = a / b;
-    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-    return c;
-  }
-
-  function sub(uint256 a, uint256 b) internal constant returns (uint256) {
-    assert(b <= a);
-    return a - b;
-  }
-
-  function add(uint256 a, uint256 b) internal constant returns (uint256) {
-    uint256 c = a + b;
-    assert(c >= a);
-    return c;
-  }
-}
-
-contract BasicToken is ERC20Basic {
-  using SafeMath for uint256;
-
-  mapping(address => uint256) balances;
-
-  /**
-  * @dev transfer token for a specified address
-  * @param _to The address to transfer to.
-  * @param _value The amount to be transferred.
-  */
-  function transfer(address _to, uint256 _value) returns (bool) {
-    balances[msg.sender] = balances[msg.sender].sub(_value);
-    balances[_to] = balances[_to].add(_value);
-    Transfer(msg.sender, _to, _value);
-    return true;
-  }
-
-  /**
-  * @dev Gets the balance of the specified address.
-  * @param _owner The address to query the the balance of. 
-  * @return An uint256 representing the amount owned by the passed address.
-  */
-  function balanceOf(address _owner) constant returns (uint256 balance) {
-    return balances[_owner];
-  }
-
-}
-
-contract StandardToken is ERC20, BasicToken {
-
-  mapping (address => mapping (address => uint256)) allowed;
-
-
-  /**
-   * @dev Transfer tokens from one address to another
-   * @param _from address The address which you want to send tokens from
-   * @param _to address The address which you want to transfer to
-   * @param _value uint256 the amout of tokens to be transfered
-   */
-  function transferFrom(address _from, address _to, uint256 _value) returns (bool) {
-    var _allowance = allowed[_from][msg.sender];
-
-    // Check is not needed because sub(_allowance, _value) will already throw if this condition is not met
-    // require (_value <= _allowance);
-
-    balances[_to] = balances[_to].add(_value);
-    balances[_from] = balances[_from].sub(_value);
-    allowed[_from][msg.sender] = _allowance.sub(_value);
-    Transfer(_from, _to, _value);
-    return true;
-  }
-
-  /**
-   * @dev Aprove the passed address to spend the specified amount of tokens on behalf of msg.sender.
-   * @param _spender The address which will spend the funds.
-   * @param _value The amount of tokens to be spent.
-   */
-  function approve(address _spender, uint256 _value) returns (bool) {
-
-    // To change the approve amount you first have to reduce the addresses`
-    //  allowance to zero by calling `approve(_spender, 0)` if it is not
-    //  already 0 to mitigate the race condition described here:
-    //  https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-    require((_value == 0) || (allowed[msg.sender][_spender] == 0));
-
-    allowed[msg.sender][_spender] = _value;
-    Approval(msg.sender, _spender, _value);
-    return true;
-  }
-
-  /**
-   * @dev Function to check the amount of tokens that an owner allowed to a spender.
-   * @param _owner address The address which owns the funds.
-   * @param _spender address The address which will spend the funds.
-   * @return A uint256 specifing the amount of tokens still avaible for the spender.
-   */
-  function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
-    return allowed[_owner][_spender];
-  }
-
-}
-
-contract MintableToken is StandardToken, Ownable {
-  event Mint(address indexed to, uint256 amount);
-  event MintFinished();
-
-  bool public mintingFinished = false;
-
-
-  modifier canMint() {
-    require(!mintingFinished);
-    _;
-  }
-
-  /**
-   * @dev Function to mint tokens
-   * @param _to The address that will recieve the minted tokens.
-   * @param _amount The amount of tokens to mint.
-   * @return A boolean that indicates if the operation was successful.
-   */
-  function mint(address _to, uint256 _amount) onlyOwner canMint returns (bool) {
-    totalSupply = totalSupply.add(_amount);
-    balances[_to] = balances[_to].add(_amount);
-    Mint(_to, _amount);
-    return true;
-  }
-
-  /**
-   * @dev Function to stop minting new tokens.
-   * @return True if the operation was successful.
-   */
-  function finishMinting() onlyOwner returns (bool) {
-    mintingFinished = true;
-    MintFinished();
-    return true;
-  }
-}
-
-contract PausableToken is StandardToken, Pausable {
-
-  function transfer(address _to, uint _value) whenNotPaused returns (bool) {
-    return super.transfer(_to, _value);
-  }
-
-  function transferFrom(address _from, address _to, uint _value) whenNotPaused returns (bool) {
-    return super.transferFrom(_from, _to, _value);
-  }
-}
-
-contract BurnableToken is StandardToken {
-
-    event Burn(address indexed burner, uint256 value);
-
-    /**
-     * @dev Burns a specified amount of tokens.
-     * @param _value The amount of tokens to burn. 
-     */
-    function burn(uint256 _value) public {
-        require(_value > 0);
-
-        address burner = msg.sender;
-        balances[burner] = balances[burner].sub(_value);
-        totalSupply = totalSupply.sub(_value);
-        Burn(msg.sender, _value);
-    }
-
-}
-
-contract MANAToken is BurnableToken, PausableToken, MintableToken {
-
-    string public constant symbol = "MANA";
-
-    string public constant name = "Decentraland MANA";
-
-    uint8 public constant decimals = 18;
-
-    function burn(uint256 _value) whenNotPaused public {
-        super.burn(_value);
-    }
+// hevm: flattened sources of /nix/store/8xb41r4qd0cjb63wcrxf1qmfg88p0961-dss-6fd7de0/src/dai.sol
+
+
+////// /nix/store/8xb41r4qd0cjb63wcrxf1qmfg88p0961-dss-6fd7de0/src/lib.sol
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+/* pragma solidity 0.5.12; */
+
+contract LibNote {
+    event LogNote(
+        bytes4   indexed  sig,
+        address  indexed  usr,
+        bytes32  indexed  arg1,
+        bytes32  indexed  arg2,
+        bytes             data
+    ) anonymous;
+
+    modifier note {
+        _;
+        assembly {
+            // log an 'anonymous' event with a constant 6 words of calldata
+            // and four indexed topics: selector, caller, arg1 and arg2
+            let mark := msize                         // end of memory ensures zero
+            mstore(0x40, add(mark, 288))              // update free memory pointer
+            mstore(mark, 0x20)                        // bytes type data offset
+            mstore(add(mark, 0x20), 224)              // bytes size (padded)
+            calldatacopy(add(mark, 0x40), 0, 224)     // bytes payload
+            log4(mark, 288,                           // calldata
+                 shl(224, shr(224, calldataload(0))), // msg.sig
+                 caller,                              // msg.sender
+                 calldataload(4),                     // arg1
+                 calldataload(36)                     // arg2
+                )
+        }
+    }
+}
+
+////// /nix/store/8xb41r4qd0cjb63wcrxf1qmfg88p0961-dss-6fd7de0/src/dai.sol
+// Copyright (C) 2017, 2018, 2019 dbrock, rain, mrchico
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+/* pragma solidity 0.5.12; */
+
+/* import "./lib.sol"; */
+
+contract Dai is LibNote {
+    // --- Auth ---
+    mapping (address => uint) public wards;
+    function rely(address guy) external note auth { wards[guy] = 1; }
+    function deny(address guy) external note auth { wards[guy] = 0; }
+    modifier auth {
+        require(wards[msg.sender] == 1, "Dai/not-authorized");
+        _;
+    }
+
+    // --- ERC20 Data ---
+    string  public constant name     = "Dai Stablecoin";
+    string  public constant symbol   = "DAI";
+    string  public constant version  = "1";
+    uint8   public constant decimals = 18;
+    uint256 public totalSupply;
+
+    mapping (address => uint)                      public balanceOf;
+    mapping (address => mapping (address => uint)) public allowance;
+    mapping (address => uint)                      public nonces;
+
+    event Approval(address indexed src, address indexed guy, uint wad);
+    event Transfer(address indexed src, address indexed dst, uint wad);
+
+    // --- Math ---
+    function add(uint x, uint y) internal pure returns (uint z) {
+        require((z = x + y) >= x);
+    }
+    function sub(uint x, uint y) internal pure returns (uint z) {
+        require((z = x - y) <= x);
+    }
+
+    // --- EIP712 niceties ---
+    bytes32 public DOMAIN_SEPARATOR;
+    // bytes32 public constant PERMIT_TYPEHASH = keccak256("Permit(address holder,address spender,uint256 nonce,uint256 expiry,bool allowed)");
+    bytes32 public constant PERMIT_TYPEHASH = 0xea2aa0a1be11a07ed86d755c93467f4f82362b452371d1ba94d1715123511acb;
+
+    constructor(uint256 chainId_) public {
+        wards[msg.sender] = 1;
+        DOMAIN_SEPARATOR = keccak256(abi.encode(
+            keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"),
+            keccak256(bytes(name)),
+            keccak256(bytes(version)),
+            chainId_,
+            address(this)
+        ));
+    }
+
+    // --- Token ---
+    function transfer(address dst, uint wad) external returns (bool) {
+        return transferFrom(msg.sender, dst, wad);
+    }
+    function transferFrom(address src, address dst, uint wad)
+        public returns (bool)
+    {
+        require(balanceOf[src] >= wad, "Dai/insufficient-balance");
+        if (src != msg.sender && allowance[src][msg.sender] != uint(-1)) {
+            require(allowance[src][msg.sender] >= wad, "Dai/insufficient-allowance");
+            allowance[src][msg.sender] = sub(allowance[src][msg.sender], wad);
+        }
+        balanceOf[src] = sub(balanceOf[src], wad);
+        balanceOf[dst] = add(balanceOf[dst], wad);
+        emit Transfer(src, dst, wad);
+        return true;
+    }
+    function mint(address usr, uint wad) external auth {
+        balanceOf[usr] = add(balanceOf[usr], wad);
+        totalSupply    = add(totalSupply, wad);
+        emit Transfer(address(0), usr, wad);
+    }
+    function burn(address usr, uint wad) external {
+        require(balanceOf[usr] >= wad, "Dai/insufficient-balance");
+        if (usr != msg.sender && allowance[usr][msg.sender] != uint(-1)) {
+            require(allowance[usr][msg.sender] >= wad, "Dai/insufficient-allowance");
+            allowance[usr][msg.sender] = sub(allowance[usr][msg.sender], wad);
+        }
+        balanceOf[usr] = sub(balanceOf[usr], wad);
+        totalSupply    = sub(totalSupply, wad);
+        emit Transfer(usr, address(0), wad);
+    }
+    function approve(address usr, uint wad) external returns (bool) {
+        allowance[msg.sender][usr] = wad;
+        emit Approval(msg.sender, usr, wad);
+        return true;
+    }
+
+    // --- Alias ---
+    function push(address usr, uint wad) external {
+        transferFrom(msg.sender, usr, wad);
+    }
+    function pull(address usr, uint wad) external {
+        transferFrom(usr, msg.sender, wad);
+    }
+    function move(address src, address dst, uint wad) external {
+        transferFrom(src, dst, wad);
+    }
+
+    // --- Approve by signature ---
+    function permit(address holder, address spender, uint256 nonce, uint256 expiry,
+                    bool allowed, uint8 v, bytes32 r, bytes32 s) external
+    {
+        bytes32 digest =
+            keccak256(abi.encodePacked(
+                "\x19\x01",
+                DOMAIN_SEPARATOR,
+                keccak256(abi.encode(PERMIT_TYPEHASH,
+                                     holder,
+                                     spender,
+                                     nonce,
+                                     expiry,
+                                     allowed))
+        ));
+
+        require(holder != address(0), "Dai/invalid-address-0");
+        require(holder == ecrecover(digest, v, r, s), "Dai/invalid-permit");
+        require(expiry == 0 || now <= expiry, "Dai/permit-expired");
+        require(nonce == nonces[holder]++, "Dai/invalid-nonce");
+        uint wad = allowed ? uint(-1) : 0;
+        allowance[holder][spender] = wad;
+        emit Approval(holder, spender, wad);
+    }
 }

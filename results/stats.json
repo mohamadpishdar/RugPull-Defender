@@ -1,0 +1,562 @@
+{
+ "retained_rules": {
+  "0": [
+   2,
+   3,
+   5,
+   7
+  ],
+  "1": [
+   2,
+   3,
+   5,
+   7
+  ],
+  "2": [
+   2,
+   3,
+   5,
+   7
+  ],
+  "3": [
+   2,
+   3,
+   5,
+   7
+  ],
+  "4": [
+   2,
+   3,
+   5,
+   7
+  ]
+ },
+ "retained_flags": {
+  "0": [
+   1,
+   2
+  ],
+  "1": [
+   1,
+   2
+  ],
+  "2": [
+   1,
+   2
+  ],
+  "3": [
+   1,
+   2
+  ],
+  "4": [
+   1,
+   2
+  ]
+ },
+ "cfg_clean": {
+  "FINAL": {
+   "0": [
+    0.4,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ],
+   "1": [
+    0.35,
+    0.75,
+    1.0,
+    0.25,
+    0.35
+   ],
+   "2": [
+    0.4,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ],
+   "3": [
+    0.4,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ],
+   "4": [
+    0.4,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ]
+  },
+  "W1+W3": {
+   "0": [
+    0.5,
+    0.75,
+    0.0,
+    0.5,
+    0.55
+   ],
+   "1": [
+    0.5,
+    0.75,
+    0.0,
+    0.5,
+    0.55
+   ],
+   "2": [
+    0.5,
+    0.75,
+    0.0,
+    0.5,
+    0.55
+   ],
+   "3": [
+    0.2,
+    0.7,
+    0.0,
+    0.5,
+    0.6
+   ],
+   "4": [
+    0.5,
+    0.75,
+    0.0,
+    0.5,
+    0.55
+   ]
+  },
+  "W1+W2": {
+   "0": [
+    0.4,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ],
+   "1": [
+    0.35,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ],
+   "2": [
+    0.4,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ],
+   "3": [
+    0.4,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ],
+   "4": [
+    0.4,
+    0.8,
+    1.0,
+    0.0,
+    0.4
+   ]
+  }
+ },
+ "cfg_renamed": {
+  "FINAL": {
+   "0": [
+    0.2,
+    0.9,
+    1.0,
+    0.5,
+    0.55
+   ],
+   "1": [
+    0.2,
+    0.9,
+    0.25,
+    0.5,
+    0.75
+   ],
+   "2": [
+    0.2,
+    0.9,
+    1.0,
+    0.5,
+    0.55
+   ],
+   "3": [
+    0.2,
+    0.9,
+    1.0,
+    0.5,
+    0.55
+   ],
+   "4": [
+    0.2,
+    0.9,
+    1.0,
+    0.5,
+    0.55
+   ]
+  },
+  "W1+W3": {
+   "0": [
+    0.2,
+    0.9,
+    0.0,
+    0.5,
+    0.75
+   ],
+   "1": [
+    0.2,
+    0.9,
+    0.0,
+    0.5,
+    0.75
+   ],
+   "2": [
+    0.2,
+    0.9,
+    0.0,
+    0.5,
+    0.7
+   ],
+   "3": [
+    0.2,
+    0.9,
+    0.0,
+    0.5,
+    0.75
+   ],
+   "4": [
+    0.2,
+    0.9,
+    0.0,
+    0.5,
+    0.75
+   ]
+  },
+  "W1+W2": {
+   "0": [
+    0.2,
+    0.9,
+    0.5,
+    0.0,
+    0.7
+   ],
+   "1": [
+    0.2,
+    0.9,
+    0.5,
+    0.0,
+    0.65
+   ],
+   "2": [
+    0.2,
+    0.9,
+    0.5,
+    0.0,
+    0.7
+   ],
+   "3": [
+    0.2,
+    0.9,
+    0.25,
+    0.0,
+    0.75
+   ],
+   "4": [
+    0.2,
+    0.9,
+    0.5,
+    0.0,
+    0.7
+   ]
+  }
+ },
+ "thr_clean": {
+  "0": 0.74,
+  "1": 0.72,
+  "2": 0.72,
+  "3": 0.72,
+  "4": 0.74
+ },
+ "thr_renamed": {
+  "0": 0.92,
+  "1": 0.92,
+  "2": 0.92,
+  "3": 0.92,
+  "4": 0.92
+ },
+ "renaming_detector": {
+  "clean": 0.0,
+  "obfuscated": 0.997
+ },
+ "aggregation": {
+  "full": "p_mean",
+  "tail": "p_max"
+ },
+ "mcnemar.clean.FINAL_vs_W1 (CodeBERT, full contract)": [
+  50,
+  37,
+  0.1979791406725175
+ ],
+ "mcnemar.clean.FINAL_vs_W1 (CodeBERT, full contract, tuned threshold)": [
+  52,
+  30,
+  0.0198269158458416
+ ],
+ "mcnemar.clean.FINAL_vs_W1 (CodeBERT, last 512 tokens)": [
+  151,
+  57,
+  5.320646224618387e-11
+ ],
+ "mcnemar.clean.FINAL_vs_W1+W3 (cascade)": [
+  44,
+  29,
+  0.10064367752023572
+ ],
+ "mcnemar.clean.FINAL_vs_W1+W2 (cascade)": [
+  6,
+  7,
+  1.0
+ ],
+ "mcnemar.clean.FINAL_vs_W2 (Forta alone)": [
+  443,
+  68,
+  1.983367791595059e-68
+ ],
+ "mcnemar.clean.FINAL_vs_W3 (CRPWarner alone)": [
+  372,
+  68,
+  8.356642031884914e-52
+ ],
+ "mcnemar.clean.FINAL_vs_W1+W2+W3 (flat LightGBM, concatenated)": [
+  38,
+  34,
+  0.7239481457469141
+ ],
+ "mcnemar.clean.full_vs_last512": [
+  138,
+  57,
+  6.172639137067468e-09
+ ],
+ "gate.clean": {
+  "share": 0.246,
+  "n": 246,
+  "acc_codebert": 0.573170731707317,
+  "acc_cascade": 0.6260162601626016,
+  "false_positives_fixed": 46,
+  "rug_pulls_lost": 34,
+  "rug_pulls_recovered": 4,
+  "normals_lost": 3,
+  "crp_flag_rate_rug_pulls": 0.23846153846153847,
+  "crp_flag_rate_normals": 0.12931034482758622
+ },
+ "forta_mean.clean": [
+  0.2806343906510852,
+  0.13241895261845388
+ ],
+ "uncertain_share.clean": 0.392,
+ "curves.clean.W2 (Forta alone)": {
+  "tpr_at_fpr10": 0.34724540901502504,
+  "precision_at_recall50": 0.6992805755395683,
+  "precision_at_recall90": 0.599
+ },
+ "curves.clean.W1 (CodeBERT, full contract)": {
+  "tpr_at_fpr10": 0.7195325542570952,
+  "precision_at_recall50": 0.9620253164556962,
+  "precision_at_recall90": 0.8
+ },
+ "curves.clean.W1+W2+W3 (cascade, FINAL)": {
+  "tpr_at_fpr10": 0.7295492487479132,
+  "precision_at_recall50": 0.9620253164556962,
+  "precision_at_recall90": 0.7840579710144927
+ },
+ "mcnemar.obfuscated.FINAL_vs_W1 (CodeBERT, full contract)": [
+  194,
+  67,
+  1.6868212094507355e-15
+ ],
+ "mcnemar.obfuscated.FINAL_vs_W1 (CodeBERT, full contract, tuned threshold)": [
+  16,
+  14,
+  0.8555355519056321
+ ],
+ "mcnemar.obfuscated.FINAL_vs_W1 (CodeBERT, last 512 tokens)": [
+  178,
+  88,
+  3.624198321689687e-08
+ ],
+ "mcnemar.obfuscated.FINAL_vs_W1+W3 (cascade)": [
+  17,
+  8,
+  0.10775214433670044
+ ],
+ "mcnemar.obfuscated.FINAL_vs_W1+W2 (cascade)": [
+  13,
+  8,
+  0.38331031799316406
+ ],
+ "mcnemar.obfuscated.FINAL_vs_W2 (Forta alone)": [
+  516,
+  156,
+  7.296534170597378e-46
+ ],
+ "mcnemar.obfuscated.FINAL_vs_W3 (CRPWarner alone)": [
+  377,
+  134,
+  9.056517262642167e-28
+ ],
+ "mcnemar.obfuscated.FINAL_vs_W1+W2+W3 (flat LightGBM, concatenated)": [
+  73,
+  38,
+  0.0011510187915276821
+ ],
+ "mcnemar.obfuscated.full_vs_last512": [
+  103,
+  140,
+  0.02073046303445152
+ ],
+ "gate.obfuscated": {
+  "share": 0.318,
+  "n": 318,
+  "acc_codebert": 0.36163522012578614,
+  "acc_cascade": 0.7610062893081762,
+  "false_positives_fixed": 194,
+  "rug_pulls_lost": 67,
+  "rug_pulls_recovered": 0,
+  "normals_lost": 0,
+  "crp_flag_rate_rug_pulls": 0.20987654320987653,
+  "crp_flag_rate_normals": 0.10970464135021098
+ },
+ "forta_mean.obfuscated": [
+  0.08864774624373956,
+  0.07443890274314213
+ ],
+ "uncertain_share.obfuscated": 0.306,
+ "curves.obfuscated.W2 (Forta alone)": {
+  "tpr_at_fpr10": 0.10851419031719532,
+  "precision_at_recall50": 0.599,
+  "precision_at_recall90": 0.599
+ },
+ "curves.obfuscated.W1 (CodeBERT, full contract)": {
+  "tpr_at_fpr10": 0.48747913188647746,
+  "precision_at_recall50": 0.8731988472622478,
+  "precision_at_recall90": 0.7479224376731302
+ },
+ "curves.obfuscated.W1+W2+W3 (cascade, FINAL)": {
+  "tpr_at_fpr10": 0.48747913188647746,
+  "precision_at_recall50": 0.8731988472622478,
+  "precision_at_recall90": 0.7569832402234636
+ },
+ "which_modalities_correct": {
+  "codebert_only": 701,
+  "forta_only": 75,
+  "crpwarner_only": 14,
+  "exactly_two": 847,
+  "all_three": 293,
+  "none": 70
+ },
+ "fold_accuracy": {
+  "fold": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "full_clean": [
+   0.825,
+   0.785,
+   0.835,
+   0.82,
+   0.805
+  ],
+  "full_obfuscated": [
+   0.64,
+   0.62,
+   0.655,
+   0.605,
+   0.685
+  ],
+  "tail_clean": [
+   0.745,
+   0.735,
+   0.745,
+   0.73,
+   0.71
+  ],
+  "tail_obfuscated": [
+   0.69,
+   0.695,
+   0.735,
+   0.645,
+   0.625
+  ],
+  "cascade_clean": [
+   0.825,
+   0.825,
+   0.82,
+   0.835,
+   0.83
+  ],
+  "cascade_obfuscated": [
+   0.77,
+   0.765,
+   0.805,
+   0.73,
+   0.77
+  ]
+ },
+ "pruning_margin_sensitivity_clean": {
+  "0.0": {
+   "accuracy": 0.832,
+   "mcnemar_vs_tuned_codebert": [
+    52,
+    25,
+    0.002799053877277624
+   ]
+  },
+  "0.02": {
+   "accuracy": 0.82,
+   "mcnemar_vs_tuned_codebert": [
+    45,
+    30,
+    0.10534226887460482
+   ]
+  },
+  "0.05": {
+   "accuracy": 0.827,
+   "mcnemar_vs_tuned_codebert": [
+    52,
+    30,
+    0.0198269158458416
+   ]
+  },
+  "0.1": {
+   "accuracy": 0.82,
+   "mcnemar_vs_tuned_codebert": [
+    44,
+    29,
+    0.10064367752023572
+   ]
+  }
+ },
+ "no_near_duplicate": {
+  "W1 (CodeBERT, full contract)|clean": 0.7784011220196353,
+  "W1 (CodeBERT, full contract, tuned threshold)|clean": 0.7784011220196353,
+  "W1 (CodeBERT, last 512 tokens)|clean": 0.7040673211781207,
+  "W1+W2+W3 (cascade, FINAL)|clean": 0.7924263674614306,
+  "W1 (CodeBERT, full contract)|obfuscated": 0.5932678821879382,
+  "W1 (CodeBERT, full contract, tuned threshold)|obfuscated": 0.7349228611500701,
+  "W1 (CodeBERT, last 512 tokens)|obfuscated": 0.6395511921458625,
+  "W1+W2+W3 (cascade, FINAL)|obfuscated": 0.7349228611500701,
+  "n": 713
+ }
+}

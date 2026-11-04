@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+crpwarner/bytecode/
+crpwarner/solc_bin/
+crpwarner/RugPull/
+*.pt
